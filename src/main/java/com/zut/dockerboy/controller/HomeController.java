@@ -1,4 +1,4 @@
-package me.davidx.learnjava;
+package com.zut.dockerboy.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +20,7 @@ public class HomeController {
     public String bb(Model model) {
         user.setMsg("i am excited!");
         model.addAttribute("message", "hello, world,i am ningwenhui");
-        return "bb";
+        model.addAttribute("user", user);
+        return "photo";
     }
 }
