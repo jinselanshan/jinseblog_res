@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jinse.blog.mapper.ReplyMapper" >
+  <resultMap id="BaseResultMap" type="com.jinse.blog.pojo.Reply" >
+    <id column="reply_id" property="replyId" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="comment_user_id" property="commentUserId" jdbcType="INTEGER" />
+    <result column="comment_id" property="commentId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    reply_id, content, user_id, comment_user_id, comment_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jinse.blog.pojo.ReplyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from reply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from reply
+    where reply_id = #{replyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from reply
+    where reply_id = #{replyId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jinse.blog.pojo.ReplyExample" >
+    delete from reply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jinse.blog.pojo.Reply" >
+    insert into reply (reply_id, content, user_id, 
+      comment_user_id, comment_id)
+    values (#{replyId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
+      #{commentUserId,jdbcType=INTEGER}, #{commentId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jinse.blog.pojo.Reply" >
+    insert into reply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="replyId != null" >
+        reply_id,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="commentUserId != null" >
+        comment_user_id,
+      </if>
+      <if test="commentId != null" >
+        comment_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="replyId != null" >
+        #{replyId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="commentUserId != null" >
+        #{commentUserId,jdbcType=INTEGER},
+      </if>
+      <if test="commentId != null" >
+        #{commentId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jinse.blog.pojo.ReplyExample" resultType="java.lang.Integer" >
+    select count(*) from reply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update reply
+    <set >
+      <if test="record.replyId != null" >
+        reply_id = #{record.replyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.commentUserId != null" >
+        comment_user_id = #{record.commentUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.commentId != null" >
+        comment_id = #{record.commentId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update reply
+    set reply_id = #{record.replyId,jdbcType=INTEGER},
+      content = #{record.content,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      comment_user_id = #{record.commentUserId,jdbcType=INTEGER},
+      comment_id = #{record.commentId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jinse.blog.pojo.Reply" >
+    update reply
+    <set >
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="commentUserId != null" >
+        comment_user_id = #{commentUserId,jdbcType=INTEGER},
+      </if>
+      <if test="commentId != null" >
+        comment_id = #{commentId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where reply_id = #{replyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jinse.blog.pojo.Reply" >
+    update reply
+    set content = #{content,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      comment_user_id = #{commentUserId,jdbcType=INTEGER},
+      comment_id = #{commentId,jdbcType=INTEGER}
+    where reply_id = #{replyId,jdbcType=INTEGER}
+  </update>
+</mapper>

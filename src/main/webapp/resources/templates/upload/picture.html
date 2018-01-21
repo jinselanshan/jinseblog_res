@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="upload/uploadHead :: upload_header">
+<title>css,js</title>
+<!--  <link rel="stylesheet" href="css/index.css"> -->
+</head>
+<body>
+	<!-- 导航栏 -->
+	<header th:replace="nav :: nav"></header>
+
+	<div class="row-fluid span12 row-fluid">
+	<form enctype="multipart/form-data" id="uploadForm" th:action="@{/uploadPicture}" method="post">
+		<div class="col-xs-9 span9">
+			<div class="">
+					<label>上传图片</label> <input id="file-zh" name="file-zh[]"
+						class="fileinputLocales['zh']" type="file" multiple/>
+			</div>
+		</div>
+		<div class="col-xs-3 span3  tablecss">
+			<form>
+			    <input type="hidden" name="picture.type" value="1">
+				<table class="table tablefont">
+					<tr class="">
+						<td>标题</td>
+					</tr>
+					<tr class="">
+						<td><input name="title" type="text"></td>
+					</tr>
+					<tr class="">
+						<td>作品描述</td>
+					</tr>
+					<tr class="">
+						<td><textarea name="description" rows="3" cols="25" placeholder="介绍一下这幅作品吧..."
+								style="resize: none"></textarea></td>
+					</tr>
+					<tr class="">
+						<td>标签</td>
+					</tr>
+					<tr class="">
+						<td><textarea name="tag" rows="3" cols="25"
+								placeholder="输入标签内容回车即可添加标签..." style="resize: none"></textarea></td>
+					</tr>
+
+					<tr class="">
+						<td>常用标签</td>
+					</tr>
+					<tr class="">
+						<td><span class="label label-default "
+							style="cursor: pointer">哈尔滨</span></td>
+					</tr>
+					<tr class="">
+						<td><label class="checkbox"> <input type="checkbox"
+								style="cursor: pointer" name="picture.buy" value="Y" />是否纳入版权购买计划
+						</label></td>
+					</tr>
+					<tr class="">
+						<td><button class="btn" type="submit">提交</button></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	  </form>
+	</div>
+
+</body>
+<script>
+	$('#file-zh').fileinput({
+		language : 'zh',
+		allowedFileExtensions : [ 'jpg', 'png', 'gif' ],
+		overwriteInitial : false,
+		maxFileSize : 20000,
+		maxFilesNum : 10,
+		showUpload : false,
+
+	});
+	$(document).ready(function() {
+		$("#test-upload").fileinput({
+
+		});
+	});
+	/* $(function() {
+		$("#sub").click(
+			function() {
+				alert("");
+				   $.ajax({
+			            beforeSend:upload(),
+			            //成功返回之后调用的函数             
+			            success:function(data){
+			            	document.examplansForm.action = "indexPhoto"
+			    	    	document.examplansForm.submit();
+			            },
+			            //调用出错执行的函数
+			            error: function(){
+			                //请求出错处理
+			            }         
+			         });
+			});
+		    function upload(){  
+		    	var formData = new FormData($( "#uploadForm" )[0]); 
+		    	alert(formData);
+		    	 $.ajax({
+			            type:"POST",
+			            url:"/uploadPicture",
+			            data:formData,
+			            //成功返回之后调用的函数             
+			            success:function(data){
+			                    
+			            },
+			            //调用出错执行的函数
+			            error: function(){
+			                //请求出错处理
+			            }         
+			         });
+		    } 
+	}); */
+</script>
+</html>
