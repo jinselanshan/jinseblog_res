@@ -4,10 +4,10 @@ import com.jinse.blog.pojo.Picture;
 
 public interface PictureService {
 
-	int addPictureAndGetId(Picture picture);
-
 	void updatePicture(Picture picture);
 
-	void addPicture(Picture picture);
+	int savePicture(Picture picture);
+
+	int updateUrlByPictureId(Picture picture);
 
 }

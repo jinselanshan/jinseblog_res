@@ -3,8 +3,8 @@
 <mapper namespace="com.jinse.blog.mapper.ScoreMapper" >
   <resultMap id="BaseResultMap" type="com.jinse.blog.pojo.Score" >
     <id column="score_id" property="scoreId" jdbcType="INTEGER" />
-    <result column="博客id" property="博客id" jdbcType="INTEGER" />
-    <result column="用户id" property="用户id" jdbcType="INTEGER" />
+    <result column="blog_id" property="blogId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="score" property="score" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -66,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    score_id, 博客id, 用户id, score
+    score_id, blog_id, user_id, score
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jinse.blog.pojo.ScoreExample" >
     select
@@ -99,9 +99,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.jinse.blog.pojo.Score" >
-    insert into score (score_id, 博客id, 用户id, 
+    insert into score (score_id, blog_id, user_id, 
       score)
-    values (#{scoreId,jdbcType=INTEGER}, #{博客id,jdbcType=INTEGER}, #{用户id,jdbcType=INTEGER}, 
+    values (#{scoreId,jdbcType=INTEGER}, #{blogId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
       #{score,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.jinse.blog.pojo.Score" >
@@ -110,11 +110,11 @@
       <if test="scoreId != null" >
         score_id,
       </if>
-      <if test="博客id != null" >
-        博客id,
+      <if test="blogId != null" >
+        blog_id,
       </if>
-      <if test="用户id != null" >
-        用户id,
+      <if test="userId != null" >
+        user_id,
       </if>
       <if test="score != null" >
         score,
@@ -124,11 +124,11 @@
       <if test="scoreId != null" >
         #{scoreId,jdbcType=INTEGER},
       </if>
-      <if test="博客id != null" >
-        #{博客id,jdbcType=INTEGER},
+      <if test="blogId != null" >
+        #{blogId,jdbcType=INTEGER},
       </if>
-      <if test="用户id != null" >
-        #{用户id,jdbcType=INTEGER},
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
       </if>
       <if test="score != null" >
         #{score,jdbcType=INTEGER},
@@ -147,11 +147,11 @@
       <if test="record.scoreId != null" >
         score_id = #{record.scoreId,jdbcType=INTEGER},
       </if>
-      <if test="record.博客id != null" >
-        博客id = #{record.博客id,jdbcType=INTEGER},
+      <if test="record.blogId != null" >
+        blog_id = #{record.blogId,jdbcType=INTEGER},
       </if>
-      <if test="record.用户id != null" >
-        用户id = #{record.用户id,jdbcType=INTEGER},
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
       </if>
       <if test="record.score != null" >
         score = #{record.score,jdbcType=INTEGER},
@@ -164,8 +164,8 @@
   <update id="updateByExample" parameterType="map" >
     update score
     set score_id = #{record.scoreId,jdbcType=INTEGER},
-      博客id = #{record.博客id,jdbcType=INTEGER},
-      用户id = #{record.用户id,jdbcType=INTEGER},
+      blog_id = #{record.blogId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
       score = #{record.score,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -174,11 +174,11 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.jinse.blog.pojo.Score" >
     update score
     <set >
-      <if test="博客id != null" >
-        博客id = #{博客id,jdbcType=INTEGER},
+      <if test="blogId != null" >
+        blog_id = #{blogId,jdbcType=INTEGER},
       </if>
-      <if test="用户id != null" >
-        用户id = #{用户id,jdbcType=INTEGER},
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
       <if test="score != null" >
         score = #{score,jdbcType=INTEGER},
@@ -188,8 +188,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.jinse.blog.pojo.Score" >
     update score
-    set 博客id = #{博客id,jdbcType=INTEGER},
-      用户id = #{用户id,jdbcType=INTEGER},
+    set blog_id = #{blogId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
       score = #{score,jdbcType=INTEGER}
     where score_id = #{scoreId,jdbcType=INTEGER}
   </update>

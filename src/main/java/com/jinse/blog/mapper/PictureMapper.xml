@@ -7,6 +7,7 @@
     <result column="type" property="type" jdbcType="VARCHAR" />
     <result column="price" property="price" jdbcType="INTEGER" />
     <result column="buy" property="buy" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    picture_id, blog_id, type, price, buy
+    picture_id, blog_id, type, price, buy, url
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jinse.blog.pojo.PictureExample" >
     select
@@ -101,9 +102,9 @@
   </delete>
   <insert id="insert" parameterType="com.jinse.blog.pojo.Picture" >
     insert into picture (picture_id, blog_id, type, 
-      price, buy)
+      price, buy, url)
     values (#{pictureId,jdbcType=INTEGER}, #{blogId,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, 
-      #{price,jdbcType=INTEGER}, #{buy,jdbcType=VARCHAR})
+      #{price,jdbcType=INTEGER}, #{buy,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.jinse.blog.pojo.Picture" >
     insert into picture
@@ -123,6 +124,9 @@
       <if test="buy != null" >
         buy,
       </if>
+      <if test="url != null" >
+        url,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="pictureId != null" >
@@ -139,6 +143,9 @@
       </if>
       <if test="buy != null" >
         #{buy,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -166,6 +173,9 @@
       <if test="record.buy != null" >
         buy = #{record.buy,jdbcType=VARCHAR},
       </if>
+      <if test="record.url != null" >
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -177,7 +187,8 @@
       blog_id = #{record.blogId,jdbcType=INTEGER},
       type = #{record.type,jdbcType=VARCHAR},
       price = #{record.price,jdbcType=INTEGER},
-      buy = #{record.buy,jdbcType=VARCHAR}
+      buy = #{record.buy,jdbcType=VARCHAR},
+      url = #{record.url,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -197,6 +208,9 @@
       <if test="buy != null" >
         buy = #{buy,jdbcType=VARCHAR},
       </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
     </set>
     where picture_id = #{pictureId,jdbcType=INTEGER}
   </update>
@@ -205,7 +219,8 @@
     set blog_id = #{blogId,jdbcType=INTEGER},
       type = #{type,jdbcType=VARCHAR},
       price = #{price,jdbcType=INTEGER},
-      buy = #{buy,jdbcType=VARCHAR}
+      buy = #{buy,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
     where picture_id = #{pictureId,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -12,8 +12,9 @@ public class BlogServiceImpl implements BlogService{
 	private BlogMapper blogMapper;
 	
 	@Override
-	public void addBlog(Blog blog) {
-		int i = blogMapper.insert(blog);
+	public int saveBlog(Blog blog) {
+		int id = blogMapper.insert(blog);
+		return id;
 	}
 
 }

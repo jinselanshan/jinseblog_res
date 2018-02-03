@@ -1,11 +1,5 @@
 package com.jinse.blog.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -13,10 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 import com.jinse.blog.pojo.Blog;
 import com.jinse.blog.pojo.Picture;
-import com.jinse.blog.pojo.User;
 import com.jinse.blog.service.BlogService;
 import com.jinse.blog.service.PictureService;
 import com.qiniu.common.QiniuException;
@@ -66,28 +55,31 @@ public class PictureController {
 			@RequestParam("file-zh[]") MultipartFile pic) throws Exception {
 		logger.info("add图片开始" + pic);
 		System.out.println(blog);
-		System.out.println(blog.getPicture());
 		// 原始名称
 		String originalFilename = pic.getOriginalFilename();
-		
-		
 		Picture picture = blog.getPicture();
-		int i = pictureService.addPictureAndGetId(picture);
-        int pictureId = picture.getPictureId();
+		int blogId = blogService.saveBlog(blog);
+		System.out.println(blogId);
+		picture.setBlogId(blogId);
+		picture.setType("1");
+		int pictureId = pictureService.savePicture(picture);
+		picture.setBlogId(blog.getBlogId());
+		
 		if (picture != null && originalFilename != null && originalFilename.length() > 0) {
 			try {
 				// 上传到七牛后保存的文件名
 				String key = "image/jpg/"+pictureId;
 				// 上传文件的路径
 				String FilePath = originalFilename;
-				
 				Response res = uploadManager.put(pic.getInputStream(), key, getUpToken(), null, null);
 				// 打印返回的信息
 				System.out.println(res.bodyString());
-
 				DefaultPutRet putRet = new Gson().fromJson(res.bodyString(), DefaultPutRet.class);
 				System.out.println(putRet.key);
-				blog.setUrl("http://p1vkce34m.bkt.clouddn.com/image/jpg/picture" + putRet.key);
+				picture.setUrl("http://p1vkce34m.bkt.clouddn.com/image/jpg/picture" + putRet.key);
+			    picture.setPictureId(pictureId);
+				pictureService.updateUrlByPictureId(picture);
+				
 			} catch (QiniuException e) {
 				Response r = e.response;
 				// 请求失败时打印的异常的信息
@@ -98,10 +90,6 @@ public class PictureController {
 				} catch (QiniuException e1) {
 				}
 			}
-			blogService.addBlog(blog);
-			System.out.println(blog);
-			picture.setBlogId(blog.getBlogId());
-			pictureService.updatePicture(picture);
 		}
 		return "photo";
 	}

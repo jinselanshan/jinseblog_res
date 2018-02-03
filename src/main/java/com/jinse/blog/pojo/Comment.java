@@ -13,7 +13,7 @@ public class Comment {
 
     private Integer authorId;
 
-    private Date time;
+    private Date createAt;
 
     public Integer getCommentId() {
         return commentId;
@@ -55,11 +55,11 @@ public class Comment {
         this.authorId = authorId;
     }
 
-    public Date getTime() {
-        return time;
+    public Date getCreateAt() {
+        return createAt;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
     }
 }

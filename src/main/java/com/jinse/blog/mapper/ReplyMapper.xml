@@ -7,6 +7,7 @@
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="comment_user_id" property="commentUserId" jdbcType="INTEGER" />
     <result column="comment_id" property="commentId" jdbcType="INTEGER" />
+    <result column="create_at" property="createAt" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    reply_id, content, user_id, comment_user_id, comment_id
+    reply_id, content, user_id, comment_user_id, comment_id, create_at
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jinse.blog.pojo.ReplyExample" >
     select
@@ -101,9 +102,11 @@
   </delete>
   <insert id="insert" parameterType="com.jinse.blog.pojo.Reply" >
     insert into reply (reply_id, content, user_id, 
-      comment_user_id, comment_id)
+      comment_user_id, comment_id, create_at
+      )
     values (#{replyId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
-      #{commentUserId,jdbcType=INTEGER}, #{commentId,jdbcType=INTEGER})
+      #{commentUserId,jdbcType=INTEGER}, #{commentId,jdbcType=INTEGER}, #{createAt,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.jinse.blog.pojo.Reply" >
     insert into reply
@@ -123,6 +126,9 @@
       <if test="commentId != null" >
         comment_id,
       </if>
+      <if test="createAt != null" >
+        create_at,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="replyId != null" >
@@ -139,6 +145,9 @@
       </if>
       <if test="commentId != null" >
         #{commentId,jdbcType=INTEGER},
+      </if>
+      <if test="createAt != null" >
+        #{createAt,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -166,6 +175,9 @@
       <if test="record.commentId != null" >
         comment_id = #{record.commentId,jdbcType=INTEGER},
       </if>
+      <if test="record.createAt != null" >
+        create_at = #{record.createAt,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -177,7 +189,8 @@
       content = #{record.content,jdbcType=VARCHAR},
       user_id = #{record.userId,jdbcType=INTEGER},
       comment_user_id = #{record.commentUserId,jdbcType=INTEGER},
-      comment_id = #{record.commentId,jdbcType=INTEGER}
+      comment_id = #{record.commentId,jdbcType=INTEGER},
+      create_at = #{record.createAt,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -197,6 +210,9 @@
       <if test="commentId != null" >
         comment_id = #{commentId,jdbcType=INTEGER},
       </if>
+      <if test="createAt != null" >
+        create_at = #{createAt,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where reply_id = #{replyId,jdbcType=INTEGER}
   </update>
@@ -205,7 +221,8 @@
     set content = #{content,jdbcType=VARCHAR},
       user_id = #{userId,jdbcType=INTEGER},
       comment_user_id = #{commentUserId,jdbcType=INTEGER},
-      comment_id = #{commentId,jdbcType=INTEGER}
+      comment_id = #{commentId,jdbcType=INTEGER},
+      create_at = #{createAt,jdbcType=TIMESTAMP}
     where reply_id = #{replyId,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -11,6 +11,8 @@ public class Picture {
 
     private String buy;
 
+    private String url;
+
     public Integer getPictureId() {
         return pictureId;
     }
@@ -51,10 +53,11 @@ public class Picture {
         this.buy = buy == null ? null : buy.trim();
     }
 
-	@Override
-	public String toString() {
-		return "Picture [pictureId=" + pictureId + ", blogId=" + blogId + ", type=" + type + ", price=" + price
-				+ ", buy=" + buy + "]";
-	}
-    
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url == null ? null : url.trim();
+    }
 }

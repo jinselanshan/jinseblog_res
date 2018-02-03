@@ -4,6 +4,6 @@ import com.jinse.blog.pojo.Blog;
 
 public interface BlogService {
 
-	void addBlog(Blog blog);
+	int saveBlog(Blog blog);
 
 }

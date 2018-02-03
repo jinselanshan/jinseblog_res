@@ -1,8 +1,4 @@
-<script>
-    /* @author:Romey
-     * 动态点赞
-     * 此效果包含css3，部分浏览器不兼容（如：IE10以下的版本）
-    */
+/*<script>
     $(function(){
         $("#icon-like").click(function(){
             var icon_like = $("#icon-like");
@@ -22,4 +18,4 @@
             }
         });
     })
-</script>
+</script>*/

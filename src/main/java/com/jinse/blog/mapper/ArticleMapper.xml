@@ -5,6 +5,7 @@
     <id column="article_id" property="articleId" jdbcType="INTEGER" />
     <result column="blog_id" property="blogId" jdbcType="INTEGER" />
     <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -65,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    article_id, blog_id, content
+    article_id, blog_id, content, url
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jinse.blog.pojo.ArticleExample" >
     select
@@ -98,10 +99,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.jinse.blog.pojo.Article" >
-    insert into article (article_id, blog_id, content
-      )
-    values (#{articleId,jdbcType=INTEGER}, #{blogId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}
-      )
+    insert into article (article_id, blog_id, content, 
+      url)
+    values (#{articleId,jdbcType=INTEGER}, #{blogId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.jinse.blog.pojo.Article" >
     insert into article
@@ -115,6 +116,9 @@
       <if test="content != null" >
         content,
       </if>
+      <if test="url != null" >
+        url,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="articleId != null" >
@@ -125,6 +129,9 @@
       </if>
       <if test="content != null" >
         #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -146,6 +153,9 @@
       <if test="record.content != null" >
         content = #{record.content,jdbcType=VARCHAR},
       </if>
+      <if test="record.url != null" >
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -155,7 +165,8 @@
     update article
     set article_id = #{record.articleId,jdbcType=INTEGER},
       blog_id = #{record.blogId,jdbcType=INTEGER},
-      content = #{record.content,jdbcType=VARCHAR}
+      content = #{record.content,jdbcType=VARCHAR},
+      url = #{record.url,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -169,13 +180,17 @@
       <if test="content != null" >
         content = #{content,jdbcType=VARCHAR},
       </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
     </set>
     where article_id = #{articleId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.jinse.blog.pojo.Article" >
     update article
     set blog_id = #{blogId,jdbcType=INTEGER},
-      content = #{content,jdbcType=VARCHAR}
+      content = #{content,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
     where article_id = #{articleId,jdbcType=INTEGER}
   </update>
 </mapper>

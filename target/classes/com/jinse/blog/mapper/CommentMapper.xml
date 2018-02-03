@@ -7,7 +7,7 @@
     <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="author_id" property="authorId" jdbcType="INTEGER" />
-    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="create_at" property="createAt" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -68,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    comment_id, blog_id, content, user_id, author_id, time
+    comment_id, blog_id, content, user_id, author_id, create_at
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jinse.blog.pojo.CommentExample" >
     select
@@ -102,10 +102,10 @@
   </delete>
   <insert id="insert" parameterType="com.jinse.blog.pojo.Comment" >
     insert into comment (comment_id, blog_id, content, 
-      user_id, author_id, time
+      user_id, author_id, create_at
       )
     values (#{commentId,jdbcType=INTEGER}, #{blogId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
-      #{userId,jdbcType=INTEGER}, #{authorId,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}
+      #{userId,jdbcType=INTEGER}, #{authorId,jdbcType=INTEGER}, #{createAt,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.jinse.blog.pojo.Comment" >
@@ -126,8 +126,8 @@
       <if test="authorId != null" >
         author_id,
       </if>
-      <if test="time != null" >
-        time,
+      <if test="createAt != null" >
+        create_at,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -146,8 +146,8 @@
       <if test="authorId != null" >
         #{authorId,jdbcType=INTEGER},
       </if>
-      <if test="time != null" >
-        #{time,jdbcType=TIMESTAMP},
+      <if test="createAt != null" >
+        #{createAt,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -175,8 +175,8 @@
       <if test="record.authorId != null" >
         author_id = #{record.authorId,jdbcType=INTEGER},
       </if>
-      <if test="record.time != null" >
-        time = #{record.time,jdbcType=TIMESTAMP},
+      <if test="record.createAt != null" >
+        create_at = #{record.createAt,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -190,7 +190,7 @@
       content = #{record.content,jdbcType=VARCHAR},
       user_id = #{record.userId,jdbcType=INTEGER},
       author_id = #{record.authorId,jdbcType=INTEGER},
-      time = #{record.time,jdbcType=TIMESTAMP}
+      create_at = #{record.createAt,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -210,8 +210,8 @@
       <if test="authorId != null" >
         author_id = #{authorId,jdbcType=INTEGER},
       </if>
-      <if test="time != null" >
-        time = #{time,jdbcType=TIMESTAMP},
+      <if test="createAt != null" >
+        create_at = #{createAt,jdbcType=TIMESTAMP},
       </if>
     </set>
     where comment_id = #{commentId,jdbcType=INTEGER}
@@ -222,7 +222,7 @@
       content = #{content,jdbcType=VARCHAR},
       user_id = #{userId,jdbcType=INTEGER},
       author_id = #{authorId,jdbcType=INTEGER},
-      time = #{time,jdbcType=TIMESTAMP}
+      create_at = #{createAt,jdbcType=TIMESTAMP}
     where comment_id = #{commentId,jdbcType=INTEGER}
   </update>
 </mapper>

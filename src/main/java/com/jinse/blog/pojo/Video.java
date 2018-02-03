@@ -7,6 +7,8 @@ public class Video {
 
     private String pass;
 
+    private String url;
+
     public Integer getVideoId() {
         return videoId;
     }
@@ -29,5 +31,13 @@ public class Video {
 
     public void setPass(String pass) {
         this.pass = pass == null ? null : pass.trim();
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url == null ? null : url.trim();
     }
 }

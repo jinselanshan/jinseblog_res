@@ -2,13 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jinse.blog.mapper.BlogPictureMapper">
 
-	<insert id="insertAndGetId" useGeneratedKeys="true" keyProperty="pictureId"
-		parameterType="com.jinse.blog.pojo.Picture">
-		insert into picture (picture_id, blog_id, type,
-		price, buy)
-		values (#{pictureId,jdbcType=INTEGER}, #{blogId,jdbcType=INTEGER},
-		#{type,jdbcType=VARCHAR},
-		#{price,jdbcType=INTEGER}, #{buy,jdbcType=VARCHAR})
-	</insert>
-
+	<update id="updateByPictureId" parameterType="com.jinse.blog.pojo.Picture">
+		update picture
+		<set>
+			url = #{url}
+		</set>
+		
+			<include refid="updateByPictureId" />
+	
+	</update>
+	<sql id="updateByPictureId">
+		<where>
+			picture_id = pictureId
+		</where>
+	</sql>
 </mapper>

@@ -495,76 +495,6 @@ public class BlogExample {
             return (Criteria) this;
         }
 
-        public Criteria andUrlIsNull() {
-            addCriterion("url is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUrlIsNotNull() {
-            addCriterion("url is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUrlEqualTo(String value) {
-            addCriterion("url =", value, "url");
-            return (Criteria) this;
-        }
-
-        public Criteria andUrlNotEqualTo(String value) {
-            addCriterion("url <>", value, "url");
-            return (Criteria) this;
-        }
-
-        public Criteria andUrlGreaterThan(String value) {
-            addCriterion("url >", value, "url");
-            return (Criteria) this;
-        }
-
-        public Criteria andUrlGreaterThanOrEqualTo(String value) {
-            addCriterion("url >=", value, "url");
-            return (Criteria) this;
-        }
-
-        public Criteria andUrlLessThan(String value) {
-            addCriterion("url <", value, "url");
-            return (Criteria) this;
-        }
-
-        public Criteria andUrlLessThanOrEqualTo(String value) {
-            addCriterion("url <=", value, "url");
-            return (Criteria) this;
-        }
-
-        public Criteria andUrlLike(String value) {
-            addCriterion("url like", value, "url");
-            return (Criteria) this;
-        }
-
-        public Criteria andUrlNotLike(String value) {
-            addCriterion("url not like", value, "url");
-            return (Criteria) this;
-        }
-
-        public Criteria andUrlIn(List<String> values) {
-            addCriterion("url in", values, "url");
-            return (Criteria) this;
-        }
-
-        public Criteria andUrlNotIn(List<String> values) {
-            addCriterion("url not in", values, "url");
-            return (Criteria) this;
-        }
-
-        public Criteria andUrlBetween(String value1, String value2) {
-            addCriterion("url between", value1, value2, "url");
-            return (Criteria) this;
-        }
-
-        public Criteria andUrlNotBetween(String value1, String value2) {
-            addCriterion("url not between", value1, value2, "url");
-            return (Criteria) this;
-        }
-
         public Criteria andUserIdIsNull() {
             addCriterion("user_id is null");
             return (Criteria) this;
@@ -625,63 +555,63 @@ public class BlogExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreateatIsNull() {
-            addCriterion("createat is null");
+        public Criteria andCreateAtIsNull() {
+            addCriterion("create_at is null");
             return (Criteria) this;
         }
 
-        public Criteria andCreateatIsNotNull() {
-            addCriterion("createat is not null");
+        public Criteria andCreateAtIsNotNull() {
+            addCriterion("create_at is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCreateatEqualTo(Date value) {
-            addCriterion("createat =", value, "createat");
+        public Criteria andCreateAtEqualTo(Date value) {
+            addCriterion("create_at =", value, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreateatNotEqualTo(Date value) {
-            addCriterion("createat <>", value, "createat");
+        public Criteria andCreateAtNotEqualTo(Date value) {
+            addCriterion("create_at <>", value, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreateatGreaterThan(Date value) {
-            addCriterion("createat >", value, "createat");
+        public Criteria andCreateAtGreaterThan(Date value) {
+            addCriterion("create_at >", value, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreateatGreaterThanOrEqualTo(Date value) {
-            addCriterion("createat >=", value, "createat");
+        public Criteria andCreateAtGreaterThanOrEqualTo(Date value) {
+            addCriterion("create_at >=", value, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreateatLessThan(Date value) {
-            addCriterion("createat <", value, "createat");
+        public Criteria andCreateAtLessThan(Date value) {
+            addCriterion("create_at <", value, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreateatLessThanOrEqualTo(Date value) {
-            addCriterion("createat <=", value, "createat");
+        public Criteria andCreateAtLessThanOrEqualTo(Date value) {
+            addCriterion("create_at <=", value, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreateatIn(List<Date> values) {
-            addCriterion("createat in", values, "createat");
+        public Criteria andCreateAtIn(List<Date> values) {
+            addCriterion("create_at in", values, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreateatNotIn(List<Date> values) {
-            addCriterion("createat not in", values, "createat");
+        public Criteria andCreateAtNotIn(List<Date> values) {
+            addCriterion("create_at not in", values, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreateatBetween(Date value1, Date value2) {
-            addCriterion("createat between", value1, value2, "createat");
+        public Criteria andCreateAtBetween(Date value1, Date value2) {
+            addCriterion("create_at between", value1, value2, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreateatNotBetween(Date value1, Date value2) {
-            addCriterion("createat not between", value1, value2, "createat");
+        public Criteria andCreateAtNotBetween(Date value1, Date value2) {
+            addCriterion("create_at not between", value1, value2, "createAt");
             return (Criteria) this;
         }
 

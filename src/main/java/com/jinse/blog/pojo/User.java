@@ -21,7 +21,7 @@ public class User {
 
     private Integer money;
 
-    private Date createTime;
+    private Date createAt;
 
     private String phone;
 
@@ -103,12 +103,12 @@ public class User {
         this.money = money;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getCreateAt() {
+        return createAt;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
     }
 
     public String getPhone() {

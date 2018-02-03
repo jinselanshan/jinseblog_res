@@ -5,6 +5,7 @@
     <id column="video_id" property="videoId" jdbcType="INTEGER" />
     <result column="blog_id" property="blogId" jdbcType="INTEGER" />
     <result column="pass" property="pass" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -65,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    video_id, blog_id, pass
+    video_id, blog_id, pass, url
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jinse.blog.pojo.VideoExample" >
     select
@@ -98,10 +99,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.jinse.blog.pojo.Video" >
-    insert into video (video_id, blog_id, pass
-      )
-    values (#{videoId,jdbcType=INTEGER}, #{blogId,jdbcType=INTEGER}, #{pass,jdbcType=VARCHAR}
-      )
+    insert into video (video_id, blog_id, pass, 
+      url)
+    values (#{videoId,jdbcType=INTEGER}, #{blogId,jdbcType=INTEGER}, #{pass,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.jinse.blog.pojo.Video" >
     insert into video
@@ -115,6 +116,9 @@
       <if test="pass != null" >
         pass,
       </if>
+      <if test="url != null" >
+        url,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="videoId != null" >
@@ -125,6 +129,9 @@
       </if>
       <if test="pass != null" >
         #{pass,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -146,6 +153,9 @@
       <if test="record.pass != null" >
         pass = #{record.pass,jdbcType=VARCHAR},
       </if>
+      <if test="record.url != null" >
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -155,7 +165,8 @@
     update video
     set video_id = #{record.videoId,jdbcType=INTEGER},
       blog_id = #{record.blogId,jdbcType=INTEGER},
-      pass = #{record.pass,jdbcType=VARCHAR}
+      pass = #{record.pass,jdbcType=VARCHAR},
+      url = #{record.url,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -169,13 +180,17 @@
       <if test="pass != null" >
         pass = #{pass,jdbcType=VARCHAR},
       </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
     </set>
     where video_id = #{videoId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.jinse.blog.pojo.Video" >
     update video
     set blog_id = #{blogId,jdbcType=INTEGER},
-      pass = #{pass,jdbcType=VARCHAR}
+      pass = #{pass,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
     where video_id = #{videoId,jdbcType=INTEGER}
   </update>
 </mapper>

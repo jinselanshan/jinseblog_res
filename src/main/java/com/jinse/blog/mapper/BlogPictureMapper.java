@@ -4,6 +4,6 @@ import com.jinse.blog.pojo.Picture;
 
 public interface BlogPictureMapper {
 
-	int insertAndGetId(Picture picture);
-    
+	int updateByPictureId(Picture picture);
+  
 }

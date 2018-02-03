@@ -415,63 +415,63 @@ public class CommentExample {
             return (Criteria) this;
         }
 
-        public Criteria andTimeIsNull() {
-            addCriterion("time is null");
+        public Criteria andCreateAtIsNull() {
+            addCriterion("create_at is null");
             return (Criteria) this;
         }
 
-        public Criteria andTimeIsNotNull() {
-            addCriterion("time is not null");
+        public Criteria andCreateAtIsNotNull() {
+            addCriterion("create_at is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTimeEqualTo(Date value) {
-            addCriterion("time =", value, "time");
+        public Criteria andCreateAtEqualTo(Date value) {
+            addCriterion("create_at =", value, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andTimeNotEqualTo(Date value) {
-            addCriterion("time <>", value, "time");
+        public Criteria andCreateAtNotEqualTo(Date value) {
+            addCriterion("create_at <>", value, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andTimeGreaterThan(Date value) {
-            addCriterion("time >", value, "time");
+        public Criteria andCreateAtGreaterThan(Date value) {
+            addCriterion("create_at >", value, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("time >=", value, "time");
+        public Criteria andCreateAtGreaterThanOrEqualTo(Date value) {
+            addCriterion("create_at >=", value, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andTimeLessThan(Date value) {
-            addCriterion("time <", value, "time");
+        public Criteria andCreateAtLessThan(Date value) {
+            addCriterion("create_at <", value, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andTimeLessThanOrEqualTo(Date value) {
-            addCriterion("time <=", value, "time");
+        public Criteria andCreateAtLessThanOrEqualTo(Date value) {
+            addCriterion("create_at <=", value, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andTimeIn(List<Date> values) {
-            addCriterion("time in", values, "time");
+        public Criteria andCreateAtIn(List<Date> values) {
+            addCriterion("create_at in", values, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andTimeNotIn(List<Date> values) {
-            addCriterion("time not in", values, "time");
+        public Criteria andCreateAtNotIn(List<Date> values) {
+            addCriterion("create_at not in", values, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andTimeBetween(Date value1, Date value2) {
-            addCriterion("time between", value1, value2, "time");
+        public Criteria andCreateAtBetween(Date value1, Date value2) {
+            addCriterion("create_at between", value1, value2, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andTimeNotBetween(Date value1, Date value2) {
-            addCriterion("time not between", value1, value2, "time");
+        public Criteria andCreateAtNotBetween(Date value1, Date value2) {
+            addCriterion("create_at not between", value1, value2, "createAt");
             return (Criteria) this;
         }
     }

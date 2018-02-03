@@ -6,11 +6,7 @@
 	
 	
 	<!-- 别名的定义 -->
-	<typeAliases>
-		<package name="com.guigu.studentms.po"/>
-	</typeAliases>
 
-     
      <!-- 定义mapper接口 -->
      
 </configuration>

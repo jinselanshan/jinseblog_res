@@ -1,6 +1,7 @@
 package com.jinse.blog.pojo;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ReplyExample {
@@ -411,6 +412,66 @@ public class ReplyExample {
 
         public Criteria andCommentIdNotBetween(Integer value1, Integer value2) {
             addCriterion("comment_id not between", value1, value2, "commentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtIsNull() {
+            addCriterion("create_at is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtIsNotNull() {
+            addCriterion("create_at is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtEqualTo(Date value) {
+            addCriterion("create_at =", value, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtNotEqualTo(Date value) {
+            addCriterion("create_at <>", value, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtGreaterThan(Date value) {
+            addCriterion("create_at >", value, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtGreaterThanOrEqualTo(Date value) {
+            addCriterion("create_at >=", value, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtLessThan(Date value) {
+            addCriterion("create_at <", value, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtLessThanOrEqualTo(Date value) {
+            addCriterion("create_at <=", value, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtIn(List<Date> values) {
+            addCriterion("create_at in", values, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtNotIn(List<Date> values) {
+            addCriterion("create_at not in", values, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtBetween(Date value1, Date value2) {
+            addCriterion("create_at between", value1, value2, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtNotBetween(Date value1, Date value2) {
+            addCriterion("create_at not between", value1, value2, "createAt");
             return (Criteria) this;
         }
     }

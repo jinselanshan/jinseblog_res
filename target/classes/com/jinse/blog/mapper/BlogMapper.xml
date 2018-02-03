@@ -8,9 +8,8 @@
     <result column="tag" property="tag" jdbcType="VARCHAR" />
     <result column="score" property="score" jdbcType="DOUBLE" />
     <result column="like_number" property="likeNumber" jdbcType="INTEGER" />
-    <result column="url" property="url" jdbcType="VARCHAR" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
-    <result column="createat" property="createat" jdbcType="TIMESTAMP" />
+    <result column="create_at" property="createAt" jdbcType="TIMESTAMP" />
     <result column="hot" property="hot" jdbcType="INTEGER" />
     <result column="deleted" property="deleted" jdbcType="VARCHAR" />
   </resultMap>
@@ -73,8 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    blog_id, title, description, tag, score, like_number, url, user_id, createat, hot, 
-    deleted
+    blog_id, title, description, tag, score, like_number, user_id, create_at, hot, deleted
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jinse.blog.pojo.BlogExample" >
     select
@@ -109,12 +107,12 @@
   <insert id="insert" parameterType="com.jinse.blog.pojo.Blog" >
     insert into blog (blog_id, title, description, 
       tag, score, like_number, 
-      url, user_id, createat, 
-      hot, deleted)
+      user_id, create_at, hot, 
+      deleted)
     values (#{blogId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
       #{tag,jdbcType=VARCHAR}, #{score,jdbcType=DOUBLE}, #{likeNumber,jdbcType=INTEGER}, 
-      #{url,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{createat,jdbcType=TIMESTAMP}, 
-      #{hot,jdbcType=INTEGER}, #{deleted,jdbcType=VARCHAR})
+      #{userId,jdbcType=INTEGER}, #{createAt,jdbcType=TIMESTAMP}, #{hot,jdbcType=INTEGER}, 
+      #{deleted,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.jinse.blog.pojo.Blog" >
     insert into blog
@@ -137,14 +135,11 @@
       <if test="likeNumber != null" >
         like_number,
       </if>
-      <if test="url != null" >
-        url,
-      </if>
       <if test="userId != null" >
         user_id,
       </if>
-      <if test="createat != null" >
-        createat,
+      <if test="createAt != null" >
+        create_at,
       </if>
       <if test="hot != null" >
         hot,
@@ -172,14 +167,11 @@
       <if test="likeNumber != null" >
         #{likeNumber,jdbcType=INTEGER},
       </if>
-      <if test="url != null" >
-        #{url,jdbcType=VARCHAR},
-      </if>
       <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
       </if>
-      <if test="createat != null" >
-        #{createat,jdbcType=TIMESTAMP},
+      <if test="createAt != null" >
+        #{createAt,jdbcType=TIMESTAMP},
       </if>
       <if test="hot != null" >
         #{hot,jdbcType=INTEGER},
@@ -216,14 +208,11 @@
       <if test="record.likeNumber != null" >
         like_number = #{record.likeNumber,jdbcType=INTEGER},
       </if>
-      <if test="record.url != null" >
-        url = #{record.url,jdbcType=VARCHAR},
-      </if>
       <if test="record.userId != null" >
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
-      <if test="record.createat != null" >
-        createat = #{record.createat,jdbcType=TIMESTAMP},
+      <if test="record.createAt != null" >
+        create_at = #{record.createAt,jdbcType=TIMESTAMP},
       </if>
       <if test="record.hot != null" >
         hot = #{record.hot,jdbcType=INTEGER},
@@ -244,9 +233,8 @@
       tag = #{record.tag,jdbcType=VARCHAR},
       score = #{record.score,jdbcType=DOUBLE},
       like_number = #{record.likeNumber,jdbcType=INTEGER},
-      url = #{record.url,jdbcType=VARCHAR},
       user_id = #{record.userId,jdbcType=INTEGER},
-      createat = #{record.createat,jdbcType=TIMESTAMP},
+      create_at = #{record.createAt,jdbcType=TIMESTAMP},
       hot = #{record.hot,jdbcType=INTEGER},
       deleted = #{record.deleted,jdbcType=VARCHAR}
     <if test="_parameter != null" >
@@ -271,14 +259,11 @@
       <if test="likeNumber != null" >
         like_number = #{likeNumber,jdbcType=INTEGER},
       </if>
-      <if test="url != null" >
-        url = #{url,jdbcType=VARCHAR},
-      </if>
       <if test="userId != null" >
         user_id = #{userId,jdbcType=INTEGER},
       </if>
-      <if test="createat != null" >
-        createat = #{createat,jdbcType=TIMESTAMP},
+      <if test="createAt != null" >
+        create_at = #{createAt,jdbcType=TIMESTAMP},
       </if>
       <if test="hot != null" >
         hot = #{hot,jdbcType=INTEGER},
@@ -296,9 +281,8 @@
       tag = #{tag,jdbcType=VARCHAR},
       score = #{score,jdbcType=DOUBLE},
       like_number = #{likeNumber,jdbcType=INTEGER},
-      url = #{url,jdbcType=VARCHAR},
       user_id = #{userId,jdbcType=INTEGER},
-      createat = #{createat,jdbcType=TIMESTAMP},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
       hot = #{hot,jdbcType=INTEGER},
       deleted = #{deleted,jdbcType=VARCHAR}
     where blog_id = #{blogId,jdbcType=INTEGER}

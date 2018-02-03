@@ -15,11 +15,9 @@ public class Blog {
 
     private Integer likeNumber;
 
-    private String url;
-
     private Integer userId;
 
-    private Date createat;
+    private Date createAt;
 
     private Integer hot;
 
@@ -83,14 +81,6 @@ public class Blog {
         this.likeNumber = likeNumber;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url == null ? null : url.trim();
-    }
-
     public Integer getUserId() {
         return userId;
     }
@@ -99,12 +89,12 @@ public class Blog {
         this.userId = userId;
     }
 
-    public Date getCreateat() {
-        return createat;
+    public Date getCreateAt() {
+        return createAt;
     }
 
-    public void setCreateat(Date createat) {
-        this.createat = createat;
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
     }
 
     public Integer getHot() {
@@ -122,14 +112,4 @@ public class Blog {
     public void setDeleted(String deleted) {
         this.deleted = deleted == null ? null : deleted.trim();
     }
-
-	@Override
-	public String toString() {
-		return "Blog [blogId=" + blogId + ", title=" + title + ", description=" + description + ", tag=" + tag
-				+ ", score=" + score + ", likeNumber=" + likeNumber + ", url=" + url + ", userId=" + userId
-				+ ", createat=" + createat + ", hot=" + hot + ", deleted=" + deleted + ", picture=" + picture + "]";
-	}
-
-
-    
 }

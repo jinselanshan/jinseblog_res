@@ -1,5 +1,7 @@
 package com.jinse.blog.pojo;
 
+import java.util.Date;
+
 public class Reply {
     private Integer replyId;
 
@@ -10,6 +12,8 @@ public class Reply {
     private Integer commentUserId;
 
     private Integer commentId;
+
+    private Date createAt;
 
     public Integer getReplyId() {
         return replyId;
@@ -49,5 +53,13 @@ public class Reply {
 
     public void setCommentId(Integer commentId) {
         this.commentId = commentId;
+    }
+
+    public Date getCreateAt() {
+        return createAt;
+    }
+
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
     }
 }

@@ -11,7 +11,7 @@
     <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
     <result column="avatar_id" property="avatarId" jdbcType="INTEGER" />
     <result column="money" property="money" jdbcType="INTEGER" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_at" property="createAt" jdbcType="TIMESTAMP" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="gender" property="gender" jdbcType="VARCHAR" />
     <result column="role_id" property="roleId" jdbcType="INTEGER" />
@@ -77,7 +77,7 @@
   </sql>
   <sql id="Base_Column_List" >
     user_id, username, password, following_number, follower_number, email, birthday, 
-    avatar_id, money, create_time, phone, gender, role_id, signatur
+    avatar_id, money, create_at, phone, gender, role_id, signatur
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jinse.blog.pojo.UserExample" >
     select
@@ -113,12 +113,12 @@
     insert into user (user_id, username, password, 
       following_number, follower_number, email, 
       birthday, avatar_id, money, 
-      create_time, phone, gender, 
+      create_at, phone, gender, 
       role_id, signatur)
     values (#{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{followingNumber,jdbcType=INTEGER}, #{followerNumber,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, 
       #{birthday,jdbcType=TIMESTAMP}, #{avatarId,jdbcType=INTEGER}, #{money,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{phone,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
+      #{createAt,jdbcType=TIMESTAMP}, #{phone,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
       #{roleId,jdbcType=INTEGER}, #{signatur,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.jinse.blog.pojo.User" >
@@ -151,8 +151,8 @@
       <if test="money != null" >
         money,
       </if>
-      <if test="createTime != null" >
-        create_time,
+      <if test="createAt != null" >
+        create_at,
       </if>
       <if test="phone != null" >
         phone,
@@ -195,8 +195,8 @@
       <if test="money != null" >
         #{money,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
+      <if test="createAt != null" >
+        #{createAt,jdbcType=TIMESTAMP},
       </if>
       <if test="phone != null" >
         #{phone,jdbcType=VARCHAR},
@@ -248,8 +248,8 @@
       <if test="record.money != null" >
         money = #{record.money,jdbcType=INTEGER},
       </if>
-      <if test="record.createTime != null" >
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      <if test="record.createAt != null" >
+        create_at = #{record.createAt,jdbcType=TIMESTAMP},
       </if>
       <if test="record.phone != null" >
         phone = #{record.phone,jdbcType=VARCHAR},
@@ -279,7 +279,7 @@
       birthday = #{record.birthday,jdbcType=TIMESTAMP},
       avatar_id = #{record.avatarId,jdbcType=INTEGER},
       money = #{record.money,jdbcType=INTEGER},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_at = #{record.createAt,jdbcType=TIMESTAMP},
       phone = #{record.phone,jdbcType=VARCHAR},
       gender = #{record.gender,jdbcType=VARCHAR},
       role_id = #{record.roleId,jdbcType=INTEGER},
@@ -315,8 +315,8 @@
       <if test="money != null" >
         money = #{money,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
+      <if test="createAt != null" >
+        create_at = #{createAt,jdbcType=TIMESTAMP},
       </if>
       <if test="phone != null" >
         phone = #{phone,jdbcType=VARCHAR},
@@ -343,7 +343,7 @@
       birthday = #{birthday,jdbcType=TIMESTAMP},
       avatar_id = #{avatarId,jdbcType=INTEGER},
       money = #{money,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
       phone = #{phone,jdbcType=VARCHAR},
       gender = #{gender,jdbcType=VARCHAR},
       role_id = #{roleId,jdbcType=INTEGER},

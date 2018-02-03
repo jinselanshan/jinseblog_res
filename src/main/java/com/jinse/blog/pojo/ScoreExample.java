@@ -164,123 +164,123 @@ public class ScoreExample {
             return (Criteria) this;
         }
 
-        public Criteria and博客idIsNull() {
-            addCriterion("博客id is null");
+        public Criteria andBlogIdIsNull() {
+            addCriterion("blog_id is null");
             return (Criteria) this;
         }
 
-        public Criteria and博客idIsNotNull() {
-            addCriterion("博客id is not null");
+        public Criteria andBlogIdIsNotNull() {
+            addCriterion("blog_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria and博客idEqualTo(Integer value) {
-            addCriterion("博客id =", value, "博客id");
+        public Criteria andBlogIdEqualTo(Integer value) {
+            addCriterion("blog_id =", value, "blogId");
             return (Criteria) this;
         }
 
-        public Criteria and博客idNotEqualTo(Integer value) {
-            addCriterion("博客id <>", value, "博客id");
+        public Criteria andBlogIdNotEqualTo(Integer value) {
+            addCriterion("blog_id <>", value, "blogId");
             return (Criteria) this;
         }
 
-        public Criteria and博客idGreaterThan(Integer value) {
-            addCriterion("博客id >", value, "博客id");
+        public Criteria andBlogIdGreaterThan(Integer value) {
+            addCriterion("blog_id >", value, "blogId");
             return (Criteria) this;
         }
 
-        public Criteria and博客idGreaterThanOrEqualTo(Integer value) {
-            addCriterion("博客id >=", value, "博客id");
+        public Criteria andBlogIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("blog_id >=", value, "blogId");
             return (Criteria) this;
         }
 
-        public Criteria and博客idLessThan(Integer value) {
-            addCriterion("博客id <", value, "博客id");
+        public Criteria andBlogIdLessThan(Integer value) {
+            addCriterion("blog_id <", value, "blogId");
             return (Criteria) this;
         }
 
-        public Criteria and博客idLessThanOrEqualTo(Integer value) {
-            addCriterion("博客id <=", value, "博客id");
+        public Criteria andBlogIdLessThanOrEqualTo(Integer value) {
+            addCriterion("blog_id <=", value, "blogId");
             return (Criteria) this;
         }
 
-        public Criteria and博客idIn(List<Integer> values) {
-            addCriterion("博客id in", values, "博客id");
+        public Criteria andBlogIdIn(List<Integer> values) {
+            addCriterion("blog_id in", values, "blogId");
             return (Criteria) this;
         }
 
-        public Criteria and博客idNotIn(List<Integer> values) {
-            addCriterion("博客id not in", values, "博客id");
+        public Criteria andBlogIdNotIn(List<Integer> values) {
+            addCriterion("blog_id not in", values, "blogId");
             return (Criteria) this;
         }
 
-        public Criteria and博客idBetween(Integer value1, Integer value2) {
-            addCriterion("博客id between", value1, value2, "博客id");
+        public Criteria andBlogIdBetween(Integer value1, Integer value2) {
+            addCriterion("blog_id between", value1, value2, "blogId");
             return (Criteria) this;
         }
 
-        public Criteria and博客idNotBetween(Integer value1, Integer value2) {
-            addCriterion("博客id not between", value1, value2, "博客id");
+        public Criteria andBlogIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("blog_id not between", value1, value2, "blogId");
             return (Criteria) this;
         }
 
-        public Criteria and用户idIsNull() {
-            addCriterion("用户id is null");
+        public Criteria andUserIdIsNull() {
+            addCriterion("user_id is null");
             return (Criteria) this;
         }
 
-        public Criteria and用户idIsNotNull() {
-            addCriterion("用户id is not null");
+        public Criteria andUserIdIsNotNull() {
+            addCriterion("user_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria and用户idEqualTo(Integer value) {
-            addCriterion("用户id =", value, "用户id");
+        public Criteria andUserIdEqualTo(Integer value) {
+            addCriterion("user_id =", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria and用户idNotEqualTo(Integer value) {
-            addCriterion("用户id <>", value, "用户id");
+        public Criteria andUserIdNotEqualTo(Integer value) {
+            addCriterion("user_id <>", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria and用户idGreaterThan(Integer value) {
-            addCriterion("用户id >", value, "用户id");
+        public Criteria andUserIdGreaterThan(Integer value) {
+            addCriterion("user_id >", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria and用户idGreaterThanOrEqualTo(Integer value) {
-            addCriterion("用户id >=", value, "用户id");
+        public Criteria andUserIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("user_id >=", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria and用户idLessThan(Integer value) {
-            addCriterion("用户id <", value, "用户id");
+        public Criteria andUserIdLessThan(Integer value) {
+            addCriterion("user_id <", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria and用户idLessThanOrEqualTo(Integer value) {
-            addCriterion("用户id <=", value, "用户id");
+        public Criteria andUserIdLessThanOrEqualTo(Integer value) {
+            addCriterion("user_id <=", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria and用户idIn(List<Integer> values) {
-            addCriterion("用户id in", values, "用户id");
+        public Criteria andUserIdIn(List<Integer> values) {
+            addCriterion("user_id in", values, "userId");
             return (Criteria) this;
         }
 
-        public Criteria and用户idNotIn(List<Integer> values) {
-            addCriterion("用户id not in", values, "用户id");
+        public Criteria andUserIdNotIn(List<Integer> values) {
+            addCriterion("user_id not in", values, "userId");
             return (Criteria) this;
         }
 
-        public Criteria and用户idBetween(Integer value1, Integer value2) {
-            addCriterion("用户id between", value1, value2, "用户id");
+        public Criteria andUserIdBetween(Integer value1, Integer value2) {
+            addCriterion("user_id between", value1, value2, "userId");
             return (Criteria) this;
         }
 
-        public Criteria and用户idNotBetween(Integer value1, Integer value2) {
-            addCriterion("用户id not between", value1, value2, "用户id");
+        public Criteria andUserIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("user_id not between", value1, value2, "userId");
             return (Criteria) this;
         }
 
