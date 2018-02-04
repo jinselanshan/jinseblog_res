@@ -20,7 +20,7 @@ public class PictureServiceImpl implements PictureService{
 
 	@Override
 	public int savePicture(Picture picture) {
-		return pictureMapper.insert(picture);
+		return blogPictureMapper.insertPicture(picture);
 	}
 
 	@Override

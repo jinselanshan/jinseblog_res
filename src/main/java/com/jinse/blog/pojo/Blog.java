@@ -25,7 +25,17 @@ public class Blog {
 
     private Picture picture;
     
-    public Picture getPicture() {
+    private User user;
+    
+    public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Picture getPicture() {
 		return picture;
 	}
 

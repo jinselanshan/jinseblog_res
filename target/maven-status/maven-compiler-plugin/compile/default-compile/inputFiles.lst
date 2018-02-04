@@ -18,6 +18,7 @@ C:\eclipse\workspace\jinseblog\src\main\java\com\jinse\blog\service\impl\Picture
 C:\eclipse\workspace\jinseblog\src\main\java\com\jinse\blog\pojo\TagExample.java
 C:\eclipse\workspace\jinseblog\src\main\java\com\jinse\blog\pojo\Article.java
 C:\eclipse\workspace\jinseblog\src\main\java\com\jinse\blog\pojo\UserFollowing.java
+C:\eclipse\workspace\jinseblog\src\main\java\com\jinse\blog\controller\PictureController.java
 C:\eclipse\workspace\jinseblog\src\main\java\com\jinse\blog\pojo\Score.java
 C:\eclipse\workspace\jinseblog\src\main\java\com\jinse\blog\mapper\UserMapper.java
 C:\eclipse\workspace\jinseblog\src\main\java\com\jinse\blog\pojo\Avatar.java
@@ -25,12 +26,12 @@ C:\eclipse\workspace\jinseblog\src\main\java\com\jinse\blog\mapper\ReplyMapper.j
 C:\eclipse\workspace\jinseblog\src\main\java\com\jinse\blog\pojo\Video.java
 C:\eclipse\workspace\jinseblog\src\main\java\com\jinse\blog\pojo\UserFollowingExample.java
 C:\eclipse\workspace\jinseblog\src\main\java\com\jinse\blog\pojo\VideoExample.java
-C:\eclipse\workspace\jinseblog\src\main\java\com\jinse\blog\controller\upload\PictureController.java
 C:\eclipse\workspace\jinseblog\src\main\java\com\jinse\blog\mapper\ScoreMapper.java
 C:\eclipse\workspace\jinseblog\src\main\java\com\jinse\blog\mapper\AvatarMapper.java
 C:\eclipse\workspace\jinseblog\src\main\java\com\jinse\blog\mapper\CommentMapper.java
 C:\eclipse\workspace\jinseblog\src\main\java\com\jinse\blog\pojo\Blog.java
 C:\eclipse\workspace\jinseblog\src\main\java\com\jinse\blog\pojo\UserFollowerExample.java
+C:\eclipse\workspace\jinseblog\src\main\java\com\jinse\blog\mapper\BlogPictureMapper.java
 C:\eclipse\workspace\jinseblog\src\main\java\com\jinse\blog\pojo\LikeifExample.java
 C:\eclipse\workspace\jinseblog\src\main\java\com\jinse\blog\pojo\ReplyExample.java
 C:\eclipse\workspace\jinseblog\src\main\java\com\jinse\blog\controller\IndexController.java

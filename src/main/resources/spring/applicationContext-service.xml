@@ -20,5 +20,9 @@
 
    <bean id="blogService" class="com.jinse.blog.service.impl.BlogServiceImpl"></bean>
    <bean id="pictureService" class="com.jinse.blog.service.impl.PictureServiceImpl"></bean>
+   <bean id="userService" class="com.jinse.blog.service.impl.UserServiceImpl"></bean>
+  
+
+
 
 </beans>

@@ -1,0 +1,82 @@
+/* CSS Document */
+.navbar-width{
+  padding-left:0px;
+  padding-right:0px;
+  margin-left: -15px;
+  margin-right: -15px;
+  width: 100%  !important;
+}
+.tablecen{
+	text-align:center;
+}
+.inputtext{
+	width: 250px;
+	background-position: center;
+}
+
+.backimage
+{
+    background-image:url('http://p1vkce34m.bkt.clouddn.com/image/jpg/324H.jpg');
+    background-color:#eee
+	width:100%;
+	background-size:100%;  
+}
+div.style p a{
+	color: #000000;
+	text-decoration: none
+}
+
+div.style p a:focus, a:hover{
+	color: #000000 ;
+	text-decoration: underline  !important
+}
+
+
+a {
+	color: #333   !important;
+	text-decoration: none
+}
+
+
+
+.asize{
+	font-size:15px  !important;
+	font-family: "Î¢ÈíÑÅºÚ", "ºÚÌå";  
+}
+.navbar-w{
+	margin-left: 30%;
+	margin-right: 30%;
+	font-size: 15px;
+	padding-left: 4%;
+	padding-right:  4%;
+}
+
+
+
+.shadowdiv{
+  box-shadow: -1px -1px 11px 2px rgba(0, 0, 0, 0.1);
+}
+.tablecss{
+ background-color:#ffffff
+}
+.tablefont{
+	font-size: 14px;
+	color: #343447; 
+}
+.colorsize{
+	background-color: #f5f7f9;
+}
+.wrapper{
+	text-align: center;
+}
+.wrapper ul{
+	margin: 0 auto;
+	width:95%;
+	border-collapse: separate;
+	border-spacing: 10px 10px;
+	/*border:1px solid black;
+	list-style-type:none;*/
+}
+.wrapper ul li{
+	/*display:inline;*/
+}

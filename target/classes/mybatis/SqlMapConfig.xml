@@ -3,10 +3,24 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	
-	
-	<!-- 别名的定义 -->
 
-     <!-- 定义mapper接口 -->
-     
+
+	<settings>
+		<!-- 打印查询语句 -->
+		<setting name="logImpl" value="STDOUT_LOGGING" />
+	</settings>
+
+	<!-- mapper已经在spring-mybatis.xml中的sqlSessionFactory配置，这里不再需要配置 -->
+	<!-- <mappers> -->
+	<!-- <mapper resource="com/a/b/c/dao/BusinessInfoDaoMapper.xml" /> -->
+	<!-- </mappers> -->
+
+	<!-- 别名的定义 -->
+	<typeAliases>
+		<package name="com.guigu.studentms.po" />
+	</typeAliases>
+
+
+	<!-- 定义mapper接口 -->
+
 </configuration>

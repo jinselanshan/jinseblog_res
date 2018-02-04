@@ -13,7 +13,7 @@ import com.jinse.blog.pojo.Picture;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring-mvc.xml"})
+@ContextConfiguration(locations = {"classpath:spring/spring-mvc.xml","classpath:spring/applicationContext-*.xml" })
 public class PictureServiceTest {
 	
 	@Autowired

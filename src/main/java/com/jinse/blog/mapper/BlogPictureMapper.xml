@@ -7,13 +7,50 @@
 		<set>
 			url = #{url}
 		</set>
-		
-			<include refid="updateByPictureId" />
-	
+		<include refid="updateByPictureId" />
 	</update>
 	<sql id="updateByPictureId">
 		<where>
-			picture_id = pictureId
+			picture_id = #{pictureId}
 		</where>
 	</sql>
+
+	<insert id="insertPicture" parameterType="com.jinse.blog.pojo.Picture">
+		<selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="pictureId">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into picture (picture_id,
+		blog_id, type,
+		price, buy, url)
+		values
+		(#{pictureId,jdbcType=INTEGER},
+		#{blogId,jdbcType=INTEGER},
+		#{type,jdbcType=VARCHAR},
+		#{price,jdbcType=INTEGER},
+		#{buy,jdbcType=VARCHAR},
+		#{url,jdbcType=VARCHAR})
+	</insert>
+
+	<insert id="insertBlog" parameterType="com.jinse.blog.pojo.Blog">
+		<selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="blogId">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into blog (blog_id, title,
+		description,
+		tag, score, like_number,
+		user_id, create_at, hot,
+		deleted)
+		values (#{blogId,jdbcType=INTEGER},
+		#{title,jdbcType=VARCHAR},
+		#{description,jdbcType=VARCHAR},
+		#{tag,jdbcType=VARCHAR},
+		#{score,jdbcType=DOUBLE},
+		#{likeNumber,jdbcType=INTEGER},
+		#{userId,jdbcType=INTEGER},
+		#{createAt,jdbcType=TIMESTAMP},
+		#{hot,jdbcType=INTEGER},
+		#{deleted,jdbcType=VARCHAR})
+	</insert>
 </mapper>
