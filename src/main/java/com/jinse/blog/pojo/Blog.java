@@ -1,6 +1,7 @@
 package com.jinse.blog.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 public class Blog {
     private Integer blogId;
@@ -27,7 +28,17 @@ public class Blog {
     
     private User user;
     
-    public User getUser() {
+    private List<Tag> tagList;
+    
+    public List<Tag> getTagList() {
+		return tagList;
+	}
+
+	public void setTagList(List<Tag> tagList) {
+		this.tagList = tagList;
+	}
+
+	public User getUser() {
 		return user;
 	}
 
@@ -122,4 +133,16 @@ public class Blog {
     public void setDeleted(String deleted) {
         this.deleted = deleted == null ? null : deleted.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Blog [blogId=" + blogId + ", title=" + title + ", description=" + description + ", tag=" + tag
+				+ ", score=" + score + ", likeNumber=" + likeNumber + ", userId=" + userId + ", createAt=" + createAt
+				+ ", hot=" + hot + ", deleted=" + deleted + ", picture=" + picture + ", user=" + user + ", tagList="
+				+ tagList + "]";
+	}
+
+	
+    
+    
 }

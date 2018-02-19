@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-	
+
 <head th:replace="home/homeHead :: home_header">
 <title>主页 - 摄影绘画 - USERNAME</title>
 <!--  <link rel="stylesheet" href="css/index.css"> -->
@@ -10,53 +10,60 @@
 <body>
 	<!-- 导航栏 -->
 	<header th:replace="nav :: nav"></header>
-	
-	
+
 	<table class="asize" width="589" height="186" border="0" align="center"
-		bordercolor="#000000"  th:fragment="avatarTable">
+		bordercolor="#000000" th:fragment="avatarTable" id="avatarTable">
 		<tr>
 			<td colspan="2" rowspan="4"><div class="g-hd m-hdimg a-fadein ">
+					<input type="hidden" name="userId" id="userId" th:value="${user.userId}"> 
+					<input type="hidden" name="currentUserId" id="currentUserId" th:value="${session.CURRENT_USER.userId}">
 					<p>
-						<a class="hdimg img" href="/"> <img
-							src="http://imgsize.ph.126.net/?imgurl=http://img0.ph.126.net/0FE09whPAS-idfqeU98TRQ==/6631608725421989520.jpg_128x128x0x90.jpg"
-							width="120" height="120" />					</p>
+						<a class="hdimg img" href="#"> <img class="control-label"
+							width="120" height="120" th:if="${user.avatarUrl != null}"
+							border="0" th:src="${user.avatarUrl}" />
+						</a>
+					</p>
 				</div></td>
-			<td height="44" colspan="3" valign="middle"><a href="https://jinselanshan.tuchong.com/"
-				class="visitor-name STYLE1">锦瑟阑珊
-			</a></td>
+			<td height="44" colspan="2" valign="middle">
+				<p class="visitor-name STYLE1" th:text="${user.username}"></p>
+			</td>
+			<td><button type="button" id="followingBtn"
+					class="btn btn-default" th:text="关注">关注</button></td>
+
 		</tr>
 		<tr>
 			<td width="77"><a
-				href="https://jinselanshan.tuchong.com/followers" class="user_data STYLE1">
-					关注2496 </a>
-					</td>
+				href="https://jinselanshan.tuchong.com/followers"
+				class="user_data STYLE1" th:text="${'关注'+user.followingNumber}"></a></td>
 			<td width="77"><a
-				href="https://jinselanshan.tuchong.com/followers" class="user_data STYLE1">
-					关注2496 </a>
-					</td>
+				href="https://jinselanshan.tuchong.com/followers"
+				class="user_data STYLE1" th:text="${'粉丝'+user.followerNumber}"></a></td>
 			<td width="276"><a
-				href="https://jinselanshan.tuchong.com/followers" class="user_data STYLE1">
-					浙江 </a></td>
+				href="https://jinselanshan.tuchong.com/followers"
+				class="user_data STYLE1"> 浙江 </a></td>
 		</tr>
 		<tr>
-			<td height="42" colspan="3">简介</td>
+			<td height="42" colspan="3"><p th:text="${user.signatur}"></p></td>
 		</tr>
 		<tr>
 			<td height="44" colspan="3">&nbsp;</td>
 		</tr>
-</table>
-	
-	<nav class="navbar navbar-default navbar-w" role="navigation"  th:fragment="navigation">
-	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		<ul class="nav navbar-nav">
-			<li><a href="#">摄影</a></li>
-			<li><a href="#">绘画</a></li>
-			<li><a href="#">文章</a></li>
-			<li><a href="#">短视频</a></li>
-			<li><a href="#">喜欢</a></li>
-			<li><a href="#">标签</a></li>
-		</ul>
-	</div>
+	</table>
+
+	<nav class="navbar navbar-default navbar-w" role="navigation"
+		th:fragment="navigation">
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="#">摄影</a></li>
+				<li><a href="#">绘画</a></li>
+				<li><a href="#">文章</a></li>
+				<li><a href="#">短视频</a></li>
+				<li><a href="#">喜欢</a></li>
+				<li><a href="#">标签</a></li>
+			</ul>
+		</div>
 	</nav>
 </body>
+
 </html>

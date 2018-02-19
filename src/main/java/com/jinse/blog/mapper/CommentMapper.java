@@ -27,4 +27,8 @@ public interface CommentMapper {
     int updateByPrimaryKeySelective(Comment record);
 
     int updateByPrimaryKey(Comment record);
+
+	List<Comment> findCommentByBlogId(Integer blogId);
+
+	int insertComment(Comment comment);
 }

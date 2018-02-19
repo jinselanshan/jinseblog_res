@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+
+<title>个人设置</title>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="static/jquery/avatar.js"></script>
+
+<link rel="stylesheet" type="text/css"
+	href="static/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="static/css/style.css" />
+<meta th:include="upload/uploadHead :: upload_header_css"></meta>
+<meta th:include="user/avatar :: avatar_header"></meta>
+<script type="text/javascript" src="static/js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="static/jquery/information.js"></script>
+<script type="text/javascript" src="static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="static/laydate/laydate.js"></script>
+
+</head>
+<body>
+	<!-- 导航栏 -->
+	<header th:replace="nav :: nav"></header>
+	<div class="container">
+		<div class="col-md-12 column row clearfix">
+			<div class="col-md-2 column"></div>
+			<div class="col-md-6 column">
+				<form th:action="@{/uploadInfor}" method="post">
+					<table class="table form-group">
+						<tr>
+							<td><h2>基本信息</h2></td>
+						</tr>
+						<tr>
+							<td>用户名</td>
+						</tr>
+						<tr>
+							<td><input name="username" class="form-control" type="text"
+								th:value="${user.username}"></td>
+						</tr>
+						<tr>
+							<td>性别</td>
+						</tr>
+						<tr>
+							<td><select class="form-control" name="gender">
+									<option value=''></option>
+									<option th:selected="${user.gender eq '男'}" value="男">男</option>
+									<option th:selected="${user.gender eq '女'}" value="女">女</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td>简介</td>
+						</tr>
+						<tr>
+							<td><input name="signatur" th:value="${user.signatur}"
+								class="form-control" type="text"></td>
+						</tr>		
+						<tr>
+							<td>生日</td>
+						</tr>
+						<tr><!-- <td><input type="text" class="form-control" name="birthday" id="birthday" 
+							th:value="${user.birthday}"></td> -->
+							<td><input type="text" class="form-control" name="birth" id="birthday" 
+							th:value="${#dates.format(user.birthday, 'yyyy-MM-dd')}"></td>
+						</tr>
+						<tr>
+							<td>居住城市</td>
+						</tr>
+						<tr>
+							<td><div class="form-group">
+									<!-- <div class="col-md-2 text-center">省</div> -->
+									<div class="col-sm-3">
+										<select class="form-control" name='provinceId' id="province">
+											<option>请选择</option>
+										</select>
+									</div>
+									<!-- <div class="col-md-1 text-center">市</div> -->
+									<div class="col-sm-3">
+										<select class="form-control" name='cityId' id="city">
+											<option>请选择</option>
+										</select>
+									</div>
+									<!-- <div class="col-md-1 text-center">县/区</div> -->
+									<div class="col-sm-3">
+										<select class="form-control" name='villageId' id="village">
+											<option>请选择</option>
+										</select>
+									</div>
+								</div></td>
+						</tr>
+
+						<tr>
+							<td><button class="btn" id="submit" contenteditable="true"
+									type="submit">提交</button></td>
+						</tr>
+					</table>
+
+				</form>
+			</div>
+			<div class="col-md-4 column"
+				th:replace="user/avatar :: avatar_upload"></div>
+
+		</div>
+	</div>
+</body>
+<script>
+	//执行一个laydate实例
+	laydate.render({
+		elem : "#birthday" //指定元素
+	});
+</script>
+<script>
+$(function() {
+	// 默认绑定省
+	ProviceBind([[${user.provinceId}]]);
+	var provinceId = $('#province').find("option:selected").val();
+	if (provinceId != "" && provinceId != '请选择'){
+		cityBind([[${user.cityId}]]);
+	}
+	var cityId = $('#city').find("option:selected").val();
+	if (cityId != "" && cityId != '请选择'){
+		villageBind([[${user.villageId}]]);
+	}
+	
+	// 绑定事件
+	$("#province").change(function() {
+		cityBind(null);
+	})
+	$("#city").change(function() {
+		var villageId =  $('#city').find("option:selected").val();
+		villageBind(null);
+	})
+})
+</script>
+</html>

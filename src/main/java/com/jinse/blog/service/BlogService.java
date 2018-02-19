@@ -6,4 +6,6 @@ public interface BlogService {
 
 	int saveBlog(Blog blog);
 
+	Blog findBlogByBlogId(Integer blogId);
+
 }

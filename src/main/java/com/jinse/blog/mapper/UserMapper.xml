@@ -11,13 +11,17 @@
 			jdbcType="INTEGER" />
 		<result column="email" property="email" jdbcType="VARCHAR" />
 		<result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
-		<result column="avatar_id" property="avatarId" jdbcType="INTEGER" />
 		<result column="money" property="money" jdbcType="INTEGER" />
 		<result column="create_at" property="createAt" jdbcType="TIMESTAMP" />
 		<result column="phone" property="phone" jdbcType="VARCHAR" />
 		<result column="gender" property="gender" jdbcType="VARCHAR" />
-		<result column="role_id" property="roleId" jdbcType="INTEGER" />
 		<result column="signatur" property="signatur" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="role_id" property="roleId" jdbcType="INTEGER" />
+		<result column="avatar_url" property="avatarUrl" jdbcType="VARCHAR" />
+		<result column="city_id" property="cityId" jdbcType="VARCHAR" />
+		<result column="village_id" property="villageId" jdbcType="VARCHAR" />
+		<result column="province_id" property="provinceId" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Example_Where_Clause">
 		<where>
@@ -88,8 +92,10 @@
 		user_id, username, password, following_number,
 		follower_number, email,
 		birthday,
-		avatar_id, money, create_at, phone,
-		gender, role_id, signatur
+		money, create_at, phone, gender,
+		signatur, address, role_id, avatar_url,
+		city_id,
+		village_id, province_id
 	</sql>
 	<select id="selectByExample" resultMap="BaseResultMap"
 		parameterType="com.jinse.blog.pojo.UserExample">
@@ -128,19 +134,25 @@
 		username, password,
 		following_number, follower_number, email,
 		birthday,
-		avatar_id, money,
-		create_at, phone, gender,
-		role_id, signatur)
-		values
-		(#{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR},
+		money, create_at,
+		phone, gender, signatur,
+		address, role_id, avatar_url,
+		city_id, village_id, province_id
+		)
+		values (#{userId,jdbcType=INTEGER},
+		#{username,jdbcType=VARCHAR},
 		#{password,jdbcType=VARCHAR},
 		#{followingNumber,jdbcType=INTEGER},
 		#{followerNumber,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR},
-		#{birthday,jdbcType=TIMESTAMP}, #{avatarId,jdbcType=INTEGER},
-		#{money,jdbcType=INTEGER},
+		#{birthday,jdbcType=TIMESTAMP}, #{money,jdbcType=INTEGER},
 		#{createAt,jdbcType=TIMESTAMP},
-		#{phone,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR},
-		#{roleId,jdbcType=INTEGER}, #{signatur,jdbcType=VARCHAR})
+		#{phone,jdbcType=VARCHAR},
+		#{gender,jdbcType=VARCHAR}, #{signatur,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER},
+		#{avatarUrl,jdbcType=VARCHAR},
+		#{cityId,jdbcType=VARCHAR},
+		#{villageId,jdbcType=VARCHAR}, #{provinceId,jdbcType=VARCHAR}
+		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.jinse.blog.pojo.User">
 		insert into user
@@ -166,9 +178,6 @@
 			<if test="birthday != null">
 				birthday,
 			</if>
-			<if test="avatarId != null">
-				avatar_id,
-			</if>
 			<if test="money != null">
 				money,
 			</if>
@@ -181,11 +190,26 @@
 			<if test="gender != null">
 				gender,
 			</if>
+			<if test="signatur != null">
+				signatur,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
 			<if test="roleId != null">
 				role_id,
 			</if>
-			<if test="signatur != null">
-				signatur,
+			<if test="avatarUrl != null">
+				avatar_url,
+			</if>
+			<if test="cityId != null">
+				city_id,
+			</if>
+			<if test="villageId != null">
+				village_id,
+			</if>
+			<if test="provinceId != null">
+				province_id,
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -210,9 +234,6 @@
 			<if test="birthday != null">
 				#{birthday,jdbcType=TIMESTAMP},
 			</if>
-			<if test="avatarId != null">
-				#{avatarId,jdbcType=INTEGER},
-			</if>
 			<if test="money != null">
 				#{money,jdbcType=INTEGER},
 			</if>
@@ -225,11 +246,26 @@
 			<if test="gender != null">
 				#{gender,jdbcType=VARCHAR},
 			</if>
+			<if test="signatur != null">
+				#{signatur,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
 			<if test="roleId != null">
 				#{roleId,jdbcType=INTEGER},
 			</if>
-			<if test="signatur != null">
-				#{signatur,jdbcType=VARCHAR},
+			<if test="avatarUrl != null">
+				#{avatarUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="cityId != null">
+				#{cityId,jdbcType=VARCHAR},
+			</if>
+			<if test="villageId != null">
+				#{villageId,jdbcType=VARCHAR},
+			</if>
+			<if test="provinceId != null">
+				#{provinceId,jdbcType=VARCHAR},
 			</if>
 		</trim>
 	</insert>
@@ -266,9 +302,6 @@
 			<if test="record.birthday != null">
 				birthday = #{record.birthday,jdbcType=TIMESTAMP},
 			</if>
-			<if test="record.avatarId != null">
-				avatar_id = #{record.avatarId,jdbcType=INTEGER},
-			</if>
 			<if test="record.money != null">
 				money = #{record.money,jdbcType=INTEGER},
 			</if>
@@ -281,11 +314,26 @@
 			<if test="record.gender != null">
 				gender = #{record.gender,jdbcType=VARCHAR},
 			</if>
+			<if test="record.signatur != null">
+				signatur = #{record.signatur,jdbcType=VARCHAR},
+			</if>
+			<if test="record.address != null">
+				address = #{record.address,jdbcType=VARCHAR},
+			</if>
 			<if test="record.roleId != null">
 				role_id = #{record.roleId,jdbcType=INTEGER},
 			</if>
-			<if test="record.signatur != null">
-				signatur = #{record.signatur,jdbcType=VARCHAR},
+			<if test="record.avatarUrl != null">
+				avatar_url = #{record.avatarUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="record.cityId != null">
+				city_id = #{record.cityId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.villageId != null">
+				village_id = #{record.villageId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.provinceId != null">
+				province_id = #{record.provinceId,jdbcType=VARCHAR},
 			</if>
 		</set>
 		<if test="_parameter != null">
@@ -307,8 +355,6 @@
 		#{record.email,jdbcType=VARCHAR},
 		birthday =
 		#{record.birthday,jdbcType=TIMESTAMP},
-		avatar_id =
-		#{record.avatarId,jdbcType=INTEGER},
 		money =
 		#{record.money,jdbcType=INTEGER},
 		create_at =
@@ -317,10 +363,20 @@
 		#{record.phone,jdbcType=VARCHAR},
 		gender =
 		#{record.gender,jdbcType=VARCHAR},
+		signatur =
+		#{record.signatur,jdbcType=VARCHAR},
+		address =
+		#{record.address,jdbcType=VARCHAR},
 		role_id =
 		#{record.roleId,jdbcType=INTEGER},
-		signatur =
-		#{record.signatur,jdbcType=VARCHAR}
+		avatar_url =
+		#{record.avatarUrl,jdbcType=VARCHAR},
+		city_id =
+		#{record.cityId,jdbcType=VARCHAR},
+		village_id =
+		#{record.villageId,jdbcType=VARCHAR},
+		province_id =
+		#{record.provinceId,jdbcType=VARCHAR}
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
@@ -346,9 +402,6 @@
 			<if test="birthday != null">
 				birthday = #{birthday,jdbcType=TIMESTAMP},
 			</if>
-			<if test="avatarId != null">
-				avatar_id = #{avatarId,jdbcType=INTEGER},
-			</if>
 			<if test="money != null">
 				money = #{money,jdbcType=INTEGER},
 			</if>
@@ -361,11 +414,26 @@
 			<if test="gender != null">
 				gender = #{gender,jdbcType=VARCHAR},
 			</if>
+			<if test="signatur != null">
+				signatur = #{signatur,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
 			<if test="roleId != null">
 				role_id = #{roleId,jdbcType=INTEGER},
 			</if>
-			<if test="signatur != null">
-				signatur = #{signatur,jdbcType=VARCHAR},
+			<if test="avatarUrl != null">
+				avatar_url = #{avatarUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="cityId != null">
+				city_id = #{cityId,jdbcType=VARCHAR},
+			</if>
+			<if test="villageId != null">
+				village_id = #{villageId,jdbcType=VARCHAR},
+			</if>
+			<if test="provinceId != null">
+				province_id = #{provinceId,jdbcType=VARCHAR},
 			</if>
 		</set>
 		where user_id = #{userId,jdbcType=INTEGER}
@@ -382,26 +450,47 @@
 		#{followerNumber,jdbcType=INTEGER},
 		email = #{email,jdbcType=VARCHAR},
 		birthday = #{birthday,jdbcType=TIMESTAMP},
-		avatar_id =
-		#{avatarId,jdbcType=INTEGER},
-		money = #{money,jdbcType=INTEGER},
+		money =
+		#{money,jdbcType=INTEGER},
 		create_at = #{createAt,jdbcType=TIMESTAMP},
-		phone =
-		#{phone,jdbcType=VARCHAR},
+		phone = #{phone,jdbcType=VARCHAR},
 		gender = #{gender,jdbcType=VARCHAR},
-		role_id
-		= #{roleId,jdbcType=INTEGER},
-		signatur = #{signatur,jdbcType=VARCHAR}
-		where user_id = #{userId,jdbcType=INTEGER}
+		signatur = #{signatur,jdbcType=VARCHAR},
+		address =
+		#{address,jdbcType=VARCHAR},
+		role_id = #{roleId,jdbcType=INTEGER},
+		avatar_url = #{avatarUrl,jdbcType=VARCHAR},
+		city_id =
+		#{cityId,jdbcType=VARCHAR},
+		village_id = #{villageId,jdbcType=VARCHAR},
+		province_id = #{provinceId,jdbcType=VARCHAR}
+		where user_id =
+		#{userId,jdbcType=INTEGER}
 	</update>
-	<select id="findByUser" resultMap="BaseResultMap"
-		parameterType="com.jinse.blog.pojo.User">
+	<select id="findByUser" resultMap="BaseResultMap" parameterType="com.jinse.blog.pojo.User">
 		select * from user where username = #{username} and
-		password = #{password}
+		password =
+		#{password}
 	</select>
 
 	<select id="findUserByUsername" resultMap="BaseResultMap"
 		parameterType="string">
 		select * from user where username = #{username}
 	</select>
+
+	<update id="updateAvatarUrlByUserId" parameterType="com.jinse.blog.pojo.User">
+		update user
+		set avatar_url = #{avatarUrl,jdbcType=VARCHAR} where user_id =
+		#{userId,jdbcType=INTEGER}
+	</update>
+	
+	<update id="addUserFollowingByUserId" parameterType="com.jinse.blog.pojo.User">
+		update user set following_number = following_number + 1 where user_id =
+		#{userId,jdbcType=INTEGER}
+	</update>
+		<update id="addUserFollowingByUserId" parameterType="com.jinse.blog.pojo.User">
+		update user set following_number = following_number - 1 where user_id =
+		#{userId,jdbcType=INTEGER} and following_number > 0
+	</update>
+
 </mapper>

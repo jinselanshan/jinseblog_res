@@ -1,6 +1,11 @@
 package com.jinse.blog.utils;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Date;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 import com.jinse.blog.controller.IndexController;
 import com.jinse.blog.pojo.Picture;
+import com.jinse.blog.pojo.User;
 import com.qiniu.common.QiniuException;
 import com.qiniu.common.Zone;
 import com.qiniu.http.Response;
@@ -16,6 +22,7 @@ import com.qiniu.storage.Configuration;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.storage.model.DefaultPutRet;
 import com.qiniu.util.Auth;
+import com.qiniu.util.StringMap;
 
 public class SavePicture {
 	// 设置好账号的ACCESS_KEY和SECRET_KEY
@@ -61,5 +68,50 @@ public class SavePicture {
 			}
 		}
 		return picture;
+	}
+
+	public static String savaAvatar(String outFilePath) {
+		String avatarUrl = "http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/timg.jpg";
+		try {
+			File file = new File(outFilePath);
+			InputStream inputStream = new FileInputStream(file);
+			// 上传到七牛后保存的文件名
+			String key = "image/jpg/avatar/" + String.valueOf(System.currentTimeMillis());
+			Response res = uploadManager.put(inputStream, key, getUpToken(), null, null);
+			/*
+			 * // 上传到七牛后保存的文件名 String key = "image/jpg/avatar/" + avatar.getAvatarId();
+			 * String token = getUpTokenOverride(key);//获取 token Response res =
+			 * uploadManager.put(inputStream, key, token, null, null);
+			 */
+			// 打印返回的信息
+			// System.out.println(res.bodyString());
+			DefaultPutRet putRet = new Gson().fromJson(res.bodyString(), DefaultPutRet.class);
+			System.out.println(putRet.key);
+			avatarUrl = "http://p1vkce34m.bkt.clouddn.com/" + putRet.key;
+		} catch (QiniuException e) {
+			Response r = e.response;
+			// 请求失败时打印的异常的信息
+			System.out.println(r.toString());
+			try {
+				// 响应的文本信息
+				System.out.println(r.bodyString());
+			} catch (QiniuException e1) {
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return avatarUrl;
+	}
+
+	/**
+	 * 覆盖上传 获取凭证
+	 * 
+	 * @param bucketName
+	 *            空间名称
+	 * @return
+	 */
+	public static String getUpTokenOverride(String key) {
+		// insertOnly 如果希望只能上传指定key的文件，并且不允许修改，那么可以将下面的 insertOnly 属性值设为 1
+		return auth.uploadToken(bucketname, key, 3600, new StringMap().put("insertOnly", 0));
 	}
 }

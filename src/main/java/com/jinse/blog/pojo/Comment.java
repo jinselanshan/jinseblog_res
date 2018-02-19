@@ -14,8 +14,18 @@ public class Comment {
     private Integer authorId;
 
     private Date createAt;
+    
+    private User user;
+    
+    public User getUser() {
+		return user;
+	}
 
-    public Integer getCommentId() {
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Integer getCommentId() {
         return commentId;
     }
 

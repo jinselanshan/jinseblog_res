@@ -28,7 +28,15 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);
 
-	List<User> findByUser(User user);
+	User findByUser(User user);
 
 	User findUserByUsername(String username);
+
+	int updateAvatarUrlByUserId(User user);
+
+	User findHomeUserByUserId(Integer userId);
+
+	int addUserFollowingByUserId(User user);
+
+	int minusUserFollowingByUserId(User user);
 }

@@ -60,4 +60,12 @@ public class Picture {
     public void setUrl(String url) {
         this.url = url == null ? null : url.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Picture [pictureId=" + pictureId + ", blogId=" + blogId + ", type=" + type + ", price=" + price
+				+ ", buy=" + buy + ", url=" + url + "]";
+	}
+    
+    
 }

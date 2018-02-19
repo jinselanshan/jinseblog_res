@@ -18,4 +18,9 @@ public class BlogServiceImpl implements BlogService{
 		return  blogPictureMapper.insertBlog(blog);
 	}
 
+	@Override
+	public Blog findBlogByBlogId(Integer blogId) {
+		return blogPictureMapper.findBlogAndPictureByBlogId(blogId);
+	}
+
 }

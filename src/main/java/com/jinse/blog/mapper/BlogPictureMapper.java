@@ -2,6 +2,8 @@ package com.jinse.blog.mapper;
 
 import com.jinse.blog.pojo.Blog;
 import com.jinse.blog.pojo.Picture;
+import com.jinse.blog.pojo.User;
+import com.jinse.blog.pojo.UserQueryVo;
 
 public interface BlogPictureMapper {
 
@@ -10,5 +12,9 @@ public interface BlogPictureMapper {
 	int insertPicture(Picture picture);
 
 	int insertBlog(Blog blog);
+
+	User findAllPictureByUserId(Integer userid);
+
+	Blog findBlogAndPictureByBlogId(Integer blogId);
   
 }

@@ -6,7 +6,37 @@ public class UserQueryVo {
 	
     private User user;
 
+    private Picture picture;
+    
+    private Blog blog;
+    
     private List<User> userList;
+
+    private List<Blog> blogList;
+    
+	public List<Blog> getBlogList() {
+		return blogList;
+	}
+
+	public void setBlogList(List<Blog> blogList) {
+		this.blogList = blogList;
+	}
+
+	public Blog getBlog() {
+		return blog;
+	}
+
+	public void setBlog(Blog blog) {
+		this.blog = blog;
+	}
+
+	public Picture getPicture() {
+		return picture;
+	}
+
+	public void setPicture(Picture picture) {
+		this.picture = picture;
+	}
 
 	public User getUser() {
 		return user;

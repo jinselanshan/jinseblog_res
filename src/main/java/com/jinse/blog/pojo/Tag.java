@@ -30,4 +30,11 @@ public class Tag {
     public void setType(String type) {
         this.type = type == null ? null : type.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Tag [tagId=" + tagId + ", tagName=" + tagName + ", type=" + type + "]";
+	}
+    
+    
 }

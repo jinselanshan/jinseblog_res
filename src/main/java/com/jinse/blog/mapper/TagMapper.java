@@ -27,4 +27,8 @@ public interface TagMapper {
     int updateByPrimaryKeySelective(Tag record);
 
     int updateByPrimaryKey(Tag record);
+
+	Tag findTagByTagName(String tagName);
+
+	int insertTag(Tag tag);
 }

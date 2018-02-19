@@ -27,4 +27,8 @@ public interface UserFollowerMapper {
     int updateByPrimaryKeySelective(UserFollower record);
 
     int updateByPrimaryKey(UserFollower record);
+
+	int findAllFollower(Integer userId);
+
+	int deleteFollower(UserFollower userFollower);
 }

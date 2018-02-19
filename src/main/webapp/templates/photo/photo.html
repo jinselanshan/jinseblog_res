@@ -2,10 +2,10 @@
 <html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 
-
-<head th:replace="htmlHead :: common_header">
+<head th:include="htmlHead :: common_header">
 <title>导航栏</title>
 <!--  <link rel="stylesheet" href="css/index.css"> -->
+<meta th:include="upload/uploadHead :: upload_header_css"></meta>
 </head>
 <body style="background-color: #eeeeee;">
 
@@ -49,7 +49,7 @@
 		</div>
 		<!-- center -->
 		<!-- right -->
-		<div class="col-md-3 column">
+		<div class="col-md-4 column">
 			<div class="card-body  panel-body panel panel-default text-center">
 				<p>
 					<a> <img
