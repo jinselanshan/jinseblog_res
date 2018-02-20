@@ -77,8 +77,7 @@ public class UserController {
 	// 进行登录
 	@RequestMapping(value = "/loginUser", method = RequestMethod.POST)
 	public String loginUser(Model model, HttpServletRequest request, User user) throws Exception {
-		user.setUsername("111");
-		user.setPassword("123456");
+	
 
 		ResultVO result = new ResultVO();
 		user.setPassword(MD5Util.MD5(user.getPassword()));

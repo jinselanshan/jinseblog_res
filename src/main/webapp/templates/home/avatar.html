@@ -27,8 +27,7 @@
 			<td height="44" colspan="2" valign="middle">
 				<p class="visitor-name STYLE1" th:text="${user.username}"></p>
 			</td>
-			<td><button type="button" id="followingBtn"
-					class="btn btn-default" th:text="关注">关注</button></td>
+			<td><input type="hidden" id="followingBtn" class="btn btn-default" th:value="关注"></td>
 
 		</tr>
 		<tr>

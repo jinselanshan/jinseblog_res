@@ -10,6 +10,6 @@ public interface CommentService {
 
 	List<Comment> findCommentByBlogId(Integer blogId);
 
-	int deleteCommentByCommentId(Integer commentId);
+	int deleteCommentByCommentId(Comment comment);
 
 }

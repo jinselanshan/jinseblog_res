@@ -20,7 +20,7 @@ public class Blog {
 
     private Date createAt;
 
-    private Integer hot;
+    private Integer commentNumber;
 
     private String deleted;
 
@@ -118,15 +118,17 @@ public class Blog {
         this.createAt = createAt;
     }
 
-    public Integer getHot() {
-        return hot;
-    }
+ 
 
-    public void setHot(Integer hot) {
-        this.hot = hot;
-    }
+    public Integer getCommentNumber() {
+		return commentNumber;
+	}
 
-    public String getDeleted() {
+	public void setCommentNumber(Integer commentNumber) {
+		this.commentNumber = commentNumber;
+	}
+
+	public String getDeleted() {
         return deleted;
     }
 
@@ -138,10 +140,11 @@ public class Blog {
 	public String toString() {
 		return "Blog [blogId=" + blogId + ", title=" + title + ", description=" + description + ", tag=" + tag
 				+ ", score=" + score + ", likeNumber=" + likeNumber + ", userId=" + userId + ", createAt=" + createAt
-				+ ", hot=" + hot + ", deleted=" + deleted + ", picture=" + picture + ", user=" + user + ", tagList="
-				+ tagList + "]";
+				+ ", commentNumber=" + commentNumber + ", deleted=" + deleted + ", picture=" + picture + ", user="
+				+ user + ", tagList=" + tagList + "]";
 	}
 
+	
 	
     
     

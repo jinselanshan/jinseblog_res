@@ -43,9 +43,9 @@ public class CommentController {
 	@ResponseBody
 	public Comment deleteComment(Model model, HttpServletRequest request, @RequestBody Comment comment) throws Exception {
 		logger.info("add comment");
-		Integer commentId = comment.getCommentId();
 		
-		int count = commentService.deleteCommentByCommentId(commentId);
+		
+		int count = commentService.deleteCommentByCommentId(comment);
 		if (count != 1) {
 			return null;
 		}

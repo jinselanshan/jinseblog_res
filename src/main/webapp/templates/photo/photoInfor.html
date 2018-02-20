@@ -11,6 +11,8 @@
 	<script type="text/javascript" charset="utf-8" src="/jinseblog/static/js/jquery.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="/jinseblog/static/js/bootstrap.min.js"></script>
     <script src="/jinseblog/static/jquery/following.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/jinseblog/static/jquery/deleteBlog.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/jinseblog/static/jquery/deleteComment.js" type="text/javascript" charset="utf-8"></script>
 </div>
 <body class="bodyColor" style="background-color: #eeeeee;">
 	<header th:replace="nav :: nav"></header>
@@ -35,6 +37,7 @@
 						<div class="card-body"></div>
 						<div class="text-right">
 							<time th:text="${#dates.format(blog.createAt, 'yyyy-MM-dd HH:mm')}">3分钟前</time>
+							<a th:href="@{'/user/deleteBlog/' + ${blog.blogId}}"><input type="hidden" id="deleteBtn" class="btn btn-default"  th:value="删除"></a>
 						</div>
 						<h2 class="card-title" th:text="${blog.title}">图片标题</h2>
 						<p class="card-text" th:text="${blog.description}">这里写图片信息</p>
@@ -67,6 +70,7 @@
 			<div class="comment-show-con clearfix" id="comList"
 				th:each="comment : ${commentList}">
 				<div class="comment-show-con-img pull-left">
+				<input type="hidden"  id="commentUserId"  th:value="${comment.user.userId}">
 					<a th:href="@{'/myPhoto/' + ${comment.user.userId}}"><img th:src="${comment.user.avatarUrl}" alt=""></a>
 				</div>
 				<div class="comment-show-con-list pull-left clearfix">
@@ -84,7 +88,7 @@
 							id="commentManager">
 							<input type="hidden" name="commentId" id="commentId"
 								th:value="${comment.commentId}">
-							<p class="removeBlock">删除</p>
+							<p id="deleteComment" class="removeBlock">删除</p>
 							<p class="date-dz-pl pl-hf hf-con-block pull-left">回复</p>
 							<!-- <span class="pull-left date-dz-line">|</span> 
 							<a href="javascript:;" class="date-dz-z pull-left"><i class="date-dz-z-click-red"></i>赞

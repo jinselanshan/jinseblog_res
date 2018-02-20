@@ -18,7 +18,7 @@ public class IndexController {
         return "aa";
     }
 
-    @RequestMapping("/indexPhoto")
+    @RequestMapping("/indexPicture")
     public String bb(Model model) {
         return "photo";
     }

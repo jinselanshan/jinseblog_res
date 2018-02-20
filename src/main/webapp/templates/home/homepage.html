@@ -14,16 +14,15 @@
 	<header th:replace="home/avatar :: navigation"></header>
 	<!-- header -->
 
-
 	<main class="main-wrapper" id="container"> <!-- image Gallery -->
 	<div class="wrapper">
 		<div class="">
-			<ul id="picul" class="small-block-grid-3 home"
-				th:each="blog : ${session.CURRENT_USER.blogList}">
-				<li class="masonry-item grid">
+			<input type="hidden" name="userId" id="userId"
+				th:value="${user.userId}">
+			<ul id="picul" class="small-block-grid-3 home">
+				<li class="masonry-item grid" th:each="blog : ${user.blogList}">
 					<figure class="effect-sarah">
-						<img height="200"
-							width="200"
+						<img height="200" width="200"
 							th:src="${blog.picture.url+'?imageView2/1/w/400/h/250/format/jpg/q/90|imageslim'}"
 							alt="" />
 						<figcaption>
@@ -36,7 +35,7 @@
 							<p>
 								<span th:text="${blog.likeNumber+'喜欢'}"></span>
 							</p>
-				        	<a th:href="@{'/blog/'+${blog.blogId}}"> 	</a>
+							<a th:href="@{'/blog/'+${blog.blogId}}"> </a>
 						</figcaption>
 					</figure>
 				</li>

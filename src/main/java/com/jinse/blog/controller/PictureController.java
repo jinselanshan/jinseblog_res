@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jinse.blog.pojo.Blog;
@@ -103,13 +104,20 @@ public class PictureController {
 		SavePicture.savaPic(picture, pictureFile);
 		// 更新url
 		pictureService.updateUrlByPictureId(picture);
-		return "redirect:findPicture";
+		return "redirect:indexPhoto";
 	}
 
-	@RequestMapping(value = "/findPicture")
-	public String findPicture(Model model, HttpServletRequest request, Blog blog) throws Exception {
+	@RequestMapping(value = "/indexPhoto")
+	public String indexPhoto(Model model, HttpServletRequest request, Blog blog) throws Exception {
+		logger.info("关注列表");
+		Integer userId = SpringUtil.getCurrentUser().getUserId();
 
-		return "photo";
+		//发现我关注的摄影blog列表
+		List<Blog> blogList = blogService.findPhotoListByUserId(userId);
+		if(blogList != null && blogList.size() > 0 ) {
+			model.addAttribute("blogList", blogList);
+		}
+		return "photo/indexPhoto";
 	}
 
 	// 主页
@@ -119,7 +127,15 @@ public class PictureController {
 		user = pictureService.findAllPictureByUserId(userId);
 		model.addAttribute("user", user);
 		SpringUtil.setSession(ConstantsUtil.STRING_CURRENT_USER, user);
-		return "home/homepage";
+		return "home/userpage";
+	}
+	
+	//其他人主页
+	@RequestMapping(value = "/otherPhotoes/{userId}")
+	public String otherPhotoes(@PathVariable("userId") Integer userId, Model model, HttpServletRequest request, User user) throws Exception {
+		user = pictureService.findAllPictureByUserId(userId);
+		model.addAttribute("user", user);
+		return "home/userpage";
 	}
 
 	// 
@@ -136,4 +152,17 @@ public class PictureController {
 		return "photo/photoInfor";
 	}
 
+	@RequestMapping(value = "/user/deleteBlog/{blogId}")
+	public String photoInfor(@PathVariable("blogId") Integer blogId, Model model, HttpServletRequest request, Blog blog) throws Exception {
+		logger.info("删除blog");
+		//delete picture then delete blog
+		if(blogId != null) {
+			blog.setBlogId(blogId);
+			int count = blogService.deleteBlogByBlogId(blog);
+			if(count == 1) {
+				logger.info("删除成功");
+			}
+		}
+		return "redirect:/myPhotoes";
+	}
 }

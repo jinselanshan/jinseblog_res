@@ -10,7 +10,7 @@
     <result column="like_number" property="likeNumber" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="create_at" property="createAt" jdbcType="TIMESTAMP" />
-    <result column="hot" property="hot" jdbcType="INTEGER" />
+    <result column="comment_number" property="commentNumber" jdbcType="INTEGER" />
     <result column="deleted" property="deleted" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -72,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    blog_id, title, description, tag, score, like_number, user_id, create_at, hot, deleted
+    blog_id, title, description, tag, score, like_number, user_id, create_at, comment_number, deleted
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jinse.blog.pojo.BlogExample" >
     select
@@ -107,11 +107,11 @@
   <insert id="insert" parameterType="com.jinse.blog.pojo.Blog" >
     insert into blog (blog_id, title, description, 
       tag, score, like_number, 
-      user_id, create_at, hot, 
+      user_id, create_at, comment_number, 
       deleted)
     values (#{blogId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
       #{tag,jdbcType=VARCHAR}, #{score,jdbcType=DOUBLE}, #{likeNumber,jdbcType=INTEGER}, 
-      #{userId,jdbcType=INTEGER}, #{createAt,jdbcType=TIMESTAMP}, #{hot,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{createAt,jdbcType=TIMESTAMP}, #{commentNumber,jdbcType=INTEGER}, 
       #{deleted,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.jinse.blog.pojo.Blog" >
@@ -141,8 +141,8 @@
       <if test="createAt != null" >
         create_at,
       </if>
-      <if test="hot != null" >
-        hot,
+      <if test="commentNumber != null" >
+        comment_number,
       </if>
       <if test="deleted != null" >
         deleted,
@@ -173,8 +173,8 @@
       <if test="createAt != null" >
         #{createAt,jdbcType=TIMESTAMP},
       </if>
-      <if test="hot != null" >
-        #{hot,jdbcType=INTEGER},
+      <if test="commentNumber != null" >
+        #{comment_number,jdbcType=INTEGER},
       </if>
       <if test="deleted != null" >
         #{deleted,jdbcType=VARCHAR},
@@ -214,8 +214,8 @@
       <if test="record.createAt != null" >
         create_at = #{record.createAt,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.hot != null" >
-        hot = #{record.hot,jdbcType=INTEGER},
+      <if test="record.commentNumber != null" >
+        comment_number = #{record.commentNumber,jdbcType=INTEGER},
       </if>
       <if test="record.deleted != null" >
         deleted = #{record.deleted,jdbcType=VARCHAR},
@@ -235,7 +235,7 @@
       like_number = #{record.likeNumber,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
       create_at = #{record.createAt,jdbcType=TIMESTAMP},
-      hot = #{record.hot,jdbcType=INTEGER},
+      comment_number = #{record.commentNumber,jdbcType=INTEGER},
       deleted = #{record.deleted,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -265,8 +265,8 @@
       <if test="createAt != null" >
         create_at = #{createAt,jdbcType=TIMESTAMP},
       </if>
-      <if test="hot != null" >
-        hot = #{hot,jdbcType=INTEGER},
+      <if test="commentNumber != null" >
+        comment_number = #{commentNumber,jdbcType=INTEGER},
       </if>
       <if test="deleted != null" >
         deleted = #{deleted,jdbcType=VARCHAR},
@@ -283,7 +283,7 @@
       like_number = #{likeNumber,jdbcType=INTEGER},
       user_id = #{userId,jdbcType=INTEGER},
       create_at = #{createAt,jdbcType=TIMESTAMP},
-      hot = #{hot,jdbcType=INTEGER},
+      comment_number = #{commentNumber,jdbcType=INTEGER},
       deleted = #{deleted,jdbcType=VARCHAR}
     where blog_id = #{blogId,jdbcType=INTEGER}
   </update>

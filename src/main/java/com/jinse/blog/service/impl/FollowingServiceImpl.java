@@ -22,18 +22,19 @@ public class FollowingServiceImpl implements FollowingService {
 	@Override
 	public int saveFollowing(UserFollowing userFollowing) {
 		// user关注following user 加关注，following加粉丝
+		//关注加1，粉丝加1
 		int countUser = userFollowingAdd(userFollowing);
 		int count = 0;
-		if(countUser == 1) {
+		if(countUser == 2) {
 			count = userFollowingMapper.insert(userFollowing);
 		}
 		return count;
 	}
 
 	private int userFollowingAdd(UserFollowing userFollowing) {
-		User user = new User();
-		user.setUserId(userFollowing.getUserId());
-		return userMapper.addUserFollowingByUserId(user);
+		int followingnumber = userMapper.addUserFollowingByUserId(userFollowing.getUserId());
+		int followernumber = userMapper.addUserFollowerByUserId(userFollowing.getFollowingId());
+		return followingnumber + followernumber;
 	}
 
 	//减关注
@@ -41,16 +42,16 @@ public class FollowingServiceImpl implements FollowingService {
 	public int deleteFollowing(UserFollowing userFollowing) {
 		int countUser = userFollowingMinus(userFollowing);
 		int count = 0;
-		if(countUser == 1) {
+		if(countUser == 2) {
 			count = userFollowingMapper.deleteFollowing(userFollowing);
 		}
 		return count;
 	}
 
 	private int userFollowingMinus(UserFollowing userFollowing) {
-		User user = new User();
-		user.setUserId(userFollowing.getUserId());
-		return userMapper.minusUserFollowingByUserId(user);
+		int followingnumber = userMapper.minusUserFollowingByUserId(userFollowing.getUserId());
+		int followernumber = userMapper.minusUserFollowerByUserId(userFollowing.getFollowingId());
+		return followingnumber + followernumber;
 	}
 
 	@Override

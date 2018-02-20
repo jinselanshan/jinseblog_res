@@ -18,7 +18,7 @@ public class InitBlog {
 			blog.setUserId(userId);
 			blog.setCreateAt(new Date());
 			blog.setScore(0.0);
-			blog.setHot(0);
+			blog.setCommentNumber(0);
 			blog.setLikeNumber(0);
 			blog.setDeleted("N");
 		}

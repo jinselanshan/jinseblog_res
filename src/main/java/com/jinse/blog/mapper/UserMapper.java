@@ -36,7 +36,12 @@ public interface UserMapper {
 
 	User findHomeUserByUserId(Integer userId);
 
-	int addUserFollowingByUserId(User user);
+	int addUserFollowingByUserId(Integer userId);
 
-	int minusUserFollowingByUserId(User user);
+	int addUserFollowerByUserId(Integer followingId);
+
+	int minusUserFollowingByUserId(Integer userId);
+	
+	int minusUserFollowerByUserId(Integer followingId);
+
 }
