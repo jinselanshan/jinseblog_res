@@ -73,4 +73,9 @@ public class BlogServiceImpl implements BlogService {
 		return count;
 	}
 
+	@Override
+	public int saveBlogAndReturnId(Blog blog) {
+		return blogMapper.saveBlogAndReturnId(blog);
+	}
+
 }

@@ -44,4 +44,8 @@ public interface UserMapper {
 	
 	int minusUserFollowerByUserId(Integer followingId);
 
+	int insertUser(User user);
+
+	List<User> findAllFollowing(Integer userId);
+
 }

@@ -114,3 +114,10 @@ background-color: #ffffff;
 	max-width:600px;
 	max-height:300px;
 }
+.btn-following{
+	color: #85888a;
+	padding: 1px 1px  !important;
+}
+.body-color{
+	background-color: #eeeeee;
+}

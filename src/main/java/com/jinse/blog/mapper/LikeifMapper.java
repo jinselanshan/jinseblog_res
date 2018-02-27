@@ -27,4 +27,8 @@ public interface LikeifMapper {
     int updateByPrimaryKeySelective(Likeif record);
 
     int updateByPrimaryKey(Likeif record);
+
+	int findLikeifByBlogIdAndUserId(Likeif likeif);
+
+	int deleteLikeif(Likeif likeif);
 }

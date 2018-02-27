@@ -32,4 +32,6 @@ public interface ProvinceMapper {
 
 	Province selectProIdList(String cityId);
 
+	String selectCityNameById(String id);
+
 }

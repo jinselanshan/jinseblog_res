@@ -1,0 +1,19 @@
+  .heart {
+	    background: url(/jinseblog/static/img/icon-like-no.png);
+	    background-repeat: no-repeat;
+	    height: 22px;
+	    width: 22px;
+	    display:block;
+	    cursor: pointer;
+	    float: right;
+    }
+
+	.heartAnimation {
+	 background: url(/jinseblog/static/img/icon-like.png);
+	    background-repeat: no-repeat;
+	    height:22px;
+	    width: 22px;
+	    display:block;
+	    cursor: pointer;
+	    float: right;
+    }

@@ -38,6 +38,7 @@
 	<mvc:resources mapping="/fonts/**" location="/static/fonts/" />
 	<mvc:resources mapping="/css/**" location="/static/css/" />
 	<mvc:resources mapping="/js/**" location="/static/js/" />
+	<mvc:resources mapping="/jquery/**" location="/static/jquery/" />
 
 	<!-- template配置 -->
 	<bean id="templateResolver"

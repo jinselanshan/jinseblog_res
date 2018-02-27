@@ -28,4 +28,9 @@ public class IndexController {
     	logger.info("进入上传图片界面");
         return "upload/picture";
     }
+    @RequestMapping("/uploadVedioIndex")
+    public String uploadVedio(Model model) {
+    	logger.info("进入上传视频界面");
+        return "upload/vedio";
+    }
 }

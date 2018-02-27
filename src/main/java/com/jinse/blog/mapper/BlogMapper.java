@@ -27,4 +27,11 @@ public interface BlogMapper {
     int updateByPrimaryKeySelective(Blog record);
 
     int updateByPrimaryKey(Blog record);
+
+	int addLikeNumberByBlogId(Integer blogId);
+	
+	int minusLikeNumberByBlogId(Integer blogId);
+
+	int saveBlogAndReturnId(Blog blog);
+
 }

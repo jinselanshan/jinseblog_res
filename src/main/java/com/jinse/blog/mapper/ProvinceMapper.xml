@@ -365,4 +365,8 @@
 		parameterType="java.lang.String">
 		select * from province where id = #{cityId,jdbcType=INTEGER}
 	</select>
+	<select id="selectCityNameById" resultType="java.lang.String"
+		parameterType="java.lang.String">
+		select my_texts from province where id = #{id,jdbcType=INTEGER}
+	</select>
 </mapper>

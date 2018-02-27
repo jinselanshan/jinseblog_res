@@ -20,7 +20,8 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
+									and ${criterion.condition} #{criterion.value}
+									and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -52,7 +53,8 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
+									and ${criterion.condition} #{criterion.value}
+									and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -95,7 +97,8 @@
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from user_following
+		delete from
+		user_following
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 	<delete id="deleteByExample" parameterType="com.jinse.blog.pojo.UserFollowingExample">
@@ -105,9 +108,11 @@
 		</if>
 	</delete>
 	<insert id="insert" parameterType="com.jinse.blog.pojo.UserFollowing">
-		insert into user_following (id, user_id, following_id
+		insert into user_following
+		(id, user_id, following_id
 		)
-		values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
+		values (#{id,jdbcType=INTEGER},
+		#{userId,jdbcType=INTEGER},
 		#{followingId,jdbcType=INTEGER}
 		)
 	</insert>
@@ -163,8 +168,10 @@
 	<update id="updateByExample" parameterType="map">
 		update user_following
 		set id = #{record.id,jdbcType=INTEGER},
-		user_id = #{record.userId,jdbcType=INTEGER},
-		following_id = #{record.followingId,jdbcType=INTEGER}
+		user_id =
+		#{record.userId,jdbcType=INTEGER},
+		following_id =
+		#{record.followingId,jdbcType=INTEGER}
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
@@ -182,24 +189,34 @@
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.jinse.blog.pojo.UserFollowing">
-		update user_following
+		update
+		user_following
 		set user_id = #{userId,jdbcType=INTEGER},
-		following_id = #{followingId,jdbcType=INTEGER}
+		following_id =
+		#{followingId,jdbcType=INTEGER}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 	<select id="findFollowingByFollowingId" resultType="java.lang.Integer"
 		parameterType="com.jinse.blog.pojo.UserFollowing">
-		select count(*) from user_following where user_id = #{userId}
+		select count(*) from user_following where user_id =
+		#{userId}
 		and following_id = #{followingId}
 	</select>
-	<select id="findAllFollowing" resultType="int"
+	<select id="findAllFollowingCount" resultType="int"
 		parameterType="int">
-		select count(*) from user_following where user_id = #{userId}
+		select count(*) from user_following where user_id =
+		#{userId}
 	</select>
 
 	<delete id="deleteFollowing" parameterType="com.jinse.blog.pojo.UserFollowing">
-		delete from user_following
-		where user_id = #{userId} and following_id = #{followingId} 
+		delete from
+		user_following
+		where user_id = #{userId} and following_id =
+		#{followingId}
 	</delete>
-	
+	<select id="findFollowingByUserIdAndFollowingId" resultType="java.lang.Integer"
+		parameterType="com.jinse.blog.pojo.UserFollowing">
+		select count(*) from user_following where user_id =
+		#{userId} and following_id = #{followingId}
+	</select>
 </mapper>

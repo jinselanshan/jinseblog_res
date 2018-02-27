@@ -27,7 +27,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jinse.blog.pojo.User;
+import com.jinse.blog.pojo.UserAndInfor;
 import com.jinse.blog.service.PictureService;
+import com.jinse.blog.service.ProvinceService;
 import com.jinse.blog.service.UserService;
 import com.jinse.blog.utils.AvatarUtil;
 import com.jinse.blog.utils.ConstantsUtil;
@@ -43,9 +45,11 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	
 	@Autowired
 	private PictureService pictureService;
+	@Autowired
+	private ProvinceService provinceService;
+	
 	
 	// 注册
 	@RequestMapping("/signup")
@@ -70,7 +74,9 @@ public class UserController {
 		}
 		user.setPassword(MD5Util.MD5(user.getPassword()));
 		user = UserUtil.initUser(user);
-		userService.save(user);
+		userService.saveUserAndReturnId(user);
+		
+		
 		return "user/login";
 	}
 
@@ -121,6 +127,7 @@ public class UserController {
 		if (SpringUtil.getCurrentUser() != null && SpringUtil.getCurrentUser().getUserId() != null) {
 			Integer userId = SpringUtil.getCurrentUser().getUserId();
 			User user = userService.findUserByUserId(userId);
+			
 			model.addAttribute("user", user);
 			SpringUtil.setSession(ConstantsUtil.STRING_CURRENT_USER, user);
 			SpringUtil.setSession(ConstantsUtil.STRING_USER_NAME, user.getUsername());
@@ -190,19 +197,23 @@ public class UserController {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date birthday = sdf.parse(birth);
 		user.setBirthday(birthday);
+		
 		Integer userId = SpringUtil.getCurrentUser().getUserId();
 		user.setUserId(userId);
+		//设置city
+		provinceService.setCityByUserId(user);
 		userService.updateUserByUserId(user);
 		return "redirect:information";
 	}
 
-	// 其他用户主页
+/*	// 其他用户主页
 	@RequestMapping(value = "/myPhoto/{userId}")
 	public String myPhotoes(@PathVariable("userId") Integer userId, Model model, HttpServletRequest request, User user) throws Exception {
-		logger.info("跳转到其他用户主页");
+		logger.info("跳转到用户主页");
 		user = pictureService.findAllPictureByUserId(userId);
-		model.addAttribute("user", user);
+		UserAndInfor userAndInfor = UserUtil.userToUserAndInfor(user);
+		model.addAttribute("user", userAndInfor);
 		return "home/userpage";
-	}
+	}*/
 
 }

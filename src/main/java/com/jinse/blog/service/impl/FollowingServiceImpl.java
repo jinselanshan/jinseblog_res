@@ -1,5 +1,7 @@
 package com.jinse.blog.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jinse.blog.mapper.UserFollowerMapper;
@@ -60,7 +62,12 @@ public class FollowingServiceImpl implements FollowingService {
 	}
 
 	@Override
-	public int findAllFollowing(Integer userId) {
-		return userFollowingMapper.findAllFollowing(userId);
+	public int findAllFollowingCount(Integer userId) {
+		return userFollowingMapper.findAllFollowingCount(userId);
+	}
+
+	@Override
+	public List<User> findAllFollowing(Integer userId) {
+		return userMapper.findAllFollowing(userId);
 	}
 }

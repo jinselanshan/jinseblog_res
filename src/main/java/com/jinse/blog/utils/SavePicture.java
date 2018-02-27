@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 import com.jinse.blog.controller.IndexController;
 import com.jinse.blog.pojo.Picture;
 import com.jinse.blog.pojo.User;
+import com.jinse.blog.pojo.Video;
 import com.qiniu.common.QiniuException;
 import com.qiniu.common.Zone;
 import com.qiniu.http.Response;
@@ -23,6 +24,7 @@ import com.qiniu.storage.UploadManager;
 import com.qiniu.storage.model.DefaultPutRet;
 import com.qiniu.util.Auth;
 import com.qiniu.util.StringMap;
+import com.qiniu.util.UrlSafeBase64;
 
 public class SavePicture {
 	// 设置好账号的ACCESS_KEY和SECRET_KEY
@@ -68,6 +70,47 @@ public class SavePicture {
 			}
 		}
 		return picture;
+	}
+
+	public static Video savaVideo(Video video, MultipartFile videoFile) {
+
+		if (video != null) {
+			try {
+				// 上传到七牛后保存的文件名
+				String key = "origin/video/" + video.getBlogId();
+
+				// 设置转码操作参数
+				String fops = "avthumb/mp4/ab/128k/ar/44100/acodec/libfaac";
+				// 设置转码的队列
+				String pipeline = "video";
+				// 可以对转码后的文件进行使用saveas参数自定义命名，当然也可以不指定文件会默认命名并保存在当前空间。
+				String urlbase64 = UrlSafeBase64.encodeToString("jinselanshan/video/:video/mp4-" + video.getBlogId());
+				String pfops = fops + "|saveas/" + urlbase64;
+				
+				String taken = auth.uploadToken("jinselanshan/video/", null, 3600,
+						new StringMap().putNotEmpty("persistentOps", pfops).putNotEmpty("persistentPipeline", pipeline),
+						true);
+
+				Response res = uploadManager.put(videoFile.getInputStream(), key, taken, null, null);
+				// 打印返回的信息
+				System.out.println(res.bodyString());
+				DefaultPutRet putRet = new Gson().fromJson(res.bodyString(), DefaultPutRet.class);
+				System.out.println(putRet.key);
+				video.setUrl("http://p1vkce34m.bkt.clouddn.com/video/mp4-" + video.getBlogId());
+			} catch (QiniuException e) {
+				Response r = e.response;
+				// 请求失败时打印的异常的信息
+				System.out.println(r.toString());
+				try {
+					// 响应的文本信息
+					System.out.println(r.bodyString());
+				} catch (QiniuException e1) {
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return video;
 	}
 
 	public static String savaAvatar(String outFilePath) {

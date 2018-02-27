@@ -1,12 +1,10 @@
 package com.jinse.blog.service;
 
-import java.util.List;
-
 import com.jinse.blog.pojo.User;
 
 public interface UserService {
 
-	int save(User user);
+	int saveUserAndReturnId(User user);
 
 	User findByUser(User user);
 

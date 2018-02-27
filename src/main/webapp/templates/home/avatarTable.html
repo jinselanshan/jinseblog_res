@@ -32,14 +32,14 @@
 		</tr>
 		<tr>
 			<td width="77"><a
-				href="https://jinselanshan.tuchong.com/followers"
+				th:href="@{'/user/following/' + ${user.userId}}"
 				class="user_data STYLE1" th:text="${'关注'+user.followingNumber}"></a></td>
 			<td width="77"><a
-				href="https://jinselanshan.tuchong.com/followers"
+				th:href="@{'/user/follower/' + ${user.userId}}"
 				class="user_data STYLE1" th:text="${'粉丝'+user.followerNumber}"></a></td>
 			<td width="276"><a
 				href="https://jinselanshan.tuchong.com/followers"
-				class="user_data STYLE1"> 浙江 </a></td>
+				class="user_data STYLE1" th:text="${user.city}">浙江 </a></td>
 		</tr>
 		<tr>
 			<td height="42" colspan="3"><p th:text="${user.signatur}"></p></td>

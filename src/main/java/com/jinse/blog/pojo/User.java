@@ -40,9 +40,19 @@ public class User {
 
 	private String provinceId;
 
+	private String city;
+	 
 	private Blog blog;
 
 	private List<Blog> blogList;
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
 
 	public Blog getBlog() {
 		return blog;
@@ -210,8 +220,9 @@ public class User {
 				+ followingNumber + ", followerNumber=" + followerNumber + ", email=" + email + ", birthday=" + birthday
 				+ ", money=" + money + ", createAt=" + createAt + ", phone=" + phone + ", gender=" + gender
 				+ ", signatur=" + signatur + ", address=" + address + ", roleId=" + roleId + ", avatarUrl=" + avatarUrl
-				+ ", cityId=" + cityId + ", villageId=" + villageId + ", provinceId=" + provinceId + ", blog=" + blog
-				+ ", blogList=" + blogList + "]";
+				+ ", cityId=" + cityId + ", villageId=" + villageId + ", provinceId=" + provinceId + ", city=" + city
+				+ ", blog=" + blog + ", blogList=" + blogList + "]";
 	}
+
 	
 }

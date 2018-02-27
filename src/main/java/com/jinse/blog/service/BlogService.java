@@ -14,4 +14,6 @@ public interface BlogService {
 
 	int deleteBlogByBlogId(Blog blog);
 
+	int saveBlogAndReturnId(Blog blog);
+
 }

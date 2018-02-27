@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-<head
-	th:replace="htmlHeadAndUpload :: common_header(~{::title},~{::link})">
+<head th:replace="htmlHeadAndUpload :: common_header(~{::title},~{::link})">
 <title>导航栏</title>
 <link rel="stylesheet" type="text/css" href="/jinseblog/static/css/comment.css" />
 <link rel="stylesheet" type="text/css" href="/jinseblog/static/css/comment_style.css" />
@@ -13,10 +12,12 @@
     <script src="/jinseblog/static/jquery/following.js" type="text/javascript" charset="utf-8"></script>
     <script src="/jinseblog/static/jquery/deleteBlog.js" type="text/javascript" charset="utf-8"></script>
     <script src="/jinseblog/static/jquery/deleteComment.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/jinseblog/static/jquery/likeBlog.js" type="text/javascript" charset="utf-8"></script>
+    
 </div>
 <body class="bodyColor" style="background-color: #eeeeee;">
 	<header th:replace="nav :: nav"></header>
-	<header th:replace="home/avatar :: avatarTable"></header>
+	<header th:replace="home/avatarTable :: avatarTable"></header>
 	<!-- content-->
 	<div class="row clearfix" style="background-color: #eeeeee;">
 		<div class="col-md-6 column marginbox" style="background-color: #eeeeee;">
@@ -26,18 +27,21 @@
 				style="background-color: #eeeeee;">
 				
 				<div class="inforDiv">
-				<div class="card-body">
+				<!-- <div class="card-body">
 					<a><img th:src="${blog.user.avatarUrl}"
 						alt="140x140" width="50" height="50" class="img-circle" /></a><a
 						href="#" th:text="${blog.user.username}">username </a>
-				</div>
+				</div> -->
 					<div class="text-left">
 						<input type="hidden" name="blogId" id="blogId"
 							th:value="${blog.blogId}">
 						<div class="card-body"></div>
 						<div class="text-right">
-							<time th:text="${#dates.format(blog.createAt, 'yyyy-MM-dd HH:mm')}">3分钟前</time>
-							<a th:href="@{'/user/deleteBlog/' + ${blog.blogId}}"><input type="hidden" id="deleteBtn" class="btn btn-default"  th:value="删除"></a>
+							<a th:if="${blog.likeif}" width="20" id="likeBtn"  align="right" class="img-circle heart heartAnimation" th:data-like="like"  rel="like" th:data-blog-id="${blog.blogId}"></a>
+								 <a th:unless="${blog.likeif}"  width="20" id="likeBtn"  align="right" class="img-circle heart" th:data-like="dislike" rel="unlike" th:data-blog-id="${blog.blogId}"> </a>
+								<span class="likeNumber" id="likeNumber" th:text="${blog.likeNumber}" th:data-blog-id="${blog.blogId}"></span>
+							<br/><a th:href="@{'/user/deleteBlog/' + ${blog.blogId}}"><input type="hidden" id="deleteBtn" class="btn btn-default"  th:value="删除"></a>
+						
 						</div>
 						<h2 class="card-title" th:text="${blog.title}">图片标题</h2>
 						<p class="card-text" th:text="${blog.description}">这里写图片信息</p>
@@ -46,6 +50,7 @@
 					<div class="card-footer text-muted">
 						<a href="#"  th:each="tag : ${blog.tagList}"><span class="label label-default"
 							th:text="${tag.tagName}">哈尔滨</span></a>
+						<time th:text="${#dates.format(blog.createAt, 'yyyy-MM-dd HH:mm')}">3分钟前</time>
 					</div>
 					
 				</div>

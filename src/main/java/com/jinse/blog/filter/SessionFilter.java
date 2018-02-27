@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.jinse.blog.utils.ConstantsUtil;
+import com.jinse.blog.utils.SpringUtil;
 
 public class SessionFilter implements Filter {
 
@@ -38,8 +39,18 @@ public class SessionFilter implements Filter {
 		HttpServletRequest hreq = (HttpServletRequest) req;
 		HttpServletResponse hres = (HttpServletResponse) res;
 		HttpSession session = hreq.getSession();
-		if (session.getAttribute(ConstantsUtil.STRING_CURRENT_USER) == null) {
-			hres.sendRedirect("/login");
+		String url = hreq.getServletPath();
+		log.info(url);
+		if(url.equals("/login") || url.equals("/loginUser") || url.equals("/signup") || url.equals("/savaUser") || url.equals("/logout")) {
+			chain.doFilter(req, res);
+			return;
+		}
+		if(url.indexOf("/static") != -1) {
+			chain.doFilter(req, res);
+			return;
+		}
+		if (session.getAttribute(ConstantsUtil.STRING_CURRENT_USER) == null || SpringUtil.getCurrentUser() == null) {
+			hres.sendRedirect("/jinseblog/login");
 			return;
 		} else {
 			try {

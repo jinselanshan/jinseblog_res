@@ -1,5 +1,7 @@
 package com.jinse.blog.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -7,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -36,7 +39,6 @@ public class FollowingController {
 		// find 数据库 是否有记录
 		int count = followingService.findFollowingByFollowingId(userFollowing);
 		return count == 1 ? 1 : 0;
-
 	}
 
 	
@@ -61,13 +63,16 @@ public class FollowingController {
 		SpringUtil.setSession(ConstantsUtil.STRING_CURRENT_USER, user);
 		return count == 1 ? 1 : null;
 	}
+	
+	@RequestMapping(value = "/user/following/{userId}")
+	public String findAllFollowing(@PathVariable Integer userId, Model model, HttpServletRequest request, UserFollowing userFollowing) {
+		logger.info("找到所有的关注");
+		List<User> userList = followingService.findAllFollowing(userId);
+		User user = userService.findUserByUserId(userId);
+		model.addAttribute("userList",userList);
+		model.addAttribute("user",user);
+		return "user/user_following";
+	}
 
-	/*
-	 * public String findAllFollowing() { logger.info("获取关注数"); Integer userId = 0;
-	 * 
-	 * int countNumber = followingService.findAllFollowing(userId); return
-	 * "success";
-	 * 
-	 * }
-	 */
+	
 }

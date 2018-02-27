@@ -22,6 +22,7 @@
 		<result column="city_id" property="cityId" jdbcType="VARCHAR" />
 		<result column="village_id" property="villageId" jdbcType="VARCHAR" />
 		<result column="province_id" property="provinceId" jdbcType="VARCHAR" />
+		<result column="city" property="city" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Example_Where_Clause">
 		<where>
@@ -37,8 +38,7 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value}
-									and
+									and ${criterion.condition} #{criterion.value} and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -70,8 +70,7 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value}
-									and
+									and ${criterion.condition} #{criterion.value} and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -89,13 +88,11 @@
 		</where>
 	</sql>
 	<sql id="Base_Column_List">
-		user_id, username, password, following_number,
-		follower_number, email,
+		user_id, username, password, following_number, follower_number, email,
 		birthday,
-		money, create_at, phone, gender,
-		signatur, address, role_id, avatar_url,
+		money, create_at, phone, gender, signatur, address, role_id, avatar_url,
 		city_id,
-		village_id, province_id
+		village_id, province_id, city
 	</sql>
 	<select id="selectByExample" resultMap="BaseResultMap"
 		parameterType="com.jinse.blog.pojo.UserExample">
@@ -130,29 +127,23 @@
 		</if>
 	</delete>
 	<insert id="insert" parameterType="com.jinse.blog.pojo.User">
-		insert into user (user_id,
-		username, password,
+		insert into user (user_id, username, password,
 		following_number, follower_number, email,
-		birthday,
-		money, create_at,
+		birthday, money, create_at,
 		phone, gender, signatur,
 		address, role_id, avatar_url,
-		city_id, village_id, province_id
-		)
-		values (#{userId,jdbcType=INTEGER},
-		#{username,jdbcType=VARCHAR},
+		city_id, village_id, province_id,
+		city)
+		values (#{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR},
 		#{password,jdbcType=VARCHAR},
-		#{followingNumber,jdbcType=INTEGER},
-		#{followerNumber,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR},
+		#{followingNumber,jdbcType=INTEGER}, #{followerNumber,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR},
 		#{birthday,jdbcType=TIMESTAMP}, #{money,jdbcType=INTEGER},
 		#{createAt,jdbcType=TIMESTAMP},
-		#{phone,jdbcType=VARCHAR},
-		#{gender,jdbcType=VARCHAR}, #{signatur,jdbcType=VARCHAR},
+		#{phone,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{signatur,jdbcType=VARCHAR},
 		#{address,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER},
 		#{avatarUrl,jdbcType=VARCHAR},
-		#{cityId,jdbcType=VARCHAR},
-		#{villageId,jdbcType=VARCHAR}, #{provinceId,jdbcType=VARCHAR}
-		)
+		#{cityId,jdbcType=VARCHAR}, #{villageId,jdbcType=VARCHAR}, #{provinceId,jdbcType=VARCHAR},
+		#{city,jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertSelective" parameterType="com.jinse.blog.pojo.User">
 		insert into user
@@ -211,6 +202,9 @@
 			<if test="provinceId != null">
 				province_id,
 			</if>
+			<if test="city != null">
+				city,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="userId != null">
@@ -267,6 +261,9 @@
 			<if test="provinceId != null">
 				#{provinceId,jdbcType=VARCHAR},
 			</if>
+			<if test="city != null">
+				#{city,jdbcType=VARCHAR},
+			</if>
 		</trim>
 	</insert>
 	<select id="countByExample" parameterType="com.jinse.blog.pojo.UserExample"
@@ -289,12 +286,10 @@
 				password = #{record.password,jdbcType=VARCHAR},
 			</if>
 			<if test="record.followingNumber != null">
-				following_number =
-				#{record.followingNumber,jdbcType=INTEGER},
+				following_number = #{record.followingNumber,jdbcType=INTEGER},
 			</if>
 			<if test="record.followerNumber != null">
-				follower_number =
-				#{record.followerNumber,jdbcType=INTEGER},
+				follower_number = #{record.followerNumber,jdbcType=INTEGER},
 			</if>
 			<if test="record.email != null">
 				email = #{record.email,jdbcType=VARCHAR},
@@ -335,6 +330,9 @@
 			<if test="record.provinceId != null">
 				province_id = #{record.provinceId,jdbcType=VARCHAR},
 			</if>
+			<if test="record.city != null">
+				city = #{record.city,jdbcType=VARCHAR},
+			</if>
 		</set>
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
@@ -343,40 +341,24 @@
 	<update id="updateByExample" parameterType="map">
 		update user
 		set user_id = #{record.userId,jdbcType=INTEGER},
-		username =
-		#{record.username,jdbcType=VARCHAR},
-		password =
-		#{record.password,jdbcType=VARCHAR},
-		following_number =
-		#{record.followingNumber,jdbcType=INTEGER},
-		follower_number =
-		#{record.followerNumber,jdbcType=INTEGER},
-		email =
-		#{record.email,jdbcType=VARCHAR},
-		birthday =
-		#{record.birthday,jdbcType=TIMESTAMP},
-		money =
-		#{record.money,jdbcType=INTEGER},
-		create_at =
-		#{record.createAt,jdbcType=TIMESTAMP},
-		phone =
-		#{record.phone,jdbcType=VARCHAR},
-		gender =
-		#{record.gender,jdbcType=VARCHAR},
-		signatur =
-		#{record.signatur,jdbcType=VARCHAR},
-		address =
-		#{record.address,jdbcType=VARCHAR},
-		role_id =
-		#{record.roleId,jdbcType=INTEGER},
-		avatar_url =
-		#{record.avatarUrl,jdbcType=VARCHAR},
-		city_id =
-		#{record.cityId,jdbcType=VARCHAR},
-		village_id =
-		#{record.villageId,jdbcType=VARCHAR},
-		province_id =
-		#{record.provinceId,jdbcType=VARCHAR}
+		username = #{record.username,jdbcType=VARCHAR},
+		password = #{record.password,jdbcType=VARCHAR},
+		following_number = #{record.followingNumber,jdbcType=INTEGER},
+		follower_number = #{record.followerNumber,jdbcType=INTEGER},
+		email = #{record.email,jdbcType=VARCHAR},
+		birthday = #{record.birthday,jdbcType=TIMESTAMP},
+		money = #{record.money,jdbcType=INTEGER},
+		create_at = #{record.createAt,jdbcType=TIMESTAMP},
+		phone = #{record.phone,jdbcType=VARCHAR},
+		gender = #{record.gender,jdbcType=VARCHAR},
+		signatur = #{record.signatur,jdbcType=VARCHAR},
+		address = #{record.address,jdbcType=VARCHAR},
+		role_id = #{record.roleId,jdbcType=INTEGER},
+		avatar_url = #{record.avatarUrl,jdbcType=VARCHAR},
+		city_id = #{record.cityId,jdbcType=VARCHAR},
+		village_id = #{record.villageId,jdbcType=VARCHAR},
+		province_id = #{record.provinceId,jdbcType=VARCHAR},
+		city = #{record.city,jdbcType=VARCHAR}
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
@@ -435,38 +417,35 @@
 			<if test="provinceId != null">
 				province_id = #{provinceId,jdbcType=VARCHAR},
 			</if>
+			<if test="city != null">
+				city = #{city,jdbcType=VARCHAR},
+			</if>
 		</set>
 		where user_id = #{userId,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.jinse.blog.pojo.User">
 		update user
-		set
-		username = #{username,jdbcType=VARCHAR},
-		password =
-		#{password,jdbcType=VARCHAR},
-		following_number =
-		#{followingNumber,jdbcType=INTEGER},
-		follower_number =
-		#{followerNumber,jdbcType=INTEGER},
+		set username = #{username,jdbcType=VARCHAR},
+		password = #{password,jdbcType=VARCHAR},
+		following_number = #{followingNumber,jdbcType=INTEGER},
+		follower_number = #{followerNumber,jdbcType=INTEGER},
 		email = #{email,jdbcType=VARCHAR},
 		birthday = #{birthday,jdbcType=TIMESTAMP},
-		money =
-		#{money,jdbcType=INTEGER},
+		money = #{money,jdbcType=INTEGER},
 		create_at = #{createAt,jdbcType=TIMESTAMP},
 		phone = #{phone,jdbcType=VARCHAR},
 		gender = #{gender,jdbcType=VARCHAR},
 		signatur = #{signatur,jdbcType=VARCHAR},
-		address =
-		#{address,jdbcType=VARCHAR},
+		address = #{address,jdbcType=VARCHAR},
 		role_id = #{roleId,jdbcType=INTEGER},
 		avatar_url = #{avatarUrl,jdbcType=VARCHAR},
-		city_id =
-		#{cityId,jdbcType=VARCHAR},
+		city_id = #{cityId,jdbcType=VARCHAR},
 		village_id = #{villageId,jdbcType=VARCHAR},
-		province_id = #{provinceId,jdbcType=VARCHAR}
-		where user_id =
-		#{userId,jdbcType=INTEGER}
+		province_id = #{provinceId,jdbcType=VARCHAR},
+		city = #{city,jdbcType=VARCHAR}
+		where user_id = #{userId,jdbcType=INTEGER}
 	</update>
+	
 	<select id="findByUser" resultMap="BaseResultMap" parameterType="com.jinse.blog.pojo.User">
 		select * from user where username = #{username} and
 		password =
@@ -495,7 +474,8 @@
 		#{followingId,jdbcType=INTEGER}
 	</update>
 	<update id="minusUserFollowingByUserId" parameterType="java.lang.Integer">
-		update user
+		update
+		user
 		set following_number = following_number - 1 where user_id =
 		#{userId,jdbcType=INTEGER} and following_number > 0
 	</update>
@@ -504,4 +484,44 @@
 		set follower_number = follower_number - 1 where user_id =
 		#{followingId,jdbcType=INTEGER} and follower_number > 0
 	</update>
+
+	<insert id="insertUser" useGeneratedKeys="true" keyProperty="userId"
+		parameterType="com.jinse.blog.pojo.User">
+		insert into user (user_id,
+		username, password,
+		following_number, follower_number, email,
+		birthday,
+		money, create_at,
+		phone, gender, signatur,
+		address, role_id, avatar_url,
+		city_id,
+		village_id, province_id
+		)
+		values (#{userId,jdbcType=INTEGER},
+		#{username,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR},
+		#{followingNumber,jdbcType=INTEGER},
+		#{followerNumber,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR},
+		#{birthday,jdbcType=TIMESTAMP}, #{money,jdbcType=INTEGER},
+		#{createAt,jdbcType=TIMESTAMP},
+		#{phone,jdbcType=VARCHAR},
+		#{gender,jdbcType=VARCHAR}, #{signatur,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER},
+		#{avatarUrl,jdbcType=VARCHAR},
+		#{cityId,jdbcType=VARCHAR},
+		#{villageId,jdbcType=VARCHAR}, #{provinceId,jdbcType=VARCHAR}
+		)
+	</insert>
+
+
+	<select id="findAllFollowing" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		SELECT u.* from user u where user_id !=
+		#{userId,jdbcType=INTEGER} and user_id
+		in (SELECT uf.following_id from
+		user_following uf WHERE uf.user_id =
+		#{userId,jdbcType=INTEGER})
+	</select>
+
+
 </mapper>
