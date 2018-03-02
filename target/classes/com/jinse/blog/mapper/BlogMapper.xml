@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jinse.blog.mapper.BlogMapper">
+	<resultMap id="BaseResultMap" type="com.jinse.blog.pojo.Blog">
+		<id column="blog_id" property="blogId" jdbcType="INTEGER" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="tag" property="tag" jdbcType="VARCHAR" />
+		<result column="score" property="score" jdbcType="DOUBLE" />
+		<result column="like_number" property="likeNumber" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="create_at" property="createAt" jdbcType="TIMESTAMP" />
+		<result column="comment_number" property="commentNumber"
+			jdbcType="INTEGER" />
+		<result column="deleted" property="deleted" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		blog_id, title, description, tag, score, like_number,
+		user_id, create_at,
+		comment_number, deleted
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.jinse.blog.pojo.BlogExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from blog
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from blog
+		where blog_id = #{blogId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from blog
+		where blog_id = #{blogId,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.jinse.blog.pojo.BlogExample">
+		delete from blog
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.jinse.blog.pojo.Blog">
+		insert into blog (blog_id,
+		title, description,
+		tag, score, like_number,
+		user_id, create_at,
+		comment_number,
+		deleted)
+		values (#{blogId,jdbcType=INTEGER},
+		#{title,jdbcType=VARCHAR},
+		#{description,jdbcType=VARCHAR},
+		#{tag,jdbcType=VARCHAR}, #{score,jdbcType=DOUBLE},
+		#{likeNumber,jdbcType=INTEGER},
+		#{userId,jdbcType=INTEGER},
+		#{createAt,jdbcType=TIMESTAMP},
+		#{commentNumber,jdbcType=INTEGER},
+		#{deleted,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jinse.blog.pojo.Blog">
+		insert into blog
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="blogId != null">
+				blog_id,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+			<if test="tag != null">
+				tag,
+			</if>
+			<if test="score != null">
+				score,
+			</if>
+			<if test="likeNumber != null">
+				like_number,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="createAt != null">
+				create_at,
+			</if>
+			<if test="commentNumber != null">
+				comment_number,
+			</if>
+			<if test="deleted != null">
+				deleted,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="blogId != null">
+				#{blogId,jdbcType=INTEGER},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+			<if test="tag != null">
+				#{tag,jdbcType=VARCHAR},
+			</if>
+			<if test="score != null">
+				#{score,jdbcType=DOUBLE},
+			</if>
+			<if test="likeNumber != null">
+				#{likeNumber,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="createAt != null">
+				#{createAt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="commentNumber != null">
+				#{comment_number,jdbcType=INTEGER},
+			</if>
+			<if test="deleted != null">
+				#{deleted,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.jinse.blog.pojo.BlogExample"
+		resultType="java.lang.Integer">
+		select count(*) from blog
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update blog
+		<set>
+			<if test="record.blogId != null">
+				blog_id = #{record.blogId,jdbcType=INTEGER},
+			</if>
+			<if test="record.title != null">
+				title = #{record.title,jdbcType=VARCHAR},
+			</if>
+			<if test="record.description != null">
+				description = #{record.description,jdbcType=VARCHAR},
+			</if>
+			<if test="record.tag != null">
+				tag = #{record.tag,jdbcType=VARCHAR},
+			</if>
+			<if test="record.score != null">
+				score = #{record.score,jdbcType=DOUBLE},
+			</if>
+			<if test="record.likeNumber != null">
+				like_number = #{record.likeNumber,jdbcType=INTEGER},
+			</if>
+			<if test="record.userId != null">
+				user_id = #{record.userId,jdbcType=INTEGER},
+			</if>
+			<if test="record.createAt != null">
+				create_at = #{record.createAt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.commentNumber != null">
+				comment_number =
+				#{record.commentNumber,jdbcType=INTEGER},
+			</if>
+			<if test="record.deleted != null">
+				deleted = #{record.deleted,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update blog
+		set blog_id = #{record.blogId,jdbcType=INTEGER},
+		title =
+		#{record.title,jdbcType=VARCHAR},
+		description =
+		#{record.description,jdbcType=VARCHAR},
+		tag =
+		#{record.tag,jdbcType=VARCHAR},
+		score =
+		#{record.score,jdbcType=DOUBLE},
+		like_number =
+		#{record.likeNumber,jdbcType=INTEGER},
+		user_id =
+		#{record.userId,jdbcType=INTEGER},
+		create_at =
+		#{record.createAt,jdbcType=TIMESTAMP},
+		comment_number =
+		#{record.commentNumber,jdbcType=INTEGER},
+		deleted =
+		#{record.deleted,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jinse.blog.pojo.Blog">
+		update blog
+		<set>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="tag != null">
+				tag = #{tag,jdbcType=VARCHAR},
+			</if>
+			<if test="score != null">
+				score = #{score,jdbcType=DOUBLE},
+			</if>
+			<if test="likeNumber != null">
+				like_number = #{likeNumber,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="createAt != null">
+				create_at = #{createAt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="commentNumber != null">
+				comment_number = #{commentNumber,jdbcType=INTEGER},
+			</if>
+			<if test="deleted != null">
+				deleted = #{deleted,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where blog_id = #{blogId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jinse.blog.pojo.Blog">
+		update blog
+		set
+		title = #{title,jdbcType=VARCHAR},
+		description =
+		#{description,jdbcType=VARCHAR},
+		tag = #{tag,jdbcType=VARCHAR},
+		score =
+		#{score,jdbcType=DOUBLE},
+		like_number = #{likeNumber,jdbcType=INTEGER},
+		user_id = #{userId,jdbcType=INTEGER},
+		create_at =
+		#{createAt,jdbcType=TIMESTAMP},
+		comment_number =
+		#{commentNumber,jdbcType=INTEGER},
+		deleted =
+		#{deleted,jdbcType=VARCHAR}
+		where blog_id = #{blogId,jdbcType=INTEGER}
+	</update>
+
+	<update id="addLikeNumberByBlogId" parameterType="java.lang.Integer">
+		update blog set
+		like_number = like_number + 1 where blog_id =
+		#{blogId,jdbcType=INTEGER}
+	</update>
+	<update id="minusLikeNumberByBlogId" parameterType="java.lang.Integer">
+		update blog
+		set
+		like_number = like_number - 1 where blog_id =
+		#{blogId,jdbcType=INTEGER} and like_number > 0
+	</update>
+
+
+	<insert id="saveBlogAndReturnId" useGeneratedKeys="true"
+		keyProperty="blogId" parameterType="com.jinse.blog.pojo.Blog">
+		insert into blog (blog_id, title, description,
+		tag, score, like_number,
+		user_id, create_at, comment_number,
+		deleted)
+		values
+		(#{blogId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR},
+		#{description,jdbcType=VARCHAR},
+		#{tag,jdbcType=VARCHAR},
+		#{score,jdbcType=DOUBLE}, #{likeNumber,jdbcType=INTEGER},
+		#{userId,jdbcType=INTEGER}, #{createAt,jdbcType=TIMESTAMP},
+		#{commentNumber,jdbcType=INTEGER},
+		#{deleted,jdbcType=VARCHAR})
+	</insert>
+</mapper>

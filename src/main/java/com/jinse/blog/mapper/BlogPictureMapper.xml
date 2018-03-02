@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jinse.blog.mapper.BlogPictureMapper">
+
+	<update id="updateByPictureId" parameterType="com.jinse.blog.pojo.Picture">
+		update picture
+		<set>
+			url = #{url}
+		</set>
+		<include refid="updateByPictureId" />
+	</update>
+	<sql id="updateByPictureId">
+		<where>
+			picture_id = #{pictureId}
+		</where>
+	</sql>
+
+	<insert id="insertPicture" parameterType="com.jinse.blog.pojo.Picture">
+		<selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="pictureId">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into picture (picture_id,
+		blog_id, type,
+		price, buy, url)
+		values
+		(#{pictureId,jdbcType=INTEGER},
+		#{blogId,jdbcType=INTEGER},
+		#{type,jdbcType=VARCHAR},
+		#{price,jdbcType=INTEGER},
+		#{buy,jdbcType=VARCHAR},
+		#{url,jdbcType=VARCHAR})
+	</insert>
+
+	<insert id="insertBlog" parameterType="com.jinse.blog.pojo.Blog">
+		<selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="blogId">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into blog (blog_id, title,
+		description,
+		tag, score, like_number,
+		user_id, create_at, comment_number,
+		deleted)
+		values
+		(#{blogId,jdbcType=INTEGER},
+		#{title,jdbcType=VARCHAR},
+		#{description,jdbcType=VARCHAR},
+		#{tag,jdbcType=VARCHAR},
+		#{score,jdbcType=DOUBLE},
+		#{likeNumber,jdbcType=INTEGER},
+		#{userId,jdbcType=INTEGER},
+		#{createAt,jdbcType=TIMESTAMP},
+		#{commentNumber,jdbcType=INTEGER},
+		#{deleted,jdbcType=VARCHAR})
+	</insert>
+
+	<resultMap id="selectBlog" type="com.jinse.blog.pojo.Blog"
+		extends="com.jinse.blog.mapper.BlogMapper.BaseResultMap">
+		<association property="picture"
+			resultMap="com.jinse.blog.mapper.PictureMapper.BaseResultMap" />
+	</resultMap>
+
+	<resultMap type="com.jinse.blog.pojo.User" id="UserWithBlogResult"
+		extends="com.jinse.blog.mapper.UserMapper.BaseResultMap">
+		<collection property="blogList" resultMap="selectBlog" />
+	</resultMap>
+	<select id="findAllPictureByUserId" parameterType="int"
+		resultMap="UserWithBlogResult">
+		select u.*,b.*,p.*
+		from user u,blog b,picture p
+		where
+		u.user_id = #{userId,jdbcType=INTEGER}
+		and u.user_id = b.user_id
+		and
+		b.blog_id = p.blog_id
+		order by b.create_at desc
+	</select>
+
+
+
+	<resultMap id="BlogWithUserWithPictureResult" type="com.jinse.blog.pojo.Blog"
+		extends="com.jinse.blog.mapper.BlogMapper.BaseResultMap">
+		<association property="user"
+			resultMap="com.jinse.blog.mapper.UserMapper.BaseResultMap" />
+		<association property="picture"
+			resultMap="com.jinse.blog.mapper.PictureMapper.BaseResultMap" />
+		<collection property="tagList"
+			resultMap="com.jinse.blog.mapper.TagMapper.BaseResultMap" />
+	</resultMap>
+
+	<select id="findBlogAndPictureByBlogId" parameterType="int"
+		resultMap="BlogWithUserWithPictureResult">
+		SELECT b.*,p.*,u.* from blog b, picture p,user u
+		where
+		b.blog_id = p.blog_id and b.user_id = u.user_id and b.blog_id =
+		#{blogId,jdbcType=INTEGER}
+	</select>
+
+	<update id="commentNumberAdd" parameterType="com.jinse.blog.pojo.Blog">
+		update blog
+		set
+		comment_number = comment_number + 1 where blog_id =
+		#{blogId,jdbcType=INTEGER}
+	</update>
+
+	<update id="commentNumberMinus" parameterType="com.jinse.blog.pojo.Blog">
+		update blog
+		set
+		comment_number = comment_number - 1 where blog_id =
+		#{blogId,jdbcType=INTEGER} and comment_number > 0
+	</update>
+
+
+
+	<select id="findPhotoListByUserId" parameterType="int"
+		resultMap="BlogWithUserWithPictureResult">
+		SELECT b.*,p.url,u.*
+		from user u,blog b,picture p
+		where
+		b.user_id = u.user_id and p.blog_id = b.blog_id and p.type = "1" and
+		b.blog_id in
+		(SELECT blog.blog_id
+		from blog
+		where blog.user_id in (SELECT
+		uf.following_id from user_following uf where
+		uf.user_id =
+		#{userId,jdbcType=INTEGER}))
+		order by b.create_at desc
+	</select>
+
+	<select id="findPhotoListByTitle" parameterType="string"
+		resultMap="BlogWithUserWithPictureResult">
+		SELECT b.*,p.url,u.*
+		from user u,blog b,picture p
+		where
+		b.user_id = u.user_id and p.blog_id = b.blog_id and p.type = "1" and
+		b.title like "%"#{title}"%"
+		order by b.create_at desc
+	</select>
+
+	<select id="findBlogListByTitle" resultMap="BlogWithUserWithPictureResult">
+		SELECT b.*,p.url,u.*
+		from user u,blog b,picture p
+		where
+		b.user_id = u.user_id and p.blog_id =
+		b.blog_id and p.type = #{type} and b.title like "%"#{title}"%"
+		order by
+		b.create_at desc
+	</select>
+
+
+	<resultMap id="BlogWithUserWithPictureResult" type="com.jinse.blog.pojo.Blog"
+		extends="com.jinse.blog.mapper.BlogMapper.BaseResultMap">
+		<association property="user"
+			resultMap="com.jinse.blog.mapper.UserMapper.BaseResultMap" />
+		<association property="picture"
+			resultMap="com.jinse.blog.mapper.ArticleMapper.BaseResultMap" />
+		<collection property="tagList"
+			resultMap="com.jinse.blog.mapper.TagMapper.BaseResultMap" />
+	</resultMap>
+
+	<select id="findArticleListByTitle" resultMap="BlogWithUserWithArticleResult">
+		SELECT
+		b.*,a.content,u.*
+		from user u,blog b,article a
+		where
+		b.user_id =
+		u.user_id and a.blog_id = b.blog_id and b.title like "%"#{title}"%"
+		order by b.create_at desc
+	</select>
+
+	<select id="findArticleListByTag" resultMap="BlogWithUserWithArticleResult">
+		select * from blog
+		where blog_id in(
+		select distinct(blog_id) from blog_tag where tag_id in (select tag_id from
+		tag where tag_name like '%%'))
+	</select>
+
+</mapper>

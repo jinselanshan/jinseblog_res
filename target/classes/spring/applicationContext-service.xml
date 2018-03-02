@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+  	
+   <!-- 商品管理的service -->
+
+   <bean id="blogService" class="com.jinse.blog.service.impl.BlogServiceImpl"></bean>
+   <bean id="pictureService" class="com.jinse.blog.service.impl.PictureServiceImpl"></bean>
+   <bean id="userService" class="com.jinse.blog.service.impl.UserServiceImpl"></bean>
+   <bean id="followerService" class="com.jinse.blog.service.impl.FollowerServiceImpl"></bean>
+   <bean id="followingService" class="com.jinse.blog.service.impl.FollowingServiceImpl"></bean>
+   <bean id="tagService" class="com.jinse.blog.service.impl.TagServiceImpl"></bean>
+   <bean id="provinceService" class="com.jinse.blog.service.impl.ProvinceServiceImpl"></bean>
+   <bean id="roleService" class="com.jinse.blog.service.impl.RoleServiceImpl"></bean>
+   <bean id="commentService" class="com.jinse.blog.service.impl.CommentServiceImpl"></bean>
+   <bean id="blogTagService" class="com.jinse.blog.service.impl.BlogTagServiceImpl"></bean>
+   <bean id="likeifService" class="com.jinse.blog.service.impl.LikeifServiceImpl"></bean>
+   <bean id="videoService" class="com.jinse.blog.service.impl.VideoServiceImpl"></bean>
+</beans>

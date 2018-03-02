@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="avatar_header">
+<style type="text/css">
+#imghead {
+	object-fit: cover;
+	width: 100px;
+	height: 100px;
+}
+</style>
+</head>
+<body>
+	<div class="col-md-4 column" th:fragment="avatar_upload">
+		<!--input-group start-->
+		<div class="input-group row" id="avatarDiv">
+			<form enctype="multipart/form-data" id="uploadAvatar" method="post">
+				<table class="tablecen">
+					<tr>
+						<td><div id="preview">
+								<!-- <img class="control-label" id="imghead" border="0"
+									th:if="${user}"  /> -->
+								<img class="control-label" id="imghead" border="0"
+									th:if="${session.CURRENT_USER.avatarUrl == null}"
+									src="http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/timg.jpg" />
+
+								<img class="control-label"
+									th:if="${session.CURRENT_USER.avatarUrl != null}" id="imghead"
+									border="0" th:src="${session.CURRENT_USER.avatarUrl}" />
+							</div></td>
+					</tr>
+					<tr>
+						<td><label onclick="$('#previewImg').click();" id="avatarBtn"
+							class="btn btn-default">更换头像</label> <input name="avatarFile"
+							type="file" onchange="previewImage(this)" style="display: none;"
+							accept="image/gif,image/jpeg,image/jpg,image/png" id="previewImg">
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<!--input-group end-->
+	</div>
+
+</body>
+</html>

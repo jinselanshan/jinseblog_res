@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jinse.blog.mapper.VideoMapper">
+	<resultMap id="BaseResultMap" type="com.jinse.blog.pojo.Video">
+		<id column="video_id" property="videoId" jdbcType="INTEGER" />
+		<result column="blog_id" property="blogId" jdbcType="INTEGER" />
+		<result column="pass" property="pass" jdbcType="VARCHAR" />
+		<result column="url" property="url" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		video_id, blog_id, pass, url
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.jinse.blog.pojo.VideoExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from video
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from video
+		where video_id = #{videoId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from video
+		where video_id = #{videoId,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.jinse.blog.pojo.VideoExample">
+		delete from video
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.jinse.blog.pojo.Video">
+		insert into video (video_id,
+		blog_id, pass,
+		url)
+		values (#{videoId,jdbcType=INTEGER},
+		#{blogId,jdbcType=INTEGER},
+		#{pass,jdbcType=VARCHAR},
+		#{url,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jinse.blog.pojo.Video">
+		insert into video
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="videoId != null">
+				video_id,
+			</if>
+			<if test="blogId != null">
+				blog_id,
+			</if>
+			<if test="pass != null">
+				pass,
+			</if>
+			<if test="url != null">
+				url,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="videoId != null">
+				#{videoId,jdbcType=INTEGER},
+			</if>
+			<if test="blogId != null">
+				#{blogId,jdbcType=INTEGER},
+			</if>
+			<if test="pass != null">
+				#{pass,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				#{url,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.jinse.blog.pojo.VideoExample"
+		resultType="java.lang.Integer">
+		select count(*) from video
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update video
+		<set>
+			<if test="record.videoId != null">
+				video_id = #{record.videoId,jdbcType=INTEGER},
+			</if>
+			<if test="record.blogId != null">
+				blog_id = #{record.blogId,jdbcType=INTEGER},
+			</if>
+			<if test="record.pass != null">
+				pass = #{record.pass,jdbcType=VARCHAR},
+			</if>
+			<if test="record.url != null">
+				url = #{record.url,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update video
+		set video_id = #{record.videoId,jdbcType=INTEGER},
+		blog_id
+		= #{record.blogId,jdbcType=INTEGER},
+		pass =
+		#{record.pass,jdbcType=VARCHAR},
+		url = #{record.url,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jinse.blog.pojo.Video">
+		update video
+		<set>
+			<if test="blogId != null">
+				blog_id = #{blogId,jdbcType=INTEGER},
+			</if>
+			<if test="pass != null">
+				pass = #{pass,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				url = #{url,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where video_id = #{videoId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jinse.blog.pojo.Video">
+		update video
+		set
+		blog_id = #{blogId,jdbcType=INTEGER},
+		pass = #{pass,jdbcType=VARCHAR},
+		url = #{url,jdbcType=VARCHAR}
+		where video_id =
+		#{videoId,jdbcType=INTEGER}
+	</update>
+
+
+	<insert id="saveVideoAndReturnId" useGeneratedKeys="true"
+		keyProperty="videoId" parameterType="com.jinse.blog.pojo.Video">
+		insert into video (video_id,
+		blog_id, pass,
+		url)
+		values (#{videoId,jdbcType=INTEGER},
+		#{blogId,jdbcType=INTEGER},
+		#{pass,jdbcType=VARCHAR},
+		#{url,jdbcType=VARCHAR})
+	</insert>
+
+
+	<update id="updateUrlByVideoId" parameterType="com.jinse.blog.pojo.Video">
+		update video set url = #{url} where video_id = #{videoId}
+	</update>
+</mapper>
