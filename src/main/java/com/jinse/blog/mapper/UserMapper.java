@@ -48,4 +48,6 @@ public interface UserMapper {
 
 	List<User> findAllFollowing(Integer userId);
 
+	List<User> findUserListByUsername(String username);
+
 }

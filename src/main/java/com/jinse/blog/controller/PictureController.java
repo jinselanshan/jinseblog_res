@@ -64,7 +64,7 @@ public class PictureController {
 	private ProvinceService provinceService;
 	
 	@RequestMapping(value = "/uploadPicture", method = RequestMethod.POST)
-	public String uploadPicture(Model model, HttpServletRequest request, Blog blog,
+	public String uploadPicture(Model model, HttpServletRequest request, Blog blog,String type,
 			@RequestParam("file-zh[]") MultipartFile pictureFile,String tagStr) throws Exception {
 		logger.info("add图片开始" + pictureFile);
 		System.out.println(blog);
@@ -109,10 +109,10 @@ public class PictureController {
 		// 保存picture
 		Picture picture = blog.getPicture();
 		picture.setBlogId(blogId);
-		picture.setType("1");
+		picture.setType(type);
 		pictureService.savePicture(picture);
 
-		// 上传到七牛一年
+		// 上传到七牛云
 		SavePicture.savaPic(picture, pictureFile);
 		// 更新url
 		pictureService.updateUrlByPictureId(picture);

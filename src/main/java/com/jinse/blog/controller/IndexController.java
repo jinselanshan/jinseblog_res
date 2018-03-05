@@ -23,14 +23,26 @@ public class IndexController {
         return "photo";
     }
 
-    @RequestMapping("/uploadPictureIndex")
-    public String uploadPicture(Model model) {
-    	logger.info("进入上传图片界面");
+    @RequestMapping("/uploadPhotoIndex")
+    public String uploadPhoto(Model model) {
+    	logger.info("进入上传照片界面");
+    	model.addAttribute("type", "1");
         return "upload/picture";
     }
-    @RequestMapping("/uploadVedioIndex")
+    @RequestMapping("/uploadPaintingIndex")
+    public String uploadPainting(Model model) {
+    	logger.info("进入上传绘画界面");
+    	model.addAttribute("type", "2");
+        return "upload/picture";
+    }
+    @RequestMapping("/uploadArticleIndex")
+    public String uploadArticle(Model model) {
+    	logger.info("进入上传文章界面");
+        return "upload/article";
+    }
+    @RequestMapping("/uploadVideoIndex")
     public String uploadVedio(Model model) {
     	logger.info("进入上传视频界面");
-        return "upload/vedio";
+        return "upload/video";
     }
 }

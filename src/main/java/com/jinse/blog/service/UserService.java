@@ -1,5 +1,7 @@
 package com.jinse.blog.service;
 
+import java.util.List;
+
 import com.jinse.blog.pojo.User;
 
 public interface UserService {
@@ -15,5 +17,7 @@ public interface UserService {
 	int updateAvatarUrlByUserId(User user);
 
 	int updateUserByUserId(User user);
+
+	List<User> findUserListByUsername(String username);
 
 }

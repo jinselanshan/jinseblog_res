@@ -78,4 +78,19 @@ public class BlogServiceImpl implements BlogService {
 		return blogMapper.saveBlogAndReturnId(blog);
 	}
 
+	@Override
+	public List<Blog> findPhotoListByTitle(String title) {
+		return blogPictureMapper.findPhotoListByTitle(title);
+	}
+
+	@Override
+	public List<Blog> findBlogListByTitle(String title,String type) {
+		return blogPictureMapper.findBlogListByTitle(title,type);
+	}
+
+	@Override
+	public List<Blog> findArticleListByTitle(String title) {
+		return blogPictureMapper.findArticleListByTitle(title);
+	}
+
 }

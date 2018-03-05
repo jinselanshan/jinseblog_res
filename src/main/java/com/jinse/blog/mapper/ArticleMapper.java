@@ -28,4 +28,8 @@ public interface ArticleMapper {
 
     int updateByPrimaryKey(Article record);
 
+	List<Article> findAllArticle();
+
+	List<String> findAllArticleContent();
+
 }

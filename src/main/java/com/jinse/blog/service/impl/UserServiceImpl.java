@@ -1,5 +1,7 @@
 package com.jinse.blog.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jinse.blog.mapper.UserFollowingMapper;
@@ -57,5 +59,9 @@ public class UserServiceImpl implements UserService{
 		int count = userMapper.updateByExampleSelective(user, userExample);
 		
 		return count;
+	}
+	@Override
+	public List<User> findUserListByUsername(String username) {
+		return userMapper.findUserListByUsername(username);
 	}
 }

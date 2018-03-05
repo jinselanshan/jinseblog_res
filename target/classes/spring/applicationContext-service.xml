@@ -30,4 +30,6 @@
    <bean id="blogTagService" class="com.jinse.blog.service.impl.BlogTagServiceImpl"></bean>
    <bean id="likeifService" class="com.jinse.blog.service.impl.LikeifServiceImpl"></bean>
    <bean id="videoService" class="com.jinse.blog.service.impl.VideoServiceImpl"></bean>
+   <bean id="articleService" class="com.jinse.blog.service.impl.ArticleServiceImpl"></bean>
+   
 </beans>

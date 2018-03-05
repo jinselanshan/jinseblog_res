@@ -16,4 +16,10 @@ public interface BlogService {
 
 	int saveBlogAndReturnId(Blog blog);
 
+	List<Blog> findPhotoListByTitle(String title);
+
+	List<Blog> findBlogListByTitle(String title, String type);
+
+	List<Blog> findArticleListByTitle(String title);
+
 }
