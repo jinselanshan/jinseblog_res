@@ -149,30 +149,4 @@
 		b.create_at desc
 	</select>
 
-	<resultMap id="BlogWithUserWithArticleResult" type="com.jinse.blog.pojo.Blog"
-		extends="com.jinse.blog.mapper.BlogMapper.BaseResultMap">
-		<association property="user"
-			resultMap="com.jinse.blog.mapper.UserMapper.BaseResultMap" />
-		<association property="article"
-			resultMap="com.jinse.blog.mapper.ArticleMapper.BaseResultMap" />
-		<collection property="tagList"
-			resultMap="com.jinse.blog.mapper.TagMapper.BaseResultMap" />
-	</resultMap>
-	<select id="findArticleListByTitle" resultMap="BlogWithUserWithArticleResult">
-		SELECT
-		b.*,a.content,u.*
-		from user u,blog b,article a
-		where
-		b.user_id =
-		u.user_id and a.blog_id = b.blog_id and b.title like "%"#{title}"%"
-		order by b.create_at desc
-	</select>
-
-	<select id="findArticleListByTag" resultType="com.jinse.blog.pojo.Blog">
-		select * from blog
-		where blog_id in(
-		select distinct(blog_id) from blog_tag where tag_id in (select tag_id from
-		tag where tag_name like '%%'))
-	</select>
-
 </mapper>

@@ -1,5 +1,7 @@
 package com.jinse.blog.service;
 
+import java.util.List;
+
 import com.jinse.blog.pojo.Tag;
 
 public interface TagService {
@@ -8,5 +10,6 @@ public interface TagService {
 
 	int addTagAndReturnId(Tag tag);
 
+	List<Tag> findTagListByCount(String type);
 
 }

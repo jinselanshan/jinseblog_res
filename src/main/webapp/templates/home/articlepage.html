@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:include="home/homeHead :: home_header">
+<title>主页 - 摄影绘画 - USERNAME</title>
+<!--  <link rel="stylesheet" href="css/index.css"> -->
+</head>
+<body style="background-color: #eeeeee;">
+
+	<!-- header -->
+	<!-- 导航栏 -->
+	<header th:replace="nav :: nav"></header>
+	<header th:replace="home/avatarTable :: avatarTable"></header>
+	<header th:replace="home/avatarTable :: navigation"></header>
+	<!-- header -->
+
+	<main class="main-wrapper" id="container"> <!-- image Gallery -->
+	<div class="wrapper">
+		<div class="">
+			<input type="hidden" name="userId" id="userId"
+				th:value="${user.userId}">
+			<ul id="picul" class="small-block-grid-3 home">
+				<li class="masonry-item grid" th:each="blog : ${user.blogList}">
+					
+				</li>
+			</ul>
+		</div>
+	</div>
+	</main>
+
+</body>
+</html>

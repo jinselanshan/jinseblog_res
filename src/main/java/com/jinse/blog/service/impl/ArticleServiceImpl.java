@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jinse.blog.mapper.ArticleMapper;
 import com.jinse.blog.pojo.Article;
+import com.jinse.blog.pojo.Blog;
+import com.jinse.blog.pojo.User;
 import com.jinse.blog.service.ArticleService;
 
 public class ArticleServiceImpl implements ArticleService {
@@ -24,4 +26,12 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleMapper.findAllArticleContent();
 	}
 
+	@Override
+	public User findAllArticleByUserId(Integer userId) {
+		return articleMapper.findAllArticleByUserId(userId);
+	}
+	@Override
+	public List<Blog> findAllArticleList() {
+		return articleMapper.findAllArticleList();
+	}
 }

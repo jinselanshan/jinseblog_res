@@ -1,17 +1,24 @@
 package com.jinse.blog.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jinse.blog.pojo.Tag;
+import com.jinse.blog.service.TagService;
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
 public class IndexController {
 	private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
-
+	@Autowired
+	private TagService tagService;
+	
     @RequestMapping("/home")
     public String home(Model model) {
       
@@ -26,6 +33,8 @@ public class IndexController {
     @RequestMapping("/uploadPhotoIndex")
     public String uploadPhoto(Model model) {
     	logger.info("进入上传照片界面");
+    	List<Tag> tagList = tagService.findTagListByCount("1");
+    	model.addAttribute("tagList", tagList);
     	model.addAttribute("type", "1");
         return "upload/picture";
     }

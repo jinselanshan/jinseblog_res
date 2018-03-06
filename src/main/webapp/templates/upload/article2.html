@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta th:include="upload/uploadHead :: upload_header" th:remove="tag" />
+<title>upload article</title>
+<link rel="stylesheet" href="/jinseblog/static/css/editor/style.css" />
+<link rel="stylesheet" href="/jinseblog/static/css/editor/editormd.css" />
+<link rel="shortcut icon"
+	href="https://pandao.github.io/editor.md/favicon.ico"
+	type="image/x-icon" />
+</head>
+<body>
+	<div id="layout">
+		<header>
+			<h1></h1>
+		</header>
+		<form enctype="multipart/form-data" id="uploadForm"
+			th:action="@{/uploadArticle}" method="post">
+			<div class="editormd" id="test-editormd">
+				<input type="hidden" name="blogId" id="blogId">
+				<textarea class="editormd-markdown-textarea"
+					name="test-editormd-markdown-doc" placeholder="1"></textarea>
+				<!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
+				<textarea class="editormd-html-textarea" name="content"></textarea>
+			</div>
+			<button class="btn" type="submit">提交</button>
+		</form>
+	</div>
+	<script src="/jinseblog/static/jquery/editor/jquery.min.js"></script>
+	<script src="/jinseblog/static/jquery/editor/editormd.min.js"></script>
+	<script type="text/javascript">
+		var testEditor;
+		$(function() {
+			var pathName = window.document.location.pathname;
+			var projectName = pathName.substring(0, pathName.substr(1).indexOf(
+					'/') + 1);
+			testEditor = editormd("test-editormd", {
+				width : "90%",
+				height : 640,
+				syncScrolling : "single",
+				path : "/jinseblog/static/jquery/lib/",
+				imageUpload : true,
+				imageFormats : [ "jpg", "jpeg", "gif", "png", "bmp" ],
+				imageUploadURL : projectName + "/article/uploadPicture",
+				saveHTMLToTextarea : true,
+				onload: function () {
+                    console.log('onload', this);
+                    //this.fullscreen();
+                    //this.unwatch();
+                    //this.watch().fullscreen();
+                    this.width("50%");
+                    //this.height(480);
+                    //this.resize("100%", 640);
+                },
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head
+	th:replace="htmlHeadAndUpload :: common_header(~{::title},~{::link})">
+<title>following</title>
+<link rel="stylesheet" href="/jinseblog/static/css/outside.css" />
+<link rel="stylesheet" href="/jinseblog/static/css/user-following.css" />
+</head>
+<div>
+    <script type='text/javascript' src='http://l.bst.126.net/rsc/js/pagelayer/pagelayer.js?0011'></script>
+	<script type="text/javascript" charset="utf-8" src="/jinseblog/static/js/jquery.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/jinseblog/static/js/bootstrap.min.js"></script>
+    <script src="/jinseblog/static/jquery/followingList.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/jinseblog/static/jquery/likeBlog.js" type="text/javascript" charset="utf-8"></script>
+</div>
+<body>
+	<header th:replace="nav :: nav"></header>
+	<header th:replace="home/avatarTable :: avatarTable"></header>
+	<header th:replace="home/avatarTable :: navigation"></header>
+
+	<div class="profile-card-container">
+		<div class="profile-card-list" th:replace="user/user_following:: #user_card_list"></div>
+	</div>
+</body>
+</html>

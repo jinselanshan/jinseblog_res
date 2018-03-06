@@ -121,3 +121,6 @@ background-color: #ffffff;
 .body-color{
 	background-color: #eeeeee;
 }
+textarea{ 
+	resize:none;
+}

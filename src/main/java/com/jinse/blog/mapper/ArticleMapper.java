@@ -2,6 +2,9 @@ package com.jinse.blog.mapper;
 
 import com.jinse.blog.pojo.Article;
 import com.jinse.blog.pojo.ArticleExample;
+import com.jinse.blog.pojo.Blog;
+import com.jinse.blog.pojo.User;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -31,5 +34,11 @@ public interface ArticleMapper {
 	List<Article> findAllArticle();
 
 	List<String> findAllArticleContent();
+
+	User findAllArticleByUserId(Integer userId);
+
+	List<Blog> findArticleListByTitle(String title);
+	
+	List<Blog> findAllArticleList();
 
 }

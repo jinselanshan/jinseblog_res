@@ -2,58 +2,44 @@
 <html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 
-<head>
-<title></title>
-<meta  th:replace="htmlHead :: common_header"  th:remove="tag" />
-<link rel="stylesheet"
-	href="/jinseblog/static/css/editor/editormd.preview.min.css" />
-<link rel="stylesheet" href="/jinseblog/static/css/editor/editormd.css" />
-<link rel="stylesheet" href="/jinseblog/static/css/main.css"
-	type="text/css">
-<script src="/jinseblog/static/jquery/editor/jquery.min.js"></script>
-<script src="/jinseblog/static/jquery/lib/marked.min.js"></script>
-<script src="/jinseblog/static/jquery/lib/prettify.min.js"></script>
-<script src="/jinseblog/static/jquery/editor/editormd.min.js"></script>
+<head th:replace="htmlHead :: common_header">
+<title>导航栏</title>
+<!--  <link rel="stylesheet" href="css/index.css"> -->
 </head>
-
+<div>
+	<script src="/jinseblog/static/jquery/likeBlog.js"
+		type="text/javascript" charset="utf-8"></script>
+</div>
 <body style="background-color: #eeeeee;">
 
 	<header th:replace="nav :: nav"></header>
 	<!-- content-->
-
 	<div class="row clearfix">
-		<div class="col-md-1 column"></div>
-		<div class="col-md-8 column" id="center">
-        	<input type="hidden" name="articleHead" id="articleHead">
-<!-- 			<div class="card mb-4 panel-body panel" name="content"></div> -->
+		<div class="col-md-2 column"></div>
+		<div class="col-md-6 column">
+
+			<!-- Blog Post -->
+			<br />
+			<div class="card mb-4 panel-body panel post-preview"
+				th:each="blog : ${blogList}">
+				<a href="post.html">
+					<h2 class="post-title" th:text="${blog.title}">Title</h2>
+					<h4 class="post-subtitle" th:text="${blog.article.content}">Problems
+						look mighty small from 150 miles up</h4>
+				</a>
+				<p class="post-meta">
+					Posted by <a href="#" th:text="${blog.user.username}">Username</a>
+					on September 24, 2017
+				</p>
+			</div>
+			<!-- Blog Post -->
+
 		</div>
-		<div class="col-md-3 column"></div>
+		<!-- center -->
+		<!-- right -->
+		<div class="col-md-3 column"
+			th:replace="photo/indexPhoto :: #indexRight"></div>
 	</div>
-	
-	<div class="col-lg-8 col-md-10 mx-auto">
-		<div class="post-preview">
-			<a href="post.html">
-				<h2 class="post-title">Man must explore, and this is
-					exploration at its greatest</h2>
-				<h3 class="post-subtitle">Problems look mighty small from 150
-					miles up</h3>
-			</a>
-			<p class="post-meta">
-				Posted by <a href="#">Start Bootstrap</a> on September 24, 2017
-			</p>
-		</div>
-		<hr>
-	</div>
+
 </body>
-<script type="text/javascript">
-	editormd.markdownToHTML("content");
-	
-	var conList = [[${articleList}]];
-	for(var i = 1 ; i <= conList.length ; i++){
-		var divBlog = '<div class="card mb-4 panel-body panel" name="content"></div><br/>';
-		$('#articleHead').append(divBlog);
-		$('div[id="center"]/div[i]').html(conList[i]);
-		console.log(conList[i])
-	}
-</script>
 </html>

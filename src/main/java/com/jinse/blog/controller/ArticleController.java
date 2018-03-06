@@ -53,10 +53,7 @@ public class ArticleController {
 	private BlogService blogService;
 	@Autowired
 	private PictureService pictureService;
-    @Autowired
-	private UserService userService;
-	@Autowired
-	private CommentService commentService;
+
 	@Autowired
 	private TagService tagService;
 	@Autowired
@@ -64,7 +61,43 @@ public class ArticleController {
 	@Autowired
 	private ArticleService articleService;
 	
-	@RequestMapping(value = "/article/uploadPicture", method = RequestMethod.POST)
+	@RequestMapping(value = "/indexArticle")
+	public String indexArticle(Model model, HttpServletRequest request, String content,Integer blogId) throws Exception {
+
+		List<Blog> blogList = articleService.findAllArticleList();
+		
+		model.addAttribute("blogList",blogList);
+		return "article/indexArticle";
+	}
+	@RequestMapping(value = "/uploadArticle")
+	public String uploadArticle(Model model, HttpServletRequest request, Blog blog, Article article) throws Exception {
+
+		Integer userId = SpringUtil.getCurrentUser().getUserId();
+		InitBlog.initBlog(blog, userId);
+		blogService.saveBlog(blog);
+
+		int blogId = blog.getBlogId();
+		article.setBlogId(blogId);
+	    articleService.saveArticle(article);
+		return "redirect:indexArticle";
+	}
+
+	
+	@RequestMapping(value = "/myArticle")
+	public String myPhotoes(Model model, HttpServletRequest request, User user) throws Exception {
+		Integer userId = SpringUtil.getCurrentUser().getUserId();
+		user = articleService.findAllArticleByUserId(userId);
+
+		model.addAttribute("user", user);
+		SpringUtil.setSession(ConstantsUtil.STRING_CURRENT_USER, user);
+		return "home/articlepage";
+	}
+	
+	
+	
+	
+	
+/*	@RequestMapping(value = "/article/uploadPicture", method = RequestMethod.POST)
 	@ResponseBody
 	public ArticleResultVO uploadPicture(Model model, HttpServletRequest request,Blog blog, Integer blogId,
 			@RequestParam(value = "editormd-image-file", required = false) MultipartFile pictureFile) throws Exception {
@@ -102,9 +135,9 @@ public class ArticleController {
 			articleResultVO.setMessage("上传图片失败");
 		}
 		return articleResultVO;
-	}
+	}*/
 	
-	
+	/*
 	@RequestMapping(value = "/uploadArticle")
 	public String uploadArticle(Model model, HttpServletRequest request, String content,Integer blogId) throws Exception {
 
@@ -114,16 +147,9 @@ public class ArticleController {
 		articleService.saveArticle(article);
 		
 		return "redirect:indexArticle";
-	}
+	}*/
 	
-	@RequestMapping(value = "/indexArticle")
-	public String indexArticle(Model model, HttpServletRequest request, String content,Integer blogId) throws Exception {
 
-		List<Article> articleList = articleService.findAllArticle();
-		
-		model.addAttribute("articleList",articleList);
-		return "article/indexArticle";
-	}
 	
 
 }
