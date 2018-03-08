@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta th:include="upload/uploadHead :: upload_header" th:remove="tag" />
+<title>upload article</title>
+<link rel="stylesheet" href="/jinseblog/static/css/editor/style.css" />
+<link rel="stylesheet" href="/jinseblog/static/css/editor/editormd.css" />
+<link rel="shortcut icon"
+	href="https://pandao.github.io/editor.md/favicon.ico"
+	type="image/x-icon" />
+</head>
+<body>
+	<!-- 导航栏 -->
+	<header th:replace="nav :: nav"></header>
+	<div class="container">
+		<div class="col-md-12 column row clearfix">
+			<div class="col-md-2 column"></div>
+			<div class="col-md-9 column">
+				<form th:action="@{/uploadArticle}" method="post">
+					<table class="table form-group">
+						<tr>
+							<td><h2>WRITE ARTICLE</h2></td>
+						</tr>
+						<tr>
+							<td>ARTICLE NAME</td>
+						</tr>
+						<tr>
+							<td><input name="title" class="form-control" type="text"></td>
+						</tr>
+						<tr>
+							<td>ARTICLE CONTENT</td>
+						</tr>
+						<tr>
+							<td>
+							<input type="hidden" name="blogId" id="blogId">
+							<!-- <!-- <textarea name="content" rows="12" class="form-control"
+									placeholder="write your article..."></textarea> -->
+								<div class="editormd" id="test-editormd" style="width:100%; height:300px;">
+									<input type="hidden" name="blogId" id="blogId">
+									<textarea class="editormd-markdown-textarea" rows="12"
+										name="test-editormd-markdown-doc" placeholder="1"></textarea>
+									<!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
+									<textarea class="editormd-html-textarea" rows="12" name="content"></textarea>
+								</div></td>
+						</tr>
+						<tr>
+							<td><button class="btn" id="submit" contenteditable="true"
+									type="submit">提交</button></td>
+						</tr>
+					</table>
+
+				</form>
+			</div>
+			<div class="col-md-1 column"></div>
+		</div>
+	</div>
+	
+	
+	<script src="/jinseblog/static/jquery/editor/jquery.min.js"></script>
+	<script src="/jinseblog/static/jquery/editor/editormd.min.js"></script>
+	<script type="text/javascript">
+		var testEditor;
+		$(function() {
+			var pathName = window.document.location.pathname;
+			var projectName = pathName.substring(0, pathName.substr(1).indexOf(
+					'/') + 1);
+			testEditor = editormd("test-editormd", {
+				width : "100%",
+				height : 600,
+				syncScrolling : "single",
+				path : "/jinseblog/static/jquery/lib/",
+				imageUpload : true,
+				imageFormats : [ "jpg", "jpeg", "gif", "png", "bmp" ],
+				imageUploadURL : projectName + "/article/uploadPicture",
+				saveHTMLToTextarea : true,
+				onload: function () {
+                    console.log('onload', this);
+                    //this.fullscreen();
+                    //this.unwatch();
+                    //this.watch().fullscreen();
+                    this.width("100%");
+                    //this.height(480);
+                    //this.resize("100%", 640);
+                },
+			});
+		});
+	</script>
+</body>
+
+</html>

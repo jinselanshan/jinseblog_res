@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.jinse.blog.mapper.ArticleMapper;
 import com.jinse.blog.mapper.BlogMapper;
 import com.jinse.blog.mapper.BlogPictureMapper;
 import com.jinse.blog.mapper.PictureMapper;
@@ -22,6 +23,8 @@ public class BlogServiceImpl implements BlogService {
 	private BlogMapper blogMapper;
 	@Autowired
 	private PictureMapper pictureMapper;
+	@Autowired
+	private ArticleMapper articleMapper;
 
 	@Override
 	public int saveBlog(Blog blog) {
@@ -91,6 +94,11 @@ public class BlogServiceImpl implements BlogService {
 	@Override
 	public List<Blog> findArticleListByTitle(String title) {
 		return blogPictureMapper.findArticleListByTitle(title);
+	}
+
+	@Override
+	public int updateBlogByBlogId(Blog blog) {
+		return 0;
 	}
 
 }

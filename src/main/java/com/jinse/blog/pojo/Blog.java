@@ -30,7 +30,17 @@ public class Blog {
     
     private List<Tag> tagList;
     
-    public List<Tag> getTagList() {
+    private Article article;
+    
+	public Article getArticle() {
+		return article;
+	}
+
+	public void setArticle(Article article) {
+		this.article = article;
+	}
+
+	public List<Tag> getTagList() {
 		return tagList;
 	}
 

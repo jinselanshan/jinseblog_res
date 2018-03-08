@@ -22,4 +22,6 @@ public interface BlogService {
 
 	List<Blog> findArticleListByTitle(String title);
 
+	int updateBlogByBlogId(Blog blog);
+
 }

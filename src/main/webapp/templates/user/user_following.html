@@ -2,21 +2,19 @@
 <html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 
-<head
-	th:replace="htmlHeadAndUpload :: common_header(~{::title},~{::link})">
+<head th:replace="htmlHeadAndUpload :: common_header(~{::title},~{::link})">
 <title>following</title>
 <meta charset="utf-8" />
 
 <link rel="stylesheet" href="/jinseblog/static/css/outside.css" />
 <link rel="stylesheet" href="/jinseblog/static/css/user-following.css" />
-<script type='text/javascript'
-	src='http://l.bst.126.net/rsc/js/pagelayer/pagelayer.js?0011'></script>
 </head>
-<div>
+<div  th:fragment="user_following_js">>
+    <script type='text/javascript' src='http://l.bst.126.net/rsc/js/pagelayer/pagelayer.js?0011'></script>
 	<script type="text/javascript" charset="utf-8" src="/jinseblog/static/js/jquery.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="/jinseblog/static/js/bootstrap.min.js"></script>
-    <script src="/jinseblog/static/jquery/followingList.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/jinseblog/static/jquery/likeBlog.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8" src="/jinseblog/static/jquery/followingList.js" ></script>
+    <script type="text/javascript" charset="utf-8" src="/jinseblog/static/jquery/likeBlog.js" ></script>
 </div>
 <body>
 	<header th:replace="nav :: nav"></header>
@@ -25,7 +23,7 @@
 
 	<div class="profile-card-container">
 		<h4 th:text="${session.CURRENT_USER.username} + '关注列表'">锦瑟阑珊&nbsp;关注了&nbsp;334人</h4>
-		<div class="profile-card-list" id="userList">
+		<div class="profile-card-list" id="user_card_list">
 			<ul class="pagelist-wrapper">
 
 				<li class="card-wrap col-item" th:each="user : ${userList}">
@@ -75,8 +73,6 @@
 			<i class="icon-end" style="display: none;"></i>
 		</div>
 	</div>
-
-
 
 </body>
 </html>

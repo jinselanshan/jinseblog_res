@@ -67,14 +67,14 @@
 				</p>
 				<p>
 					<a class="visitor-name" th:text="${session.CURRENT_USER.username}"
-						href="https://jinselanshan.tuchong.com/">锦瑟阑珊</a>
+						th:href="@{/myPhotoes}">username</a>
 				</p>
 				<!-- list -->
 				<div class="row clearfix">
 					<div class="col-md-4 column style">
 						<p>
 							<a href="https://jinselanshan.tuchong.com/followers"
-								th:text="${session.CURRENT_USER.followingNumber}"
+								th:text="${'关注'+session.CURRENT_USER.followingNumber}"
 								class="user_data">0<br /> <span>关注</span>
 							</a>
 						</p>
@@ -82,7 +82,7 @@
 					<div class="col-md-4 column">
 						<p>
 							<a href="https://jinselanshan.tuchong.com/followers"
-								th:text="${session.CURRENT_USER.followerNumber}" class=""> 0<br />
+								th:text="${'粉丝'+session.CURRENT_USER.followerNumber}" class=""> 0<br />
 								<span>粉丝</span>
 							</a>
 						</p>
