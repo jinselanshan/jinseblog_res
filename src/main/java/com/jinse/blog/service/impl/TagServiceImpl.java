@@ -1,5 +1,7 @@
 package com.jinse.blog.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jinse.blog.mapper.TagMapper;
@@ -20,6 +22,11 @@ public class TagServiceImpl implements TagService{
 	public int addTagAndReturnId(Tag tag) {
 		tag.setType("1");
 		return tagMapper.insertTag(tag);
+	}
+
+	@Override
+	public List<Tag> findTagListByCount(String type) {
+		return tagMapper.findTagListByCount(type);
 	}
 
 }

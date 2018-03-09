@@ -31,6 +31,5 @@ public interface BlogPictureMapper {
 
 	List<Blog> findBlogListByTitle(@Param("content")String content, @Param("type")String type);
 
-	List<Blog> findArticleListByTitle(String title);
   
 }

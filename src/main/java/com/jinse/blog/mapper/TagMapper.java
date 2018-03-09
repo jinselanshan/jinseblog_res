@@ -31,4 +31,6 @@ public interface TagMapper {
 	Tag findTagByTagName(String tagName);
 
 	int insertTag(Tag tag);
+
+	List<Tag> findTagListByCount(String type);
 }

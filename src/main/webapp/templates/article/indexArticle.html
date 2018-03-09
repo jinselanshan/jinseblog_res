@@ -22,7 +22,7 @@
 			<br />
 			<div class="card mb-4 panel-body panel post-preview"
 				th:each="blog : ${blogList}">
-				<a href="post.html">
+				<a th:href="@{'/article/blog/' + ${blog.blogId}}">
 					<h2 class="post-title" th:text="${blog.title}">Title</h2>
 					<h4 class="post-subtitle" th:text="${blog.article.content}">Problems
 						look mighty small from 150 miles up</h4>

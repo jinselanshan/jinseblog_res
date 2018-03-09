@@ -24,4 +24,6 @@ public interface BlogService {
 
 	int updateBlogByBlogId(Blog blog);
 
+	Blog findBlogArticleByBlogId(Integer blogId);
+
 }

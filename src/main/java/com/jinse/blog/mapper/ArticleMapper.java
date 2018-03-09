@@ -41,4 +41,6 @@ public interface ArticleMapper {
 	
 	List<Blog> findAllArticleList();
 
+	Blog findBlogArticleByBlogId(Integer blogId);
+
 }

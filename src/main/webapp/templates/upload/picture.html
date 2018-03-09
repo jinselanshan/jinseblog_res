@@ -46,10 +46,7 @@
 						<td>常用标签</td>
 					</tr>
 					<tr class="">
-						<td><span class="label label-default tagku"
-							style="cursor: pointer" >哈尔滨</span><span class="label label-default tagku"
-							style="cursor: pointer" >东北</span><span class="label label-default tagku"
-							style="cursor: pointer" >现在</span></td>
+						<td><div th:each="tag : ${tagList}"><span class="label label-default tagku" style="cursor: pointer" th:text="${tag.tagName}"></span></div></td>
 					</tr>
 					<tr class="">
 						<td><label class="checkbox"> <input type="checkbox"

@@ -1,311 +1,40 @@
 <!DOCTYPE html>
-<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="htmlHeadAndUpload :: common_header(~{::title},~{::link})">
+<head
+	th:replace="htmlHeadAndUpload :: common_header(~{::title},~{})">
 <title>article_information</title>
 </head>
 <div th:replace="photo/photoInfor :: #infor_js"></div>
+<script type="text/javascript">
+$(function() {
+	var c = $('#hidden_content').val();
+	$('#content2').html(c);
+})
+</script>
 <body class="bodyColor" style="background-color: #eeeeee;">
 	<header th:replace="nav :: nav"></header>
 	<header th:replace="home/avatarTable :: avatarTable"></header>
+	
 	<!-- content-->
 	<div class="row clearfix" style="background-color: #eeeeee;">
-		<div class="col-md-6 column marginbox" style="background-color: #eeeeee;">
-				<!-- Blog Post -->
+		<div class="col-md-6 column marginbox"
+			style="background-color: #eeeeee;">
+			<!-- Blog Post -->
 			<br />
-			<div class="card mb-4 panel-body panel"
-				style="background-color: #eeeeee;">
-				
-				<div class="inforDiv">
-				<!-- <div class="card-body">
-					<a><img th:src="${blog.user.avatarUrl}"
-						alt="140x140" width="50" height="50" class="img-circle" /></a><a
-						href="#" th:text="${blog.user.username}">username </a>
-				</div> -->
-					<div class="text-left">
-						<input type="hidden" name="blogId" id="blogId"
-							th:value="${blog.blogId}">
-						<div class="card-body"></div>
-						<div class="text-right">
-							<a th:if="${blog.likeif}" width="20" id="likeBtn"  align="right" class="img-circle heart heartAnimation" th:data-like="like"  rel="like" th:data-blog-id="${blog.blogId}"></a>
-								 <a th:unless="${blog.likeif}"  width="20" id="likeBtn"  align="right" class="img-circle heart" th:data-like="dislike" rel="unlike" th:data-blog-id="${blog.blogId}"> </a>
-								<span class="likeNumber" id="likeNumber" th:text="${blog.likeNumber}" th:data-blog-id="${blog.blogId}"></span>
-							<br/><a th:href="@{'/user/deleteBlog/' + ${blog.blogId}}"><input type="hidden" id="deleteBtn" class="btn btn-default"  th:value="删除"></a>
-						
-						</div>
-						<h2 class="card-title" th:text="${blog.title}">图片标题</h2>
-						<p class="card-text" th:text="${blog.description}">这里写图片信息</p>
-					</div>
-					<br />
-					<div class="card-footer text-muted">
-						<a href="#"  th:each="tag : ${blog.tagList}"><span class="label label-default"
-							th:text="${tag.tagName}">哈尔滨</span></a>
-						<time th:text="${#dates.format(blog.createAt, 'yyyy-MM-dd HH:mm')}">3分钟前</time>
-					</div>
-					
-				</div>
-				<br />
-				<img id="pictureUrl" th:src="${blog.picture.url}" alt="Cinque Terre"
-					class="img center-block" />
+			<div class="card mb-4 panel-body panel inforDiv" style="background-color: #eeeeee;">
+				<h2 th:text="${blog.title}">WRITE ARTICLE</h2>
+				<div id="content" th:text="${blog.article.content}"></div>
+				<div id="content2"></div>
+					<input type="hidden" id="hidden_content"
+							th:value="${blog.article.content}">
 			</div>
 			<!-- Blog Post -->
 		</div>
 	</div>
 
-	<div class="commentAll">
-		<!--评论区域 begin-->
-		<div class="reviewArea clearfix col-sm-12">
-			<textarea id="commentArea" class="content comment-input form-control"
-				placeholder="输入评论&hellip;" onKeyUp="keyUP(this)"></textarea>
-			<p id="commentBtn" class="plBtn">评论</p>
-		</div>
-		<!--评论区域 end-->
-		<!--回复区域 begin-->
-		<div class="comment-show">
-			<div class="comment-show-con clearfix" id="comList"
-				th:each="comment : ${commentList}">
-				<div class="comment-show-con-img pull-left">
-				<input type="hidden"  id="commentUserId"  th:value="${comment.user.userId}">
-					<a th:href="@{'/myPhoto/' + ${comment.user.userId}}"><img th:src="${comment.user.avatarUrl}" alt=""></a>
-				</div>
-				<div class="comment-show-con-list pull-left clearfix">
-					<div class="pl-text clearfix">
-						<a href="#" class="comment-size-name"
-							th:text="${comment.user.username + ': '}">张三 : </a> <span
-							class="my-pl-con" th:text="${comment.content}">&nbsp;来啊
-							造作啊!</span>
-					</div>
-					<div class="date-dz">
-						<span class="date-dz-left pull-left comment-time"
-							th:text="${#dates.format(comment.createAt, 'yyyy-MM-dd HH:mm:ss')}">2017-5-2
-							11:11:39</span>
-						<div class="date-dz-right pull-right comment-pl-block"
-							id="commentManager">
-							<input type="hidden" name="commentId" id="commentId"
-								th:value="${comment.commentId}">
-							<p id="deleteComment" class="removeBlock">删除</p>
-							<p class="date-dz-pl pl-hf hf-con-block pull-left">回复</p>
-							<!-- <span class="pull-left date-dz-line">|</span> 
-							<a href="javascript:;" class="date-dz-z pull-left"><i class="date-dz-z-click-red"></i>赞
-								(<i class="z-num">666</i>)</a> -->
-						</div>
-					</div>
-					<div class="hf-list-con"></div>
-				</div>
+	<div th:replace="photo/photoInfor :: #comment_div"></div>
 
-			</div>
-		</div>
-		<!--回复区域 end-->
-	</div>
-
-	<script type="text/javascript" src="/jinseblog/static/js/jquery-1.12.0.min.js"></script>
-<script type="text/javascript" src="/jinseblog/static/js/jquery.flexText.js"></script>
-<!--textarea高度自适应-->
-<script type="text/javascript">
-    $(function () {
-        $('.content').flexText();
-    });
-</script>
-<script type="text/javascript">
-    $(function () {
-        $("#commentBtn").click(function () {
-
-        });
-    });
-</script>
-<!--textarea限制字数-->
-<script type="text/javascript">
-    function keyUP(t) {
-        var len = $(t).val().length;
-        if (len > 139) {
-            $(t).val($(t).val().substring(0, 140));
-            alert("字数超过140个字符");
-        }
-    }
-</script>
-<!--点击评论创建评论条-->
-<script type="text/javascript">
-$('.commentAll').on('click', '#commentBtn',
-		function() {
-
-		    var myDate = new Date();
-		    //获取当前年
-		    var year = myDate.getFullYear();
-		    //获取当前月
-		    var month = myDate.getMonth() + 1;
-		    //获取当前日
-		    var date = myDate.getDate();
-		    var h = myDate.getHours(); //获取当前小时数(0-23)
-		    var m = myDate.getMinutes(); //获取当前分钟数(0-59)
-		    if (m < 10) m = '0' + m;
-		    var s = myDate.getSeconds();
-		    if (s < 10) s = '0' + s;
-		    //time
-		    var now = year + '-' + month + "-" + date + " " + h + ':' + m + ":" + s;
-		    //获取输入内容content
-		    var oSize = $(this).siblings('.flex-text-wrap').find('.comment-input').val();
-		    console.log(oSize);
-
-		    var blogId = $('#blogId').val();
-
-		    if (oSize.replace(/(^\s*)|(\s*$)/g, "") != '') {
-		        $.ajax({
-		            url: 'addComment',
-		            type: 'POST',
-		            contentType: 'application/json',
-		            data: JSON.stringify({
-		                'blogId': blogId,
-		                'content': oSize,
-		                'createAt': myDate,
-		            }),
-		            success: function(data) {
-		                //动态创建评论模块
-		                //oHtml = '<div class="comment-show-con clearfix"><div class="comment-show-con-img pull-left"><img src="img/header-img-comment_03.png" alt=""></div> <div class="comment-show-con-list pull-left clearfix"><div class="pl-text clearfix"> <a href="#" class="comment-size-name">David Beckham : </a> <span class="my-pl-con">&nbsp;'+ oSize +'</span> </div> <div class="date-dz"> <span class="date-dz-left pull-left comment-time">'+now+'</span> <div class="date-dz-right pull-right comment-pl-block"><a href="javascript:;" class="removeBlock">删除</a> <a href="javascript:;" class="date-dz-pl pl-hf hf-con-block pull-left">回复</a> <span class="pull-left date-dz-line">|</span> <a href="javascript:;" class="date-dz-z pull-left"><i class="date-dz-z-click-red"></i>赞 (<i class="z-num">666</i>)</a> </div> </div><div class="hf-list-con"></div></div> </div>';
-		                // $('#comList').attr('th:text',"comment : " + data);
-		                $(".comment-show").load(location.href + " .comment-show");
-		                $("#commentArea").val('');
-		                // $(this).parents('.reviewArea ').siblings('.comment-show').prepend(oHtml);
-		                //$(this).siblings('.flex-text-wrap').find('.comment-input').prop('value','').siblings('pre').find('span').text('');
-		            },
-		            error: function() {
-		                alert("Error");
-		            }
-		        });
-		    }
-		});
-</script>
-<!--点击回复动态创建回复块-->
-<script type="text/javascript">
-$('.comment-show').on('click', '.pl-hf',
-		function() {
-		    //获取回复人的名字
-		    var fhName = $(this).parents('.date-dz-right').parents('.date-dz').siblings('.pl-text').find('.comment-size-name').html();
-		    //回复@
-		    var fhN = '回复@' + fhName;
-		    //var oInput = $(this).parents('.date-dz-right').parents('.date-dz').siblings('.hf-con');
-		    var fhHtml = '<div class="hf-con pull-left"> <textarea class="content comment-input hf-input" placeholder="" onkeyup="keyUP(this)"></textarea> <a href="javascript:;" class="hf-pl">评论</a></div>';
-		    //显示回复
-		    if ($(this).is('.hf-con-block')) {
-		        $(this).parents('.date-dz-right').parents('.date-dz').append(fhHtml);
-		        $(this).removeClass('hf-con-block');
-		        $('.content').flexText();
-		        $(this).parents('.date-dz-right').siblings('.hf-con').find('.pre').css('padding', '6px 15px');
-		        //console.log($(this).parents('.date-dz-right').siblings('.hf-con').find('.pre'))
-		        //input框自动聚焦
-		        $(this).parents('.date-dz-right').siblings('.hf-con').find('.hf-input').val('').focus().val(fhN);
-		    } else {
-		        $(this).addClass('hf-con-block');
-		        $(this).parents('.date-dz-right').siblings('.hf-con').remove();
-		    }
-		});
-</script>
-<!--评论回复块创建-->
-<script type="text/javascript">
-$('.comment-show').on('click', '.hf-pl',
-		function() {
-		    var oThis = $(this);
-		    var myDate = new Date();
-		    //获取当前年
-		    var year = myDate.getFullYear();
-		    //获取当前月
-		    var month = myDate.getMonth() + 1;
-		    //获取当前日
-		    var date = myDate.getDate();
-		    var h = myDate.getHours(); //获取当前小时数(0-23)
-		    var m = myDate.getMinutes(); //获取当前分钟数(0-59)
-		    if (m < 10) m = '0' + m;
-		    var s = myDate.getSeconds();
-		    if (s < 10) s = '0' + s;
-		    var now = year + '-' + month + "-" + date + " " + h + ':' + m + ":" + s;
-		    //获取输入内容
-		    var oHfVal = $(this).siblings('.flex-text-wrap').find('.hf-input').val();
-		    console.log(oHfVal) var oHfName = $(this).parents('.hf-con').parents('.date-dz').siblings('.pl-text').find('.comment-size-name').html();
-		    var oAllVal = '回复@' + oHfName;
-		    if (oHfVal.replace(/^ +| +$/g, '') == '' || oHfVal == oAllVal) {
-
-		} else {
-		        $.getJSON("json/pl.json",
-		        function(data) {
-		            var oAt = '';
-		            var oHf = '';
-		            $.each(data,
-		            function(n, v) {
-		                delete v.hfContent;
-		                delete v.atName;
-		                var arr;
-		                var ohfNameArr;
-		                if (oHfVal.indexOf("@") == -1) {
-		                    data['atName'] = '';
-		                    data['hfContent'] = oHfVal;
-		                } else {
-		                    arr = oHfVal.split(':');
-		                    ohfNameArr = arr[0].split('@');
-		                    data['hfContent'] = arr[1];
-		                    data['atName'] = ohfNameArr[1];
-		                }
-
-		                if (data.atName == '') {
-		                    oAt = data.hfContent;
-		                } else {
-		                    oAt = '回复<a href="#" class="atName">@' + data.atName + '</a> : ' + data.hfContent;
-		                }
-		                oHf = data.hfName;
-		            });
-
-		            var oHtml = '<div class="all-pl-con"><div class="pl-text hfpl-text clearfix"><a href="#" class="comment-size-name">我的名字 : </a><span class="my-pl-con">' + oAt + '</span></div><div class="date-dz"> <span class="date-dz-left pull-left comment-time">' + now + '</span> <div class="date-dz-right pull-right comment-pl-block"> <a href="javascript:;" class="removeBlock">删除</a> <a href="javascript:;" class="date-dz-pl pl-hf hf-con-block pull-left">回复</a> <span class="pull-left date-dz-line">|</span> <a href="javascript:;" class="date-dz-z pull-left"><i class="date-dz-z-click-red"></i>赞 (<i class="z-num">666</i>)</a> </div> </div></div>';
-		            oThis.parents('.hf-con').parents('.comment-show-con-list').find('.hf-list-con').css('display', 'block').prepend(oHtml) && oThis.parents('.hf-con').siblings('.date-dz-right').find('.pl-hf').addClass('hf-con-block') && oThis.parents('.hf-con').remove();
-		        });
-		    }
-		});
-</script>
-<!--删除评论块-->
-<script type="text/javascript">
-    $('.commentAll').on(
-        'click',
-        '.removeBlock',
-        function () {
-            var commentId = $(this).parents('#commentManager')
-                .children("input:first-child").val();
-            //alert(commentId);
-            var blogId = $('#blogId').val();
-            if (commentId != null && commentId != '') {
-                $.ajax({
-                    url: 'deleteComment',
-                    type: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify({
-                        'commentId': commentId,
-                        'blogId': blogId,
-                    }),
-                    success: function (data) {
-                            //动态创建评论模块
-                            // $('#comList').attr('th:text',"comment : " + data);
-                            $(".comment-show").load(
-                                location.href + " .comment-show");
-                        },
-                        error: function () {
-                            alert("Error");
-                        }
-                });
-            }
-        })
-</script>
-<!--点赞-->
-<script type="text/javascript">
-    $('.comment-show').on('click', '.date-dz-z', function () {
-        var zNum = $(this).find('.z-num').html();
-        if ($(this).is('.date-dz-z-click')) {
-            zNum--;
-            $(this).removeClass('date-dz-z-click red');
-            $(this).find('.z-num').html(zNum);
-            $(this).find('.date-dz-z-click-red').removeClass('red');
-        } else {
-            zNum++;
-            $(this).addClass('date-dz-z-click');
-            $(this).find('.z-num').html(zNum);
-            $(this).find('.date-dz-z-click-red').addClass('red');
-        }
-    })
-</script>
 </body>
 </html>

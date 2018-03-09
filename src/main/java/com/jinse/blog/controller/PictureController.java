@@ -121,7 +121,7 @@ public class PictureController {
 
 	@RequestMapping(value = "/indexPhoto")
 	public String indexPhoto(Model model, HttpServletRequest request, Blog blog) throws Exception {
-		logger.info("关注列表");
+		logger.info("关注photo列表");
 		Integer userId = SpringUtil.getCurrentUser().getUserId();
 
 		//发现我关注的摄影blog列表

@@ -2,10 +2,8 @@
 <html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 
-<head
-	th:replace="htmlHeadAndUpload :: common_header(~{::title},~{::link})">
+<head th:replace="htmlHeadAndUpload :: common_header(~{::title},~{})">
 <title>photo_information</title>
-
 </head>
 <div id="infor_js">
 	<script type="text/javascript" charset="utf-8" th:src="@{/static/js/jquery.min.js}"></script>
@@ -17,7 +15,6 @@
 	<script type="text/javascript" charset="utf-8" th:src="@{/static/jquery/comment.js}" ></script>
 	<script type="text/javascript" charset="utf-8" th:src="@{/static/js/jquery-1.12.0.min.js}"></script>
 	<script type="text/javascript" charset="utf-8" th:src="@{/static/js/jquery.flexText.js}"></script>
-	
 </div>
 <body class="bodyColor" style="background-color: #eeeeee;">
 	<header th:replace="nav :: nav"></header>
@@ -28,8 +25,7 @@
 			style="background-color: #eeeeee;">
 			<!-- Blog Post -->
 			<br />
-			<div class="card mb-4 panel-body panel"
-				style="background-color: #eeeeee;">
+			<div class="card mb-4 panel-body panel" style="background-color: #eeeeee;">
 
 				<div class="inforDiv">
 					<!-- <div class="card-body">
@@ -74,7 +70,7 @@
 		</div>
 	</div>
 
-	<div class="commentAll">
+	<div class="commentAll" id="comment_div">
 		<!--评论区域 begin-->
 		<div class="reviewArea clearfix col-sm-12">
 			<textarea id="commentArea" class="content comment-input form-control"

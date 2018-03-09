@@ -254,6 +254,17 @@
 		<collection property="tagList"
 			resultMap="com.jinse.blog.mapper.TagMapper.BaseResultMap" />
 	</resultMap>
+
+
+	<select id="findBlogArticleByBlogId" parameterType="int"
+		resultMap="BlogWithUserWithArticleResult">
+		SELECT b.*,a.*,u.* from blog b, article a,user u
+		where
+		b.blog_id = a.blog_id and b.user_id = u.user_id and b.blog_id =
+		#{blogId,jdbcType=INTEGER}
+	</select>
+
+
 	<select id="findArticleListByTitle" resultMap="BlogWithUserWithArticleResult">
 		SELECT
 		b.*,a.content,u.*
@@ -283,4 +294,5 @@
 		in (select tag_id from
 		tag where tag_name like '%%'))
 	</select>
+
 </mapper>

@@ -54,7 +54,6 @@ public class ArticleController {
 	private BlogService blogService;
 	@Autowired
 	private PictureService pictureService;
-
 	@Autowired
 	private TagService tagService;
 	@Autowired
@@ -67,13 +66,13 @@ public class ArticleController {
 			throws Exception {
 		logger.info("获取article详情页");
 		//find blog and picture
-		Blog blog = blogService.findBlogByBlogId(blogId);
+		Blog blog = blogService.findBlogArticleByBlogId(blogId);
 		
 		List<Comment> commentList = commentService.findCommentByBlogId(blogId);
 		model.addAttribute("commentList", commentList);
 		model.addAttribute("blog", blog);
 		model.addAttribute("user", blog.getUser());
-		return "photo/photoInfor";
+		return "article/articleInfor";
 	}
 	@RequestMapping(value = "/indexArticle")
 	public String indexArticle(Model model, HttpServletRequest request, String content,Integer blogId) throws Exception {
