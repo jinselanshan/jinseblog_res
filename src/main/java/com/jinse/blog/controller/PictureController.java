@@ -116,16 +116,17 @@ public class PictureController {
 		SavePicture.savaPic(picture, pictureFile);
 		// 更新url
 		pictureService.updateUrlByPictureId(picture);
-		return "redirect:indexPhoto";
+		return "redirect:indexPhoto/" + type;
 	}
 
-	@RequestMapping(value = "/indexPhoto")
-	public String indexPhoto(Model model, HttpServletRequest request, Blog blog) throws Exception {
+	@RequestMapping(value = "/indexPhoto/{type}")
+	public String indexPhoto(Model model, HttpServletRequest request, Blog blog,@PathVariable("type") String type) throws Exception {
 		logger.info("关注列表");
 		Integer userId = SpringUtil.getCurrentUser().getUserId();
 
+		type = type.equals("photo") ? "1":"2";
 		//发现我关注的摄影blog列表
-		List<Blog> blogList = blogService.findPhotoListByUserId(userId);
+		List<Blog> blogList = blogService.findPhotoListByUserId(userId,type);
 
 		List<BlogAndLike> blogAndLikeList = new ArrayList<BlogAndLike>();
 		if(blogList != null && blogList.size() > 0 ) {
@@ -140,7 +141,11 @@ public class PictureController {
 			}
 		}
 		model.addAttribute("blogList", blogAndLikeList);
+		if(type.equals("1")) {
+			return "photo/indexPhoto";
+		}
 		return "photo/indexPhoto";
+		
 	}
 
 	// 主页

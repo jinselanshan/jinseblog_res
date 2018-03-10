@@ -21,10 +21,10 @@
 					<div class="collapse navbar-collapse"
 						id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
-							<li><a th:href="@{/indexPhoto}">摄影</a></li>
-							<li><a href="#">绘画</a></li>
+							<li><a th:href="@{/indexPhoto/photo}">摄影</a></li>
+							<li><a th:href="@{/indexPhoto/painting}">绘画</a></li>
 							<li><a th:href="@{/indexArticle}">文章</a></li>
-							<li><a href="#">短视频</a></li>
+							<li><a th:href="@{/indexVideo}">短视频</a></li>
 							<li><a href="#">标签</a></li>
 							<!-- <li><a href="#">热门</a></li> -->
 						<!-- 	<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -34,12 +34,12 @@
 								</ul></li> -->
 						</ul>
 						<form class="navbar-form navbar-left" role="search"   method="get" th:action="@{/search}" >
-							<select class="form-control" name="selectType" >
-								<option value="photo">摄影</option>
-								<option value="painting">绘画</option>
-								<option value="article">文章</option>
-								<option value="video">短视频</option>
-								<option value="username">用户</option>
+							<select class="form-control" name="selectType">
+								<option value="photo" th:selected="${selectType=='photo'}">摄影</option>
+								<option value="painting" th:selected="${selectType=='painting'}">绘画</option>
+								<option value="article" th:selected="${selectType=='article'}">文章</option>
+								<option value="video" th:selected="${selectType=='video'}">短视频</option>
+								<option value="username" th:selected="${selectType=='username'}">用户</option>
 								<!-- <option value="tag">标签</option> -->
 							</select>
 							<div class="form-group">
@@ -53,8 +53,11 @@
 							<li><a th:unless="${session.username}" th:href="@{/signup}"
 								th:text="注册">[...]</a></li>
 							<li><a th:if="${session.username}" th:href="@{/myPhotoes}"
-								th:text="${session.username}">[...]</a></li>
-							<li class="dropdown"><a th:if="${session.username}" href="#"
+								th:text="${session.username}">[...]</a>
+									<input type="hidden" id="currentUserId"
+						th:value="${session.CURRENT_USER.userId}">
+								</li>
+							<li class="dropdown"><a th:if="${session.username}" 
 								class="dropdown-toggle" data-toggle="dropdown">发布<strong
 									class="caret"></strong></a>
 								<ul class="dropdown-menu">

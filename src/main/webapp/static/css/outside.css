@@ -16,7 +16,7 @@
 
 .backimage
 {
-    background-image:url('http://p1vkce34m.bkt.clouddn.com/image/jpg/324H.jpg');
+/*     background-image:url('http://p1vkce34m.bkt.clouddn.com/image/jpg/324H.jpg'); */
     background-color:#eee
 	width:100%;
 	background-size:100%;  
@@ -120,7 +120,4 @@ background-color: #ffffff;
 }
 .body-color{
 	background-color: #eeeeee;
-}
-textarea{ 
-	resize:none;
 }

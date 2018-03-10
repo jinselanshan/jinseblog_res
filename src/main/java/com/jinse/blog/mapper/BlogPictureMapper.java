@@ -1,6 +1,8 @@
 package com.jinse.blog.mapper;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -25,7 +27,7 @@ public interface BlogPictureMapper {
 
 	int commentNumberMinus(Blog blog);
 
-	List<Blog> findPhotoListByUserId(Integer userId);
+	List<Blog> findPhotoListByUserIdAndType(Map map);
 
 	List<Blog> findPhotoListByTitle(String content);
 

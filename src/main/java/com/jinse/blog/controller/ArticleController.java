@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,7 @@ import com.jinse.blog.service.TagService;
 import com.jinse.blog.service.UserService;
 import com.jinse.blog.utils.BlogUtil;
 import com.jinse.blog.utils.ConstantsUtil;
+import com.jinse.blog.utils.HtmlUtil;
 import com.jinse.blog.utils.InitBlog;
 import com.jinse.blog.utils.SavePicture;
 import com.jinse.blog.utils.SpringUtil;
@@ -53,18 +55,37 @@ public class ArticleController {
 	private BlogService blogService;
 	@Autowired
 	private PictureService pictureService;
-
 	@Autowired
 	private TagService tagService;
 	@Autowired
-	private BlogTagService blogTagService;
+	private CommentService commentService;
 	@Autowired
 	private ArticleService articleService;
 	
+	@RequestMapping(value = "article/blog/{blogId}")
+	public String photoInfor(@PathVariable("blogId") Integer blogId, Model model, HttpServletRequest request, User user)
+			throws Exception {
+		logger.info("获取article详情页");
+		//find blog and picture
+		Blog blog = blogService.findBlogArticleByBlogId(blogId);
+		
+		List<Comment> commentList = commentService.findCommentByBlogId(blogId);
+		model.addAttribute("commentList", commentList);
+		model.addAttribute("blog", blog);
+		model.addAttribute("user", blog.getUser());
+		return "article/articleInfor";
+	}
 	@RequestMapping(value = "/indexArticle")
 	public String indexArticle(Model model, HttpServletRequest request, String content,Integer blogId) throws Exception {
 
 		List<Blog> blogList = articleService.findAllArticleList();
+		
+		for (int i = 0; i < blogList.size(); i++) {
+			Article article = blogList.get(i).getArticle();
+			String newContent = HtmlUtil.getContent(article.getContent(), 50, true);
+			newContent = StringEscapeUtils.unescapeHtml(newContent);
+			article.setContent(newContent);
+		}
 		
 		model.addAttribute("blogList",blogList);
 		return "article/indexArticle";
@@ -74,9 +95,13 @@ public class ArticleController {
 
 		Integer userId = SpringUtil.getCurrentUser().getUserId();
 		InitBlog.initBlog(blog, userId);
-		blogService.saveBlog(blog);
-
-		int blogId = blog.getBlogId();
+		Integer blogId = blog.getBlogId();
+		if(blogId != null && blogId != 0){
+			blogService.updateBlogByBlogId(blog);
+		}else{
+			blogService.saveBlogAndReturnId(blog);
+			blogId = blog.getBlogId();
+		}
 		article.setBlogId(blogId);
 	    articleService.saveArticle(article);
 		return "redirect:indexArticle";
@@ -94,10 +119,16 @@ public class ArticleController {
 	}
 	
 	
+	//文章主页
+	@RequestMapping(value = "/home/article/{userId}")
+	public String findArticle(@PathVariable("userId") Integer userId, Model model, HttpServletRequest request, User user) throws Exception {
+		user = articleService.findAllArticleByUserId(userId);
+		model.addAttribute("user", user);
+		return "home/articlepage";
+	}
 	
 	
-	
-/*	@RequestMapping(value = "/article/uploadPicture", method = RequestMethod.POST)
+ 	@RequestMapping(value = "/article/uploadPicture", method = RequestMethod.POST)
 	@ResponseBody
 	public ArticleResultVO uploadPicture(Model model, HttpServletRequest request,Blog blog, Integer blogId,
 			@RequestParam(value = "editormd-image-file", required = false) MultipartFile pictureFile) throws Exception {
@@ -135,7 +166,7 @@ public class ArticleController {
 			articleResultVO.setMessage("上传图片失败");
 		}
 		return articleResultVO;
-	}*/
+	}
 	
 	/*
 	@RequestMapping(value = "/uploadArticle")

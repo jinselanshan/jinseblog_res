@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-<head th:replace="upload/uploadHead :: upload_header">
-<title>css,js</title>
+<head th:replace="upload/uploadHead :: upload_header(~{::title})">
+<title>上传图片</title>
 </head>
 <body>
 	<!-- 导航栏 -->
@@ -16,10 +16,10 @@
 						class="fileinputLocales['zh']" type="file" multiple/>
 			</div>
 		</div>
-		<div class="col-xs-3 span3  tablecss">
+		<div class="col-xs-3 span3  tablecss" id="picture_table">
 			<form>
 			    <input type="hidden" name="picture.type" value="1">
-				<table class="table tablefont">
+				<table class="table tablefont" style="table-layout:fixed;">
 					<tr class="">
 					 	<input type="hidden" name="type" id="type" th:value="${type}">
 						<td>标题</td>
@@ -46,7 +46,7 @@
 						<td>常用标签</td>
 					</tr>
 					<tr class="">
-						<td><div th:each="tag : ${tagList}"><span class="label label-default tagku" style="cursor: pointer" th:text="${tag.tagName}"></span></div></td>
+						<td style="display:block;" width="280"><span th:each="tag : ${tagList}" class="label label-default tagku" style="cursor: pointer" th:text="${tag.tagName}"></span></td>
 					</tr>
 					<tr class="">
 						<td><label class="checkbox"> <input type="checkbox"

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="upload/uploadHead :: upload_header(~{::title})">
+<title>上传绘画</title>
+</head>
+<body>
+	<!-- 导航栏 -->
+	<header th:replace="nav :: nav"></header>
+
+	<div class="row-fluid span12 row-fluid">
+	<form enctype="multipart/form-data" id="uploadForm" th:action="@{/uploadPicture}" method="post">
+		<div class="col-xs-9 span9">
+			<div class="">
+					<label>上传图片</label> <input id="file-zh" name="file-zh[]"
+						class="fileinputLocales['zh']" type="file" multiple/>
+			</div>
+		</div>
+		<div class="col-xs-3 span3  tablecss"  th:replace="upload/picture :: #picture_table"></div>
+	  </form>
+	</div>
+
+</body>
+<script>
+	$('#file-zh').fileinput({
+		language : 'zh',
+		allowedFileExtensions : [ 'jpg', 'png', 'gif' ],
+		overwriteInitial : false,
+		maxFileSize : 20000,
+		maxFilesNum : 10,
+		showUpload : false,
+
+	});
+	$(document).ready(function() {
+		$("#test-upload").fileinput({
+
+		});
+	});
+</script>
+</html>

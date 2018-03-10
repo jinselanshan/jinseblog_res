@@ -1,20 +1,27 @@
 package com.jinse.blog.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jinse.blog.mapper.ArticleMapper;
 import com.jinse.blog.mapper.BlogMapper;
 import com.jinse.blog.mapper.BlogPictureMapper;
+import com.jinse.blog.mapper.BlogTagMapper;
 import com.jinse.blog.mapper.PictureMapper;
+import com.jinse.blog.mapper.VideoMapper;
 import com.jinse.blog.pojo.Blog;
 import com.jinse.blog.pojo.BlogTag;
+import com.jinse.blog.pojo.BlogTagExample;
 import com.jinse.blog.pojo.PictureExample;
 import com.jinse.blog.pojo.Tag;
+import com.jinse.blog.pojo.User;
 import com.jinse.blog.pojo.PictureExample.Criteria;
 import com.jinse.blog.service.BlogService;
+import com.jinse.blog.utils.DeletePicture;
 
 public class BlogServiceImpl implements BlogService {
 	@Autowired
@@ -25,7 +32,11 @@ public class BlogServiceImpl implements BlogService {
 	private PictureMapper pictureMapper;
 	@Autowired
 	private ArticleMapper articleMapper;
-	
+	@Autowired
+	private BlogTagMapper blogTagMapper;
+	@Autowired
+	private VideoMapper videoMapper;
+
 	@Override
 	public int saveBlog(Blog blog) {
 		return blogPictureMapper.insertBlog(blog);
@@ -39,9 +50,11 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	@Override
-	public List<Blog> findPhotoListByUserId(Integer userId) {
-
-		List<Blog> blogList = blogPictureMapper.findPhotoListByUserId(userId);
+	public List<Blog> findPhotoListByUserId(Integer userId,String type) {
+		Map<String,String> map=new HashMap<String,String>();
+		map.put("userId", String.valueOf(userId));
+		map.put("type", type);
+		List<Blog> blogList = blogPictureMapper.findPhotoListByUserIdAndType(map);
 	
 		// 设置标签,遍历blog
 		for (int i = 0; i < blogList.size(); i++) {
@@ -53,26 +66,38 @@ public class BlogServiceImpl implements BlogService {
 
 	private void setTagListByBlog(Blog blog) {
 		String tagStr = blog.getTag();
-		String[] tagArray = tagStr.trim().split(" ");
-		List<Tag> tagList = new ArrayList<Tag>();
-		// 遍历tag
-		for (String tagName : tagArray) {
-			Tag tag = new Tag();
-			tag.setTagName(tagName);
-			tagList.add(tag);
+		if(tagStr != null && !tagStr.equals("")){
+			String[] tagArray = tagStr.trim().split(" ");
+			List<Tag> tagList = new ArrayList<Tag>();
+			// 遍历tag
+			for (String tagName : tagArray) {
+				Tag tag = new Tag();
+				tag.setTagName(tagName);
+				tagList.add(tag);
+			}
+			blog.setTagList(tagList);
 		}
-		blog.setTagList(tagList);
 	}
 
 	@Override
 	public int deleteBlogByBlogId(Blog blog) {
+		Integer blogId = blog.getBlogId();
+		//delete qiniuyun
+		Blog blogRes = blogPictureMapper.findBlogAndPictureByBlogId(blogId);
+		DeletePicture.deletePic(blogRes.getPicture());
+		
 		// delete picture
 		PictureExample example = new PictureExample();
 		Criteria criteria = example.createCriteria();
-		criteria.andBlogIdEqualTo(blog.getBlogId());
+		criteria.andBlogIdEqualTo(blogId);
 		pictureMapper.deleteByExample(example);
+		// delete tag_mappper
+		BlogTagExample blogTagExample = new BlogTagExample();
+		com.jinse.blog.pojo.BlogTagExample.Criteria criteriaTag = blogTagExample.createCriteria();
+		criteriaTag.andBlogIdEqualTo(blogId);
+		blogTagMapper.deleteByExample(blogTagExample);
 		// delete blog
-		int count = blogMapper.deleteByPrimaryKey(blog.getBlogId());
+		int count = blogMapper.deleteByPrimaryKey(blogId);
 		return count;
 	}
 
@@ -94,6 +119,26 @@ public class BlogServiceImpl implements BlogService {
 	@Override
 	public List<Blog> findArticleListByTitle(String title) {
 		return articleMapper.findArticleListByTitle(title);
+	}
+
+	@Override
+	public int updateBlogByBlogId(Blog blog) {
+		return blogMapper.updateByPrimaryKey(blog);
+	}
+
+	@Override
+	public Blog findBlogArticleByBlogId(Integer blogId) {
+		return articleMapper.findBlogArticleByBlogId(blogId);
+	}
+
+	@Override
+	public List<Blog> findVideoListByTitle(String content) {
+		return  videoMapper.findVideoListByTitle(content);
+	}
+
+	@Override
+	public List<User> findArticleListByUserAndTitle(String content) {
+		return articleMapper.findArticleListByUserAndTitle(content);
 	}
 
 }

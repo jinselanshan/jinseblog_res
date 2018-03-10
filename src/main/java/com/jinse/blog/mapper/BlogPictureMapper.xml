@@ -113,12 +113,12 @@
 
 
 
-	<select id="findPhotoListByUserId" parameterType="int"
+	<select id="findPhotoListByUserIdAndType" parameterType="Map"
 		resultMap="BlogWithUserWithPictureResult">
 		SELECT b.*,p.url,u.*
 		from user u,blog b,picture p
 		where
-		b.user_id = u.user_id and p.blog_id = b.blog_id and p.type = "1" and
+		b.user_id = u.user_id and p.blog_id = b.blog_id and p.type = #{type} and
 		b.blog_id in
 		(SELECT blog.blog_id
 		from blog

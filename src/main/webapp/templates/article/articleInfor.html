@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head
+	th:replace="htmlHeadAndUpload :: common_header(~{::title},~{})">
+<title>article_information</title>
+</head>
+<div th:replace="photo/photoInfor :: #infor_js"></div>
+<script type="text/javascript">
+$(function() {
+	var c = $('#hidden_content').val();
+	$('#content2').html(c);
+})
+</script>
+<body class="bodyColor" style="background-color: #eeeeee;">
+	<header th:replace="nav :: nav"></header>
+	<header th:replace="home/avatarTable :: avatarTable"></header>
+	
+	<!-- content-->
+	<div class="row clearfix" style="background-color: #eeeeee;">
+		<div class="col-md-6 column marginbox"
+			style="background-color: #eeeeee;">
+			<!-- Blog Post -->
+			<br />
+			<div class="card mb-4 panel-body panel inforDiv" style="background-color: #eeeeee;">
+				<h2 th:text="${blog.title}">WRITE ARTICLE</h2>
+				<!-- <div id="content" th:text="${blog.article.content}"></div> -->
+				<div id="content2"></div>
+					<input type="hidden" id="hidden_content"
+							th:value="${blog.article.content}">
+			</div>
+			<!-- Blog Post -->
+		</div>
+	</div>
+
+	<div th:replace="photo/photoInfor :: #comment_div"></div>
+
+</body>
+</html>

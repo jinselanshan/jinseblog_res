@@ -46,6 +46,12 @@ public class FollowingController {
 	@ResponseBody
 	public Integer saveFollowing(Model model, HttpServletRequest request, UserFollowing userFollowing) {
 		logger.info("进行关注");
+		//judge is self
+		
+		if(userFollowing.getUserId().equals(userFollowing.getFollowingId())) {
+			return 1;
+		}
+		
 		int count = followingService.saveFollowing(userFollowing);
 		User user = userService.findUserByUserId(userFollowing.getUserId());
 		model.addAttribute("user",user);
@@ -57,6 +63,9 @@ public class FollowingController {
 	@ResponseBody
 	public Integer deleteFollowing(Model model, HttpServletRequest request, UserFollowing userFollowing) {
 		logger.info("取消关注");
+		if(userFollowing.getUserId().equals(userFollowing.getFollowingId())) {
+			return 1;
+		}
 		int count = followingService.deleteFollowing(userFollowing);
 		User user = userService.findUserByUserId(userFollowing.getUserId());
 		model.addAttribute("user",user);

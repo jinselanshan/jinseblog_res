@@ -2,8 +2,8 @@
 <html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="htmlHead :: common_header">
-<title>导航栏</title>
+<head th:replace="htmlHead :: common_header(~{::title},~{})">
+<title>文章</title>
 <!--  <link rel="stylesheet" href="css/index.css"> -->
 </head>
 <div>
@@ -22,15 +22,15 @@
 			<br />
 			<div class="card mb-4 panel-body panel post-preview"
 				th:each="blog : ${blogList}">
-				<a href="post.html">
+				<a th:href="@{'/home/article/' + ${blog.user.userId}}">
 					<h2 class="post-title" th:text="${blog.title}">Title</h2>
 					<h4 class="post-subtitle" th:text="${blog.article.content}">Problems
 						look mighty small from 150 miles up</h4>
 				</a>
-				<p class="post-meta">
+				<span class="post-meta">
 					Posted by <a href="#" th:text="${blog.user.username}">Username</a>
-					on September 24, 2017
-				</p>
+					on </span>
+					<span class="post-meta" th:text="${#dates.format(blog.createAt, 'yyyy-MM-dd')}">September 24, 2017</span>
 			</div>
 			<!-- Blog Post -->
 
@@ -39,7 +39,7 @@
 		<!-- right -->
 		<div class="col-md-3 column"
 			th:replace="photo/indexPhoto :: #indexRight"></div>
-	</div>
+	     </div>
 
 </body>
 </html>
