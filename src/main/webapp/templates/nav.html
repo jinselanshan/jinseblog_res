@@ -52,12 +52,12 @@
 								th:text="登录">[...]</a></li>
 							<li><a th:unless="${session.username}" th:href="@{/signup}"
 								th:text="注册">[...]</a></li>
-							<li><a th:if="${session.username}" th:href="@{/myPhotoes}"
+							<li><a th:if="${session.username}" th:href="@{'/otherPhotoes/' + ${session.CURRENT_USER.userId}}"
 								th:text="${session.username}">[...]</a>
 									<input type="hidden" id="currentUserId"
 						th:value="${session.CURRENT_USER.userId}">
 								</li>
-							<li class="dropdown"><a th:if="${session.username}" 
+							<li class="dropdown"><a th:if="${session.username}" th:href="@{/uploadPhotoIndex}"
 								class="dropdown-toggle" data-toggle="dropdown">发布<strong
 									class="caret"></strong></a>
 								<ul class="dropdown-menu">

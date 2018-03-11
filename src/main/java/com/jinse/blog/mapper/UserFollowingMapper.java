@@ -1,6 +1,7 @@
 package com.jinse.blog.mapper;
 
 import com.jinse.blog.pojo.User;
+import com.jinse.blog.pojo.UserClasses;
 import com.jinse.blog.pojo.UserFollowing;
 import com.jinse.blog.pojo.UserFollowingExample;
 import java.util.List;
@@ -36,4 +37,5 @@ public interface UserFollowingMapper {
 	int deleteFollowing(UserFollowing userFollowing);
 
 	Integer findFollowingByUserIdAndFollowingId(UserFollowing userFollowing);
+
 }

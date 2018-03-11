@@ -233,15 +233,15 @@
 		extends="com.jinse.blog.mapper.UserMapper.BaseResultMap">
 		<collection property="blogList" resultMap="BlogWithArticle" />
 	</resultMap>
-	
+
 	<select id="findAllArticleByUserId" parameterType="int"
 		resultMap="UserWithBlogResult">
-		select u.*,b.*
-		from user u,blog b
-		where
-		u.user_id = #{userId,jdbcType=INTEGER}
-		and u.user_id = b.user_id
-		order by b.create_at desc
+		select u.*,b.*,a.*
+		from user u,blog b,article a
+		where b.blog_id = a.blog_id and
+		u.user_id = b.user_id and u.user_id = #{userId,jdbcType=INTEGER}
+		order by
+		b.create_at desc
 	</select>
 
 	<resultMap id="BlogWithUserWithArticleResult" type="com.jinse.blog.pojo.Blog"
@@ -264,24 +264,11 @@
 	</select>
 
 
-	<select id="findArticleListByTitle" resultMap="BlogWithUserWithArticleResult">
-		SELECT
-		b.*,a.content,u.*
-		from user u,blog b,article a
-		where
-		b.user_id =
-		u.user_id and a.blog_id = b.blog_id and b.title like "%"#{title}"%"
-		order by b.create_at desc
-	</select>
-
-
 	<select id="findAllArticleList" resultMap="BlogWithUserWithArticleResult">
 		select u.*,b.*,a.*
 		from user u,blog b,article a
 		where u.user_id = b.user_id
-		and
-		b.blog_id =
-		a.blog_id
+		and b.blog_id = a.blog_id
 		order by b.create_at desc
 	</select>
 
@@ -294,14 +281,13 @@
 		tag where tag_name like '%%'))
 	</select>
 
-	<select id="findArticleListByTitle" resultMap="UserWithBlogResult">
+	<select id="findArticleListByUserAndTitle" resultMap="UserWithBlogResult">
 		SELECT
-		b.*,u.*
+		b.*,u.*,a.*
 		from
-		user u,blog b
-		where
-		b.user_id =
-		u.user_id and b.title like "%"#{title}"%"
+		user u,blog b,article a
+		where b.blog_id = a.blog_id and
+		b.user_id = u.user_id and b.title like "%"#{title}"%"
 		order by b.create_at desc
 	</select>
 

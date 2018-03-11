@@ -20,7 +20,9 @@ public class TagServiceImpl implements TagService{
 
 	@Override
 	public int addTagAndReturnId(Tag tag) {
-		tag.setType("1");
+		if(tag.getType() == null) {
+			tag.setType("1");
+		}
 		return tagMapper.insertTag(tag);
 	}
 

@@ -28,7 +28,7 @@ div.style p a{
 
 div.style p a:focus, a:hover{
 	color: #000000 ;
-	text-decoration: underline  !important
+	text-decoration: underline  !important;
 }
 
 
@@ -112,7 +112,7 @@ background-color: #ffffff;
 }
 .mb-4 img{
 	max-width:600px;
-	max-height:300px;
+	/* max-height:300px; */
 }
 .btn-following{
 	color: #85888a;
@@ -120,4 +120,7 @@ background-color: #ffffff;
 }
 .body-color{
 	background-color: #eeeeee;
+}
+.panel-body {
+    padding: 5px  !important;
 }

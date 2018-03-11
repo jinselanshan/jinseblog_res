@@ -95,8 +95,8 @@ public class UserServiceImpl implements UserService{
 		
 		for (UserClasses user : userClassesList) {
 			UserFollowing userFollowing = new UserFollowing();
-			userFollowing.setUserId(SpringUtil.getCurrentUser().getUserId());
-			userFollowing.setFollowingId(user.getUserId());
+			userFollowing.setUserId(user.getUserId());
+			userFollowing.setFollowingId(SpringUtil.getCurrentUser().getUserId());
 			int count = followingService.findFollowingByFollowingId(userFollowing);
 			if(count == 1) {
 				user.setIsfollowing(1);

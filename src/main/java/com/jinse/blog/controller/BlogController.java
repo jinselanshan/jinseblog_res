@@ -61,49 +61,57 @@ public class BlogController {
 	private ArticleService articleService;
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public ModelAndView findIndex(@RequestParam("selectType") String selectType,@RequestParam("content") String content, Model model, HttpServletRequest request)
-			throws Exception {
+	public ModelAndView findIndex(@RequestParam("selectType") String selectType,
+			@RequestParam("content") String content, Model model, HttpServletRequest request) throws Exception {
 		logger.info("进入搜索");
 		ModelAndView modelAndView = new ModelAndView();
-		
+
 		List<Blog> blogList = new ArrayList<Blog>();
-		
-		
-		if(selectType != null && !selectType.equals("")){
-			modelAndView.addObject("selectType",selectType);
-			
-			if(selectType.equals("photo")){
-				blogList = blogService.findBlogListByTitle(content,"1");
+		if (content != null && content.length() > 0) {
+			content = new String(content.getBytes("iso-8859-1"), "utf-8");
+		}
+
+		if (selectType != null && !selectType.equals("")) {
+			modelAndView.addObject("selectType", selectType);
+
+			if (selectType.equals("photo")) {
+				blogList = blogService.findBlogListByTitle(content, "1");
 				modelAndView.setViewName("search/photolist");
-				
-			}else if(selectType.equals("painting")){
-				blogList = blogService.findBlogListByTitle(content,"2");
-				modelAndView.setViewName("search/paintinglist");
-			}else if(selectType.equals("article")){
-				blogList = blogService.findArticleListByTitle(content);
-				List<User> userList = blogService.findArticleListByUserAndTitle(content);
-				modelAndView.setViewName("search/articlelist");
-			}else if(selectType.equals("video")){
+
+			} else if (selectType.equals("painting")) {
+				blogList = blogService.findBlogListByTitle(content, "2");
+				modelAndView.setViewName("search/photolist");
+			} else if (selectType.equals("video")) {
 				blogList = blogService.findVideoListByTitle(content);
 				modelAndView.setViewName("search/articlelist");
-			}else if(selectType.equals("username")){
+			}
+
+			else if (selectType.equals("article")) {
+				// blogList = blogService.findArticleListByTitle(content);
+				List<User> userList = blogService.findArticleListByUserAndTitle(content);
+				modelAndView.addObject("userList", userList);
+				modelAndView.setViewName("search/articlelist");
+				return modelAndView;
+
+			} else if (selectType.equals("username")) {
 				List<UserClasses> userList = userService.findUserListByUsername(content);
-				modelAndView.addObject("userList",userList);
-				
+				modelAndView.addObject("userList", userList);
 				modelAndView.setViewName("search/userlist");
 				return modelAndView;
-				
-			}/*else if(selectType.equals("tag")){
-				
-			}*/else {
+
+			} /*
+				 * else if(selectType.equals("tag")){
+				 * 
+				 * }
+				 */else {
 				modelAndView.setViewName("photo/photoInfor");
 			}
-			
+
 		}
-		if(blogList!=null) {
-			modelAndView.addObject("blogList",blogList);
+		if (blogList != null) {
+			modelAndView.addObject("blogList", blogList);
 		}
-		
+
 		return modelAndView;
 	}
 

@@ -62,6 +62,8 @@ public class PictureController {
 	private LikeifService likeifService;
 	@Autowired
 	private ProvinceService provinceService;
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping(value = "/uploadPicture", method = RequestMethod.POST)
 	public String uploadPicture(Model model, HttpServletRequest request, Blog blog,String type,
@@ -93,6 +95,7 @@ public class PictureController {
 				if(tag == null) {
 					tag = new Tag();
 					tag.setTagName(tagName);
+					tag.setType(type);
 					int count = tagService.addTagAndReturnId(tag);
 					logger.info("插入标签数" + count);
 				}
@@ -164,6 +167,10 @@ public class PictureController {
 	public String otherPhotoes(@PathVariable("userId") Integer userId, Model model, HttpServletRequest request, User user) throws Exception {
 		user = pictureService.findAllPictureByUserId(userId);
 
+		if(user == null) {
+			logger.info("用户没有发布任何博客");
+			user= userService.findUserByUserId(userId);
+		}
 		model.addAttribute("user", user);
 		return "home/userpage";
 	}

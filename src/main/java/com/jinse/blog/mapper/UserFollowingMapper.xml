@@ -219,4 +219,5 @@
 		select count(*) from user_following where user_id =
 		#{userId} and following_id = #{followingId}
 	</select>
+
 </mapper>

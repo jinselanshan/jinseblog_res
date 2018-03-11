@@ -3,6 +3,7 @@ package com.jinse.blog.service;
 import java.util.List;
 
 import com.jinse.blog.pojo.User;
+import com.jinse.blog.pojo.UserClasses;
 import com.jinse.blog.pojo.UserFollowing;
 
 public interface FollowingService {
@@ -16,4 +17,8 @@ public interface FollowingService {
 	int saveFollowing(UserFollowing userFollowing);
 
 	List<User> findAllFollowing(Integer userId);
+
+	List<UserClasses> findAllFollowingByUserId(Integer userId);
+
+	List<UserClasses> findAllFollowerByUserId(Integer userId);
 }

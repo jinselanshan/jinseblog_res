@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jinse.blog.pojo.User;
+import com.jinse.blog.pojo.UserClasses;
 import com.jinse.blog.pojo.UserFollowing;
 import com.jinse.blog.service.FollowingService;
 import com.jinse.blog.service.UserService;
@@ -73,10 +74,22 @@ public class FollowingController {
 		return count == 1 ? 1 : null;
 	}
 	
+	
 	@RequestMapping(value = "/user/following/{userId}")
 	public String findAllFollowing(@PathVariable Integer userId, Model model, HttpServletRequest request, UserFollowing userFollowing) {
 		logger.info("找到所有的关注");
-		List<User> userList = followingService.findAllFollowing(userId);
+		List<UserClasses> userList = followingService.findAllFollowingByUserId(userId);
+		User user = userService.findUserByUserId(userId);
+		model.addAttribute("userList",userList);
+		model.addAttribute("user",user);
+		return "user/user_following";
+	}
+	
+	@RequestMapping(value = "/user/follower/{userId}")
+	public String findAllFollower(@PathVariable Integer userId, Model model, HttpServletRequest request, UserFollowing userFollowing) {
+		logger.info("找到所有的粉丝");
+		
+		List<UserClasses> userList = followingService.findAllFollowerByUserId(userId);
 		User user = userService.findUserByUserId(userId);
 		model.addAttribute("userList",userList);
 		model.addAttribute("user",user);

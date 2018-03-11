@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="home_header">
-<title>主页head</title>
+<head th:fragment="home_header(title,links)">
+<th:block th:replace="${title}" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
 <!-- 排版 -->
 <link rel="stylesheet" type="text/css" href="/jinseblog/static/css/foundation.min.css" />
@@ -15,6 +15,8 @@
 <link rel="stylesheet" type="text/css" href="/jinseblog/static/css/fileupload/fileinput.css" />
 <link rel="stylesheet" type="text/css" href="/jinseblog/static/css/fileupload/default.css" />
 
+ <th:block th:replace="${links}" />
+ 
 <script src="/jinseblog/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/jinseblog/static/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/jinseblog/static/jquery/following.js" type="text/javascript" charset="utf-8"></script>

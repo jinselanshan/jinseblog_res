@@ -59,21 +59,21 @@
 									rel="unlike" th:data-blog-id="${blog.blogId}"> </a> 
 								<span class="likeNumber" id="likeNumber" th:text="${blog.likeNumber}"
 									th:data-blog-id="${blog.blogId}"></span>
-									
+									<br/>
 								<a th:href="@{'/user/deleteBlog/' + ${blog.blogId}}"><input
-									type="hidden" id="deleteBtn" class="btn btn-default"
+									type="hidden" id="deleteBtn" class="btn btn-default btn-link btn-sm"
 									th:value="删除"></a>
+									
+									
 							</div>
 						</div>
 					</div>
 					<br />
 					<div class="card-footer text-muted">
 						<a href="#" th:each="tag : ${blog.tagList}"><span
-							class="label label-default" th:text="${tag.tagName}">哈尔滨</span></a>
-						<time
-							th:text="${#dates.format(blog.createAt, 'yyyy-MM-dd HH:mm')}">3分钟前</time>
+							class="label label-default" th:text="${tag.tagName}">标签</span></a>
+						<time th:text="${#dates.format(blog.createAt, 'yyyy-MM-dd HH:mm')}">3分钟前</time>
 					</div>
-
 				</div>
 				<br /> <img id="pictureUrl" th:src="${blog.picture.url}"
 					alt="Cinque Terre" class="img center-block" />

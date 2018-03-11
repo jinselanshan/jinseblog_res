@@ -24,6 +24,8 @@ $(function() {
 			<!-- Blog Post -->
 			<br />
 			<div class="card mb-4 panel-body panel inforDiv" style="background-color: #eeeeee;">
+			<input type="hidden" name="blogId" id="blogId"
+							th:value="${blog.blogId}">
 				<h2 th:text="${blog.title}">WRITE ARTICLE</h2>
 				<!-- <div id="content" th:text="${blog.article.content}"></div> -->
 				<div id="content2"></div>

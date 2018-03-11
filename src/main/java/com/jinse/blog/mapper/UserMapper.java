@@ -47,8 +47,10 @@ public interface UserMapper {
 
 	int insertUser(User user);
 
-	List<User> findAllFollowing(Integer userId);
+	List<User> findAllFollowingByUserId(Integer userId);
 
 	List<User> findUserListByUsername(String username);
+
+	List<User> findAllFollowerByUserId(Integer userId);
 
 }
