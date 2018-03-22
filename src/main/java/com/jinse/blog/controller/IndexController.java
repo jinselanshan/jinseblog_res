@@ -7,7 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jinse.blog.pojo.Tag;
+import com.jinse.blog.pojo.User;
 import com.jinse.blog.service.TagService;
+import com.jinse.blog.utils.SpringUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +36,8 @@ public class IndexController {
     public String uploadPhoto(Model model) {
     	logger.info("进入上传照片界面");
     	List<Tag> tagList = tagService.findTagListByCount("1");
+    	User user = SpringUtil.getCurrentUser();
+    	//List<Tag> tagList = tagService.findTagListByCountAndUser("1");
     	model.addAttribute("tagList", tagList);
     	model.addAttribute("type", "1");
         return "upload/picture";

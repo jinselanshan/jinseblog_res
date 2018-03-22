@@ -24,7 +24,7 @@
 						th:each="blog : ${blogList}">
 						<a th:href="@{'/blog/' + ${blog.blogId}}"><img
 							th:src="${blog.picture.url}" alt="Cinque Terre"
-							class="img center-block indexImg" /></a><br/>
+							class="img center-block indeximg" /></a><br/>
 						<div class="card-body">
 							<div class="text-left">
 								<a th:href="@{'/otherPhotoes/' + ${blog.user.userId}}"><img
