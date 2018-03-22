@@ -29,6 +29,7 @@ import com.jinse.blog.pojo.Picture;
 import com.jinse.blog.pojo.Tag;
 import com.jinse.blog.pojo.User;
 import com.jinse.blog.pojo.UserAndInfor;
+import com.jinse.blog.pojo.UsersTag;
 import com.jinse.blog.service.BlogService;
 import com.jinse.blog.service.BlogTagService;
 import com.jinse.blog.service.CommentService;
@@ -37,6 +38,7 @@ import com.jinse.blog.service.PictureService;
 import com.jinse.blog.service.ProvinceService;
 import com.jinse.blog.service.TagService;
 import com.jinse.blog.service.UserService;
+import com.jinse.blog.service.UsersTagService;
 import com.jinse.blog.utils.BlogUtil;
 import com.jinse.blog.utils.ConstantsUtil;
 import com.jinse.blog.utils.InitBlog;
@@ -69,6 +71,8 @@ public class PictureController {
 	private ProvinceService provinceService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private UsersTagService usersTagService;
 
 	@RequestMapping(value = "/uploadPicture", method = RequestMethod.POST)
 	public String uploadPicture(Model model, HttpServletRequest request, @Valid Blog blog, BindingResult bindingResult,
@@ -93,7 +97,27 @@ public class PictureController {
 		int blogId = blog.getBlogId();
 		System.out.println(blogId);
 
+		Integer userId = SpringUtil.getCurrentUser().getUserId();
 		// 处理tag
+		insertTagMapper(tagStr,type,blogId,userId);
+		
+
+		// 保存picture
+		Picture picture = blog.getPicture();
+		picture.setBlogId(blogId);
+		picture.setType(type);
+		pictureService.savePicture(picture);
+
+		// 上传到七牛云
+		SavePicture.savaPic(picture, pictureFile);
+		// 更新url
+		pictureService.updateUrlByPictureId(picture);
+		return "redirect:indexPhoto/" + type;
+	}
+
+
+
+	private void insertTagMapper(String tagStr, String type, int blogId, Integer userId) {
 		if (tagStr != null && !tagStr.trim().equals("")) {
 			String[] tagArray = tagStr.trim().split(" ");
 			for (String tagName : tagArray) {
@@ -112,21 +136,17 @@ public class PictureController {
 				blogTag.setTagId(tagId);
 				int count = blogTagService.addBlogTag(blogTag);
 				logger.info("插入关系数" + count);
+				
+				UsersTag usersTag = new UsersTag();
+				usersTag.setTagId(tagId);
+				usersTag.setUserId(userId);
+				int count2 = usersTagService.addUsersTag(usersTag);
+				logger.info("插入关系数" + count2);
 			}
 		}
-
-		// 保存picture
-		Picture picture = blog.getPicture();
-		picture.setBlogId(blogId);
-		picture.setType(type);
-		pictureService.savePicture(picture);
-
-		// 上传到七牛云
-		SavePicture.savaPic(picture, pictureFile);
-		// 更新url
-		pictureService.updateUrlByPictureId(picture);
-		return "redirect:indexPhoto/" + type;
 	}
+
+
 
 	@RequestMapping(value = "/indexPhoto/{type}")
 	public String indexPhoto(Model model, HttpServletRequest request, @PathVariable("type") String type)

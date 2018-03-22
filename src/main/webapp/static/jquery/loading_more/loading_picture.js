@@ -10,13 +10,16 @@ $(function(){
 	var p=0,t=0;
 	$(window).on("scroll",function(mousev){
 		 
-		setTimeout(function(){
-			$(".ck").html("<img src='/jinseblog/static/img/loading.gif'>")//延迟一秒钟后将加载按钮改成gif加载样式
-		},1000)
-		 p = $(this).scrollTop(); 
-		 if(t>=p){//上滚  
+		p = $(this).scrollTop(); 
+		if(t>=p){//上滚  
             return;  
         } 
+		ajax();
+	})
+	$('.ck').on("click",function(){
+		ajax();
+	})
+	function ajax(){
 		var $count=$("a[name=blogId]").length,// 每滚动一次获取当前ul中的li数量
 		$winH=$(window).height(),
 		$scrollTop=$(window).scrollTop(),
@@ -40,6 +43,10 @@ $(function(){
 					"userId" : userId
 				},
 				success:function(data){// 后台传回数据是json对象格式,用.方法调用
+					if(data == null || data.length == 0){
+						$(".ck").html("已全部加载");
+						return false;
+					}
 					onsucess(data);
 				},
 				error:function(){
@@ -47,14 +54,18 @@ $(function(){
 				}
 			})
 		}
-	})
-	
+	}
 	function onsucess(data){
+		
 		setTimeout(function(){
-		/*	if(data.length === 0){
-				$(".ck").html("已无更多博客")
+		   /*if(data.length === 0){
+				$(".ck").html("已无更多博客");
+				return;
 			}*/
 			$(".ck").html("加载更多");
+			setTimeout(function(){
+				$(".ck").html("<img src='/jinseblog/static/img/loading.gif'>")//延迟一秒钟后将加载按钮改成gif加载样式
+			},1000)
 			$(".ck").data("loading",false)// 加载完成后将状态锁置为false，让下次点击可加载
 			// console.log($(".ck").data())
 			for(var i=0;i<data.length;i++){

@@ -126,6 +126,11 @@ background-color: #ffffff;
 }
 .ck img
 {
+	text-align:center;
 	width:20px;
 	height:20px;
+}
+.ck
+{
+	text-align:center;
 }

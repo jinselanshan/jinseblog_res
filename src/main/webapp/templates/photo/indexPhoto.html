@@ -79,7 +79,7 @@
 				<div class="row clearfix">
 					<div class="col-md-4 column style">
 						<p>
-							<a href="https://jinselanshan.tuchong.com/followers"
+							<a th:href="@{'/user/following/' + ${session.CURRENT_USER.userId}}"
 								th:text="${'关注'+session.CURRENT_USER.followingNumber}"
 								class="user_data">0<br /> <span>关注</span>
 							</a>
@@ -87,7 +87,7 @@
 					</div>
 					<div class="col-md-4 column">
 						<p>
-							<a href="https://jinselanshan.tuchong.com/followers"
+							<a th:href="@{'/user/follower/' + ${session.CURRENT_USER.userId}}"
 								th:text="${'粉丝'+session.CURRENT_USER.followerNumber}" class="">
 								0<br /> <span>粉丝</span>
 							</a>
@@ -99,9 +99,8 @@
 			<div class="  panel-body panel panel-default">
 				<label>订阅的标签</label>
 				<div>
-					<a href="https://tuchong.com/tags/人像" data-popover-type="tag"
-						data-popover-id="131" class="common-tag popover-action"
-						target="_blank">人像</a>
+					<a href="#" data-popover-type="tag" target="_blank" th:if="${session.CURRENT_USER.tagList != null}" th:each="tag : ${session.CURRENT_USER.tagList}">
+					<span class="label label-default"  th:text="${tag.tagName}">人像</span></a>
 				</div>
 			</div>
 			<!-- right -->

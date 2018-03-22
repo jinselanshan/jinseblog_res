@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.jinse.blog.mapper.TagMapper;
 import com.jinse.blog.pojo.Tag;
 import com.jinse.blog.service.TagService;
+import com.jinse.blog.vos.TagType;
 
 public class TagServiceImpl implements TagService{
 
@@ -29,6 +30,17 @@ public class TagServiceImpl implements TagService{
 	@Override
 	public List<Tag> findTagListByCount(String type) {
 		return tagMapper.findTagListByCount(type);
+	}
+
+	@Override
+	public Tag findTagByTagId(Integer tagId) {
+		return tagMapper.selectByPrimaryKey(tagId);
+	}
+
+	@Override
+	public List<TagType> findTableTagList() {
+		
+		return null;
 	}
 
 }

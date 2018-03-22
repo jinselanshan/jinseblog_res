@@ -27,4 +27,6 @@ public interface UsersTagMapper {
     int updateByPrimaryKeySelective(UsersTag record);
 
     int updateByPrimaryKey(UsersTag record);
+
+	List<UsersTag> findMaxTenUsersTagMapperByUserId(Integer userId);
 }
