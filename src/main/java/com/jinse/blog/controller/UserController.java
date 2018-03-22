@@ -28,6 +28,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.jinse.blog.pojo.User;
 import com.jinse.blog.pojo.UserAndInfor;
+
+import com.jinse.blog.pojo.UserClasses;
 import com.jinse.blog.service.PictureService;
 import com.jinse.blog.service.ProvinceService;
 import com.jinse.blog.service.UserService;
@@ -107,7 +109,7 @@ public class UserController {
 			fieldErrors.put("exception", "login.login.error");
 		}
 		if (loginSuccess) {
-			User sessionUser = userService.findByUser(user);
+			UserClasses sessionUser = userService.findByUser(user);
 			SpringUtil.setSession(ConstantsUtil.STRING_CURRENT_USER, sessionUser);
 			SpringUtil.setSession(ConstantsUtil.STRING_USER_NAME, sessionUser.getUsername());
 

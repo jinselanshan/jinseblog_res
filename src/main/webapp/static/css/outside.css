@@ -110,12 +110,9 @@ background-color: #ffffff;
 .marginbox{
 	float:none   !important;
 }
-.mb-4 .indeximg{
+.mb-4 img{
 	max-width:600px;
-	max-height:300px;
-}
-.mb-4 .imginfor{
-	max-width:600px;
+	/* max-height:300px; */
 }
 .btn-following{
 	color: #85888a;
@@ -126,4 +123,14 @@ background-color: #ffffff;
 }
 .panel-body {
     padding: 5px  !important;
+}
+.ck img
+{
+	text-align:center;
+	width:20px;
+	height:20px;
+}
+.ck
+{
+	text-align:center;
 }

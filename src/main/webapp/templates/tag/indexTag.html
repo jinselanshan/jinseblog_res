@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="htmlHead :: common_header(~{::title},~{})">
+<title>关注</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/tags_3c.css}" />
+</head>
+<div></div>
+<body style="background-color: #eeeeee;">
+
+	<header th:replace="nav :: nav"></header>
+	<!-- content-->
+	<div class="container">
+		<div class="page-content">
+			<div class="row-group">
+				<div class="row-title">
+					<h2 class="text-linear">题材</h2>
+				</div>
+
+				<ul class="row-content tags-list">
+					<li class="tag-square-base"><a
+						href="https://tuchong.com/tags/%E9%A3%8E%E5%85%89/" title="风光"
+						target="_blank"> <img class="lazy-load" alt="风光"
+							style="background-color: #999999;" data-lazy-type="image"
+							src="Capture.PNG" /> <span class="tag-title">风光</span>
+					</a></li>
+			</div>
+		</div>
+	</div>
+
+
+	<p class="ck" href="#">加载更多</p>
+</body>
+</html>

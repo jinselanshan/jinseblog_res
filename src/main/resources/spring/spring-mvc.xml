@@ -127,4 +127,23 @@
 		class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
 		<property name="securityManager" ref="securityManager" />
 	</bean>
+	
+	  <!-- 未认证或未授权时跳转必须在springmvc里面配，spring-shiro里的shirofilter配不生效 -->
+<!--     <bean
+        class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                表示捕获的异常
+                <prop key="org.apache.shiro.authz.UnauthorizedException">
+                    捕获该异常时跳转的路径
+                    /error/unauthorized
+                </prop>
+                表示捕获的异常
+                <prop key="org.apache.shiro.authz.UnauthenticatedException">
+                    捕获该异常时跳转的路径
+                    /error/unauthorized
+                </prop>
+            </props>
+        </property>
+    </bean> -->
 </beans>

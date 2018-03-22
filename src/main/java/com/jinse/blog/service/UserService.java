@@ -10,7 +10,7 @@ public interface UserService {
 
 	int saveUserAndReturnId(User user);
 
-	User findByUser(User user);
+	UserClasses findByUser(User user);
 
 	User findUserByUsername(String username);
 

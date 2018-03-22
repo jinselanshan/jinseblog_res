@@ -113,20 +113,23 @@
 
 
 
-	<select id="findPhotoListByUserIdAndType" parameterType="Map"
+
+	<select id="findPhotoListByUserIdAndType" parameterType="com.jinse.blog.vos.BlogVO"
 		resultMap="BlogWithUserWithPictureResult">
-		SELECT b.*,p.url,u.*
+		SELECT b.*,p.url,p.type,u.*
 		from user u,blog b,picture p
 		where
-		b.user_id = u.user_id and p.blog_id = b.blog_id and p.type = #{type} and
+		b.user_id = u.user_id and p.blog_id = b.blog_id and p.type = #{type}
+		and
 		b.blog_id in
 		(SELECT blog.blog_id
 		from blog
-		where blog.user_id in (SELECT
+		where blog.user_id in
+		(SELECT
 		uf.following_id from user_following uf where
 		uf.user_id =
-		#{userId,jdbcType=INTEGER}))
-		order by b.create_at desc
+		#{userId,jdbcType=INTEGER})) order by b.create_at desc limit
+		#{start},#{length}
 	</select>
 
 	<select id="findPhotoListByTitle" parameterType="string"

@@ -32,6 +32,7 @@
 			<artifactId>core</artifactId>
 			<version>3.3.0</version>
 		</dependency>
+
 		<!-- shiro -->
 		<dependency>
 			<groupId>com.github.theborakompanioni</groupId>

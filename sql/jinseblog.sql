@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50096
 File Encoding         : 65001
 
-Date: 2018-02-27 20:29:03
+Date: 2018-03-22 22:28:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,16 +22,23 @@ DROP TABLE IF EXISTS `article`;
 CREATE TABLE `article` (
   `article_id` int(8) NOT NULL auto_increment,
   `blog_id` int(8) default NULL,
-  `content` varchar(2000) default NULL,
+  `content` longtext,
   `url` varchar(500) default NULL,
   PRIMARY KEY  (`article_id`),
   KEY `ARTICLE_BLOG_FORKEY` (`blog_id`),
-  CONSTRAINT `ARTICLE_BLOG_FORKEY` FOREIGN KEY (`blog_id`) REFERENCES `blog` (`blog_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `ARTICLE_BLOG_FORKEY` FOREIGN KEY (`blog_id`) REFERENCES `blog` (`blog_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of article
 -- ----------------------------
+INSERT INTO `article` VALUES ('1', '156', '<p>&lt;parent&gt;<br>    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;<br>    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;<br>    &lt;version&gt;1.3.6.RELEASE&lt;/version&gt;<br>  &lt;/parent&gt;\r\n\r\n</p>\r\n<p>  &lt;dependencies&gt;<br>    &lt;dependency&gt;<br>      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;<br>      &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;<br>    &lt;/dependency&gt;<br>  &lt;/dependencies&gt;\r\n\r\n</p>\r\n<p>链接：<a href=\"https://www.jianshu.com/p/36c3ae042d09\">https://www.jianshu.com/p/36c3ae042d09</a></p>', null);
+INSERT INTO `article` VALUES ('2', '157', '', null);
+INSERT INTO `article` VALUES ('3', '158', '<p>&lt;parent&gt;<br>    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;<br>    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;<br>    &lt;version&gt;1.3.6.RELEASE&lt;/version&gt;<br>  &lt;/parent&gt;\r\n\r\n</p>\r\n<p>作者：<em>流浪的猫</em><br>链接：<a href=\"https://www.jianshu.com/p/36c3ae042d09\">https://www.jianshu.com/p/36c3ae042d09</a><br>來源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>', null);
+INSERT INTO `article` VALUES ('4', '179', '<p>　 &lt;script src=&quot;~/Scripts/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;</p>\r\n<pre><code>&lt;script src=&quot;~/Content/bootstrap/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;\r\n&lt;link href=&quot;~/Content/bootstrap/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; /&gt;\r\n\r\n&lt;script src=&quot;~/Content/bootstrapValidator/js/bootstrapValidator.min.js&quot;&gt;&lt;/script&gt;\r\n&lt;link href=&quot;~/Content/bootstrapValidator/css/bootstrapValidator.min.css&quot; rel=&quot;stylesheet&quot; /&gt;\r\n</code></pre>', null);
+INSERT INTO `article` VALUES ('5', '180', '<p>作者：欲眼熊猫<br>链接：<a href=\"https://www.zhihu.com/question/24863332/answer/48376158\">https://www.zhihu.com/question/24863332/answer/48376158</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>\r\n<p>面向切面编程（AOP是Aspect Oriented Program的首字母缩写） ，我们知道，面向对象的特点是继承、多态和封装。而封装就要求将功能分散到不同的对象中去，这在软件设计中往往称为职责分配。实际上也就是说，让不同的类设计不同的方法。这样代码就分散到一个个的类中去了。这样做的好处是降低了代码的复杂程度，使类可重用。      但是人们也发现，在分散代码的同时，也增加了代码的重复性。什么意思呢？比如说，我们在两个类中，可能都需要在每个方法中做日志。按面向对象的设计方法，我们就必须在两个类的方法中都加入日志的内容。也许他们是完全相同的，但就是因为面向对象的设计让类与类之间无法联系，而不能将这些重复的代码统一起来。    也许有人会说，那好办啊，我们可以将这段代码写在一个独立的类独立的方法里，然后再在这两个类中调用。但是，这样一来，这两个类跟我们上面提到的独立的类就有耦合了，它的改变会影响这两个类。那么，有没有什么办法，能让我们在需要的时候，随意地加入代码呢？这种在运行时，动态地将代码切入到类的指定方法、指定位置上的编程思想就是面向切面的编程。       一般而言，我们管切入到指定类指定方法的代码片段称为切面，而切入到哪些类、哪些方法则叫切入点。有了AOP，我们就可以把几个类共有的代码，抽取到一个切片中，等到需要时再切入对象中去，从而改变其原有的行为。这样看来，AOP其实只是OOP的补充而已。OOP从横向上区分出一个个的类来，而AOP则从纵向上向对象中加入特定的代码。有了AOP，OOP变得立体了。如果加上时间维度，AOP使OOP由原来的二维变为三维了，由平面变成立体了。从技术上来说，AOP基本上是通过代理机制实现的。      AOP在编程历史上可以说是里程碑式的，对OOP编程是一种十分有益的补充。</p>', null);
+INSERT INTO `article` VALUES ('6', '181', '<p>作者：Kangol LI<br>链接：<a href=\"https://www.zhihu.com/question/33397871/answer/56666753\">https://www.zhihu.com/question/33397871/answer/56666753</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>\r\n<pre><code>泄妖问题我改了一下，因为Java和设计模式之间没有必然联系。设计模式是针对软件设计来说的，而Java只是一种语言。当你询问什么时候学习设计模式的时候，首先要知道它有什么卵用。\r\n我不知道教科书是怎么说的，就我的实践经验来说，设计模式就是为了：1) 可扩展性 2) 接口易用性。具体为什么这么说已经超出了这个问题的范畴，有机会再细说。当然不排除还有其他的卵用，由于人生二卵，其他的我还没有总结出来。如果假设前面两条是正确的（如果不明白什么是可扩展性，请自行翻墙Google，而接口易用性是我自己乱造的名词，应该也比较直观吧），那么答案就简单了。当你在学习编程基础的时候，比如：循环怎么写、递归怎么写、变量的作用域是什么等，可以基本无视设计模式。当你写程序的目的是自己琢磨技术，或者是尝试解决一个问题时，可以基本无视设计模式。\r\n当你和别人一起写一个程序，并且调用别人的代码时，请学好设计模式。因为此时你的同事可能使用了某些设计模式，而你如果不懂，很可能会破坏原有的设计而被灭口。当你和别人一起写一个程序，你的代码需要给别人使用的时候，请成为设计模式的大师。如果你给别人的代码别人不会用，除非那人完全不够格，否则是你的错。如果你的代码不能很好地适应新的需求，即：三天两头改接口（你改了，别人用你的，别人都得改），那还是你的错。请对号入座。\r\n</code></pre>', null);
+INSERT INTO `article` VALUES ('7', '182', '<p>余博伦<br>链接：<a href=\"https://zhuanlan.zhihu.com/p/21472801?refer=icode\">https://zhuanlan.zhihu.com/p/21472801?refer=icode</a><br>简介</p>\r\n<p>Bootstrap是Twitter推出的一个用于前端开发的开源工具包。它由Twitter的设计师Mark Otto和Jacob Thornton合作开发，是一个CSS/HTML框架。阅读更多有关bootstrap</p>\r\n<p>前端框架这个名词并不能直观地描述bootstrap的具体内容，它其实就是包含扁平化设计ui+响应式栅格系统+css样式+基本html组件+js组件+其他实用工具在内的一个前端工具集合。</p>\r\n<p>使用入门</p>\r\n<p>想要学会使用boostrap第一步当然是阅读它的文档，文档分为四个主要部分：</p>\r\n<p>起步</p>\r\n<p>这里介绍了如何在你的网页中引入并开始使用bootstrap，安装bootstrap有很多种方法，初学者只需要记住下面这种最基本的方式就好，如果你联网很方便，可以直接使用CDN链接，如果需要离线使用，也可以下载bootstrap到本地并把地址替换成你的本地路径啦。</p>\r\n<p>&lt;!-- 新 Bootstrap 核心 CSS 文件 --&gt;\r\n</p>\r\n<p>&lt;link rel=&quot;stylesheet&quot; href=&quot;//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css&quot;&gt;\r\n\r\n</p>\r\n<p>&lt;!-- 可选的Bootstrap主题文件（一般不用引入） --&gt;\r\n</p>\r\n<p>&lt;link rel=&quot;stylesheet&quot; href=&quot;//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css&quot;&gt;\r\n\r\n</p>\r\n<p>&lt;!-- jQuery文件。务必在bootstrap.min.js 之前引入 --&gt;\r\n</p>\r\n<p>&lt;script src=&quot;//cdn.bootcss.com/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;\r\n\r\n</p>\r\n<p>&lt;!-- 最新的 Bootstrap 核心 JavaScript 文件 --&gt;\r\n</p>\r\n<p>&lt;script src=&quot;//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;<br>起步里还提供了一个很有用的基本模版：</p>\r\n<p>&lt;!DOCTYPE html&gt;</p>\r\n<p>&lt;html lang=&quot;zh-CN&quot;&gt;<br>  &lt;head&gt;<br>    &lt;meta charset=&quot;utf-8&quot;&gt;<br>    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;<br>    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;<br>    &lt;!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ --&gt;<br>    &lt;title&gt;Bootstrap 101 Template&lt;/title&gt;</p>\r\n<pre><code>&lt;!-- Bootstrap --&gt;\r\n&lt;link href=&quot;//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;\r\n\r\n&lt;!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries --&gt;\r\n&lt;!-- WARNING: Respond.js doesn&#39;t work if you view the page via file:// --&gt;\r\n&lt;!--[if lt IE 9]&gt;\r\n  &lt;script src=&quot;//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js&quot;&gt;&lt;/script&gt;\r\n  &lt;script src=&quot;//cdn.bootcss.com/respond.js/1.4.2/respond.min.js&quot;&gt;&lt;/script&gt;\r\n&lt;![endif]--&gt;\r\n</code></pre><p>  &lt;/head&gt;<br>  &lt;body&gt;<br>    &lt;h1&gt;你好，世界！&lt;/h1&gt;</p>\r\n<pre><code>&lt;!-- jQuery (necessary for Bootstrap&#39;s JavaScript plugins) --&gt;\r\n&lt;script src=&quot;//cdn.bootcss.com/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;\r\n&lt;!-- Include all compiled plugins (below), or include individual files as needed --&gt;\r\n&lt;script src=&quot;//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;\r\n</code></pre><p>  &lt;/body&gt;<br>&lt;/html&gt;<br>如果我们想要以最快的速度开始使用，直接复制这一段代码就可以开始啦。在页面的顶部引入css底部引入js是编写html的基本常识，这样可以保证页面最自然地载入。</p>\r\n<p>同样它还很贴心地提供了一些例如带导航栏的页面、着陆页、控制台、登录页等最常用的页面模版，这些代码你也可以直接复制使用袄。</p>', null);
 
 -- ----------------------------
 -- Table structure for `blog`
@@ -39,8 +46,8 @@ CREATE TABLE `article` (
 DROP TABLE IF EXISTS `blog`;
 CREATE TABLE `blog` (
   `blog_id` int(8) NOT NULL auto_increment,
-  `title` varchar(20) default NULL,
-  `description` varchar(300) default NULL,
+  `title` varchar(500) default NULL,
+  `description` varchar(500) default NULL,
   `tag` varchar(60) default NULL,
   `score` double(3,1) default '0.0',
   `like_number` int(8) default '0',
@@ -51,12 +58,11 @@ CREATE TABLE `blog` (
   PRIMARY KEY  (`blog_id`),
   KEY `BLOG_USER_FORKEY` (`user_id`),
   CONSTRAINT `BLOG_USER_FORKEY` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=164 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of blog
 -- ----------------------------
-INSERT INTO `blog` VALUES ('100', '主题', '12', '12', '0.0', '0', '100', '2018-01-09 10:31:11', '0', 'N');
 INSERT INTO `blog` VALUES ('135', 'telep', 'telep', 'telep', '0.0', '2', '106', '2018-02-04 21:05:49', '0', 'N');
 INSERT INTO `blog` VALUES ('136', '叶子', '叶子', '绿色', '0.0', '1', '106', '2018-02-04 21:06:58', '0', 'N');
 INSERT INTO `blog` VALUES ('137', '文章', '作者', '灰色', '0.0', '2', '106', '2018-02-04 21:07:14', '4', 'N');
@@ -64,10 +70,42 @@ INSERT INTO `blog` VALUES ('138', '树', '秋天', '秋天', '0.0', '0', '107', 
 INSERT INTO `blog` VALUES ('139', '光', '光', '光', '0.0', '0', '107', '2018-02-04 21:08:36', '0', 'N');
 INSERT INTO `blog` VALUES ('152', '墙壁', '花墙', '666', '0.0', '0', '107', '2018-02-20 12:40:26', '2', 'N');
 INSERT INTO `blog` VALUES ('153', '时钟', '时钟', '时钟 哈尔滨 时钟', '0.0', '1', '115', '2018-02-22 18:31:10', '0', 'N');
-INSERT INTO `blog` VALUES ('154', '墙壁', '灰色', '建筑', '0.0', '0', '100', '2018-02-24 23:20:07', '0', 'N');
-INSERT INTO `blog` VALUES ('155', '校园', '胶片', '胶片 校园', '0.0', '1', '100', '2018-02-24 23:20:45', '1', 'N');
-INSERT INTO `blog` VALUES ('162', null, null, null, null, null, '100', null, null, null);
-INSERT INTO `blog` VALUES ('163', null, null, null, null, null, '100', null, null, null);
+INSERT INTO `blog` VALUES ('154', '墙壁', '灰色', '建筑', '0.0', '1', '100', '2018-02-24 23:20:07', '1', 'N');
+INSERT INTO `blog` VALUES ('155', '校园', '胶片', '胶片 校园', '0.0', '2', '100', '2018-02-24 23:20:45', '1', 'N');
+INSERT INTO `blog` VALUES ('156', 'spring boot Thymeleaf', null, null, '0.0', '0', '100', '2018-03-10 09:15:53', '0', 'N');
+INSERT INTO `blog` VALUES ('157', '1', null, null, '0.0', '0', '100', '2018-03-10 09:17:13', '0', 'N');
+INSERT INTO `blog` VALUES ('158', '1', null, null, '0.0', '0', '100', '2018-03-10 09:18:48', '0', 'N');
+INSERT INTO `blog` VALUES ('162', '人', '', '自行车 黑白 暗黑', '0.0', '1', '100', '2018-03-10 09:30:04', '1', 'N');
+INSERT INTO `blog` VALUES ('163', '打包', '', null, '0.0', '1', '100', '2018-03-10 09:32:48', '1', 'N');
+INSERT INTO `blog` VALUES ('165', '云', '', '云朵 蓝天', '0.0', '0', '100', '2018-03-10 13:40:06', '3', 'N');
+INSERT INTO `blog` VALUES ('166', '黄昏', '', null, '0.0', '0', '100', '2018-03-10 15:15:01', '0', 'N');
+INSERT INTO `blog` VALUES ('167', '雨伞', '', null, '0.0', '0', '100', '2018-03-10 20:15:13', '0', 'N');
+INSERT INTO `blog` VALUES ('168', '雨伞', '', null, '0.0', '0', '100', '2018-03-10 20:15:51', '0', 'N');
+INSERT INTO `blog` VALUES ('169', '诶', '', null, '0.0', '0', '100', '2018-03-10 20:34:11', '0', 'N');
+INSERT INTO `blog` VALUES ('170', '海边', '', '清新', '0.0', '0', '100', '2018-03-11 08:07:52', '0', 'N');
+INSERT INTO `blog` VALUES ('171', '机甲', '', '机甲 战斗 红色 蓝眼 蒸汽 朋克', '0.0', '0', '100', '2018-03-11 08:16:29', '0', 'N');
+INSERT INTO `blog` VALUES ('172', '企鹅', '', '蓝天 企鹅 动物 可爱', '0.0', '0', '107', '2018-03-11 10:18:00', '1', 'N');
+INSERT INTO `blog` VALUES ('175', '巧克力', '', '情侣 浪漫', '0.0', '0', '108', '2018-03-11 11:12:06', '0', 'N');
+INSERT INTO `blog` VALUES ('178', '素描', '', '素描 风景 房间', '0.0', '0', '108', '2018-03-11 11:13:57', '0', 'N');
+INSERT INTO `blog` VALUES ('179', 'boostrapvalidator api', null, null, '0.0', '0', '108', '2018-03-11 14:11:10', '0', 'N');
+INSERT INTO `blog` VALUES ('180', '面向切面的编程', null, null, '0.0', '0', '108', '2018-03-11 14:11:49', '0', 'N');
+INSERT INTO `blog` VALUES ('181', '设计模式', null, null, '0.0', '0', '108', '2018-03-11 14:12:54', '0', 'N');
+INSERT INTO `blog` VALUES ('182', '有关Bootstrap你想要知道的都在这里', null, null, '0.0', '0', '108', '2018-03-11 14:14:21', '0', 'N');
+INSERT INTO `blog` VALUES ('184', '111', '', '素描素描素描素描素描素描素描', '0.0', '0', '100', '2018-03-17 22:36:11', '0', 'N');
+INSERT INTO `blog` VALUES ('185', '111', '', '素描素描素描素描素描素描素描', '0.0', '0', '100', '2018-03-17 22:36:14', '0', 'N');
+INSERT INTO `blog` VALUES ('186', '111', '', '素描素描素描素描素描素描素描', '0.0', '0', '100', '2018-03-17 22:36:17', '0', 'N');
+INSERT INTO `blog` VALUES ('187', '111', '1', '这是一个段落这是一个段落', '0.0', '0', '100', '2018-03-17 22:36:38', '0', 'N');
+INSERT INTO `blog` VALUES ('189', '骑士', '', '333的标签 骑士', '0.0', '0', '108', '2018-03-17 23:10:22', '0', 'N');
+INSERT INTO `blog` VALUES ('190', 'A', 'a', 'a', '0.0', '0', '100', '2018-03-18 12:25:05', '2', 'N');
+INSERT INTO `blog` VALUES ('191', '', '', 'faaaaaaaaaaaaaaaaaaaaaaaaaaaa', '0.0', '0', '100', '2018-03-18 12:25:14', '0', 'N');
+INSERT INTO `blog` VALUES ('193', '山', '', '蓝色 山 静谧 风景', '0.0', '0', '100', '2018-03-22 21:25:22', '0', 'N');
+INSERT INTO `blog` VALUES ('194', '口', '', '口 墙壁', '0.0', '0', '100', '2018-03-22 21:32:27', '0', 'N');
+INSERT INTO `blog` VALUES ('195', '你好', '', '小涴熊 麦当劳 可爱 动物', '0.0', '0', '100', '2018-03-22 21:38:49', '0', 'N');
+INSERT INTO `blog` VALUES ('196', '轮子', '', '轮子', '0.0', '0', '100', '2018-03-22 22:02:42', '0', 'N');
+INSERT INTO `blog` VALUES ('197', '火', '', '火', '0.0', '0', '100', '2018-03-22 22:03:02', '0', 'N');
+INSERT INTO `blog` VALUES ('198', '双人', '', '红色 双人 表情', '0.0', '0', '107', '2018-03-22 22:25:22', '0', 'N');
+INSERT INTO `blog` VALUES ('199', '黑色', '', '蓝色 山 轮子 动物 表情 小涴熊 风景 静谧 麦当劳 红色 黑色', '0.0', '0', '107', '2018-03-22 22:25:48', '0', 'N');
+INSERT INTO `blog` VALUES ('200', '黑色', '', '黑色', '0.0', '0', '107', '2018-03-22 22:26:07', '0', 'N');
 
 -- ----------------------------
 -- Table structure for `blog_tag`
@@ -78,7 +116,7 @@ CREATE TABLE `blog_tag` (
   `tag_id` int(8) NOT NULL,
   `blog_id` int(8) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of blog_tag
@@ -94,6 +132,62 @@ INSERT INTO `blog_tag` VALUES ('8', '6', '153');
 INSERT INTO `blog_tag` VALUES ('9', '8', '154');
 INSERT INTO `blog_tag` VALUES ('10', '9', '155');
 INSERT INTO `blog_tag` VALUES ('11', '10', '155');
+INSERT INTO `blog_tag` VALUES ('12', '11', '170');
+INSERT INTO `blog_tag` VALUES ('13', '12', '170');
+INSERT INTO `blog_tag` VALUES ('14', '6', '170');
+INSERT INTO `blog_tag` VALUES ('15', '13', '170');
+INSERT INTO `blog_tag` VALUES ('16', '6', '171');
+INSERT INTO `blog_tag` VALUES ('26', '13', '162');
+INSERT INTO `blog_tag` VALUES ('27', '12', '162');
+INSERT INTO `blog_tag` VALUES ('28', '11', '162');
+INSERT INTO `blog_tag` VALUES ('30', '14', '165');
+INSERT INTO `blog_tag` VALUES ('31', '3', '165');
+INSERT INTO `blog_tag` VALUES ('32', '15', '170');
+INSERT INTO `blog_tag` VALUES ('33', '16', '171');
+INSERT INTO `blog_tag` VALUES ('34', '17', '171');
+INSERT INTO `blog_tag` VALUES ('35', '18', '171');
+INSERT INTO `blog_tag` VALUES ('36', '19', '171');
+INSERT INTO `blog_tag` VALUES ('37', '20', '171');
+INSERT INTO `blog_tag` VALUES ('38', '21', '171');
+INSERT INTO `blog_tag` VALUES ('39', '3', '172');
+INSERT INTO `blog_tag` VALUES ('40', '22', '172');
+INSERT INTO `blog_tag` VALUES ('41', '23', '172');
+INSERT INTO `blog_tag` VALUES ('42', '24', '172');
+INSERT INTO `blog_tag` VALUES ('46', '27', '175');
+INSERT INTO `blog_tag` VALUES ('47', '28', '175');
+INSERT INTO `blog_tag` VALUES ('54', '29', '178');
+INSERT INTO `blog_tag` VALUES ('55', '30', '178');
+INSERT INTO `blog_tag` VALUES ('56', '31', '178');
+INSERT INTO `blog_tag` VALUES ('63', '38', '189');
+INSERT INTO `blog_tag` VALUES ('64', '39', '189');
+INSERT INTO `blog_tag` VALUES ('65', '40', '190');
+INSERT INTO `blog_tag` VALUES ('67', '42', '193');
+INSERT INTO `blog_tag` VALUES ('68', '43', '193');
+INSERT INTO `blog_tag` VALUES ('69', '44', '193');
+INSERT INTO `blog_tag` VALUES ('70', '30', '193');
+INSERT INTO `blog_tag` VALUES ('71', '45', '194');
+INSERT INTO `blog_tag` VALUES ('72', '2', '194');
+INSERT INTO `blog_tag` VALUES ('73', '46', '195');
+INSERT INTO `blog_tag` VALUES ('74', '47', '195');
+INSERT INTO `blog_tag` VALUES ('75', '24', '195');
+INSERT INTO `blog_tag` VALUES ('76', '23', '195');
+INSERT INTO `blog_tag` VALUES ('77', '48', '196');
+INSERT INTO `blog_tag` VALUES ('78', '49', '197');
+INSERT INTO `blog_tag` VALUES ('79', '18', '198');
+INSERT INTO `blog_tag` VALUES ('80', '50', '198');
+INSERT INTO `blog_tag` VALUES ('81', '51', '198');
+INSERT INTO `blog_tag` VALUES ('82', '42', '199');
+INSERT INTO `blog_tag` VALUES ('83', '43', '199');
+INSERT INTO `blog_tag` VALUES ('84', '48', '199');
+INSERT INTO `blog_tag` VALUES ('85', '23', '199');
+INSERT INTO `blog_tag` VALUES ('86', '51', '199');
+INSERT INTO `blog_tag` VALUES ('87', '46', '199');
+INSERT INTO `blog_tag` VALUES ('88', '30', '199');
+INSERT INTO `blog_tag` VALUES ('89', '44', '199');
+INSERT INTO `blog_tag` VALUES ('90', '47', '199');
+INSERT INTO `blog_tag` VALUES ('91', '18', '199');
+INSERT INTO `blog_tag` VALUES ('92', '52', '199');
+INSERT INTO `blog_tag` VALUES ('93', '52', '200');
 
 -- ----------------------------
 -- Table structure for `comment`
@@ -111,12 +205,11 @@ CREATE TABLE `comment` (
   KEY `COMMENT_USER_FORKEY` (`user_id`),
   CONSTRAINT `COMMENT_BLOG_FORKEY` FOREIGN KEY (`blog_id`) REFERENCES `blog` (`blog_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `COMMENT_USER_FORKEY` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=165 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=174 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of comment
 -- ----------------------------
-INSERT INTO `comment` VALUES ('122', '100', '2', '100', null, '2018-02-15 08:47:25');
 INSERT INTO `comment` VALUES ('152', '152', '456', '107', null, '2018-02-20 16:05:20');
 INSERT INTO `comment` VALUES ('153', '152', '213', '107', null, '2018-02-20 18:54:17');
 INSERT INTO `comment` VALUES ('156', '137', '234', '106', null, '2018-02-20 19:18:26');
@@ -124,6 +217,15 @@ INSERT INTO `comment` VALUES ('159', '137', '12312', '100', null, '2018-02-20 20
 INSERT INTO `comment` VALUES ('162', '137', '3', '100', null, '2018-02-20 20:13:33');
 INSERT INTO `comment` VALUES ('163', '137', '32', '106', null, '2018-02-21 14:01:56');
 INSERT INTO `comment` VALUES ('164', '155', '11', '100', null, '2018-02-24 23:21:07');
+INSERT INTO `comment` VALUES ('165', '163', '.', '100', null, '2018-03-10 13:38:03');
+INSERT INTO `comment` VALUES ('166', '162', '232', '109', null, '2018-03-11 10:30:38');
+INSERT INTO `comment` VALUES ('167', '154', '213', '109', null, '2018-03-11 10:30:46');
+INSERT INTO `comment` VALUES ('168', '172', '额', '108', null, '2018-03-11 11:10:49');
+INSERT INTO `comment` VALUES ('169', '165', '111', '100', null, '2018-03-18 12:25:31');
+INSERT INTO `comment` VALUES ('170', '165', '222', '100', null, '2018-03-18 12:25:35');
+INSERT INTO `comment` VALUES ('171', '165', '333', '100', null, '2018-03-18 12:25:40');
+INSERT INTO `comment` VALUES ('172', '190', '222', '107', null, '2018-03-18 12:26:13');
+INSERT INTO `comment` VALUES ('173', '190', '111', '100', null, '2018-03-18 12:26:33');
 
 -- ----------------------------
 -- Table structure for `likeif`
@@ -135,7 +237,7 @@ CREATE TABLE `likeif` (
   `blog_id` int(8) NOT NULL,
   `likeif` varchar(1) default NULL,
   PRIMARY KEY  (`likeif_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of likeif
@@ -143,9 +245,12 @@ CREATE TABLE `likeif` (
 INSERT INTO `likeif` VALUES ('10', '115', '153', null);
 INSERT INTO `likeif` VALUES ('56', '106', '135', null);
 INSERT INTO `likeif` VALUES ('62', '100', '135', null);
-INSERT INTO `likeif` VALUES ('63', '100', '137', null);
 INSERT INTO `likeif` VALUES ('80', '100', '145', null);
-INSERT INTO `likeif` VALUES ('82', '100', '155', null);
+INSERT INTO `likeif` VALUES ('89', '100', '154', null);
+INSERT INTO `likeif` VALUES ('104', '100', '155', null);
+INSERT INTO `likeif` VALUES ('105', '100', '163', null);
+INSERT INTO `likeif` VALUES ('108', '109', '162', null);
+INSERT INTO `likeif` VALUES ('109', '109', '155', null);
 
 -- ----------------------------
 -- Table structure for `permission`
@@ -179,12 +284,11 @@ CREATE TABLE `picture` (
   PRIMARY KEY  (`picture_id`),
   KEY `PICTURE_BLOG_FORKEY` (`blog_id`),
   CONSTRAINT `PICTURE_BLOG_FORKEY` FOREIGN KEY (`blog_id`) REFERENCES `blog` (`blog_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=192 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of picture
 -- ----------------------------
-INSERT INTO `picture` VALUES ('100', '100', '1', '1', 'Y', 'http://p1vkce34m.bkt.clouddn.com/image/jpg/picture/130');
 INSERT INTO `picture` VALUES ('131', '135', '1', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/131');
 INSERT INTO `picture` VALUES ('132', '136', '1', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/132');
 INSERT INTO `picture` VALUES ('133', '137', '1', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/133');
@@ -194,6 +298,28 @@ INSERT INTO `picture` VALUES ('148', '152', '1', null, null, 'http://p1vkce34m.b
 INSERT INTO `picture` VALUES ('149', '153', '1', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/149');
 INSERT INTO `picture` VALUES ('150', '154', '1', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/150');
 INSERT INTO `picture` VALUES ('151', '155', '1', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/151');
+INSERT INTO `picture` VALUES ('162', '162', '1', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/162');
+INSERT INTO `picture` VALUES ('163', '163', '1', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/163');
+INSERT INTO `picture` VALUES ('165', '165', '1', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/165');
+INSERT INTO `picture` VALUES ('166', '166', '2', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/166');
+INSERT INTO `picture` VALUES ('167', '167', '2', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/167');
+INSERT INTO `picture` VALUES ('168', '168', '2', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/168');
+INSERT INTO `picture` VALUES ('169', '169', '2', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/169');
+INSERT INTO `picture` VALUES ('170', '170', '2', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/170');
+INSERT INTO `picture` VALUES ('171', '171', '2', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/171');
+INSERT INTO `picture` VALUES ('172', '172', '2', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/172');
+INSERT INTO `picture` VALUES ('175', '175', '1', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/175');
+INSERT INTO `picture` VALUES ('178', '178', '2', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/178');
+INSERT INTO `picture` VALUES ('181', '189', '2', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/181');
+INSERT INTO `picture` VALUES ('182', '190', '2', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/182');
+INSERT INTO `picture` VALUES ('184', '193', '2', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/184');
+INSERT INTO `picture` VALUES ('185', '194', '1', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/185');
+INSERT INTO `picture` VALUES ('186', '195', '2', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/186');
+INSERT INTO `picture` VALUES ('187', '196', '2', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/187');
+INSERT INTO `picture` VALUES ('188', '197', '2', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/188');
+INSERT INTO `picture` VALUES ('189', '198', '2', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/189');
+INSERT INTO `picture` VALUES ('190', '199', '2', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/190');
+INSERT INTO `picture` VALUES ('191', '200', '2', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/191');
 
 -- ----------------------------
 -- Table structure for `province`
@@ -3821,7 +3947,7 @@ CREATE TABLE `tag` (
   `type` varchar(1) default NULL,
   PRIMARY KEY  (`tag_id`),
   UNIQUE KEY `tag_name_unique` (`tag_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tag
@@ -3836,6 +3962,48 @@ INSERT INTO `tag` VALUES ('7', '哈尔滨', '1');
 INSERT INTO `tag` VALUES ('8', '建筑', '1');
 INSERT INTO `tag` VALUES ('9', '胶片', '1');
 INSERT INTO `tag` VALUES ('10', '校园', '1');
+INSERT INTO `tag` VALUES ('11', '暗黑', '1');
+INSERT INTO `tag` VALUES ('12', '黑白', '1');
+INSERT INTO `tag` VALUES ('13', '自行车', '1');
+INSERT INTO `tag` VALUES ('14', '云朵', '1');
+INSERT INTO `tag` VALUES ('15', '清新', '1');
+INSERT INTO `tag` VALUES ('16', '机甲', '2');
+INSERT INTO `tag` VALUES ('17', '战斗', '2');
+INSERT INTO `tag` VALUES ('18', '红色', '2');
+INSERT INTO `tag` VALUES ('19', '蓝眼', '2');
+INSERT INTO `tag` VALUES ('20', '蒸汽', '2');
+INSERT INTO `tag` VALUES ('21', '朋克', '2');
+INSERT INTO `tag` VALUES ('22', '企鹅', '2');
+INSERT INTO `tag` VALUES ('23', '动物', '2');
+INSERT INTO `tag` VALUES ('24', '可爱', '2');
+INSERT INTO `tag` VALUES ('25', '站台', '1');
+INSERT INTO `tag` VALUES ('26', '黑夜', '1');
+INSERT INTO `tag` VALUES ('27', '情侣', '1');
+INSERT INTO `tag` VALUES ('28', '浪漫', '1');
+INSERT INTO `tag` VALUES ('29', '素描', '2');
+INSERT INTO `tag` VALUES ('30', '风景', '2');
+INSERT INTO `tag` VALUES ('31', '房间', '2');
+INSERT INTO `tag` VALUES ('32', '撒阿斯蒂芬', '2');
+INSERT INTO `tag` VALUES ('33', '爱', '2');
+INSERT INTO `tag` VALUES ('34', '', '2');
+INSERT INTO `tag` VALUES ('35', '迪生', '2');
+INSERT INTO `tag` VALUES ('36', '迪生迪生', '2');
+INSERT INTO `tag` VALUES ('37', '这是一个段落', '2');
+INSERT INTO `tag` VALUES ('38', '333的标签', '2');
+INSERT INTO `tag` VALUES ('39', '骑士', '2');
+INSERT INTO `tag` VALUES ('40', 'a', '2');
+INSERT INTO `tag` VALUES ('41', '车站', '1');
+INSERT INTO `tag` VALUES ('42', '蓝色', '2');
+INSERT INTO `tag` VALUES ('43', '山', '2');
+INSERT INTO `tag` VALUES ('44', '静谧', '2');
+INSERT INTO `tag` VALUES ('45', '口', '1');
+INSERT INTO `tag` VALUES ('46', '小涴熊', '2');
+INSERT INTO `tag` VALUES ('47', '麦当劳', '2');
+INSERT INTO `tag` VALUES ('48', '轮子', '2');
+INSERT INTO `tag` VALUES ('49', '火', '2');
+INSERT INTO `tag` VALUES ('50', '双人', '2');
+INSERT INTO `tag` VALUES ('51', '表情', '2');
+INSERT INTO `tag` VALUES ('52', '黑色', '2');
 
 -- ----------------------------
 -- Table structure for `user`
@@ -3868,17 +4036,17 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('100', '111', 'e10adc3949ba59abbe56e057f20f883e', '1', '1', null, '2018-02-17 00:00:00', null, '2018-02-03 15:46:12', null, '女', '43', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/1518562262283', '360900', '360926', '360000', '江西省-宜春市-铜鼓县');
-INSERT INTO `user` VALUES ('106', '东东', 'e10adc3949ba59abbe56e057f20f883e', '0', '1', null, '2018-02-01 00:00:00', null, '2018-02-01 21:06:32', null, '', '', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/1519480712097', '310100', '310119', '310000', '上海市-市辖区-南汇区');
-INSERT INTO `user` VALUES ('107', '222', 'e10adc3949ba59abbe56e057f20f883e', '1', '0', null, '2018-02-22 00:00:00', null, null, null, '男', '2号', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/1519101597692', '411400', '411424', '410000', null);
-INSERT INTO `user` VALUES ('108', '333', 'e10adc3949ba59abbe56e057f20f883e', '0', '0', null, null, null, '2018-02-12 21:29:47', null, null, null, null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/timg.jpg', null, null, null, null);
-INSERT INTO `user` VALUES ('109', '444', 'e10adc3949ba59abbe56e057f20f883e', '0', '0', null, null, null, '2018-02-12 21:31:49', null, null, null, null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/timg.jpg', null, null, null, null);
-INSERT INTO `user` VALUES ('110', '555', 'e10adc3949ba59abbe56e057f20f883e', '0', '0', null, null, null, '2018-02-13 07:17:27', null, null, null, null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/timg.jpg', null, null, null, null);
-INSERT INTO `user` VALUES ('111', '666', 'e10adc3949ba59abbe56e057f20f883e', '0', '0', null, null, null, '2018-02-13 08:23:51', null, null, null, null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/timg.jpg', null, null, null, null);
-INSERT INTO `user` VALUES ('112', '777', 'e10adc3949ba59abbe56e057f20f883e', '0', '0', null, null, null, '2018-02-13 09:05:30', null, null, null, null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/timg.jpg', null, null, null, null);
-INSERT INTO `user` VALUES ('113', '123', 'e10adc3949ba59abbe56e057f20f883e', '0', '0', null, null, null, '2018-02-13 18:41:37', null, null, null, null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/1518518521217', null, null, null, null);
-INSERT INTO `user` VALUES ('114', '321', 'e10adc3949ba59abbe56e057f20f883e', '0', '0', null, null, null, '2018-02-13 18:42:24', null, null, null, null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/timg.jpg', null, null, null, null);
-INSERT INTO `user` VALUES ('115', 'qq', 'e10adc3949ba59abbe56e057f20f883e', '0', '0', null, '2006-02-15 00:00:00', null, '2018-02-22 18:30:40', null, '女', 'hhh', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/1519295486275', '411600', '411628', '410000', null);
+INSERT INTO `user` VALUES ('100', '111', 'e10adc3949ba59abbe56e057f20f883e', '8', '3', null, '2018-02-17 00:00:00', null, '2018-02-03 15:46:12', null, '男', 'aaa', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/1520683997855', '331000', '331024', '330000', '浙江省-台州市-仙居县');
+INSERT INTO `user` VALUES ('106', '东东', 'e10adc3949ba59abbe56e057f20f883e', '0', '4', null, '2018-02-01 00:00:00', null, '2018-02-01 21:06:32', null, '', '', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/1519480712097', '310100', '310119', '310000', '上海市-市辖区-南汇区');
+INSERT INTO `user` VALUES ('107', '222', 'e10adc3949ba59abbe56e057f20f883e', '10', '1', null, '2018-02-22 00:00:00', null, null, null, '男', '2号', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/1519101597692', '411400', '411424', '410000', null);
+INSERT INTO `user` VALUES ('108', '333', 'e10adc3949ba59abbe56e057f20f883e', '9', '2', null, '1994-03-21 00:00:00', null, '2018-02-12 21:29:47', null, '', '', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/1520735170986', null, null, null, '');
+INSERT INTO `user` VALUES ('109', '444', 'e10adc3949ba59abbe56e057f20f883e', '7', '3', null, null, null, '2018-02-12 21:31:49', null, null, null, null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/timg.jpg', null, null, null, null);
+INSERT INTO `user` VALUES ('110', '555', 'e10adc3949ba59abbe56e057f20f883e', '0', '4', null, null, null, '2018-02-13 07:17:27', null, null, null, null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/timg.jpg', null, null, null, null);
+INSERT INTO `user` VALUES ('111', '666', 'e10adc3949ba59abbe56e057f20f883e', '0', '4', null, null, null, '2018-02-13 08:23:51', null, null, null, null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/timg.jpg', null, null, null, null);
+INSERT INTO `user` VALUES ('112', '777', 'e10adc3949ba59abbe56e057f20f883e', '0', '4', null, null, null, '2018-02-13 09:05:30', null, null, null, null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/timg.jpg', null, null, null, null);
+INSERT INTO `user` VALUES ('113', '123', 'e10adc3949ba59abbe56e057f20f883e', '0', '3', null, null, null, '2018-02-13 18:41:37', null, null, null, null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/1518518521217', null, null, null, null);
+INSERT INTO `user` VALUES ('114', '321', 'e10adc3949ba59abbe56e057f20f883e', '0', '3', null, null, null, '2018-02-13 18:42:24', null, null, null, null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/timg.jpg', null, null, null, null);
+INSERT INTO `user` VALUES ('115', 'qq', 'e10adc3949ba59abbe56e057f20f883e', '0', '4', null, '2006-02-15 00:00:00', null, '2018-02-22 18:30:40', null, '女', 'hhh', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/1519295486275', '411600', '411628', '410000', null);
 
 -- ----------------------------
 -- Table structure for `users_tag`
@@ -3889,11 +4057,39 @@ CREATE TABLE `users_tag` (
   `tag_id` int(8) NOT NULL,
   `user_id` int(8) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of users_tag
 -- ----------------------------
+INSERT INTO `users_tag` VALUES ('1', '41', '100');
+INSERT INTO `users_tag` VALUES ('2', '42', '100');
+INSERT INTO `users_tag` VALUES ('3', '43', '100');
+INSERT INTO `users_tag` VALUES ('4', '44', '100');
+INSERT INTO `users_tag` VALUES ('5', '30', '100');
+INSERT INTO `users_tag` VALUES ('6', '45', '100');
+INSERT INTO `users_tag` VALUES ('7', '2', '100');
+INSERT INTO `users_tag` VALUES ('8', '46', '100');
+INSERT INTO `users_tag` VALUES ('9', '47', '100');
+INSERT INTO `users_tag` VALUES ('10', '24', '100');
+INSERT INTO `users_tag` VALUES ('11', '23', '100');
+INSERT INTO `users_tag` VALUES ('12', '48', '100');
+INSERT INTO `users_tag` VALUES ('13', '49', '100');
+INSERT INTO `users_tag` VALUES ('14', '18', '107');
+INSERT INTO `users_tag` VALUES ('15', '50', '107');
+INSERT INTO `users_tag` VALUES ('16', '51', '107');
+INSERT INTO `users_tag` VALUES ('17', '42', '107');
+INSERT INTO `users_tag` VALUES ('18', '43', '107');
+INSERT INTO `users_tag` VALUES ('19', '48', '107');
+INSERT INTO `users_tag` VALUES ('20', '23', '107');
+INSERT INTO `users_tag` VALUES ('21', '51', '107');
+INSERT INTO `users_tag` VALUES ('22', '46', '107');
+INSERT INTO `users_tag` VALUES ('23', '30', '107');
+INSERT INTO `users_tag` VALUES ('24', '44', '107');
+INSERT INTO `users_tag` VALUES ('25', '47', '107');
+INSERT INTO `users_tag` VALUES ('26', '18', '107');
+INSERT INTO `users_tag` VALUES ('27', '52', '107');
+INSERT INTO `users_tag` VALUES ('28', '52', '107');
 
 -- ----------------------------
 -- Table structure for `user_follower`
@@ -3920,7 +4116,7 @@ CREATE TABLE `user_following` (
   `user_id` int(8) NOT NULL,
   `following_id` int(8) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=118 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_following
@@ -3938,6 +4134,39 @@ INSERT INTO `user_following` VALUES ('30', '113', '113');
 INSERT INTO `user_following` VALUES ('31', '114', '114');
 INSERT INTO `user_following` VALUES ('33', '115', '115');
 INSERT INTO `user_following` VALUES ('80', '100', '106');
+INSERT INTO `user_following` VALUES ('83', '100', '115');
+INSERT INTO `user_following` VALUES ('84', '100', '114');
+INSERT INTO `user_following` VALUES ('85', '100', '110');
+INSERT INTO `user_following` VALUES ('86', '100', '111');
+INSERT INTO `user_following` VALUES ('87', '100', '112');
+INSERT INTO `user_following` VALUES ('88', '100', '113');
+INSERT INTO `user_following` VALUES ('89', '100', '109');
+INSERT INTO `user_following` VALUES ('90', '107', '106');
+INSERT INTO `user_following` VALUES ('91', '107', '110');
+INSERT INTO `user_following` VALUES ('92', '107', '109');
+INSERT INTO `user_following` VALUES ('93', '107', '111');
+INSERT INTO `user_following` VALUES ('94', '107', '108');
+INSERT INTO `user_following` VALUES ('95', '107', '112');
+INSERT INTO `user_following` VALUES ('96', '107', '115');
+INSERT INTO `user_following` VALUES ('97', '107', '114');
+INSERT INTO `user_following` VALUES ('98', '107', '113');
+INSERT INTO `user_following` VALUES ('99', '108', '100');
+INSERT INTO `user_following` VALUES ('100', '108', '109');
+INSERT INTO `user_following` VALUES ('101', '108', '110');
+INSERT INTO `user_following` VALUES ('102', '108', '106');
+INSERT INTO `user_following` VALUES ('104', '108', '111');
+INSERT INTO `user_following` VALUES ('105', '108', '112');
+INSERT INTO `user_following` VALUES ('106', '108', '115');
+INSERT INTO `user_following` VALUES ('107', '108', '114');
+INSERT INTO `user_following` VALUES ('108', '108', '113');
+INSERT INTO `user_following` VALUES ('109', '109', '100');
+INSERT INTO `user_following` VALUES ('111', '109', '107');
+INSERT INTO `user_following` VALUES ('112', '109', '106');
+INSERT INTO `user_following` VALUES ('113', '109', '110');
+INSERT INTO `user_following` VALUES ('114', '109', '111');
+INSERT INTO `user_following` VALUES ('115', '109', '112');
+INSERT INTO `user_following` VALUES ('116', '109', '115');
+INSERT INTO `user_following` VALUES ('117', '100', '108');
 
 -- ----------------------------
 -- Table structure for `user_role`

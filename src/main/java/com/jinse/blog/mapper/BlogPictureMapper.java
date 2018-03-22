@@ -11,6 +11,8 @@ import com.jinse.blog.pojo.Picture;
 import com.jinse.blog.pojo.User;
 import com.jinse.blog.pojo.UserQueryVo;
 
+import com.jinse.blog.vos.BlogVO;
+
 public interface BlogPictureMapper {
 
 	int updateByPictureId(Picture picture);
@@ -27,7 +29,7 @@ public interface BlogPictureMapper {
 
 	int commentNumberMinus(Blog blog);
 
-	List<Blog> findPhotoListByUserIdAndType(Map map);
+	List<Blog> findPhotoListByUserIdAndType(BlogVO blogVO);
 
 	List<Blog> findPhotoListByTitle(String content);
 

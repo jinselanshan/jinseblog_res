@@ -3,7 +3,9 @@ package com.jinse.blog.service;
 import java.util.List;
 
 import com.jinse.blog.pojo.Blog;
+import com.jinse.blog.pojo.BlogAndLike;
 import com.jinse.blog.pojo.User;
+import com.jinse.blog.vos.BlogVO;
 
 public interface BlogService {
 
@@ -11,7 +13,7 @@ public interface BlogService {
 
 	Blog findBlogByBlogId(Integer blogId);
 
-	List<Blog> findPhotoListByUserId(Integer userId,String type);
+	List<BlogAndLike> findPhotoListByUserId(BlogVO blogVO);
 
 	int deleteBlogByBlogId(Blog blog);
 

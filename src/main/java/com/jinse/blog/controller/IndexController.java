@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jinse.blog.pojo.Tag;
-import com.jinse.blog.pojo.User;
 import com.jinse.blog.service.TagService;
 import com.jinse.blog.utils.SpringUtil;
 
@@ -35,9 +34,8 @@ public class IndexController {
     @RequestMapping("/uploadPhotoIndex")
     public String uploadPhoto(Model model) {
     	logger.info("进入上传照片界面");
-    	List<Tag> tagList = tagService.findTagListByCount("1");
-    	User user = SpringUtil.getCurrentUser();
-    	//List<Tag> tagList = tagService.findTagListByCountAndUser("1");
+    	Integer userId = SpringUtil.getCurrentUser().getUserId();
+    	List<Tag> tagList = tagService.findTagListByUserIdAndType(userId,"1");
     	model.addAttribute("tagList", tagList);
     	model.addAttribute("type", "1");
         return "upload/picture";
@@ -45,7 +43,8 @@ public class IndexController {
     @RequestMapping("/uploadPaintingIndex")
     public String uploadPainting(Model model) {
     	logger.info("进入上传绘画界面");
-    	List<Tag> tagList = tagService.findTagListByCount("2");
+     	Integer userId = SpringUtil.getCurrentUser().getUserId();
+    	List<Tag> tagList = tagService.findTagListByUserIdAndType(userId,"2");
     	model.addAttribute("tagList", tagList);
     	model.addAttribute("type", "2");
         return "upload/picture";

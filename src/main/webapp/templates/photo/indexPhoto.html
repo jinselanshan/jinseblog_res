@@ -7,8 +7,8 @@
 <!--  <link rel="stylesheet" href="css/index.css"> -->
 </head>
 <div>
-	<script src="/jinseblog/static/jquery/likeBlog.js"
-		type="text/javascript" charset="utf-8"></script>
+	<script src="/jinseblog/static/jquery/likeBlog.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/jinseblog/static/jquery/loading_more/loading_picture.js" type="text/javascript" charset="utf-8"></script>
 </div>
 <body style="background-color: #eeeeee;">
 
@@ -18,13 +18,12 @@
 		<div class="col-md-2 column"></div>
 		<div class="col-md-6 column">
 			<ul class="unstyled">
-				<li>
+				<li id="blogLi">
 					<!-- Blog Post --> <br />
-					<div class="card mb-4 panel-body panel"
-						th:each="blog : ${blogList}">
-						<a th:href="@{'/blog/' + ${blog.blogId}}"><img
-							th:src="${blog.picture.url}" alt="Cinque Terre"
-							class="img center-block indeximg" /></a><br/>
+					<div class="card mb-4 panel-body panel" th:each="blog : ${blogList}">
+						<a  name="blogId" th:href="@{'/blog/' + ${blog.blogId}}">
+						<input type="hidden" id="type" name="type" th:value="${blog.picture.type}">
+						<img th:src="${blog.picture.url}" alt="Cinque Terre" class="img center-block indexImg" /></a><br/>
 						<div class="card-body">
 							<div class="text-left">
 								<a th:href="@{'/otherPhotoes/' + ${blog.user.userId}}"><img
@@ -36,13 +35,12 @@
 							<div class="text-right">
 								<a th:href="@{'/blog/' + ${blog.blogId}}"
 									th:text="${'评论(' + blog.commentNumber + ')'}" class="">评论(13)</a>
-								<a th:if="${blog.likeif}" width="20" id="likeBtn" align="right"
-									class="img-circle heart heartAnimation" th:data-like="like"
-									rel="like" th:data-blog-id="${blog.blogId}"></a> <a
-									th:unless="${blog.likeif}" width="20" id="likeBtn"
+								<a th:if="${blog.likeif}" width="20" id="likeBtn" align="right" class="img-circle heart heartAnimation" th:data-like="like"
+									rel="like" th:data-blog-id="${blog.blogId}"></a> 
+									<a th:unless="${blog.likeif}" width="20" id="likeBtn"
 									align="right" class="img-circle heart" th:data-like="dislike"
-									rel="unlike" th:data-blog-id="${blog.blogId}"> </a> <span
-									class="likeNumber" id="likeNumber" th:text="${blog.likeNumber}"
+									rel="unlike" th:data-blog-id="${blog.blogId}"> </a> 
+									<span class="likeNumber" id="likeNumber" th:text="${blog.likeNumber}"
 									th:data-blog-id="${blog.blogId}"></span>
 								<!--<div th:unless="${blog.likeif}" class="heart" id="like1"  th:data-blog-id="${blog.blogId}" rel="like"></div>
 								<div th:if="${blog.likeif}" class="heart heartAnimation" id="like1" th:data-blog-id="${blog.blogId}" rel="unlike"></div>-->
@@ -81,7 +79,7 @@
 				<div class="row clearfix">
 					<div class="col-md-4 column style">
 						<p>
-							<a href="https://jinselanshan.tuchong.com/followers"
+							<a th:href="@{'/user/following/' + ${session.CURRENT_USER.userId}}"
 								th:text="${'关注'+session.CURRENT_USER.followingNumber}"
 								class="user_data">0<br /> <span>关注</span>
 							</a>
@@ -89,7 +87,7 @@
 					</div>
 					<div class="col-md-4 column">
 						<p>
-							<a href="https://jinselanshan.tuchong.com/followers"
+							<a th:href="@{'/user/follower/' + ${session.CURRENT_USER.userId}}"
 								th:text="${'粉丝'+session.CURRENT_USER.followerNumber}" class="">
 								0<br /> <span>粉丝</span>
 							</a>
@@ -101,14 +99,13 @@
 			<div class="  panel-body panel panel-default">
 				<label>订阅的标签</label>
 				<div>
-					<a href="https://tuchong.com/tags/人像" data-popover-type="tag"
-						data-popover-id="131" class="common-tag popover-action"
-						target="_blank">人像</a>
+					<a href="#" data-popover-type="tag" target="_blank" th:if="${session.CURRENT_USER.tagList != null}" th:each="tag : ${session.CURRENT_USER.tagList}">
+					<span class="label label-default"  th:text="${tag.tagName}">人像</span></a>
 				</div>
 			</div>
 			<!-- right -->
 		</div>
 	</div>
-
+<p class="ck" href="#">加载更多</p>
 </body>
 </html>
