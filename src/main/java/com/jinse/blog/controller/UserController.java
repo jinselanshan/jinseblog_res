@@ -195,9 +195,10 @@ public class UserController {
 		logger.info(user.getUsername());
 		UserUtil.formatAddress(user);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date birthday = sdf.parse(birth);
-		user.setBirthday(birthday);
-		
+		if(birth !=null && birth.length() > 0) {
+			Date birthday = sdf.parse(birth);
+			user.setBirthday(birthday);
+		}
 		Integer userId = SpringUtil.getCurrentUser().getUserId();
 		user.setUserId(userId);
 		//设置city

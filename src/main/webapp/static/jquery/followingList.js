@@ -1,13 +1,14 @@
 $(function() {
-	var pathName=window.document.location.pathname;
-	var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1); 
+	var pathName = window.document.location.pathname;
+	var projectName = pathName
+			.substring(0, pathName.substr(1).indexOf('/') + 1);
 
 	$(".btn-following").click(function() {
 		var $thisBtn = $(this);
 		var value = $thisBtn.val();
 		var user_id = $('#currentUserId').val();
 		var following_id = $thisBtn.attr("data-user-id");
-		
+
 		if (value === "已关注") {
 			$.ajax({
 				type : "POST",
@@ -19,7 +20,7 @@ $(function() {
 				dataType : "JSON",
 				success : function(data) {
 					// 去取消关注
-					if(data == 1){
+					if (data == 1) {
 						$thisBtn.val("关注");
 					}
 				},
@@ -38,7 +39,7 @@ $(function() {
 				dataType : "JSON",
 				success : function(data) {
 					// 去取消关注
-					if(data == 1){
+					if (data == 1) {
 						$thisBtn.val("已关注");
 					}
 				},

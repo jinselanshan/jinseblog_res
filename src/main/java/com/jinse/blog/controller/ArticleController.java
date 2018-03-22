@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,6 +83,7 @@ public class ArticleController {
 		for (int i = 0; i < blogList.size(); i++) {
 			Article article = blogList.get(i).getArticle();
 			String newContent = HtmlUtil.getContent(article.getContent(), 50, true);
+			newContent = StringEscapeUtils.unescapeHtml(newContent);
 			article.setContent(newContent);
 		}
 		
@@ -111,18 +113,19 @@ public class ArticleController {
 		Integer userId = SpringUtil.getCurrentUser().getUserId();
 		user = articleService.findAllArticleByUserId(userId);
 
-		for (int i = 0; i < user.getBlogList().size(); i++) {
-			Article article = user.getBlogList().get(i).getArticle();
-			String newContent = HtmlUtil.getContent(article.getContent(), 50, true);
-			article.setContent(newContent);
-		}
 		model.addAttribute("user", user);
 		SpringUtil.setSession(ConstantsUtil.STRING_CURRENT_USER, user);
 		return "home/articlepage";
 	}
 	
 	
-	
+	//文章主页
+	@RequestMapping(value = "/home/article/{userId}")
+	public String findArticle(@PathVariable("userId") Integer userId, Model model, HttpServletRequest request, User user) throws Exception {
+		user = articleService.findAllArticleByUserId(userId);
+		model.addAttribute("user", user);
+		return "home/articlepage";
+	}
 	
 	
  	@RequestMapping(value = "/article/uploadPicture", method = RequestMethod.POST)

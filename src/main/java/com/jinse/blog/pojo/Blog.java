@@ -3,13 +3,18 @@ package com.jinse.blog.pojo;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.Size;
+
 public class Blog {
     private Integer blogId;
-
+    
+    @Size(min=1,max=20,message="博客标题过长")  
     private String title;
-
+    
+    @Size(min=1,max=300,message="博客描述过长")  
     private String description;
 
+    @Size(min=1,max=300,message="标签过长") 
     private String tag;
 
     private Double score;
@@ -32,6 +37,26 @@ public class Blog {
     
     private Article article;
     
+    private List<Picture> pictureList;
+    
+    private Video video;
+    
+    public Video getVideo() {
+		return video;
+	}
+
+	public void setVideo(Video video) {
+		this.video = video;
+	}
+
+	public List<Picture> getPictureList() {
+		return pictureList;
+	}
+
+	public void setPictureList(List<Picture> pictureList) {
+		this.pictureList = pictureList;
+	}
+
 	public Article getArticle() {
 		return article;
 	}

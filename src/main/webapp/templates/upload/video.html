@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-<head th:replace="upload/uploadHead :: upload_header">
-<title>css,js</title>
+<head th:replace="upload/uploadHead :: upload_header(~{::title})">
+<title>上传视频</title>
 </head>
 
 <div>
@@ -14,7 +14,7 @@
 
 	<div class="row-fluid span12 row-fluid">
 		<form enctype="multipart/form-data" id="uploadForm"
-			th:action="@{/uploadVedio}" method="post">
+			th:action="@{/uploadVideo}" method="post">
 			<div class="col-xs-9 span9">
 				<div class="">
 					<label>上传视频</label>

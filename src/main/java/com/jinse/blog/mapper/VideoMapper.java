@@ -1,5 +1,6 @@
 package com.jinse.blog.mapper;
 
+import com.jinse.blog.pojo.Blog;
 import com.jinse.blog.pojo.Video;
 import com.jinse.blog.pojo.VideoExample;
 import java.util.List;
@@ -31,4 +32,8 @@ public interface VideoMapper {
 	int saveVideoAndReturnId(Video video);
 
 	int updateUrlByVideoId(Video video);
+
+	List<Blog> findAllVideoList();
+
+	List<Blog> findVideoListByTitle(String content);
 }

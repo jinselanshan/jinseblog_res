@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="htmlHead :: common_header(~{::title},~{})">
+<title>following</title>
+
+</head>
+<div th:replace="user/user_following :: user_following_js"></div>
+<body>
+	<header th:replace="nav :: nav"></header>
+
+	<div class="profile-card-container">
+		<div th:replace="user/user_following:: #user_card_list"></div>
+	</div>
+</body>
+</html>

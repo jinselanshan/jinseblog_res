@@ -34,7 +34,7 @@
         <property name="loginUrl" value="/templates/user/login.html"/>  
         <!-- 登录成功后要跳转的连接 -->  
         <property name="successUrl" value="/templates/photo/photo.html"/>
-        <!-- 用户访问未对其授权的资源时,所显示的连接 -->  
+        <!-- 用户访问未对其授权的资源时,所显示的连接 -->
         <!-- 若想更明显的测试此属性可以修改它的值,如unauthor.jsp,然后用[玄玉]登录后访问/admin/listUser.jsp就看见浏览器会显示unauthor.jsp -->  
         <!-- <property name="unauthorizedUrl" value="/no_permissions.jsp" />  --> 
         <!-- Shiro连接约束配置,即过滤链的定义 -->  

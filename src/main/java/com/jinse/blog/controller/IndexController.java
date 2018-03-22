@@ -41,6 +41,8 @@ public class IndexController {
     @RequestMapping("/uploadPaintingIndex")
     public String uploadPainting(Model model) {
     	logger.info("进入上传绘画界面");
+    	List<Tag> tagList = tagService.findTagListByCount("2");
+    	model.addAttribute("tagList", tagList);
     	model.addAttribute("type", "2");
         return "upload/picture";
     }

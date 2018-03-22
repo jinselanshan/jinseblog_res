@@ -43,4 +43,6 @@ public interface ArticleMapper {
 
 	Blog findBlogArticleByBlogId(Integer blogId);
 
+	List<User> findArticleListByUserAndTitle(String content);
+
 }

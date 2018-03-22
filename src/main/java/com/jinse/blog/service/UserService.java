@@ -1,8 +1,10 @@
 package com.jinse.blog.service;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import com.jinse.blog.pojo.User;
+import com.jinse.blog.pojo.UserClasses;
 
 public interface UserService {
 
@@ -18,6 +20,6 @@ public interface UserService {
 
 	int updateUserByUserId(User user);
 
-	List<User> findUserListByUsername(String username);
+	List<UserClasses> findUserListByUsername(String username) throws IllegalAccessException, InvocationTargetException;
 
 }

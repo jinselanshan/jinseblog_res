@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.jinse.blog.pojo.Blog;
 import com.jinse.blog.pojo.BlogAndLike;
+import com.jinse.blog.vos.BlogVO;
 
 public class BlogUtil {
 
@@ -24,6 +25,14 @@ public class BlogUtil {
 		blogAndLike.setUser(blog.getUser());
 		blogAndLike.setUserId(blog.getUserId());
 		return blogAndLike;
+	}
+	public static BlogVO initBlogVO(Integer userId , String type){
+		BlogVO blogVO = new BlogVO();
+		blogVO.setType(type);
+		blogVO.setUserId(userId);
+		blogVO.setStart(0);
+		blogVO.setLength(10);
+		return blogVO;
 	}
 
 }

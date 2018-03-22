@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/jinseblog/static/css/outside.css" />
 <link rel="stylesheet" href="/jinseblog/static/css/user-following.css" />
 </head>
-<div  th:fragment="user_following_js">>
+<div  th:fragment="user_following_js">
     <script type='text/javascript' src='http://l.bst.126.net/rsc/js/pagelayer/pagelayer.js?0011'></script>
 	<script type="text/javascript" charset="utf-8" src="/jinseblog/static/js/jquery.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="/jinseblog/static/js/bootstrap.min.js"></script>
@@ -25,13 +25,12 @@
 		<h4 th:text="${session.CURRENT_USER.username} + '关注列表'">锦瑟阑珊&nbsp;关注了&nbsp;334人</h4>
 		<div class="profile-card-list" id="user_card_list">
 			<ul class="pagelist-wrapper">
-
 				<li class="card-wrap col-item" th:each="user : ${userList}">
 					<div class="card ">
 						<div class="card-bg-wrap">
 							<div data-lazy-type=""
-								style="background-color: rgb(255, 255, 255); background-image: url(&quot;https://static.tuchong.net/images/site-bg-2.jpg?2&quot;);"
-								data-lazy-url="https://static.tuchong.net/images/site-bg-2.jpg?2"
+								style="background-color: rgb(255, 255, 255); background-image: url(&quot;http://p1vkce34m.bkt.clouddn.com/image/jpg/site-bg-3site-bg-3.jpg&quot;);"
+								data-lazy-url="http://p1vkce34m.bkt.clouddn.com/image/jpg/site-bg-3site-bg-3.jpg"
 								class="img picture-large"></div>
 						</div>
 						<div class="card-body">
@@ -45,7 +44,9 @@
 									<a class="nick-name ellipsis" target="_blank"
 										href="https://yedaxu.tuchong.com/" th:text="${user.username}"></a>
 								</div>
-								<input type="button" id="followingBtn" class="btn btn-default btn-following" th:data-user-id="${user.userId}" th:value="已关注">
+								<input  th:if="${user.isfollowing}" type="button" id="followingBtn" class="btn btn-default btn-following followingBtn" th:data-user-id="${user.userId}" th:value="已关注">
+								<input  th:unless="${user.isfollowing}" type="button" id="followingBtn" class="btn btn-default btn-following followingBtn" th:data-user-id="${user.userId}" th:value="关注">
+								<input type="hidden" id="userId" th:value="${user.userId}">
 								<!-- btn style -->
 								<!-- <input type="text" id="followingBtn"
 									class="btn btn-default btn-following" data-user-id="${user.userId}"

@@ -13,7 +13,7 @@ $(function() {
         //formFile.append("action", "UploadVMKImagePath");  
         formFile.append("file-video", fileObj); //加入文件对象
         $.ajax({
-            url: projectName +"/uploadVedioUrl",
+            url: projectName +"/uploadVideoUrl",
             data: formFile,
             type: "Post",
             dataType: "json",

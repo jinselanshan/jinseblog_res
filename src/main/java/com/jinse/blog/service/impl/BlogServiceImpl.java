@@ -1,8 +1,12 @@
 package com.jinse.blog.service.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jinse.blog.mapper.ArticleMapper;
@@ -10,13 +14,22 @@ import com.jinse.blog.mapper.BlogMapper;
 import com.jinse.blog.mapper.BlogPictureMapper;
 import com.jinse.blog.mapper.BlogTagMapper;
 import com.jinse.blog.mapper.PictureMapper;
+import com.jinse.blog.mapper.VideoMapper;
 import com.jinse.blog.pojo.Blog;
+import com.jinse.blog.pojo.BlogAndLike;
 import com.jinse.blog.pojo.BlogTag;
 import com.jinse.blog.pojo.BlogTagExample;
+import com.jinse.blog.pojo.Likeif;
 import com.jinse.blog.pojo.PictureExample;
 import com.jinse.blog.pojo.Tag;
+import com.jinse.blog.pojo.User;
+import com.jinse.blog.pojo.UserClasses;
 import com.jinse.blog.pojo.PictureExample.Criteria;
 import com.jinse.blog.service.BlogService;
+import com.jinse.blog.service.LikeifService;
+import com.jinse.blog.utils.BlogUtil;
+import com.jinse.blog.utils.DeletePicture;
+import com.jinse.blog.vos.BlogVO;
 
 public class BlogServiceImpl implements BlogService {
 	@Autowired
@@ -29,6 +42,10 @@ public class BlogServiceImpl implements BlogService {
 	private ArticleMapper articleMapper;
 	@Autowired
 	private BlogTagMapper blogTagMapper;
+	@Autowired
+	private VideoMapper videoMapper;
+	@Autowired
+	private LikeifService likeifService;
 
 	@Override
 	public int saveBlog(Blog blog) {
@@ -37,27 +54,48 @@ public class BlogServiceImpl implements BlogService {
 
 	@Override
 	public Blog findBlogByBlogId(Integer blogId) {
-		Blog blog =  blogPictureMapper.findBlogAndPictureByBlogId(blogId);
+		Blog blog = blogPictureMapper.findBlogAndPictureByBlogId(blogId);
 		setTagListByBlog(blog);
 		return blog;
 	}
 
 	@Override
-	public List<Blog> findPhotoListByUserId(Integer userId) {
-
-		List<Blog> blogList = blogPictureMapper.findPhotoListByUserId(userId);
-	
+	public List<BlogAndLike> findPhotoListByUserId(BlogVO blogVO) {
+		List<Blog> blogList = blogPictureMapper.findPhotoListByUserIdAndType(blogVO);
+		if (blogList == null) {
+			throw new RuntimeException("博客不存在");
+		}
 		// 设置标签,遍历blog
 		for (int i = 0; i < blogList.size(); i++) {
 			Blog blog = blogList.get(i);
 			setTagListByBlog(blog);
 		}
-		return blogList;
+		List<BlogAndLike> blogAndLikeList = new ArrayList<BlogAndLike>();
+		if (blogList != null && blogList.size() > 0) {
+			for (Blog blogres : blogList) {
+				BlogAndLike blogAndLike = new BlogAndLike();
+				try {
+					BeanUtils.copyProperties(blogAndLike, blogres);
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					e.printStackTrace();
+				}
+				Likeif likeif = new Likeif();
+				likeif.setBlogId(blogres.getBlogId());
+				likeif.setUserId(blogVO.getUserId());
+				int count = likeifService.findLikeifByBlogIdAndUserId(likeif);
+				blogAndLike.setLikeif(count);
+				blogAndLikeList.add(blogAndLike);
+			}
+		}
+
+		return blogAndLikeList;
 	}
 
 	private void setTagListByBlog(Blog blog) {
 		String tagStr = blog.getTag();
-		if(tagStr != null && !tagStr.equals("")){
+		if (tagStr != null && !tagStr.equals("")) {
 			String[] tagArray = tagStr.trim().split(" ");
 			List<Tag> tagList = new ArrayList<Tag>();
 			// 遍历tag
@@ -73,6 +111,10 @@ public class BlogServiceImpl implements BlogService {
 	@Override
 	public int deleteBlogByBlogId(Blog blog) {
 		Integer blogId = blog.getBlogId();
+		// delete qiniuyun
+		Blog blogRes = blogPictureMapper.findBlogAndPictureByBlogId(blogId);
+		DeletePicture.deletePic(blogRes.getPicture());
+
 		// delete picture
 		PictureExample example = new PictureExample();
 		Criteria criteria = example.createCriteria();
@@ -99,8 +141,8 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	@Override
-	public List<Blog> findBlogListByTitle(String title,String type) {
-		return blogPictureMapper.findBlogListByTitle(title,type);
+	public List<Blog> findBlogListByTitle(String title, String type) {
+		return blogPictureMapper.findBlogListByTitle(title, type);
 	}
 
 	@Override
@@ -116,6 +158,16 @@ public class BlogServiceImpl implements BlogService {
 	@Override
 	public Blog findBlogArticleByBlogId(Integer blogId) {
 		return articleMapper.findBlogArticleByBlogId(blogId);
+	}
+
+	@Override
+	public List<Blog> findVideoListByTitle(String content) {
+		return videoMapper.findVideoListByTitle(content);
+	}
+
+	@Override
+	public List<User> findArticleListByUserAndTitle(String content) {
+		return articleMapper.findArticleListByUserAndTitle(content);
 	}
 
 }

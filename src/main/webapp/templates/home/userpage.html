@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-<head th:include="home/homeHead :: home_header">
+<head th:include="home/homeHead :: home_header(~{::title},~{})">
 <title>主页 - 摄影绘画 - USERNAME</title>
 <!--  <link rel="stylesheet" href="css/index.css"> -->
 </head>
@@ -21,7 +21,7 @@
 				th:value="${user.userId}">
 			<ul id="picul" class="small-block-grid-3 home">
 				<li class="masonry-item grid" th:each="blog : ${user.blogList}">
-					<figure class="effect-sarah">
+					<figure class="effect-sarah" id="figure_div">
 						<img height="200" width="200"
 							th:src="${blog.picture.url+'?imageView2/1/w/400/h/250/format/jpg/q/90|imageslim'}"
 							alt="" />

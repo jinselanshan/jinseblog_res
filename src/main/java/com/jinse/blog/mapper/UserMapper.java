@@ -1,6 +1,7 @@
 package com.jinse.blog.mapper;
 
 import com.jinse.blog.pojo.User;
+import com.jinse.blog.pojo.UserClasses;
 import com.jinse.blog.pojo.UserExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
@@ -46,8 +47,10 @@ public interface UserMapper {
 
 	int insertUser(User user);
 
-	List<User> findAllFollowing(Integer userId);
+	List<User> findAllFollowingByUserId(Integer userId);
 
 	List<User> findUserListByUsername(String username);
+
+	List<User> findAllFollowerByUserId(Integer userId);
 
 }

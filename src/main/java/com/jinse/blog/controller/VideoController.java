@@ -1,5 +1,8 @@
 package com.jinse.blog.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -14,9 +17,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jinse.blog.pojo.Blog;
+import com.jinse.blog.pojo.BlogAndLike;
+import com.jinse.blog.pojo.BlogTag;
+import com.jinse.blog.pojo.Likeif;
+import com.jinse.blog.pojo.Picture;
+import com.jinse.blog.pojo.Tag;
 import com.jinse.blog.pojo.Video;
 import com.jinse.blog.service.BlogService;
 import com.jinse.blog.service.VideoService;
+import com.jinse.blog.utils.BlogUtil;
+import com.jinse.blog.utils.InitBlog;
 import com.jinse.blog.utils.SavePicture;
 import com.jinse.blog.utils.SpringUtil;
 
@@ -30,9 +40,9 @@ public class VideoController {
 	@Autowired
 	private VideoService videoService;
 
-	@RequestMapping(value = "/uploadVedioUrl", method = RequestMethod.POST)
+	@RequestMapping(value = "/uploadVideoUrl", method = RequestMethod.POST)
 	@ResponseBody
-	public Integer uploadPicture(Model model, HttpServletRequest request,
+	public Integer uploadVideoUrl(Model model, HttpServletRequest request,
 			@RequestParam("file-video") MultipartFile videoFile) throws Exception {
 		logger.info("add视频开始" + videoFile);
 		Blog blog = new Blog();
@@ -42,8 +52,6 @@ public class VideoController {
 		int blogId = blog.getBlogId();
 		logger.info("blogId为" + blogId);
 		
-		
-
 		// 保存vedio
 		Video video = new Video();
 		video.setBlogId(blogId);
@@ -56,6 +64,29 @@ public class VideoController {
 		int count = videoService.updateUrlByVideoId(video);
 		return count == 1 ? 1 : null;
 	}
+	@RequestMapping(value = "/uploadVideo", method = RequestMethod.POST)
+	public String uploadVideo(Model model, HttpServletRequest request, Blog blog) throws Exception {
+		logger.info("add视频开始");
+		System.out.println(blog);
+	
+		InitBlog.initBlog(blog, SpringUtil.getCurrentUser().getUserId());
+		blogService.saveBlog(blog);
+		int blogId = blog.getBlogId();
+		System.out.println(blogId);
+		
+		return "redirect:indexVideo";
+	}
 
+	@RequestMapping(value = "/indexVideo")
+	public String indexVideo(Model model, HttpServletRequest request, Blog blog) throws Exception {
+		logger.info("indexVideo");
+		Integer userId = SpringUtil.getCurrentUser().getUserId();
+		//发现所有video
+		List<Blog> blogList = videoService.findAllVideoList();
+
+
+		model.addAttribute("blogList", blogList);
+		return "video/indexVideo";
+	}
 	
 }

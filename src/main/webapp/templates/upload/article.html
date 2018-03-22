@@ -3,8 +3,8 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8" />
-<meta th:include="upload/uploadHead :: upload_header" th:remove="tag" />
-<title>upload article</title>
+<meta th:include="upload/uploadHead :: upload_header(~{::title})" th:remove="tag" />
+<title>上传文章</title>
 <link rel="stylesheet" href="/jinseblog/static/css/editor/style.css" />
 <link rel="stylesheet" href="/jinseblog/static/css/editor/editormd.css" />
 <link rel="shortcut icon"
@@ -21,16 +21,16 @@
 				<form th:action="@{/uploadArticle}" method="post">
 					<table class="table form-group">
 						<tr>
-							<td><h2>WRITE ARTICLE</h2></td>
+							<td><h2>文章发布</h2></td>
 						</tr>
 						<tr>
-							<td>ARTICLE NAME</td>
+							<td>标题</td>
 						</tr>
 						<tr>
 							<td><input name="title" class="form-control" type="text"></td>
 						</tr>
 						<tr>
-							<td>ARTICLE CONTENT</td>
+							<td>正文</td>
 						</tr>
 						<tr>
 							<td>
