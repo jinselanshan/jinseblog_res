@@ -1,10 +1,11 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=refs/remotes/origin/jinseblog_gong
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/resources=UTF-8
-<<<<<<< HEAD
 encoding//src/main/resources/zfbinfo.properties=UTF-8
-=======
->>>>>>> refs/remotes/origin/jinseblog_gong
+encoding//src/main/webapp/templates/alipay/notify_url.html=UTF-8
 encoding//src/test/java=UTF-8
 encoding//src/test/resources=UTF-8
 encoding/<project>=UTF-8

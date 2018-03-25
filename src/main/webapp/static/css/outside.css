@@ -110,9 +110,12 @@ background-color: #ffffff;
 .marginbox{
 	float:none   !important;
 }
-.mb-4 img{
+.mb-4 .indexImg{
 	max-width:600px;
-	/* max-height:300px; */
+	max-height:300px;
+}
+.mb-4 .imginfor{
+	max-width:600px;
 }
 .btn-following{
 	color: #85888a;
