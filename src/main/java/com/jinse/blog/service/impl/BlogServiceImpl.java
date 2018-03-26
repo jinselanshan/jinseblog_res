@@ -14,6 +14,7 @@ import com.jinse.blog.mapper.ArticleMapper;
 import com.jinse.blog.mapper.BlogMapper;
 import com.jinse.blog.mapper.BlogPictureMapper;
 import com.jinse.blog.mapper.BlogTagMapper;
+import com.jinse.blog.mapper.LikeifMapper;
 import com.jinse.blog.mapper.PictureMapper;
 import com.jinse.blog.mapper.VideoMapper;
 import com.jinse.blog.pojo.Blog;
@@ -21,6 +22,7 @@ import com.jinse.blog.pojo.BlogAndLike;
 import com.jinse.blog.pojo.BlogTag;
 import com.jinse.blog.pojo.BlogTagExample;
 import com.jinse.blog.pojo.Likeif;
+import com.jinse.blog.pojo.LikeifExample;
 import com.jinse.blog.pojo.PictureExample;
 import com.jinse.blog.pojo.Tag;
 import com.jinse.blog.pojo.User;
@@ -45,6 +47,8 @@ public class BlogServiceImpl implements BlogService {
 	private BlogTagMapper blogTagMapper;
 	@Autowired
 	private VideoMapper videoMapper;
+	@Autowired
+	private LikeifMapper likeifMapper;
 	@Autowired
 	private LikeifService likeifService;
 
@@ -126,6 +130,11 @@ public class BlogServiceImpl implements BlogService {
 		com.jinse.blog.pojo.BlogTagExample.Criteria criteriaTag = blogTagExample.createCriteria();
 		criteriaTag.andBlogIdEqualTo(blogId);
 		blogTagMapper.deleteByExample(blogTagExample);
+		// delete likeif
+		LikeifExample likeifExample = new LikeifExample();
+		com.jinse.blog.pojo.LikeifExample.Criteria criteriaLikeif = likeifExample.createCriteria();
+		criteriaLikeif.andBlogIdEqualTo(blogId);
+		likeifMapper.deleteByExample(likeifExample);
 		// delete blog
 		int count = blogMapper.deleteByPrimaryKey(blogId);
 		return count;

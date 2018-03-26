@@ -66,8 +66,6 @@ $(function(){
 				return;
 			}
 			$(".ck").html("加载更多");
-			toastr.success('成功success', $(".ck").html());
-		
 			//$(".ck").data("loading",false)// 加载完成后将状态锁置为false，让下次点击可加载
 			// console.log($(".ck").data())
 			for(var i=0;i<data.length;i++){

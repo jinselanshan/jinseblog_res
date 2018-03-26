@@ -303,6 +303,66 @@ public class TagExample {
             addCriterion("type not between", value1, value2, "type");
             return (Criteria) this;
         }
+
+        public Criteria andTagTypeIdIsNull() {
+            addCriterion("tag_type_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagTypeIdIsNotNull() {
+            addCriterion("tag_type_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagTypeIdEqualTo(Integer value) {
+            addCriterion("tag_type_id =", value, "tagTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagTypeIdNotEqualTo(Integer value) {
+            addCriterion("tag_type_id <>", value, "tagTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagTypeIdGreaterThan(Integer value) {
+            addCriterion("tag_type_id >", value, "tagTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagTypeIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("tag_type_id >=", value, "tagTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagTypeIdLessThan(Integer value) {
+            addCriterion("tag_type_id <", value, "tagTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagTypeIdLessThanOrEqualTo(Integer value) {
+            addCriterion("tag_type_id <=", value, "tagTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagTypeIdIn(List<Integer> values) {
+            addCriterion("tag_type_id in", values, "tagTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagTypeIdNotIn(List<Integer> values) {
+            addCriterion("tag_type_id not in", values, "tagTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagTypeIdBetween(Integer value1, Integer value2) {
+            addCriterion("tag_type_id between", value1, value2, "tagTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagTypeIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("tag_type_id not between", value1, value2, "tagTypeId");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

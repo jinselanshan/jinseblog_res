@@ -13,8 +13,7 @@
 	<header th:replace="nav :: nav"></header>
 
 	<div class="row-fluid span12 row-fluid">
-		<form enctype="multipart/form-data" id="uploadForm"
-			th:action="@{/uploadVideo}" method="post">
+		<form enctype="multipart/form-data" id="uploadForm" th:action="@{/uploadVideo}" method="post">
 			<div class="col-xs-9 span9">
 				<div class="">
 					<label>上传视频</label>
@@ -61,7 +60,7 @@
 							</label></td>
 						</tr>
 						<tr class="">
-							<td><button class="btn" type="submit">提交</button></td>
+							<td><button class="btn" type="submit" id="submit" onclick="return checkVideo()">提交</button></td>
 						</tr>
 					</table>
 				</form>

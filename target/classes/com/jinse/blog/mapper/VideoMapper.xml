@@ -225,10 +225,11 @@
 
 
 	<update id="updateUrlByVideoId" parameterType="com.jinse.blog.pojo.Video">
-		update video set url = #{url} where video_id = #{videoId}
+		update video set
+		url = #{url} where video_id = #{videoId}
 	</update>
-	
-	
+
+
 	<resultMap id="BlogWithUserWithVideoResult" type="com.jinse.blog.pojo.Blog"
 		extends="com.jinse.blog.mapper.BlogMapper.BaseResultMap">
 		<association property="user"
@@ -238,26 +239,50 @@
 		<collection property="tagList"
 			resultMap="com.jinse.blog.mapper.TagMapper.BaseResultMap" />
 	</resultMap>
-	
-	
+
+
 	<select id="findAllVideoList" resultMap="BlogWithUserWithVideoResult">
 		select u.*,b.*,v.*
-		from user u,blog b,video v
+		from
+		user u,blog b,video v
 		where u.user_id = b.user_id
 		and
 		b.blog_id =
 		v.blog_id
 		order by b.create_at desc
 	</select>
-	
+
 	<select id="findVideoListByTitle" resultMap="BlogWithUserWithVideoResult">
 		SELECT
 		b.*,v.*,u.*
 		from user u,blog b,video v
 		where
 		b.user_id =
-		u.user_id and v.blog_id = b.blog_id and b.title like "%"#{title}"%"
+		u.user_id and v.blog_id =
+		b.blog_id and b.title like "%"#{title}"%"
 		order by b.create_at desc
 	</select>
+
+	<resultMap id="BlogWithVideo" type="com.jinse.blog.pojo.Blog"
+		extends="com.jinse.blog.mapper.BlogMapper.BaseResultMap">
+		<association property="video"
+			resultMap="com.jinse.blog.mapper.VideoMapper.BaseResultMap" />
+	</resultMap>
 	
+	<resultMap type="com.jinse.blog.pojo.User" id="UserWithBlogResult"
+		extends="com.jinse.blog.mapper.UserMapper.BaseResultMap">
+		<collection property="blogList" resultMap="BlogWithVideo" />
+	</resultMap>
+
+	<select id="findAllVideoByUserId" parameterType="int"
+		resultMap="UserWithBlogResult">
+		select u.*,b.*,v.*
+		from user u,blog b,video v
+		where
+		b.blog_id = v.blog_id and
+		u.user_id = b.user_id and u.user_id =
+		#{userId,jdbcType=INTEGER}
+		order by
+		b.create_at desc
+	</select>
 </mapper>

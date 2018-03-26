@@ -51,11 +51,9 @@
 							<p class="card-text" th:text="${blog.description}">这里写图片信息</p>
 						</div>
 						<div class="card-footer text-muted">
-							<a href="#" th:if="${blog.tagList != null}"
-								th:each="tag : ${blog.tagList}"> <span
-								class="label label-default" th:text="${tag.tagName}">标签</span></a>
-							<time
-								th:text="${#dates.format(blog.createAt, 'yyyy-MM-dd HH:mm')}">2017-5-2
+							<a href="#" th:if="${blog.tagList}" th:each="tag : ${blog.tagList}"> 
+							<span class="label label-default" th:text="${tag.tagName}">标签</span></a>
+							<time th:text="${#dates.format(blog.createAt, 'yyyy-MM-dd HH:mm')}">2017-5-2
 								11:11:39</time>
 						</div>
 					</div> <!-- Blog Post -->
@@ -99,13 +97,15 @@
 			<div class="  panel-body panel panel-default">
 				<label>订阅的标签</label>
 				<div>
-					<a href="#" data-popover-type="tag" target="_blank" th:if="${session.CURRENT_USER.tagList != null}" th:each="tag : ${session.CURRENT_USER.tagList}">
+					<a href="#" data-popover-type="tag" target="_blank" th:if="${session.CURRENT_USER.tagList}" th:each="tag : ${session.CURRENT_USER.tagList}">
 					<span class="label label-default"  th:text="${tag.tagName}">人像</span></a>
 				</div>
 			</div>
 			<!-- right -->
 		</div>
 	</div>
+	<div class="box"><img src="/jinseblog/static/img/top.png"/></div>
+    <a style="display:none" href="javascript:;"  id="btn btn_return_top"  title="回到顶部"></a>
 <p class="ck" href="#">加载更多</p>
 </body>
 </html>

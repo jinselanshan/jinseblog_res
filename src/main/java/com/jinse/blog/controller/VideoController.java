@@ -22,10 +22,12 @@ import com.jinse.blog.pojo.BlogTag;
 import com.jinse.blog.pojo.Likeif;
 import com.jinse.blog.pojo.Picture;
 import com.jinse.blog.pojo.Tag;
+import com.jinse.blog.pojo.User;
 import com.jinse.blog.pojo.Video;
 import com.jinse.blog.service.BlogService;
 import com.jinse.blog.service.VideoService;
 import com.jinse.blog.utils.BlogUtil;
+import com.jinse.blog.utils.ConstantsUtil;
 import com.jinse.blog.utils.InitBlog;
 import com.jinse.blog.utils.SavePicture;
 import com.jinse.blog.utils.SpringUtil;
@@ -89,4 +91,13 @@ public class VideoController {
 		return "video/indexVideo";
 	}
 	
+	@RequestMapping(value = "/myVideo")
+	public String myPhotoes(Model model, HttpServletRequest request, User user) throws Exception {
+		Integer userId = SpringUtil.getCurrentUser().getUserId();
+		user = videoService.findAllVideoByUserId(userId);
+
+		model.addAttribute("user", user);
+		SpringUtil.setSession(ConstantsUtil.STRING_CURRENT_USER, user);
+		return "home/videopage";
+	}
 }

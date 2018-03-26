@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jinse.blog.mapper.VideoMapper;
 import com.jinse.blog.pojo.Blog;
+import com.jinse.blog.pojo.User;
 import com.jinse.blog.pojo.Video;
 import com.jinse.blog.service.VideoService;
 
@@ -27,6 +28,11 @@ public class VideoServiceImpl implements VideoService {
 	@Override
 	public List<Blog> findAllVideoList() {
 		return videoMapper.findAllVideoList();
+	}
+
+	@Override
+	public User findAllVideoByUserId(Integer userId) {
+		return videoMapper.findAllVideoByUserId(userId);
 	}
 
 }

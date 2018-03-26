@@ -7,6 +7,8 @@ public class Tag {
 
     private String type;
 
+    private Integer tagTypeId;
+
     public Integer getTagId() {
         return tagId;
     }
@@ -31,10 +33,11 @@ public class Tag {
         this.type = type == null ? null : type.trim();
     }
 
-	@Override
-	public String toString() {
-		return "Tag [tagId=" + tagId + ", tagName=" + tagName + ", type=" + type + "]";
-	}
-    
-    
+    public Integer getTagTypeId() {
+        return tagTypeId;
+    }
+
+    public void setTagTypeId(Integer tagTypeId) {
+        this.tagTypeId = tagTypeId;
+    }
 }

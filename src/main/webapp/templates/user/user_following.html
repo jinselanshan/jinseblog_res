@@ -22,7 +22,7 @@
 	<header th:replace="home/avatarTable :: navigation"></header>
 
 	<div class="profile-card-container">
-		<h4 th:text="${session.CURRENT_USER.username} + '关注列表'">锦瑟阑珊&nbsp;关注了&nbsp;334人</h4>
+		<h4 th:text="${session.CURRENT_USER.username} + '关注了' + ${#lists.size(userList)} + '人' ">锦瑟阑珊&nbsp;关注了&nbsp;334人</h4>
 		<div class="profile-card-list" id="user_card_list">
 			<ul class="pagelist-wrapper">
 				<li class="card-wrap col-item" th:each="user : ${userList}">

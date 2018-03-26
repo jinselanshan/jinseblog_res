@@ -188,15 +188,16 @@ public class PictureController {
 	}
 
 	// 其他人主页
-	@RequestMapping(value = "/otherPhotoes/{userId}")
-	public String otherPhotoes(@PathVariable("userId") Integer userId, Model model, HttpServletRequest request,
+	@RequestMapping(value = "/otherPhotoes/{userId}/{type}")
+	public String otherPhotoes(@PathVariable("userId") Integer userId,@PathVariable("type") String type, Model model, HttpServletRequest request,
 			User user) throws Exception {
-		user = pictureService.findAllPictureByUserId(userId);
-
+		List<Blog>  blogList = pictureService.findAllPictureByUserIdAndType(userId,type);
+		user = userService.findUserByUserId(userId);
 		if (user == null) {
 			logger.info("用户没有发布任何博客");
 			user = userService.findUserByUserId(userId);
 		}
+		model.addAttribute("blogList", blogList);
 		model.addAttribute("user", user);
 		return "home/userpage";
 	}
@@ -236,5 +237,20 @@ public class PictureController {
 			}
 		}
 		return "redirect:/myPhotoes";
+	}
+	
+	//获取喜欢列表
+	@RequestMapping(value = "/myLikeBlog")
+	public String myLikeBlog(Model model, HttpServletRequest request, User user) throws Exception {
+		Integer userId = SpringUtil.getCurrentUser().getUserId();
+		List<Blog>  blogList = pictureService.findAllLikePictureByUserId(userId);
+		user = userService.findUserByUserId(userId);
+		if (user == null) {
+			logger.info("用户没有喜欢任何博客");
+			user = userService.findUserByUserId(userId);
+		}
+		model.addAttribute("blogList", blogList);
+		model.addAttribute("user", user);
+		return "home/userpage";
 	}
 }

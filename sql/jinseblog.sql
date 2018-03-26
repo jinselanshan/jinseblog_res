@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50096
 File Encoding         : 65001
 
-Date: 2018-03-22 22:28:32
+Date: 2018-03-25 19:36:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -38,7 +38,7 @@ INSERT INTO `article` VALUES ('3', '158', '<p>&lt;parent&gt;<br>    &lt;groupId&
 INSERT INTO `article` VALUES ('4', '179', '<p>　 &lt;script src=&quot;~/Scripts/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;</p>\r\n<pre><code>&lt;script src=&quot;~/Content/bootstrap/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;\r\n&lt;link href=&quot;~/Content/bootstrap/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; /&gt;\r\n\r\n&lt;script src=&quot;~/Content/bootstrapValidator/js/bootstrapValidator.min.js&quot;&gt;&lt;/script&gt;\r\n&lt;link href=&quot;~/Content/bootstrapValidator/css/bootstrapValidator.min.css&quot; rel=&quot;stylesheet&quot; /&gt;\r\n</code></pre>', null);
 INSERT INTO `article` VALUES ('5', '180', '<p>作者：欲眼熊猫<br>链接：<a href=\"https://www.zhihu.com/question/24863332/answer/48376158\">https://www.zhihu.com/question/24863332/answer/48376158</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>\r\n<p>面向切面编程（AOP是Aspect Oriented Program的首字母缩写） ，我们知道，面向对象的特点是继承、多态和封装。而封装就要求将功能分散到不同的对象中去，这在软件设计中往往称为职责分配。实际上也就是说，让不同的类设计不同的方法。这样代码就分散到一个个的类中去了。这样做的好处是降低了代码的复杂程度，使类可重用。      但是人们也发现，在分散代码的同时，也增加了代码的重复性。什么意思呢？比如说，我们在两个类中，可能都需要在每个方法中做日志。按面向对象的设计方法，我们就必须在两个类的方法中都加入日志的内容。也许他们是完全相同的，但就是因为面向对象的设计让类与类之间无法联系，而不能将这些重复的代码统一起来。    也许有人会说，那好办啊，我们可以将这段代码写在一个独立的类独立的方法里，然后再在这两个类中调用。但是，这样一来，这两个类跟我们上面提到的独立的类就有耦合了，它的改变会影响这两个类。那么，有没有什么办法，能让我们在需要的时候，随意地加入代码呢？这种在运行时，动态地将代码切入到类的指定方法、指定位置上的编程思想就是面向切面的编程。       一般而言，我们管切入到指定类指定方法的代码片段称为切面，而切入到哪些类、哪些方法则叫切入点。有了AOP，我们就可以把几个类共有的代码，抽取到一个切片中，等到需要时再切入对象中去，从而改变其原有的行为。这样看来，AOP其实只是OOP的补充而已。OOP从横向上区分出一个个的类来，而AOP则从纵向上向对象中加入特定的代码。有了AOP，OOP变得立体了。如果加上时间维度，AOP使OOP由原来的二维变为三维了，由平面变成立体了。从技术上来说，AOP基本上是通过代理机制实现的。      AOP在编程历史上可以说是里程碑式的，对OOP编程是一种十分有益的补充。</p>', null);
 INSERT INTO `article` VALUES ('6', '181', '<p>作者：Kangol LI<br>链接：<a href=\"https://www.zhihu.com/question/33397871/answer/56666753\">https://www.zhihu.com/question/33397871/answer/56666753</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>\r\n<pre><code>泄妖问题我改了一下，因为Java和设计模式之间没有必然联系。设计模式是针对软件设计来说的，而Java只是一种语言。当你询问什么时候学习设计模式的时候，首先要知道它有什么卵用。\r\n我不知道教科书是怎么说的，就我的实践经验来说，设计模式就是为了：1) 可扩展性 2) 接口易用性。具体为什么这么说已经超出了这个问题的范畴，有机会再细说。当然不排除还有其他的卵用，由于人生二卵，其他的我还没有总结出来。如果假设前面两条是正确的（如果不明白什么是可扩展性，请自行翻墙Google，而接口易用性是我自己乱造的名词，应该也比较直观吧），那么答案就简单了。当你在学习编程基础的时候，比如：循环怎么写、递归怎么写、变量的作用域是什么等，可以基本无视设计模式。当你写程序的目的是自己琢磨技术，或者是尝试解决一个问题时，可以基本无视设计模式。\r\n当你和别人一起写一个程序，并且调用别人的代码时，请学好设计模式。因为此时你的同事可能使用了某些设计模式，而你如果不懂，很可能会破坏原有的设计而被灭口。当你和别人一起写一个程序，你的代码需要给别人使用的时候，请成为设计模式的大师。如果你给别人的代码别人不会用，除非那人完全不够格，否则是你的错。如果你的代码不能很好地适应新的需求，即：三天两头改接口（你改了，别人用你的，别人都得改），那还是你的错。请对号入座。\r\n</code></pre>', null);
-INSERT INTO `article` VALUES ('7', '182', '<p>余博伦<br>链接：<a href=\"https://zhuanlan.zhihu.com/p/21472801?refer=icode\">https://zhuanlan.zhihu.com/p/21472801?refer=icode</a><br>简介</p>\r\n<p>Bootstrap是Twitter推出的一个用于前端开发的开源工具包。它由Twitter的设计师Mark Otto和Jacob Thornton合作开发，是一个CSS/HTML框架。阅读更多有关bootstrap</p>\r\n<p>前端框架这个名词并不能直观地描述bootstrap的具体内容，它其实就是包含扁平化设计ui+响应式栅格系统+css样式+基本html组件+js组件+其他实用工具在内的一个前端工具集合。</p>\r\n<p>使用入门</p>\r\n<p>想要学会使用boostrap第一步当然是阅读它的文档，文档分为四个主要部分：</p>\r\n<p>起步</p>\r\n<p>这里介绍了如何在你的网页中引入并开始使用bootstrap，安装bootstrap有很多种方法，初学者只需要记住下面这种最基本的方式就好，如果你联网很方便，可以直接使用CDN链接，如果需要离线使用，也可以下载bootstrap到本地并把地址替换成你的本地路径啦。</p>\r\n<p>&lt;!-- 新 Bootstrap 核心 CSS 文件 --&gt;\r\n</p>\r\n<p>&lt;link rel=&quot;stylesheet&quot; href=&quot;//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css&quot;&gt;\r\n\r\n</p>\r\n<p>&lt;!-- 可选的Bootstrap主题文件（一般不用引入） --&gt;\r\n</p>\r\n<p>&lt;link rel=&quot;stylesheet&quot; href=&quot;//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css&quot;&gt;\r\n\r\n</p>\r\n<p>&lt;!-- jQuery文件。务必在bootstrap.min.js 之前引入 --&gt;\r\n</p>\r\n<p>&lt;script src=&quot;//cdn.bootcss.com/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;\r\n\r\n</p>\r\n<p>&lt;!-- 最新的 Bootstrap 核心 JavaScript 文件 --&gt;\r\n</p>\r\n<p>&lt;script src=&quot;//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;<br>起步里还提供了一个很有用的基本模版：</p>\r\n<p>&lt;!DOCTYPE html&gt;</p>\r\n<p>&lt;html lang=&quot;zh-CN&quot;&gt;<br>  &lt;head&gt;<br>    &lt;meta charset=&quot;utf-8&quot;&gt;<br>    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;<br>    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;<br>    &lt;!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ --&gt;<br>    &lt;title&gt;Bootstrap 101 Template&lt;/title&gt;</p>\r\n<pre><code>&lt;!-- Bootstrap --&gt;\r\n&lt;link href=&quot;//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;\r\n\r\n&lt;!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries --&gt;\r\n&lt;!-- WARNING: Respond.js doesn&#39;t work if you view the page via file:// --&gt;\r\n&lt;!--[if lt IE 9]&gt;\r\n  &lt;script src=&quot;//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js&quot;&gt;&lt;/script&gt;\r\n  &lt;script src=&quot;//cdn.bootcss.com/respond.js/1.4.2/respond.min.js&quot;&gt;&lt;/script&gt;\r\n&lt;![endif]--&gt;\r\n</code></pre><p>  &lt;/head&gt;<br>  &lt;body&gt;<br>    &lt;h1&gt;你好，世界！&lt;/h1&gt;</p>\r\n<pre><code>&lt;!-- jQuery (necessary for Bootstrap&#39;s JavaScript plugins) --&gt;\r\n&lt;script src=&quot;//cdn.bootcss.com/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;\r\n&lt;!-- Include all compiled plugins (below), or include individual files as needed --&gt;\r\n&lt;script src=&quot;//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;\r\n</code></pre><p>  &lt;/body&gt;<br>&lt;/html&gt;<br>如果我们想要以最快的速度开始使用，直接复制这一段代码就可以开始啦。在页面的顶部引入css底部引入js是编写html的基本常识，这样可以保证页面最自然地载入。</p>\r\n<p>同样它还很贴心地提供了一些例如带导航栏的页面、着陆页、控制台、登录页等最常用的页面模版，这些代码你也可以直接复制使用袄。</p>', null);
+INSERT INTO `article` VALUES ('7', '182', '<form name=\"punchout_form\" method=\"post\" action=\"https://openapi.alipaydev.com/gateway.do?charset=utf-8&method=alipay.trade.page.pay&sign=KUz7PnHju5aA8Tk9M70GKYUhJLNUWRTYaEGETvVVv2uUj%2BhX7mfbEi04HiT6pyFlJx9jBTxnW%2FrCuWdW2NeECnxD9RbGpe9aHCqSk2IsUwBqHpOIEyaxdf%2F%2BfyGzOs0SyNITHE%2FbAsxXu78jMuIt75lXJNKJlvXjKdvyjWxGJE3Bd%2BChWfvx7Em7sxgjXlEayHSroyRqIOKhhhjPGrJw7BiG%2BNpUr7%2B2hcRzBxwEutiHCwULA911ifdxELgYgSpUKDjatpbt8s7%2BHVbZZ5%2FlW9kbJ%2Bo%2B1SFNAMn1F%2FcqSuyvE12K17t3857iTLp4utuFozQJVRlnGkk32WEqY0OTGA%3D%3D&return_url=http%3A%2F%2Flocalhost%3A8080%2Fjinseblog%2Ftemplates%2Falipay%2Freturn_url.html&notify_url=http%3A%2F%2Flocalhost%3A8080%2Falipay.trade.page.pay-JAVA-UTF-8%2Fnotify_url.jsp&version=1.0&app_id=2016091200491814&sign_type=RSA2&timestamp=2018-03-25+15%3A47%3A32&alipay_sdk=alipay-sdk-java-dynamicVersionNo&format=json\">\r\n<input type=\"hidden\" name=\"biz_content\" value=\"{&quot;out_trade_no&quot;:&quot;201832515472617&quot;,&quot;total_amount&quot;:&quot;1.11&quot;,&quot;title&quot;:&quot;title??&quot;,&quot;message&quot;:&quot;message&quot;,&quot;product_code&quot;:&quot;FAST_INSTANT_TRADE_PAY&quot;}\">\r\n<input type=\"submit\" value=\"????\" style=\"display:none\" >\r\n</form>\r\n<script>document.forms[0].submit();</script>', null);
 
 -- ----------------------------
 -- Table structure for `blog`
@@ -75,7 +75,6 @@ INSERT INTO `blog` VALUES ('155', '校园', '胶片', '胶片 校园', '0.0', '2
 INSERT INTO `blog` VALUES ('156', 'spring boot Thymeleaf', null, null, '0.0', '0', '100', '2018-03-10 09:15:53', '0', 'N');
 INSERT INTO `blog` VALUES ('157', '1', null, null, '0.0', '0', '100', '2018-03-10 09:17:13', '0', 'N');
 INSERT INTO `blog` VALUES ('158', '1', null, null, '0.0', '0', '100', '2018-03-10 09:18:48', '0', 'N');
-INSERT INTO `blog` VALUES ('162', '人', '', '自行车 黑白 暗黑', '0.0', '1', '100', '2018-03-10 09:30:04', '1', 'N');
 INSERT INTO `blog` VALUES ('163', '打包', '', null, '0.0', '1', '100', '2018-03-10 09:32:48', '1', 'N');
 INSERT INTO `blog` VALUES ('165', '云', '', '云朵 蓝天', '0.0', '0', '100', '2018-03-10 13:40:06', '3', 'N');
 INSERT INTO `blog` VALUES ('166', '黄昏', '', null, '0.0', '0', '100', '2018-03-10 15:15:01', '0', 'N');
@@ -137,9 +136,6 @@ INSERT INTO `blog_tag` VALUES ('13', '12', '170');
 INSERT INTO `blog_tag` VALUES ('14', '6', '170');
 INSERT INTO `blog_tag` VALUES ('15', '13', '170');
 INSERT INTO `blog_tag` VALUES ('16', '6', '171');
-INSERT INTO `blog_tag` VALUES ('26', '13', '162');
-INSERT INTO `blog_tag` VALUES ('27', '12', '162');
-INSERT INTO `blog_tag` VALUES ('28', '11', '162');
 INSERT INTO `blog_tag` VALUES ('30', '14', '165');
 INSERT INTO `blog_tag` VALUES ('31', '3', '165');
 INSERT INTO `blog_tag` VALUES ('32', '15', '170');
@@ -218,7 +214,6 @@ INSERT INTO `comment` VALUES ('162', '137', '3', '100', null, '2018-02-20 20:13:
 INSERT INTO `comment` VALUES ('163', '137', '32', '106', null, '2018-02-21 14:01:56');
 INSERT INTO `comment` VALUES ('164', '155', '11', '100', null, '2018-02-24 23:21:07');
 INSERT INTO `comment` VALUES ('165', '163', '.', '100', null, '2018-03-10 13:38:03');
-INSERT INTO `comment` VALUES ('166', '162', '232', '109', null, '2018-03-11 10:30:38');
 INSERT INTO `comment` VALUES ('167', '154', '213', '109', null, '2018-03-11 10:30:46');
 INSERT INTO `comment` VALUES ('168', '172', '额', '108', null, '2018-03-11 11:10:49');
 INSERT INTO `comment` VALUES ('169', '165', '111', '100', null, '2018-03-18 12:25:31');
@@ -251,6 +246,83 @@ INSERT INTO `likeif` VALUES ('104', '100', '155', null);
 INSERT INTO `likeif` VALUES ('105', '100', '163', null);
 INSERT INTO `likeif` VALUES ('108', '109', '162', null);
 INSERT INTO `likeif` VALUES ('109', '109', '155', null);
+
+-- ----------------------------
+-- Table structure for `order_infor`
+-- ----------------------------
+DROP TABLE IF EXISTS `order_infor`;
+CREATE TABLE `order_infor` (
+  `order_id` int(8) NOT NULL auto_increment,
+  `seller_id` int(8) default NULL,
+  `blog_id` int(8) default NULL,
+  `picture_id` int(12) default NULL,
+  `video_id` int(8) default NULL,
+  `trade_no` varchar(100) default NULL,
+  `out_trade_no` varchar(100) default NULL,
+  `total_amount` double(10,2) default NULL,
+  `price` double(8,2) default '0.00',
+  `year` int(8) default NULL,
+  `buyer_id` int(8) default NULL,
+  `message` varchar(300) default NULL,
+  `title` varchar(100) default NULL,
+  `order_state` varchar(50) default NULL,
+  `payed_at` datetime default NULL,
+  PRIMARY KEY  (`order_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of order_infor
+-- ----------------------------
+INSERT INTO `order_infor` VALUES ('1', null, null, null, null, null, '2018325151359345', '1.00', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('2', null, null, null, null, null, '2018325151359345', '1.00', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('3', null, null, null, null, null, '2018325151717655', '1.00', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('4', null, null, null, null, null, '2018325151737532', '1.00', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('5', null, null, null, null, null, '201832515255113', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('6', null, null, null, null, null, '2018325152559983', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('7', null, null, null, null, null, '2018325152851796', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('8', null, null, null, null, null, '2018325153020381', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('9', null, null, null, null, null, '2018325153115280', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('10', null, null, null, null, null, '201832515472617', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('11', null, null, null, null, null, '2018325155210212', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('12', null, null, null, null, null, '2018325155933773', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('13', null, null, null, null, null, '201832516146125', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('14', null, null, null, null, null, '20183251643917', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('15', null, null, null, null, null, '20183251658963', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('16', null, null, null, null, null, '20183251689326', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('17', null, null, null, null, null, '201832516185640', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('18', null, null, null, null, null, '2018325161915819', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('19', null, null, null, null, null, '2018325162540794', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('20', null, null, null, null, null, '2018325164544203', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('21', null, null, null, null, null, '2018325165021497', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('22', null, null, null, null, null, '2018325165446522', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('23', null, null, null, null, null, '201832516552216', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('24', null, null, null, null, null, '201832517021974', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('25', null, null, null, null, null, '201832517617851', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('26', null, null, null, null, null, '201832517916586', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('27', null, null, null, null, null, '201832517104755', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('28', null, null, null, null, null, '201832517162567', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('29', null, null, null, null, null, '2018325172029526', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('30', null, null, null, null, null, '2018325172144454', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('31', null, null, null, null, null, '2018325172228809', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('32', null, null, null, null, null, '201832517245834', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('33', null, null, null, null, null, '201832517245834', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('34', null, null, null, null, null, '2018325173415801', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('35', null, null, null, null, null, '2018325173724817', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('36', null, null, null, null, null, '2018325173724817', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('37', null, null, null, null, null, '2018325173724817', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('38', null, null, null, null, null, '2018325173415801', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('39', null, null, null, null, null, '201832517418165', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('40', null, null, null, null, null, '201832517418165', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('41', null, null, null, null, null, '201832517433200', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('42', null, null, null, null, null, '2018325174923545', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('43', null, null, null, null, null, '2018325175333747', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('44', null, null, null, null, null, '2018325175333747', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('45', null, null, null, null, null, '2018325175333747', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('46', null, null, null, null, null, '201832519556462', '1.11', null, null, null, null, 'title名称', null, null);
+INSERT INTO `order_infor` VALUES ('47', null, null, null, null, null, '201832519142491', '0.01', null, null, null, null, 'title', null, null);
+INSERT INTO `order_infor` VALUES ('48', null, null, null, null, null, '201832519262343', '0.01', null, null, null, null, 'title', null, null);
+INSERT INTO `order_infor` VALUES ('49', null, null, null, null, null, '201832519300459', '0.01', null, null, null, null, 'title', null, null);
+INSERT INTO `order_infor` VALUES ('50', null, null, null, null, null, '2018325193517291', '0.01', null, null, null, null, 'title', '0', null);
 
 -- ----------------------------
 -- Table structure for `permission`
@@ -298,7 +370,6 @@ INSERT INTO `picture` VALUES ('148', '152', '1', null, null, 'http://p1vkce34m.b
 INSERT INTO `picture` VALUES ('149', '153', '1', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/149');
 INSERT INTO `picture` VALUES ('150', '154', '1', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/150');
 INSERT INTO `picture` VALUES ('151', '155', '1', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/151');
-INSERT INTO `picture` VALUES ('162', '162', '1', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/162');
 INSERT INTO `picture` VALUES ('163', '163', '1', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/163');
 INSERT INTO `picture` VALUES ('165', '165', '1', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/165');
 INSERT INTO `picture` VALUES ('166', '166', '2', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/photo/166');
@@ -4031,12 +4102,12 @@ CREATE TABLE `user` (
   `city` varchar(255) default NULL,
   PRIMARY KEY  (`user_id`),
   UNIQUE KEY `username_unique` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('100', '111', 'e10adc3949ba59abbe56e057f20f883e', '8', '3', null, '2018-02-17 00:00:00', null, '2018-02-03 15:46:12', null, '男', 'aaa', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/1520683997855', '331000', '331024', '330000', '浙江省-台州市-仙居县');
+INSERT INTO `user` VALUES ('100', '111', 'e10adc3949ba59abbe56e057f20f883e', '8', '3', null, '2018-02-17 00:00:00', null, '2018-02-03 15:46:12', null, '男', 'aaa', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/1521881646963', '331000', '331024', '330000', '浙江省-台州市-仙居县');
 INSERT INTO `user` VALUES ('106', '东东', 'e10adc3949ba59abbe56e057f20f883e', '0', '4', null, '2018-02-01 00:00:00', null, '2018-02-01 21:06:32', null, '', '', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/1519480712097', '310100', '310119', '310000', '上海市-市辖区-南汇区');
 INSERT INTO `user` VALUES ('107', '222', 'e10adc3949ba59abbe56e057f20f883e', '10', '1', null, '2018-02-22 00:00:00', null, null, null, '男', '2号', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/1519101597692', '411400', '411424', '410000', null);
 INSERT INTO `user` VALUES ('108', '333', 'e10adc3949ba59abbe56e057f20f883e', '9', '2', null, '1994-03-21 00:00:00', null, '2018-02-12 21:29:47', null, '', '', null, null, 'http://p1vkce34m.bkt.clouddn.com/image/jpg/avatar/1520735170986', null, null, null, '');
