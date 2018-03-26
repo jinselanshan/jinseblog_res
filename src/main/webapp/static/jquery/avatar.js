@@ -77,7 +77,7 @@ function uploadAvatar() {
 			//alert(data);
 			if (data) {
 				$('#imghead').attr('src',data.url);
-				toastr.success('内容success', '标题success');
+				toastr.success('成功success', '更新头像');
 				//alert(data.url);
 			} else {
 				//alert(data.message);

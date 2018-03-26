@@ -20,14 +20,16 @@ $(function(){
 		ajax();
 	})
 	function ajax(){
-		var $count=$("a[name=blogId]").length,// 每滚动一次获取当前ul中的li数量
-		$winH=$(window).height(),
-		$scrollTop=$(window).scrollTop(),
-		$nodeH=$('.ck').offset().top
-		console.log($nodeH)
+		var $count=$("a[name=blogId]").length;// 每滚动一次获取当前ul中的li数量
+		$winH=$(window).height();
+		$scrollTop=$(window).scrollTop();
+		$nodeH=$('.ck').offset().top;
+		console.log($nodeH);
 		console.log($scrollTop);
 		console.log($winH);
-		
+		/*setTimeout(function(){
+			$(".ck").html("<img src='/jinseblog/static/img/loading.gif'>")//延迟一秒钟后将加载按钮改成gif加载样式
+		},1000);*/
 		if($winH+$scrollTop>$nodeH && isbool == true){/* 往下滚动后当加载按钮出现在视窗范围时执行ajax请求（ajax请求附带执行函数） */
 			isbool=false;
 			var type = $('#type').val();
@@ -46,11 +48,12 @@ $(function(){
 					if(data == null || data.length == 0){
 						$(".ck").html("已全部加载");
 						return false;
+					}else{
+						onsucess(data);
 					}
-					onsucess(data);
 				},
 				error:function(){
-					alert("error");
+					toastr.warning("error");
 				}
 			})
 		}
@@ -58,15 +61,13 @@ $(function(){
 	function onsucess(data){
 		
 		setTimeout(function(){
-		   /*if(data.length === 0){
-				$(".ck").html("已无更多博客");
+		    if(data.length === 0){
+				$(".ck").html("已全部加载");
 				return;
-			}*/
+			}
 			$(".ck").html("加载更多");
-			setTimeout(function(){
-				$(".ck").html("<img src='/jinseblog/static/img/loading.gif'>")//延迟一秒钟后将加载按钮改成gif加载样式
-			},1000)
-			$(".ck").data("loading",false)// 加载完成后将状态锁置为false，让下次点击可加载
+		
+			//$(".ck").data("loading",false)// 加载完成后将状态锁置为false，让下次点击可加载
 			// console.log($(".ck").data())
 			for(var i=0;i<data.length;i++){
 				var blog = data[i];

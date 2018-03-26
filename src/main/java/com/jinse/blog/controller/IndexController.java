@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jinse.blog.pojo.Tag;
 import com.jinse.blog.service.TagService;
+import com.jinse.blog.utils.SpringUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +34,8 @@ public class IndexController {
     @RequestMapping("/uploadPhotoIndex")
     public String uploadPhoto(Model model) {
     	logger.info("进入上传照片界面");
-    	List<Tag> tagList = tagService.findTagListByCount("1");
+    	Integer userId = SpringUtil.getCurrentUser().getUserId();
+    	List<Tag> tagList = tagService.findTagListByUserIdAndType(userId,"1");
     	model.addAttribute("tagList", tagList);
     	model.addAttribute("type", "1");
         return "upload/picture";
@@ -41,7 +43,8 @@ public class IndexController {
     @RequestMapping("/uploadPaintingIndex")
     public String uploadPainting(Model model) {
     	logger.info("进入上传绘画界面");
-    	List<Tag> tagList = tagService.findTagListByCount("2");
+     	Integer userId = SpringUtil.getCurrentUser().getUserId();
+    	List<Tag> tagList = tagService.findTagListByUserIdAndType(userId,"2");
     	model.addAttribute("tagList", tagList);
     	model.addAttribute("type", "2");
         return "upload/picture";
@@ -55,5 +58,17 @@ public class IndexController {
     public String uploadVedio(Model model) {
     	logger.info("进入上传视频界面");
         return "upload/video";
+    }
+    
+    @RequestMapping("/order")
+    public String order(Model model) {
+    	logger.info("进入上传视频界面");
+        return "alipay/alipayindex";
+    }
+    
+    @RequestMapping("/indexalipay")
+    public String indexalipay(Model model) {
+    	logger.info("进入上传视频界面");
+        return "jsp/index.jsp";
     }
 }

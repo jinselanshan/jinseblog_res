@@ -3,6 +3,8 @@ package com.jinse.blog.mapper;
 import com.jinse.blog.pojo.Tag;
 import com.jinse.blog.pojo.TagExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface TagMapper {
@@ -33,4 +35,6 @@ public interface TagMapper {
 	int insertTag(Tag tag);
 
 	List<Tag> findTagListByCount(String type);
+
+	List<Tag> findTagListByUserIdAndType(Map<String, String> map);
 }

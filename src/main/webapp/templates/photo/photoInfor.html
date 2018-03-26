@@ -6,24 +6,15 @@
 <title>photo_information</title>
 </head>
 <div id="infor_js">
-	<script type="text/javascript" charset="utf-8"
-		th:src="@{/static/js/jquery.min.js}"></script>
-	<script type="text/javascript" charset="utf-8"
-		th:src="@{/static/js/bootstrap.min.js}"></script>
-	<script type="text/javascript" charset="utf-8"
-		th:src="@{/static/jquery/following.js}"></script>
-	<script type="text/javascript" charset="utf-8"
-		th:src="@{/static/jquery/deleteBlog.js}"></script>
-	<script type="text/javascript" charset="utf-8"
-		th:src="@{/static/jquery/deleteComment.js}"></script>
-	<script type="text/javascript" charset="utf-8"
-		th:src="@{/static/jquery/likeBlog.js}"></script>
-	<script type="text/javascript" charset="utf-8"
-		th:src="@{/static/jquery/comment.js}"></script>
-	<script type="text/javascript" charset="utf-8"
-		th:src="@{/static/js/jquery-1.12.0.min.js}"></script>
-	<script type="text/javascript" charset="utf-8"
-		th:src="@{/static/js/jquery.flexText.js}"></script>
+	<script type="text/javascript" charset="utf-8" th:src="@{/static/js/jquery.min.js}"></script>
+	<script type="text/javascript" charset="utf-8" th:src="@{/static/js/bootstrap.min.js}"></script>
+	<script type="text/javascript" charset="utf-8" th:src="@{/static/jquery/following.js}"></script>
+	<script type="text/javascript" charset="utf-8" th:src="@{/static/jquery/deleteBlog.js}"></script>
+	<script type="text/javascript" charset="utf-8" th:src="@{/static/jquery/deleteComment.js}"></script>
+	<script type="text/javascript" charset="utf-8" th:src="@{/static/jquery/likeBlog.js}"></script>
+	<script type="text/javascript" charset="utf-8" th:src="@{/static/jquery/comment.js}"></script>
+	<script type="text/javascript" charset="utf-8" th:src="@{/static/js/jquery-1.12.0.min.js}"></script>
+	<script type="text/javascript" charset="utf-8" th:src="@{/static/js/jquery.flexText.js}"></script>
 </div>
 <body class="bodyColor" style="background-color: #eeeeee;">
 	<header th:replace="nav :: nav"></header>
@@ -76,7 +67,7 @@
 					</div>
 				</div>
 				<br /> <img id="pictureUrl" th:src="${blog.picture.url}"
-					alt="Cinque Terre" class="img center-block" />
+					alt="Cinque Terre" class="center-block imginfor" />
 			</div>
 			<!-- Blog Post -->
 		</div>

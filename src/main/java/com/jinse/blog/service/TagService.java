@@ -17,5 +17,7 @@ public interface TagService {
 
 	List<TagType> findTableTagList();
 
+	List<Tag> findTagListByUserIdAndType(Integer userId, String type);
+
 
 }

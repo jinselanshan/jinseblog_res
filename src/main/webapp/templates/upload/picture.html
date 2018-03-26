@@ -12,8 +12,8 @@
 	<form enctype="multipart/form-data" id="uploadForm" th:action="@{/uploadPicture}" method="post">
 		<div class="col-xs-9 span9">
 			<div class="">
-					<label>上传图片</label> <input id="file-zh" name="file-zh[]"
-						class="fileinputLocales['zh']" type="file" multiple/>
+					<label>上传图片</label> 
+					<input id="file-zh" type="file"  class="file" name="file-zh[]" data-upload-url="#" />
 			</div>
 		</div>
 		<div class="col-xs-3 span3  tablecss" id="picture_table">
@@ -25,7 +25,7 @@
 						<td>标题</td>
 					</tr>
 					<tr class="">
-						<td><input name="title" type="text"></td>
+						<td><input id="title" name="title" type="text"></td>
 					</tr>
 					<tr class="">
 						<td>作品描述</td>
@@ -46,7 +46,8 @@
 						<td>常用标签</td>
 					</tr>
 					<tr class="">
-						<td style="display:block;" width="280"><span th:each="tag : ${tagList}" class="label label-default tagku" style="cursor: pointer" th:text="${tag.tagName}"></span></td>
+						<td width="300"><span th:each="tag : ${tagList}" class="label label-default tagku" style="cursor: pointer;" th:text="${tag.tagName}"></span></td>
+
 					</tr>
 					<tr class="">
 						<td><label class="checkbox"> <input type="checkbox"
@@ -54,7 +55,7 @@
 						</label></td>
 					</tr>
 					<tr class="">
-						<td><button class="btn" type="submit">提交</button></td>
+						<td><button class="btn" type="submit" id="submit"  onclick="return check()">提交</button></td>
 					</tr>
 				</table>
 			</form>
@@ -71,13 +72,17 @@
 		maxFileSize : 20000,
 		maxFilesNum : 10,
 		showUpload : false,
+		showPreview : true,
+		autoReplace : true,
+		dropZoneEnabled : true
 
 	});
 	$(document).ready(function() {
-		$("#test-upload").fileinput({
-
+		$("#submit").click({
+			
 		});
 	});
+
 	/* $(function() {
 		$("#sub").click(
 			function() {

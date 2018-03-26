@@ -1,6 +1,8 @@
 package com.jinse.blog.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -41,6 +43,14 @@ public class TagServiceImpl implements TagService{
 	public List<TagType> findTableTagList() {
 		
 		return null;
+	}
+
+	@Override
+	public List<Tag> findTagListByUserIdAndType(Integer userId, String type) {
+		Map<String,String> map= new HashMap<String,String>();
+		map.put("userId", String.valueOf(userId));
+		map.put("type", type);
+		return tagMapper.findTagListByUserIdAndType(map);
 	}
 
 }

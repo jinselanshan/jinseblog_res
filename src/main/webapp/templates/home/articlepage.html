@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-<head th:include="home/homeHead :: home_header">
-<title>主页 - 摄影绘画 - USERNAME</title>
-<!--  <link rel="stylesheet" href="css/index.css"> -->
+<head th:replace="home/homeHead :: home_header(~{::title},~{::link})">
+<title>主页 - 文章</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/article/fancybox.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/article/main.css}" />
 </head>
 <body style="background-color: #eeeeee;">
 
@@ -17,7 +18,7 @@
 		<div class="main-inner">
 			<div id="content" class="content">
 				<span class="archive-move-on"></span> <span
-					class="archive-page-counter"> 共计 22 篇文章。 </span>
+					class="archive-page-counter" th:text="'共计' + ${#lists.size(user.blogList)} + '篇文章' "> 共计 n 篇文章。 </span>
 
 				<section id="posts" class="posts-collapse" >
 					<div class="collection-title">

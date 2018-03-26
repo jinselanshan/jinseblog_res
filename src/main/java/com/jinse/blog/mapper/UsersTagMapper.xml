@@ -200,8 +200,8 @@
 	<select id="findMaxTenUsersTagMapperByUserId" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select tem.id,tem.tag_id,tem.user_id from (
-		select ut.*,count(tag_id) num from test.users_tag as ut
-		where user_id = 107
+		select ut.*,count(tag_id) num from users_tag as ut
+		where user_id = #{userId,jdbcType=INTEGER}
 		group by tag_id
 		order by num desc
 		limit 10) tem

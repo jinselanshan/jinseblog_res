@@ -10,6 +10,7 @@ import com.jinse.blog.pojo.Blog;
 import com.jinse.blog.pojo.Picture;
 import com.jinse.blog.pojo.User;
 import com.jinse.blog.pojo.UserQueryVo;
+
 import com.jinse.blog.vos.BlogVO;
 
 public interface BlogPictureMapper {
@@ -33,5 +34,9 @@ public interface BlogPictureMapper {
 	List<Blog> findPhotoListByTitle(String content);
 
 	List<Blog> findBlogListByTitle(@Param("title")String title, @Param("type")String type);
+	
+	List<Blog> findAllPictureByUserIdAndType(@Param("userId")Integer userId, @Param("type")String type);
+
+	List<Blog> findAllLikePictureByUserId(Integer userId);
   
 }

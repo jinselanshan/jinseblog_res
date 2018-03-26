@@ -77,6 +77,19 @@
 		order by b.create_at desc
 	</select>
 
+	<select id="findAllPictureByUserIdAndType" resultMap="BlogWithUserWithPictureResult">
+		select
+		u.*,b.*,p.*
+		from user u,blog b,picture p
+		where
+		u.user_id =
+		#{userId,jdbcType=INTEGER}
+		and u.user_id = b.user_id
+		and b.blog_id =
+		p.blog_id
+		and p.type = #{type}
+		order by b.create_at desc
+	</select>
 
 
 	<resultMap id="BlogWithUserWithPictureResult" type="com.jinse.blog.pojo.Blog"
@@ -113,14 +126,17 @@
 
 
 
-	<select id="findPhotoListByUserIdAndType" parameterType="com.jinse.blog.vos.BlogVO"
-		resultMap="BlogWithUserWithPictureResult">
-		SELECT b.*,p.url,p.type,u.*
+
+	<select id="findPhotoListByUserIdAndType" resultMap="BlogWithUserWithPictureResult">
+		SELECT
+		b.*,p.url,p.type,u.*
 		from user u,blog b,picture p
 		where
-		b.user_id = u.user_id and p.blog_id = b.blog_id and p.type = #{type}
+		b.user_id =
+		u.user_id and p.blog_id = b.blog_id and p.type = #{type}
 		and
-		b.blog_id in
+		b.blog_id
+		in
 		(SELECT blog.blog_id
 		from blog
 		where blog.user_id in
@@ -130,6 +146,13 @@
 		#{userId,jdbcType=INTEGER})) order by b.create_at desc limit
 		#{start},#{length}
 	</select>
+
+	<select id="findAllLikePictureByUserId" parameterType="int" resultMap="BlogWithUserWithPictureResult">
+		select b.*,u.*,p.*
+		from blog b,user u,picture p where b.user_id=u.user_id and p.blog_id = b.blog_id and b.blog_id in (select distinct(blog_id) from likeif where
+		user_id = #{userId,jdbcType=INTEGER})
+	</select>
+
 
 	<select id="findPhotoListByTitle" parameterType="string"
 		resultMap="BlogWithUserWithPictureResult">

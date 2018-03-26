@@ -211,14 +211,28 @@
 		#{type,jdbcType=VARCHAR}
 		)
 	</insert>
-	
-		<select id="findTagListByCount" resultMap="BaseResultMap"
+
+	<select id="findTagListByCount" resultMap="BaseResultMap"
 		parameterType="java.lang.String">
 		select tag_name from tag,
-		(select DISTINCT count(*) as numbers,tag_id from blog_tag group by tag_id
-		desc
+		(select DISTINCT count(*) as
+		numbers,tag_id from blog_tag group by tag_id
+		order by numbers desc
 		limit 10) as temp
 		where tag.tag_id = temp.tag_id and tag.type = #{type}
 		order by temp.numbers desc
+	</select>
+
+	<select id="findTagListByUserIdAndType" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		select tag_name from tag,
+		(select DISTINCT count(*) as
+		numbers,tag_id from users_tag group by tag_id
+		order by numbers desc) as
+		temp
+		where tag.tag_id = temp.tag_id and tag.type = #{type}
+		order by
+		temp.numbers desc
+		limit 10
 	</select>
 </mapper>

@@ -52,8 +52,8 @@
 								th:text="登录">[...]</a></li>
 							<li><a th:unless="${session.username}" th:href="@{/signup}"
 								th:text="注册">[...]</a></li>
-							<li><a th:if="${session.username}" th:href="@{'/otherPhotoes/' + ${session.CURRENT_USER.userId}}"
-								th:text="${session.username}">[...]</a>
+							<li><a th:if="${session.username}" th:href="@{'/otherPhotoes/' + ${session.CURRENT_USER.userId} + '/1'}"
+								th:text="${session.username}">username</a>
 									<input type="hidden" id="currentUserId"
 						th:value="${session.CURRENT_USER.userId}">
 								</li>

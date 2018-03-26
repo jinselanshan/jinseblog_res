@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jinse.blog.mapper.OrderInforMapper">
+	<resultMap id="BaseResultMap" type="com.jinse.blog.pojo.OrderInfor">
+		<id column="order_id" property="orderId" jdbcType="INTEGER" />
+		<result column="seller_id" property="sellerId" jdbcType="INTEGER" />
+		<result column="blog_id" property="blogId" jdbcType="INTEGER" />
+		<result column="picture_id" property="pictureId" jdbcType="INTEGER" />
+		<result column="video_id" property="videoId" jdbcType="INTEGER" />
+		<result column="trade_no" property="tradeNo" jdbcType="VARCHAR" />
+		<result column="out_trade_no" property="outTradeNo" jdbcType="VARCHAR" />
+		<result column="total_amount" property="totalAmount" jdbcType="INTEGER" />
+		<result column="price" property="price" jdbcType="INTEGER" />
+		<result column="year" property="year" jdbcType="INTEGER" />
+		<result column="buyer_id" property="buyerId" jdbcType="INTEGER" />
+		<result column="message" property="message" jdbcType="VARCHAR" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="order_state" property="orderState" jdbcType="VARCHAR" />
+		<result column="payed_at" property="payedAt" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		order_id, seller_id, blog_id, picture_id, video_id, trade_no, out_trade_no,
+		total_amount,
+		price, year, buyer_id, message, title, order_state, payed_at
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.jinse.blog.pojo.OrderInforExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from order_infor
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from order_infor
+		where order_id = #{orderId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from order_infor
+		where order_id = #{orderId,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.jinse.blog.pojo.OrderInforExample">
+		delete from order_infor
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.jinse.blog.pojo.OrderInfor">
+		insert into order_infor (order_id, seller_id, blog_id,
+		picture_id, video_id, trade_no,
+		out_trade_no, total_amount, price,
+		year, buyer_id, message,
+		title, order_state, payed_at
+		)
+		values (#{orderId,jdbcType=INTEGER}, #{sellerId,jdbcType=INTEGER},
+		#{blogId,jdbcType=INTEGER},
+		#{pictureId,jdbcType=INTEGER}, #{videoId,jdbcType=INTEGER}, #{tradeNo,jdbcType=VARCHAR},
+		#{outTradeNo,jdbcType=VARCHAR}, #{totalAmount,jdbcType=INTEGER},
+		#{price,jdbcType=INTEGER},
+		#{year,jdbcType=INTEGER}, #{buyerId,jdbcType=INTEGER}, #{message,jdbcType=VARCHAR},
+		#{title,jdbcType=VARCHAR}, #{orderState,jdbcType=VARCHAR},
+		#{payedAt,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.jinse.blog.pojo.OrderInfor">
+		insert into order_infor
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="orderId != null">
+				order_id,
+			</if>
+			<if test="sellerId != null">
+				seller_id,
+			</if>
+			<if test="blogId != null">
+				blog_id,
+			</if>
+			<if test="pictureId != null">
+				picture_id,
+			</if>
+			<if test="videoId != null">
+				video_id,
+			</if>
+			<if test="tradeNo != null">
+				trade_no,
+			</if>
+			<if test="outTradeNo != null">
+				out_trade_no,
+			</if>
+			<if test="totalAmount != null">
+				total_amount,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="year != null">
+				year,
+			</if>
+			<if test="buyerId != null">
+				buyer_id,
+			</if>
+			<if test="message != null">
+				message,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="orderState != null">
+				order_state,
+			</if>
+			<if test="payedAt != null">
+				payed_at,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="orderId != null">
+				#{orderId,jdbcType=INTEGER},
+			</if>
+			<if test="sellerId != null">
+				#{sellerId,jdbcType=INTEGER},
+			</if>
+			<if test="blogId != null">
+				#{blogId,jdbcType=INTEGER},
+			</if>
+			<if test="pictureId != null">
+				#{pictureId,jdbcType=INTEGER},
+			</if>
+			<if test="videoId != null">
+				#{videoId,jdbcType=INTEGER},
+			</if>
+			<if test="tradeNo != null">
+				#{tradeNo,jdbcType=VARCHAR},
+			</if>
+			<if test="outTradeNo != null">
+				#{outTradeNo,jdbcType=VARCHAR},
+			</if>
+			<if test="totalAmount != null">
+				#{totalAmount,jdbcType=INTEGER},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=INTEGER},
+			</if>
+			<if test="year != null">
+				#{year,jdbcType=INTEGER},
+			</if>
+			<if test="buyerId != null">
+				#{buyerId,jdbcType=INTEGER},
+			</if>
+			<if test="message != null">
+				#{message,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="orderState != null">
+				#{orderState,jdbcType=VARCHAR},
+			</if>
+			<if test="payedAt != null">
+				#{payedAt,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.jinse.blog.pojo.OrderInforExample"
+		resultType="java.lang.Integer">
+		select count(*) from order_infor
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update order_infor
+		<set>
+			<if test="record.orderId != null">
+				order_id = #{record.orderId,jdbcType=INTEGER},
+			</if>
+			<if test="record.sellerId != null">
+				seller_id = #{record.sellerId,jdbcType=INTEGER},
+			</if>
+			<if test="record.blogId != null">
+				blog_id = #{record.blogId,jdbcType=INTEGER},
+			</if>
+			<if test="record.pictureId != null">
+				picture_id = #{record.pictureId,jdbcType=INTEGER},
+			</if>
+			<if test="record.videoId != null">
+				video_id = #{record.videoId,jdbcType=INTEGER},
+			</if>
+			<if test="record.tradeNo != null">
+				trade_no = #{record.tradeNo,jdbcType=VARCHAR},
+			</if>
+			<if test="record.outTradeNo != null">
+				out_trade_no = #{record.outTradeNo,jdbcType=VARCHAR},
+			</if>
+			<if test="record.totalAmount != null">
+				total_amount = #{record.totalAmount,jdbcType=INTEGER},
+			</if>
+			<if test="record.price != null">
+				price = #{record.price,jdbcType=INTEGER},
+			</if>
+			<if test="record.year != null">
+				year = #{record.year,jdbcType=INTEGER},
+			</if>
+			<if test="record.buyerId != null">
+				buyer_id = #{record.buyerId,jdbcType=INTEGER},
+			</if>
+			<if test="record.message != null">
+				message = #{record.message,jdbcType=VARCHAR},
+			</if>
+			<if test="record.title != null">
+				title = #{record.title,jdbcType=VARCHAR},
+			</if>
+			<if test="record.orderState != null">
+				order_state = #{record.orderState,jdbcType=VARCHAR},
+			</if>
+			<if test="record.payedAt != null">
+				payed_at = #{record.payedAt,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update order_infor
+		set order_id = #{record.orderId,jdbcType=INTEGER},
+		seller_id = #{record.sellerId,jdbcType=INTEGER},
+		blog_id = #{record.blogId,jdbcType=INTEGER},
+		picture_id = #{record.pictureId,jdbcType=INTEGER},
+		video_id = #{record.videoId,jdbcType=INTEGER},
+		trade_no = #{record.tradeNo,jdbcType=VARCHAR},
+		out_trade_no = #{record.outTradeNo,jdbcType=VARCHAR},
+		total_amount = #{record.totalAmount,jdbcType=INTEGER},
+		price = #{record.price,jdbcType=INTEGER},
+		year = #{record.year,jdbcType=INTEGER},
+		buyer_id = #{record.buyerId,jdbcType=INTEGER},
+		message = #{record.message,jdbcType=VARCHAR},
+		title = #{record.title,jdbcType=VARCHAR},
+		order_state = #{record.orderState,jdbcType=VARCHAR},
+		payed_at = #{record.payedAt,jdbcType=TIMESTAMP}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jinse.blog.pojo.OrderInfor">
+		update order_infor
+		<set>
+			<if test="sellerId != null">
+				seller_id = #{sellerId,jdbcType=INTEGER},
+			</if>
+			<if test="blogId != null">
+				blog_id = #{blogId,jdbcType=INTEGER},
+			</if>
+			<if test="pictureId != null">
+				picture_id = #{pictureId,jdbcType=INTEGER},
+			</if>
+			<if test="videoId != null">
+				video_id = #{videoId,jdbcType=INTEGER},
+			</if>
+			<if test="tradeNo != null">
+				trade_no = #{tradeNo,jdbcType=VARCHAR},
+			</if>
+			<if test="outTradeNo != null">
+				out_trade_no = #{outTradeNo,jdbcType=VARCHAR},
+			</if>
+			<if test="totalAmount != null">
+				total_amount = #{totalAmount,jdbcType=INTEGER},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=INTEGER},
+			</if>
+			<if test="year != null">
+				year = #{year,jdbcType=INTEGER},
+			</if>
+			<if test="buyerId != null">
+				buyer_id = #{buyerId,jdbcType=INTEGER},
+			</if>
+			<if test="message != null">
+				message = #{message,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="orderState != null">
+				order_state = #{orderState,jdbcType=VARCHAR},
+			</if>
+			<if test="payedAt != null">
+				payed_at = #{payedAt,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where order_id = #{orderId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jinse.blog.pojo.OrderInfor">
+		update order_infor
+		set seller_id = #{sellerId,jdbcType=INTEGER},
+		blog_id = #{blogId,jdbcType=INTEGER},
+		picture_id = #{pictureId,jdbcType=INTEGER},
+		video_id = #{videoId,jdbcType=INTEGER},
+		trade_no = #{tradeNo,jdbcType=VARCHAR},
+		out_trade_no = #{outTradeNo,jdbcType=VARCHAR},
+		total_amount = #{totalAmount,jdbcType=INTEGER},
+		price = #{price,jdbcType=INTEGER},
+		year = #{year,jdbcType=INTEGER},
+		buyer_id = #{buyerId,jdbcType=INTEGER},
+		message = #{message,jdbcType=VARCHAR},
+		title = #{title,jdbcType=VARCHAR},
+		order_state = #{orderState,jdbcType=VARCHAR},
+		payed_at = #{payedAt,jdbcType=TIMESTAMP}
+		where order_id = #{orderId,jdbcType=INTEGER}
+	</update>
+
+
+	<insert id="saveOrderInforAndReturnId" useGeneratedKeys="true"
+		keyProperty="orderId" parameterType="com.jinse.blog.pojo.OrderInfor">
+		insert into order_infor (order_id, seller_id, blog_id,
+		picture_id, video_id, trade_no,
+		out_trade_no, total_amount, price,
+		year, buyer_id, message,
+		title, order_state, payed_at
+		)
+		values (#{orderId,jdbcType=INTEGER}, #{sellerId,jdbcType=INTEGER},
+		#{blogId,jdbcType=INTEGER},
+		#{pictureId,jdbcType=INTEGER}, #{videoId,jdbcType=INTEGER}, #{tradeNo,jdbcType=VARCHAR},
+		#{outTradeNo,jdbcType=VARCHAR}, #{totalAmount,jdbcType=INTEGER},
+		#{price,jdbcType=INTEGER},
+		#{year,jdbcType=INTEGER}, #{buyerId,jdbcType=INTEGER}, #{message,jdbcType=VARCHAR},
+		#{title,jdbcType=VARCHAR}, #{orderState,jdbcType=VARCHAR},
+		#{payedAt,jdbcType=TIMESTAMP}
+		)
+	</insert>
+</mapper>

@@ -53,12 +53,12 @@
 		th:fragment="navigation">
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li><a href="#">摄影</a></li>
-				<li><a href="#">绘画</a></li>
-				<li><a href="#">文章</a></li>
-				<li><a href="#">短视频</a></li>
-				<li><a href="#">喜欢</a></li>
+			<ul class="nav navbar-nav navbar-table">
+				<li><a th:href="@{'/otherPhotoes/' + ${session.CURRENT_USER.userId} + '/1'}">摄影</a></li>
+				<li><a th:href="@{'/otherPhotoes/' + ${session.CURRENT_USER.userId} + '/2'}">绘画</a></li>
+				<li><a th:href="@{/myArticle}">文章</a></li>
+				<li><a th:href="@{/myVideo}">短视频</a></li>
+				<li><a th:href="@{/myLikeBlog}">喜欢</a></li>
 				<li><a href="#">标签</a></li>
 			</ul>
 		</div>

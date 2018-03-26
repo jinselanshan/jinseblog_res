@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="htmlHead :: common_header(~{::title},~{})">
+<title>主页 - 短视频</title>
+</head>
+<div>
+	<script src="/jinseblog/static/jquery/likeBlog.js"
+		type="text/javascript" charset="utf-8"></script>
+</div>
+<body style="background-color: #eeeeee;">
+
+	<header th:replace="nav :: nav"></header>
+	<!-- content-->
+	<div class="row clearfix">
+		<div class="col-md-2 column"></div>
+		<div class="col-md-6 column">
+
+			<!-- Blog Post -->
+			<br />
+			<div class="card mb-4 panel-body panel post-preview"
+				th:each="blog : ${user.blogList}">
+				<a th:href="@{'/article/blog/' + ${blog.blogId}}">
+					<h2 class="post-title" th:text="${blog.title}">Title</h2>
+					<h5 class="post-subtitle" th:text="${blog.description}">description</h5>
+				</a>
+				<video width="320" height="240" controls>
+					<source th:src="${blog.video.url}" type="video/mp4">
+				<!-- 	<source th:src="movie.ogg" type="video/ogg"> -->
+				</video>
+				<span class="post-meta"> Posted by <a href="#"
+					th:text="${blog.user.username}">Username</a> on
+				</span> <span class="post-meta"
+					th:text="${#dates.format(blog.createAt, 'yyyy-MM-dd')}">September
+					24, 2017</span>
+			</div>
+			<!-- Blog Post -->
+
+		</div>
+		<!-- center -->
+	</div>
+
+</body>
+</html>
