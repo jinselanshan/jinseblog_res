@@ -33,7 +33,7 @@
 		<div class="col-md-12 column row clearfix">
 			<div class="col-md-2 column"></div>
 			<div class="col-md-6 column">
-				<form th:action="@{/uploadInfor}" method="post">
+				<form id="information_table" method="post">
 					<table class="table form-group">
 						<tr>
 							<td><h2>基本信息</h2></td>
@@ -98,7 +98,7 @@
 
 						<tr>
 							<td><button class="btn" id="submit" contenteditable="true"
-									type="submit">提交</button></td>
+									type="button" onclick="submitInfor()">提交</button></td>
 						</tr>
 					</table>
 

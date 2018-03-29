@@ -1,3 +1,21 @@
+function submitInfor() {
+	var pathName = window.document.location.pathname;
+	var projectName = pathName
+			.substring(0, pathName.substr(1).indexOf('/') + 1);
+	$.ajax({
+		// 几个参数需要注意一下
+		type : "POST",// 方法类型
+		dataType : "JSON",
+		url : projectName + "/uploadInfor",
+		data : $('#information_table').serialize(),
+		success : function(data) {
+			toastr.success('更新成功');
+		},
+		error : function() {
+			toastr.error('更新失败');
+		}
+	})
+}
 function Bind(str) {
 	alert($("#province").html());
 	$("#province").val(str);
@@ -25,13 +43,13 @@ function ProviceBind(provinceId) {
 			$.each(data, function(i, item) {
 				var $option = $("<option value=" + item.id + ">" + item.myTexts
 						+ "</option>");
-		        if (provinceId == item.id) {
-		        	$option.attr("selected", "selected");
-		        }
-		        // 将数据添加到省份这个下拉框里面
+				if (provinceId == item.id) {
+					$option.attr("selected", "selected");
+				}
+				// 将数据添加到省份这个下拉框里面
 				$("#province").append($option);
 			})
-			
+
 		},
 		error : function() {
 			alert("Error");
@@ -65,13 +83,13 @@ function cityBind(cityId) {
 			$.each(data, function(i, item) {
 				var $option = $("<option value=" + item.id + ">" + item.myTexts
 						+ "</option>");
-		        if (cityId == item.id) {
-		        	$option.attr("selected", "selected");
-		        }
-		        // 将数据添加到省份这个下拉框里面
+				if (cityId == item.id) {
+					$option.attr("selected", "selected");
+				}
+				// 将数据添加到省份这个下拉框里面
 				$("#city").append($option);
 			})
-			
+
 		},
 		error : function() {
 			$("#city").append(str);
@@ -103,10 +121,10 @@ function villageBind(villageId) {
 			$.each(data, function(i, item) {
 				var $option = $("<option value=" + item.id + ">" + item.myTexts
 						+ "</option>");
-		        if (villageId == item.id) {
-		        	$option.attr("selected", "selected");
-		        }
-		        // 将数据添加到省份这个下拉框里面
+				if (villageId == item.id) {
+					$option.attr("selected", "selected");
+				}
+				// 将数据添加到省份这个下拉框里面
 				$("#village").append($option);
 			})
 		},

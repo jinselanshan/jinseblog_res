@@ -81,7 +81,7 @@ public class AvatarUtil {
 		bFile = dirFile.exists();
 		if (bFile != true) {
 			System.out.println("create a one...");
-			bFile = dirFile.mkdir();
+			bFile = dirFile.mkdirs();
 		}
 	}
 }
