@@ -55,6 +55,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserClasses findByUser(User user) {
 		User userRes = userMapper.findByUser(user);
+		UserClasses userClasses = userToUserClasses(userRes);
+		return userClasses;
+	}
+
+	//USER转USERCLASSES
+	private UserClasses userToUserClasses(User userRes) {
 		UserClasses userClasses = new UserClasses();
 		try {
 			BeanUtils.copyProperties(userClasses, userRes);

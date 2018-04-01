@@ -131,7 +131,7 @@ public class UserController {
 			User user = userService.findUserByUserId(userId);
 			
 			model.addAttribute("user", user);
-			SpringUtil.setSession(ConstantsUtil.STRING_CURRENT_USER, user);
+			//SpringUtil.setSession(ConstantsUtil.STRING_CURRENT_USER, user);
 			SpringUtil.setSession(ConstantsUtil.STRING_USER_NAME, user.getUsername());
 			/*
 			 * if(user.getCityId() != null && user.getCityId() != "") { Province province =
@@ -193,7 +193,8 @@ public class UserController {
 
 	// 更新信息
 	@RequestMapping(value = "/uploadInfor", method = RequestMethod.POST)
-	public String uploadInfor(Model model, HttpServletRequest request, User user, String birth) throws Exception {
+	@ResponseBody
+	public User uploadInfor(Model model, HttpServletRequest request, User user, String birth) throws Exception {
 		logger.info(user.getUsername());
 		UserUtil.formatAddress(user);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -206,7 +207,7 @@ public class UserController {
 		//设置city
 		provinceService.setCityByUserId(user);
 		userService.updateUserByUserId(user);
-		return "redirect:information";
+		return user;
 	}
 
 /*	// 其他用户主页

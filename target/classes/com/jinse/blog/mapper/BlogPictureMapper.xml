@@ -144,6 +144,27 @@
 		#{userId,jdbcType=INTEGER})) order by b.create_at desc limit
 		#{start},#{length}
 	</select>
+	
+	<select id="findPhotoListByUserId" resultMap="BlogWithUserWithPictureResult">
+		SELECT
+		b.*,p.url,p.type,u.*
+		from user u,blog b,picture p
+		where
+		b.user_id = u.user_id and p.blog_id = b.blog_id
+		and u.user_id = #{userId,jdbcType=INTEGER}
+	    order by b.create_at desc
+	</select>
+	
+	
+	<select id="findBuyPhotoListByUserId" resultMap="BlogWithUserWithPictureResult">
+				SELECT
+		b.*,p.*,u.*
+		from user u,blog b,picture p
+		where
+		b.user_id = u.user_id and p.blog_id = b.blog_id
+		and u.user_id = #{userId,jdbcType=INTEGER} and p.buy = "Y" and p.price is not null
+	    order by b.create_at desc
+	</select>
 
 	<select id="findAllLikePictureByUserId" parameterType="int" resultMap="BlogWithUserWithPictureResult">
 		select b.*,u.*,p.*

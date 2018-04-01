@@ -158,7 +158,7 @@ public class PictureController {
 		BlogVO blogVO = BlogUtil.initBlogVO(userId, type);
 		
 		// 发现我关注的摄影blog列表
-		List<BlogAndLike> blogAndLikeList = blogService.findPhotoListByUserId(blogVO);
+		List<BlogAndLike> blogAndLikeList = blogService.findPhotoListByUserIdAndType(blogVO);
 
 		model.addAttribute("blogList", blogAndLikeList);
 		return "photo/indexPhoto";
@@ -171,7 +171,7 @@ public class PictureController {
 	public List<BlogAndLike> loadingMore(Model model, HttpServletRequest request,BlogVO blogVO) throws Exception {
 		logger.info("find blogAndLikeList");
 
-		List<BlogAndLike> blogAndLikeList = blogService.findPhotoListByUserId(blogVO);
+		List<BlogAndLike> blogAndLikeList = blogService.findPhotoListByUserIdAndType(blogVO);
 	
 		return blogAndLikeList;
 	}

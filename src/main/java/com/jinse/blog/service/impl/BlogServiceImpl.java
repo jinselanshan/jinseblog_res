@@ -1,6 +1,5 @@
 package com.jinse.blog.service.impl;
 
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -64,12 +63,39 @@ public class BlogServiceImpl implements BlogService {
 		return blog;
 	}
 
+	//关注的博客李彪
 	@Override
-	public List<BlogAndLike> findPhotoListByUserId(BlogVO blogVO) {
+	public List<BlogAndLike> findPhotoListByUserIdAndType(BlogVO blogVO) {
 		List<Blog> blogList = blogPictureMapper.findPhotoListByUserIdAndType(blogVO);
+		
+		Integer userId = blogVO.getUserId();
+		List<BlogAndLike> blogAndLikeList = blogToBlogAndLike(blogList, userId);
+
+		return blogAndLikeList;
+	}
+
+	//发现自己的博客列表
+	@Override
+	public List<BlogAndLike> findPhotoListByUserId(Integer userId) {
+		List<Blog> blogList = blogPictureMapper.findPhotoListByUserId(userId);
+		List<BlogAndLike> blogAndLikeList = blogToBlogAndLike(blogList, userId);
+
+		return blogAndLikeList;
+	}
+	//发现自己的出售作品列表
+	@Override
+	public List<BlogAndLike> findBuyPhotoListByUserId(Integer userId) {
+		List<Blog> blogList = blogPictureMapper.findBuyPhotoListByUserId(userId);
+		List<BlogAndLike> blogAndLikeList = blogToBlogAndLike(blogList, userId);
+
+		return blogAndLikeList;
+	}
+
+	private List<BlogAndLike> blogToBlogAndLike(List<Blog> blogList, Integer userId) {
 		if (blogList == null) {
 			throw new RuntimeException("博客不存在");
 		}
+
 		// 设置标签,遍历blog
 		for (int i = 0; i < blogList.size(); i++) {
 			Blog blog = blogList.get(i);
@@ -88,13 +114,12 @@ public class BlogServiceImpl implements BlogService {
 				}
 				Likeif likeif = new Likeif();
 				likeif.setBlogId(blogres.getBlogId());
-				likeif.setUserId(blogVO.getUserId());
+				likeif.setUserId(userId);
 				int count = likeifService.findLikeifByBlogIdAndUserId(likeif);
 				blogAndLike.setLikeif(count);
 				blogAndLikeList.add(blogAndLike);
 			}
 		}
-
 		return blogAndLikeList;
 	}
 

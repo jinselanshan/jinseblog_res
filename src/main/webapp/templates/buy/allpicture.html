@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="user/information :: information">
+<meta charset="UTF-8"></meta>
+<title>个人设置</title>
+
+</head>
+<div><!--编辑 -->
+<script type="text/javascript" src="/jinseblog/static/jquery/buypage.js"></script></div>
+<body>
+	<!-- 导航栏 -->
+	<header th:replace="nav :: nav"></header>
+	<div class="container">
+		<div class="col-md-12 column row clearfix">
+			<div class="col-md-1 column"></div>
+			<div class="col-md-9 column">
+				<input type="hidden" id="blogNumber"
+					th:value="${#lists.size(blogList)}">
+				<h3>作品列表</h3>
+				<div class="table_div">
+					<table class="table form-group picture_table"
+						th:each="blog : ${blogList}">
+						<tr>
+							<td rowspan="3" width="150"><img class="control-label" id="imghead"
+								border="0"
+								th:src="${blog.picture.url+'?imageView2/2/w/350/h/350/q/60'}">
+							</td>
+							<td width="100">类型</td>
+							<td th:switch="${blog.picture.type}" width="300">
+								<p th:case="'1'" name="type">摄影</p>
+								<p th:case="'2'" name="type">绘画</p>
+							</td>
+							<td  width="150"></td>
+						</tr>
+						<tr>
+							<td>名称</td>
+							<td colspan="2"><p th:text="${blog.title}">title</p></td>
+						</tr>
+						<tr>
+							<td>售价</td>
+							<td><p id="price_text" th:text="${blog.picture.price}"></p></td>
+							<td><input type="button" class="btn edit_btn" value="修改">
+								<input type="button" class="btn under_btn" value="下架"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="col-md-2 column"></div>
+		</div>
+
+	</div>
+
+
+	<script type="text/javascript">
+		$(function() {
+			var blogNumber = $('#blogNumber').val();
+			
+			var num = parseInt(blogNumber, 10);
+			var total_page = Math.ceil(num/5);
+			$('.table_div').paginathing({
+				perPage : 5,
+				limitPagination : total_page,
+				containerClass : 'panel-footer',
+				pageNumbers : true
+			})
+
+		});
+	</script>
+</body>
+
+</html>

@@ -13,7 +13,9 @@ public interface BlogService {
 
 	Blog findBlogByBlogId(Integer blogId);
 
-	List<BlogAndLike> findPhotoListByUserId(BlogVO blogVO);
+	List<BlogAndLike> findPhotoListByUserIdAndType(BlogVO blogVO);
+
+	List<BlogAndLike> findPhotoListByUserId(Integer userId);
 
 	int deleteBlogByBlogId(Blog blog);
 
@@ -33,5 +35,6 @@ public interface BlogService {
 
 	List<User> findArticleListByUserAndTitle(String content);
 
+	List<BlogAndLike> findBuyPhotoListByUserId(Integer userId);
 
 }
