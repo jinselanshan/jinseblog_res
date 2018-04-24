@@ -9,6 +9,8 @@ public class Tag {
 
     private Integer tagTypeId;
 
+    private String url;
+
     public Integer getTagId() {
         return tagId;
     }
@@ -39,5 +41,13 @@ public class Tag {
 
     public void setTagTypeId(Integer tagTypeId) {
         this.tagTypeId = tagTypeId;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url == null ? null : url.trim();
     }
 }

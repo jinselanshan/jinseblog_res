@@ -21,4 +21,8 @@ public interface PictureService {
 
 	List<Blog> findAllLikePictureByUserId(Integer userId);
 
+	int updatePicturePriceById(Picture picture);
+	
+	Blog findPictureIfCanBuyByBlogId(Integer blogId);
+
 }

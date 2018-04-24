@@ -15,7 +15,7 @@ import com.jinse.blog.vos.BlogVO;
 
 public interface BlogPictureMapper {
 
-	int updateByPictureId(Picture picture);
+	int updateUrlByPictureId(Picture picture);
 
 	int insertPicture(Picture picture);
 
@@ -42,6 +42,10 @@ public interface BlogPictureMapper {
 	List<Blog> findAllLikePictureByUserId(Integer userId);
 
 	List<Blog> findBuyPhotoListByUserId(Integer userId);
+
+	int updatePicturePriceById(Picture picture);
+
+	Blog findPictureIfCanBuyByBlogId(Integer blogId);
 
   
 }

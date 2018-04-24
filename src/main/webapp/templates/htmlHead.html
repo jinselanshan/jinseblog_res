@@ -12,7 +12,10 @@
 <link rel="stylesheet" type="text/css" href="/jinseblog/static/css/user-following.css" />
 <link rel="stylesheet" type="text/css" href="/jinseblog/static/css/return_top/style.css" />
 
- <th:block th:replace="${links}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/toastr/sweetalert.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/toastr/toastr.min.css}" />
+
+
  <th:block th:replace="${title}" />
 
 <script type="text/javascript" charset="utf-8" src="https://cdn.bootcss.com/underscore.js/1.8.3/underscore-min.js"></script>
@@ -23,6 +26,14 @@
 
 <script type="text/javascript" charset="utf-8" src="/jinseblog/static/jquery/return_top/main.js"></script>
 <script type="text/javascript" charset="utf-8" src="/jinseblog/static/jquery/return_top/modernizr.js"></script>
+
+<script type="text/javascript" src="/jinseblog/static/jquery/toastr/sweetalert.min.js"></script>
+<script type="text/javascript" src="/jinseblog/static/jquery/toastr/toastr.min.js"></script>
+<!-- 分页 -->
+<script type="text/javascript" src="/jinseblog/static/jquery/page/paginathing.js"></script>
+<script type="text/javascript" src="/jinseblog/static/jquery/deleteOrder.js"></script>
+
+<th:block th:replace="${links}" />
 </head>
 <body>
 </body>

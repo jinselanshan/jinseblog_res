@@ -80,14 +80,14 @@ $(function(){
 					'rel="unlike" data-blog-id="'+blog.blogId+'"></a>'
 				}
 				var str = '<div class="card mb-4 panel-body panel">'+
-				'<a  name="blogId" href="/blog/'  + blog.blogId + '">'+
+				'<a  name="blogId" href="/jinseblog/blog/'  + blog.blogId + '">'+
 				'<input type="hidden" id="type" name="type" value="'+ blog.picture.type +'">'+
 				'<img src="' + blog.picture.url + '" alt="Cinque Terre" class="img center-block indexImg" /></a><br/>'+
 				'<div class="card-body">'+
 					'<div class="text-left">'+
 						'<a href="/otherPhotoes/' + blog.user.userId + '"><img src="' + blog.user.avatarUrl + '" alt="140x140" width="50"height="50" class="img-circle" /></a> <a href="/otherPhotoes/' + blog.user.userId +'">'+ blog.user.username + '</a></div>'+
 					'<div class="text-right">'+
-						'<a href="/blog/' + blog.blogId + '"  class="">评论(' + blog.commentNumber + ')</a>'+
+						'<a href="/jinseblog/blog/' + blog.blogId + '"  class="">评论(' + blog.commentNumber + ')</a>'+
 						likeif +  '<span class="likeNumber" id="likeNumber" data-blog-id=" '+blog.blogId +'">'+blog.likeNumber + '</span></div>'+
                     '<h4 class="card-title" >'+blog.title+'</h4>'+
 					'<p class="card-text">'+blog.description+'</p></div><div class="card-footer text-muted">'

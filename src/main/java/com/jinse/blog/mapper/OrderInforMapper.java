@@ -29,4 +29,16 @@ public interface OrderInforMapper {
     int updateByPrimaryKey(OrderInfor record);
 
 	int saveOrderInforAndReturnId(OrderInfor orderInfor);
+
+	List<OrderInfor> findSellerOrderListByUserId(Integer userId);
+
+	List<OrderInfor> findBuyerOrderListByUserId(Integer userId);
+
+	List<OrderInfor> findDeletedSellerOrderListByUserId(Integer userId);
+	
+	List<OrderInfor> findDeletedBuyerOrderListByUserId(Integer userId);
+
+	int deleteSellerOrderInforById(Integer orderId);
+
+	int deleteBuyerOrderInforById(Integer orderId);
 }

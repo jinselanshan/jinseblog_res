@@ -1,5 +1,7 @@
 package com.jinse.blog.pojo;
 
+import java.util.List;
+
 public class TagType {
     private Integer tagTypeId;
 
@@ -7,7 +9,17 @@ public class TagType {
 
     private String url;
 
-    public Integer getTagTypeId() {
+    private List<Tag> tagList;
+    
+    public List<Tag> getTagList() {
+		return tagList;
+	}
+
+	public void setTagList(List<Tag> tagList) {
+		this.tagList = tagList;
+	}
+
+	public Integer getTagTypeId() {
         return tagTypeId;
     }
 

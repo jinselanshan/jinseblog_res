@@ -25,7 +25,7 @@
 							<li><a th:href="@{/indexPhoto/painting}">绘画</a></li>
 							<li><a th:href="@{/indexArticle}">文章</a></li>
 							<li><a th:href="@{/indexVideo}">短视频</a></li>
-							<li><a href="#">标签</a></li>
+							<li><a th:href="@{/indexTag}">标签</a></li>
 							<!-- <li><a href="#">热门</a></li> -->
 						<!-- 	<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">更多<strong class="caret"></strong></a>
@@ -40,7 +40,7 @@
 								<option value="article" th:selected="${selectType=='article'}">文章</option>
 								<option value="video" th:selected="${selectType=='video'}">短视频</option>
 								<option value="username" th:selected="${selectType=='username'}">用户</option>
-								<!-- <option value="tag">标签</option> -->
+								<option value="tag" th:selected="${selectType=='tag'}">标签</option>
 							</select>
 							<div class="form-group">
 								<input type="text" class="form-control" name="content"/>
@@ -67,7 +67,10 @@
 									<li><a th:href="@{/uploadVideoIndex}">短视频</a></li>
 									<li class="divider"></li>
 									<li><a th:href="@{/information}">个人设置</a></li>
+									<li class="divider"></li>
 									<li><a th:href="@{/transaction/allpicture}">交易作品</a></li>
+									<li><a th:href="@{/order/seller/picture}">已卖出的作品</a></li>
+									<li><a th:href="@{/order/buyer/picture}">已买到的作品</a></li>
 									<li><a th:href="@{/logout}">退出</a></li>
 								</ul></li>
 						</ul>

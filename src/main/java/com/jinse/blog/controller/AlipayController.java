@@ -29,10 +29,12 @@ import com.alipay.api.domain.AlipayTradePagePayModel;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.jinse.blog.config.AlipayConfig;
+import com.jinse.blog.pojo.Blog;
 import com.jinse.blog.pojo.OrderInfor;
 import com.jinse.blog.pojo.User;
 import com.jinse.blog.service.BlogService;
 import com.jinse.blog.service.OrderInforService;
+import com.jinse.blog.utils.SpringUtil;
 
 @Controller
 public class AlipayController {
@@ -42,11 +44,21 @@ public class AlipayController {
 	@Autowired
 	private OrderInforService orderInforService;
 
+	@Autowired
+	private BlogService blogService;
+
 	@RequestMapping(value = "/order/view")
-	public void photoInfor(Model model, HttpServletRequest request, HttpServletResponse response, OrderInfor orderInfor)
+	public void photoInfor(Model model, HttpServletRequest request, HttpServletResponse response,Blog blog, OrderInfor orderInfor)
 			throws Exception {
 		logger.info("获取article详情页");
+		
+		Blog blogRes = blogService.findBlogByBlogId(blog.getBlogId());
+		Integer userId = SpringUtil.getCurrentUser().getUserId();
 		orderInfor.setOrderState("0");
+		orderInfor.setBuyerId(userId);
+		orderInfor.setBlogId(blogRes.getBlogId());
+		orderInfor.setSellerId(blogRes.getUserId());
+		orderInfor.setPictureId(blogRes.getPicture().getPictureId());
 		orderInforService.saveOrderInforAndReturnId(orderInfor);
 
 		// 获得初始化的AlipayClient
@@ -164,6 +176,8 @@ public class AlipayController {
 					Date payedAt = new Date();
 					orderInfor.setTradeNo(trade_no);
 					orderInfor.setPayedAt(payedAt);
+					orderInfor.setSellerDeleted("N");
+					orderInfor.setBuyerDeleted("N");
 					orderInforService.updateOrderInfor(orderInfor);
 					model.addAttribute("orderInfor", orderInfor);
 					logger.info("系统订单：" + out_trade_no + "成功支付。");

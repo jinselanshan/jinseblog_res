@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="htmlHead :: common_header(~{::title},~{})">
+<title>已买到的商品</title>
+<meta charset="UTF-8"></meta>
+</head>
+
+<body>
+	<!-- 导航栏 -->
+	<header th:replace="nav :: nav"></header>
+	<div class="container">
+		<div class="col-md-12 column row clearfix">
+			<div class="col-md-1 column"></div>
+			<div class="col-md-9 column">
+				<input type="hidden" id="orderInforNumber"
+					th:value="${#lists.size(orderInforList)}">
+					<input type="hidden" id="orderType" name="type" th:value="${type}">
+				<h3>作品列表</h3>
+				<div class="table_div">
+					<table class="table form-group picture_table"
+						th:each="orderInfor : ${orderInforList}">
+						<thead>
+						<tr>
+						<td><a name="blogId" th:href="@{'/otherPhotoes/' + ${orderInfor.blog.user.userId}}"
+							th:text="${orderInfor.blog.user.username}">
+							</a></td>
+						<td></td>
+						<td><span class="glyphicon glyphicon-trash deleteOrder" th:data-order-id="${orderInfor.orderId}"></span></td>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td rowspan="3" width="150">
+							<a name="blogId" th:href="@{'/blog/' + ${orderInfor.blog.blogId}}">
+							<img class="control-label" id="imghead" border="0"
+								th:src="${orderInfor.blog.picture.url+'?imageView2/2/w/350/h/350/q/60'}"></a>
+							</td>
+							<td width="100">类型</td>
+							<td th:switch="${orderInfor.blog.picture.type}" width="300">
+								<p th:case="'1'">摄影</p>
+								<p th:case="'2'">绘画</p>
+							</td>
+							<td>名称</td>
+							<td><p th:text="${orderInfor.title}">title</p></td>
+						</tr>
+						<tr>
+							<td>支付宝交易号</td>
+							<td><p class="price_text" th:text="${orderInfor.tradeNo}"></p></td>
+							<td>订单编号</td>
+							<td><p class="price_text" th:text="${orderInfor.outTradeNo}"></p></td>
+						</tr>
+						<tr>
+							<td>金额</td>
+							<td><p class="price_text" th:text="${orderInfor.totalAmount}"></p></td>
+							<td>交易时间</td>
+							<td><p class="price_text"  th:text="${#dates.format(orderInfor.payedAt, 'yyyy-MM-dd HH:mm')}"></p></td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="col-md-2 column"></div>
+		</div>
+
+	</div>
+
+
+	<script type="text/javascript">
+		$(function() {
+			var orderInforNumber = $('#orderInforNumber').val();
+			
+			var num = parseInt(orderInforNumber, 10);
+			var total_page = Math.ceil(num/5);
+			$('.table_div').paginathing({
+				perPage : 5,
+				limitPagination : total_page,
+				containerClass : 'panel-footer',
+				pageNumbers : true
+			})
+
+		});
+	</script>
+</body>
+
+</html>

@@ -4,12 +4,46 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>电脑网站支付return_url</title>
+<link rel="stylesheet" type="text/css"
+	href="/jinseblog/static/css/alipay.css" />
 </head>
-
-	<input type="text" class="form-control" name="" id=""  th:value="${orderInfor.tradeNo}">
-	<input type="text" class="form-control" name="" id=""  th:value="${orderInfor.outTradeNo}">
-	<input type="text" class="form-control" name="" id=""  th:value="${orderInfor.title}">
-	<input type="text" class="form-control" name="" id=""  th:value="${orderInfor.payedAt}">
 <body>
+
+	<header class="am-header">
+		<h1>交易成功</h1>
+	</header>
+	<div id="main">
+	
+		<div id="body1" class="show">
+			<dl class="content">
+				<dt>支付宝交易号 ：</dt>
+				<dd>
+					<p id="tradeNo" th:text="${orderInfor.tradeNo}"></p>
+				</dd>
+				<hr class="one_line">
+				<dt>订单编号：</dt>
+				<dd>
+					<p id="title"th:text="${orderInfor.outTradeNo}"></p>
+				</dd>
+				<hr class="one_line">
+				<dt>订单名称 ：</dt>
+				<dd>
+					<p id="totalAmount"
+						th:text="${orderInfor.title}"></p>
+				</dd>
+				<hr class="one_line">
+				<dt>订单留言 ：</dt>
+				<dd>
+					<p id="message" th:text="${#dates.format(orderInfor.payedAt, 'yyyy-MM-dd HH:mm')}"></p>
+				</dd>
+			</dl>
+		</div>
+
+		<div id="foot">
+			<ul class="foot-ul">
+				<li>支付宝版权所有 2015-2018 ALIPAY.COM</li>
+			</ul>
+		</div>
+	</div>
 </body>
 </html>

@@ -84,11 +84,10 @@ public class BlogServiceImpl implements BlogService {
 	}
 	//发现自己的出售作品列表
 	@Override
-	public List<BlogAndLike> findBuyPhotoListByUserId(Integer userId) {
+	public List<Blog> findBuyPhotoListByUserId(Integer userId) {
 		List<Blog> blogList = blogPictureMapper.findBuyPhotoListByUserId(userId);
-		List<BlogAndLike> blogAndLikeList = blogToBlogAndLike(blogList, userId);
-
-		return blogAndLikeList;
+	
+		return blogList;
 	}
 
 	private List<BlogAndLike> blogToBlogAndLike(List<Blog> blogList, Integer userId) {
@@ -143,8 +142,10 @@ public class BlogServiceImpl implements BlogService {
 		Integer blogId = blog.getBlogId();
 		// delete qiniuyun
 		Blog blogRes = blogPictureMapper.findBlogAndPictureByBlogId(blogId);
-		DeletePicture.deletePic(blogRes.getPicture());
-
+		if(blogRes.getPicture().getUrl().indexOf("500px") == -1) {
+			DeletePicture.deletePic(blogRes.getPicture());
+		}
+		
 		// delete picture
 		PictureExample example = new PictureExample();
 		Criteria criteria = example.createCriteria();

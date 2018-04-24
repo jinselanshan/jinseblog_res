@@ -22,9 +22,9 @@
 					<table class="table form-group picture_table"
 						th:each="blog : ${blogList}">
 						<tr>
-							<td rowspan="3" width="150"><img class="control-label" id="imghead"
-								border="0"
-								th:src="${blog.picture.url+'?imageView2/2/w/350/h/350/q/60'}">
+							<td rowspan="3" width="150"><a name="blogId" th:href="@{'/blog/' + ${blog.blogId}}">
+							<img class="control-label" id="imghead" border="0"
+								th:src="${blog.picture.url+'?imageView2/2/w/350/h/350/q/60'}"></a>
 							</td>
 							<td width="100">类型</td>
 							<td th:switch="${blog.picture.type}" width="300">
@@ -39,9 +39,9 @@
 						</tr>
 						<tr>
 							<td>售价</td>
-							<td><p id="price_text" th:text="${blog.picture.price}"></p></td>
-							<td><input type="button" class="btn edit_btn" value="修改">
-								<input type="button" class="btn under_btn" value="下架"></td>
+							<td><p class="price_text" th:text="${blog.picture.price}"></p></td>
+							<td><input type="button" class="btn edit_btn" value="修改" th:data-picture-id="${blog.picture.pictureId}">
+								<input type="button" class="btn under_btn" value="下架" th:data-picture-id="${blog.picture.pictureId}"></td>
 						</tr>
 					</table>
 				</div>

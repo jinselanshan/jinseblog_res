@@ -4,9 +4,11 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -19,6 +21,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.jinse.blog.pojo.Tag;
 import com.jinse.blog.pojo.User;
 import com.jinse.blog.pojo.UserAndInfor;
 
@@ -67,9 +72,9 @@ public class UserController {
 
 	// 进行注册
 	@RequestMapping(value = "/savaUser", method = RequestMethod.POST)
-	public String savaUser(Model model, HttpServletRequest request, User user) throws Exception {
+	public String savaUser(Model model, HttpServletRequest request,User user) throws Exception {
 		logger.info("用户注册" + user);
-
+	   
 		User userRes = userService.findUserByUsername(user.getUsername());
 		if (userRes != null) {
 			return "user/signup";
@@ -110,7 +115,9 @@ public class UserController {
 		}
 		if (loginSuccess) {
 			UserClasses sessionUser = userService.findByUser(user);
+			List<Tag> userTagList = sessionUser.getTagList();
 			SpringUtil.setSession(ConstantsUtil.STRING_CURRENT_USER, sessionUser);
+			SpringUtil.setSession(ConstantsUtil.STRING_TAGS, userTagList);
 			SpringUtil.setSession(ConstantsUtil.STRING_USER_NAME, sessionUser.getUsername());
 
 		} else {
@@ -150,6 +157,7 @@ public class UserController {
 		Subject currentUser = SecurityUtils.getSubject();
 		currentUser.logout();
 		SpringUtil.setSession(ConstantsUtil.STRING_CURRENT_USER, null);
+		SpringUtil.setSession(ConstantsUtil.STRING_TAGS, null);
 		SpringUtil.setSession(ConstantsUtil.STRING_USER_NAME, null);
 		return "redirect:login";
 	}

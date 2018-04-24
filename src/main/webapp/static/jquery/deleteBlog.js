@@ -10,30 +10,24 @@ $(function() {
 			$('#deleteBtn').show();
 		}
 	}
-
-/*	$("#deleteBtn").click(function() {
-		var blogId = $('#blogId').val();
-
-		if (blogId != null ) {
-			$.ajax({
-				type : "POST",
-				url : projectName + "/user/deleteBlog",
-				data : {
-					"blogId" : blogId,
-				},
-				dataType : "JSON",
-				success : function(data) {
-					// 去取消关注
-					if(data == "success" ){
-						alert("删除成功");
-			            window.location.href = projectName + "/myPhotoes";
-					}
-				},
-				error : function() {
-					alert("Error");
-				}
-			})
-		} 
-	})*/
-
+	
+	ifCanBuy();
+	function ifCanBuy() {
+		var blogId = $("#blogId").val();
+		
+		$.ajax({
+			type : "POST",
+			url : projectName + "/picture/ifcanBuy",
+			data : {
+				"blogId" : blogId,
+			},
+			dataType : "JSON",
+			success : function(data) {
+				$('#buyBtn').attr("type","button");
+				$('#buyBtn').show();
+			},
+			error : function() {
+			}
+		})
+	}
 })

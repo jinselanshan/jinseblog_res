@@ -3,153 +3,183 @@ package com.jinse.blog.pojo;
 import java.util.Date;
 
 public class OrderInfor {
-    private Integer orderId;
+	private Integer orderId;
 
-    private Integer sellerId;
+	private Integer sellerId;
 
-    private Integer blogId;
+	private Integer blogId;
 
-    private Integer pictureId;
+	private Integer pictureId;
 
-    private Integer videoId;
+	private Integer videoId;
 
-    private String tradeNo;
+	private String tradeNo;
 
-    private String outTradeNo;
+	private String outTradeNo;
 
-    private Double totalAmount;
+	private Double totalAmount;
 
-    private Double price;
+	private Double price;
 
-    private Integer year;
+	private Integer year;
 
-    private Integer buyerId;
+	private Integer buyerId;
 
-    private String message;
+	private String message;
 
-    private String title;
+	private String title;
 
-    private String orderState;
+	private String orderState;
 
-    private Date payedAt;
+	private Date payedAt;
 
-    public Integer getOrderId() {
-        return orderId;
-    }
+	private String sellerDeleted;
 
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
-    }
+	private String buyerDeleted;
 
-    public Integer getSellerId() {
-        return sellerId;
-    }
+	private Blog blog;
 
-    public void setSellerId(Integer sellerId) {
-        this.sellerId = sellerId;
-    }
+	public Blog getBlog() {
+		return blog;
+	}
 
-    public Integer getBlogId() {
-        return blogId;
-    }
+	public void setBlog(Blog blog) {
+		this.blog = blog;
+	}
 
-    public void setBlogId(Integer blogId) {
-        this.blogId = blogId;
-    }
+	public Integer getOrderId() {
+		return orderId;
+	}
 
-    public Integer getPictureId() {
-        return pictureId;
-    }
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
+	}
 
-    public void setPictureId(Integer pictureId) {
-        this.pictureId = pictureId;
-    }
+	public Integer getSellerId() {
+		return sellerId;
+	}
 
-    public Integer getVideoId() {
-        return videoId;
-    }
+	public void setSellerId(Integer sellerId) {
+		this.sellerId = sellerId;
+	}
 
-    public void setVideoId(Integer videoId) {
-        this.videoId = videoId;
-    }
+	public Integer getBlogId() {
+		return blogId;
+	}
 
-    public String getTradeNo() {
-        return tradeNo;
-    }
+	public void setBlogId(Integer blogId) {
+		this.blogId = blogId;
+	}
 
-    public void setTradeNo(String tradeNo) {
-        this.tradeNo = tradeNo == null ? null : tradeNo.trim();
-    }
+	public Integer getPictureId() {
+		return pictureId;
+	}
 
-    public String getOutTradeNo() {
-        return outTradeNo;
-    }
+	public void setPictureId(Integer pictureId) {
+		this.pictureId = pictureId;
+	}
 
-    public void setOutTradeNo(String outTradeNo) {
-        this.outTradeNo = outTradeNo == null ? null : outTradeNo.trim();
-    }
+	public Integer getVideoId() {
+		return videoId;
+	}
 
-    public Double getTotalAmount() {
-        return totalAmount;
-    }
+	public void setVideoId(Integer videoId) {
+		this.videoId = videoId;
+	}
 
-    public void setTotalAmount(Double totalAmount) {
-        this.totalAmount = totalAmount;
-    }
+	public String getTradeNo() {
+		return tradeNo;
+	}
 
-    public Double getPrice() {
-        return price;
-    }
+	public void setTradeNo(String tradeNo) {
+		this.tradeNo = tradeNo == null ? null : tradeNo.trim();
+	}
 
-    public void setPrice(Double price) {
-        this.price = price;
-    }
+	public String getOutTradeNo() {
+		return outTradeNo;
+	}
 
-    public Integer getYear() {
-        return year;
-    }
+	public void setOutTradeNo(String outTradeNo) {
+		this.outTradeNo = outTradeNo == null ? null : outTradeNo.trim();
+	}
 
-    public void setYear(Integer year) {
-        this.year = year;
-    }
+	public Double getTotalAmount() {
+		return totalAmount;
+	}
 
-    public Integer getBuyerId() {
-        return buyerId;
-    }
+	public void setTotalAmount(Double totalAmount) {
+		this.totalAmount = totalAmount;
+	}
 
-    public void setBuyerId(Integer buyerId) {
-        this.buyerId = buyerId;
-    }
+	public Double getPrice() {
+		return price;
+	}
 
-    public String getMessage() {
-        return message;
-    }
+	public void setPrice(Double price) {
+		this.price = price;
+	}
 
-    public void setMessage(String message) {
-        this.message = message == null ? null : message.trim();
-    }
+	public Integer getYear() {
+		return year;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public void setYear(Integer year) {
+		this.year = year;
+	}
 
-    public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
-    }
+	public Integer getBuyerId() {
+		return buyerId;
+	}
 
-    public String getOrderState() {
-        return orderState;
-    }
+	public void setBuyerId(Integer buyerId) {
+		this.buyerId = buyerId;
+	}
 
-    public void setOrderState(String orderState) {
-        this.orderState = orderState == null ? null : orderState.trim();
-    }
+	public String getMessage() {
+		return message;
+	}
 
-    public Date getPayedAt() {
-        return payedAt;
-    }
+	public void setMessage(String message) {
+		this.message = message == null ? null : message.trim();
+	}
 
-    public void setPayedAt(Date payedAt) {
-        this.payedAt = payedAt;
-    }
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title == null ? null : title.trim();
+	}
+
+	public String getOrderState() {
+		return orderState;
+	}
+
+	public void setOrderState(String orderState) {
+		this.orderState = orderState == null ? null : orderState.trim();
+	}
+
+	public Date getPayedAt() {
+		return payedAt;
+	}
+
+	public void setPayedAt(Date payedAt) {
+		this.payedAt = payedAt;
+	}
+
+	public String getSellerDeleted() {
+		return sellerDeleted;
+	}
+
+	public void setSellerDeleted(String sellerDeleted) {
+		this.sellerDeleted = sellerDeleted == null ? null : sellerDeleted.trim();
+	}
+
+	public String getBuyerDeleted() {
+		return buyerDeleted;
+	}
+
+	public void setBuyerDeleted(String buyerDeleted) {
+		this.buyerDeleted = buyerDeleted == null ? null : buyerDeleted.trim();
+	}
 }

@@ -30,6 +30,7 @@ import com.jinse.blog.pojo.Picture;
 import com.jinse.blog.pojo.Tag;
 import com.jinse.blog.pojo.User;
 import com.jinse.blog.pojo.UserAndInfor;
+import com.jinse.blog.pojo.UserFollowing;
 import com.jinse.blog.pojo.UsersTag;
 import com.jinse.blog.service.BlogService;
 import com.jinse.blog.service.BlogTagService;

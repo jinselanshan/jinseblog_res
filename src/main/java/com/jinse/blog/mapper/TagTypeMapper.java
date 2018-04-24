@@ -27,4 +27,7 @@ public interface TagTypeMapper {
     int updateByPrimaryKeySelective(TagType record);
 
     int updateByPrimaryKey(TagType record);
+
+	List<TagType> findTableTagTypeList();
+	
 }

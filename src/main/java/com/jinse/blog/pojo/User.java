@@ -3,6 +3,8 @@ package com.jinse.blog.pojo;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.Size;
+
 public class User {
 	private Integer userId;
 

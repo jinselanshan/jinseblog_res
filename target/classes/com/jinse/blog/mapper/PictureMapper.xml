@@ -5,7 +5,7 @@
 		<id column="picture_id" property="pictureId" jdbcType="INTEGER" />
 		<result column="blog_id" property="blogId" jdbcType="INTEGER" />
 		<result column="type" property="type" jdbcType="VARCHAR" />
-		<result column="price" property="price" jdbcType="INTEGER" />
+		<result column="price" property="price" jdbcType="DOUBLE" />
 		<result column="buy" property="buy" jdbcType="VARCHAR" />
 		<result column="url" property="url" jdbcType="VARCHAR" />
 	</resultMap>
@@ -112,7 +112,7 @@
 		price, buy, url)
 		values (#{pictureId,jdbcType=INTEGER}, #{blogId,jdbcType=INTEGER},
 		#{type,jdbcType=VARCHAR},
-		#{price,jdbcType=INTEGER}, #{buy,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR})
+		#{price,jdbcType=DOUBLE}, #{buy,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertSelective" parameterType="com.jinse.blog.pojo.Picture">
 		insert into picture
@@ -147,7 +147,7 @@
 				#{type,jdbcType=VARCHAR},
 			</if>
 			<if test="price != null">
-				#{price,jdbcType=INTEGER},
+				#{price,jdbcType=DOUBLE},
 			</if>
 			<if test="buy != null">
 				#{buy,jdbcType=VARCHAR},
@@ -177,7 +177,7 @@
 				type = #{record.type,jdbcType=VARCHAR},
 			</if>
 			<if test="record.price != null">
-				price = #{record.price,jdbcType=INTEGER},
+				price = #{record.price,jdbcType=DOUBLE},
 			</if>
 			<if test="record.buy != null">
 				buy = #{record.buy,jdbcType=VARCHAR},
@@ -195,7 +195,7 @@
 		set picture_id = #{record.pictureId,jdbcType=INTEGER},
 		blog_id = #{record.blogId,jdbcType=INTEGER},
 		type = #{record.type,jdbcType=VARCHAR},
-		price = #{record.price,jdbcType=INTEGER},
+		price = #{record.price,jdbcType=DOUBLE},
 		buy = #{record.buy,jdbcType=VARCHAR},
 		url = #{record.url,jdbcType=VARCHAR}
 		<if test="_parameter != null">
@@ -212,7 +212,7 @@
 				type = #{type,jdbcType=VARCHAR},
 			</if>
 			<if test="price != null">
-				price = #{price,jdbcType=INTEGER},
+				price = #{price,jdbcType=DOUBLE},
 			</if>
 			<if test="buy != null">
 				buy = #{buy,jdbcType=VARCHAR},
@@ -227,11 +227,10 @@
 		update picture
 		set blog_id = #{blogId,jdbcType=INTEGER},
 		type = #{type,jdbcType=VARCHAR},
-		price = #{price,jdbcType=INTEGER},
+		price = #{price,jdbcType=DOUBLE},
 		buy = #{buy,jdbcType=VARCHAR},
 		url = #{url,jdbcType=VARCHAR}
 		where picture_id = #{pictureId,jdbcType=INTEGER}
 	</update>
-
 
 </mapper>

@@ -7,7 +7,7 @@ public class Picture {
 
     private String type;
 
-    private Integer price;
+    private Double price;
 
     private String buy;
 
@@ -37,15 +37,15 @@ public class Picture {
         this.type = type == null ? null : type.trim();
     }
 
-    public Integer getPrice() {
-        return price;
-    }
+    public Double getPrice() {
+		return price;
+	}
 
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
+	public void setPrice(Double price) {
+		this.price = price;
+	}
 
-    public String getBuy() {
+	public String getBuy() {
         return buy;
     }
 

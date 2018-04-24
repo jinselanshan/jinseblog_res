@@ -156,3 +156,9 @@ background-color: #ffffff;
 #btn_return_top:hover {
     background:url(/jinseblog/static/img/top.png)  no-repeat  left -40px;
 }
+
+#imghead {
+	object-fit: cover;
+	width: 100px;
+	height: 100px;
+}

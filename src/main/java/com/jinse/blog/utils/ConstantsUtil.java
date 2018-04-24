@@ -298,6 +298,7 @@ public final class ConstantsUtil {
 	public static final String STRING_CURRENT_PROJECT = "CURRENT_PROJECT";
 	public static final String STRING_CURRENT_RELEASE = "CURRENT_RELEASE";
 	public static final String STRING_PROJECTS = "PROJECT_LIST";
+	public static final String STRING_TAGS = "TAG_LIST";
 
 	public static final String MESSAGE_SOURCE_BEAN_NAME = "messageSource";
 	public static final Locale DEFAULE_LOCALE = Locale.CHINA;

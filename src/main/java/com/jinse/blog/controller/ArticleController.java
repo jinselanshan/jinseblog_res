@@ -82,7 +82,7 @@ public class ArticleController {
 		
 		for (int i = 0; i < blogList.size(); i++) {
 			Article article = blogList.get(i).getArticle();
-			String newContent = HtmlUtil.getContent(article.getContent(), 50, true);
+			String newContent = HtmlUtil.getContent(article.getContent(), 200, true);
 			newContent = StringEscapeUtils.unescapeHtml(newContent);
 			article.setContent(newContent);
 		}

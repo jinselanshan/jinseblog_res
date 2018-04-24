@@ -36,8 +36,58 @@ public class OrderInforServiceImpl implements OrderInforService {
 	public int updateOrderInfor(OrderInfor orderInfor) {
 		OrderInforExample orderInforExample = new OrderInforExample();
 		Criteria criteria = orderInforExample.createCriteria();
-		criteria.andTradeNoEqualTo(orderInfor.getTradeNo());
+		criteria.andOutTradeNoEqualTo(orderInfor.getOutTradeNo());
 		return orderInforMapper.updateByExample(orderInfor, orderInforExample);
 	}
+
+	@Override
+	public List<OrderInfor> findSellerOrderListByUserId(Integer userId) {
+		return orderInforMapper.findSellerOrderListByUserId(userId);
+	}
+
+	@Override
+	public List<OrderInfor> findBuyerOrderListByUserId(Integer userId) {
+		return orderInforMapper.findBuyerOrderListByUserId(userId);
+	}
+
+
+	@Override
+	public int deleteSellerOrderInforById(Integer orderId) {
+		return orderInforMapper.deleteSellerOrderInforById(orderId);
+	}
+	
+	@Override
+	public int deleteBuyerOrderInforById(Integer orderId) {
+		return orderInforMapper.deleteBuyerOrderInforById(orderId);
+	}
+
+	@Override
+	public List<OrderInfor> findDeletedSellerOrderListByUserId(Integer userId) {
+		return orderInforMapper.findDeletedSellerOrderListByUserId(userId);
+	}
+	
+	@Override
+	public List<OrderInfor> findDeletedBuyerOrderListByUserId(Integer userId) {
+		return orderInforMapper.findDeletedBuyerOrderListByUserId(userId);
+	}
+
+	@Override
+	public int deleteOrderInforByIdAndType(Integer orderId, String orderType) {
+		if(orderType.equals("seller")) {
+			return orderInforMapper.deleteSellerOrderInforById(orderId);
+		}else{
+			return orderInforMapper.deleteBuyerOrderInforById(orderId);
+		}
+	}
+
+	@Override
+	public List<OrderInfor> findDeletedOrderListByUserIdAndType(Integer userId, String orderType) {
+		if(orderType.equals("seller")) {
+			return orderInforMapper.findDeletedSellerOrderListByUserId(userId);
+		}else{
+			return orderInforMapper.findDeletedBuyerOrderListByUserId(userId);
+		}
+	}
+
 
 }

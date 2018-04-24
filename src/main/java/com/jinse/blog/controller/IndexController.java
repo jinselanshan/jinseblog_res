@@ -65,10 +65,5 @@ public class IndexController {
     	logger.info("进入上传视频界面");
         return "alipay/alipayindex";
     }
-    
-    @RequestMapping("/indexalipay")
-    public String indexalipay(Model model) {
-    	logger.info("进入上传视频界面");
-        return "jsp/index.jsp";
-    }
+
 }

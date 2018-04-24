@@ -54,8 +54,9 @@
 								<a th:href="@{'/user/deleteBlog/' + ${blog.blogId}}"><input
 									type="hidden" id="deleteBtn" class="btn btn-default btn-link btn-sm"
 									th:value="删除"></a>
-									
-									
+									<a th:href="@{'/user/buyPicture/' + ${blog.blogId}}"><input
+									type="hidden" id="buyBtn" class="btn btn-default btn-link btn-sm"
+									th:value="购买"></a>
 							</div>
 						</div>
 					</div>

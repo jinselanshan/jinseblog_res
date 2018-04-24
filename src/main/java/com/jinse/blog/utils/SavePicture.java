@@ -157,4 +157,35 @@ public class SavePicture {
 		// insertOnly 如果希望只能上传指定key的文件，并且不允许修改，那么可以将下面的 insertOnly 属性值设为 1
 		return auth.uploadToken(bucketname, key, 3600, new StringMap().put("insertOnly", 0));
 	}
+	
+	
+	
+	public static String savaPicFromLocal(String filepath) {
+		if (filepath != null) {
+			try {
+				File file = new File(filepath);
+				InputStream inputStream = new FileInputStream(file);
+				// 上传到七牛后保存的文件名
+				String lastName = filepath.substring(filepath.indexOf("\\"),filepath.lastIndexOf("."));
+				String key = "image/jpg/photo/" + lastName;
+				Response res = uploadManager.put(inputStream, key, getUpToken(), null, null);
+				// 打印返回的信息
+				System.out.println(res.bodyString());
+				DefaultPutRet putRet = new Gson().fromJson(res.bodyString(), DefaultPutRet.class);
+				System.out.println(putRet.key);
+			} catch (QiniuException e) {
+				Response r = e.response;
+				// 请求失败时打印的异常的信息
+				System.out.println(r.toString());
+				try {
+					// 响应的文本信息
+					System.out.println(r.bodyString());
+				} catch (QiniuException e1) {
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return "success";
+	}
 }

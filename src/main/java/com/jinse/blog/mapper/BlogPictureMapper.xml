@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jinse.blog.mapper.BlogPictureMapper">
 
-	<update id="updateByPictureId" parameterType="com.jinse.blog.pojo.Picture">
+	<update id="updateUrlByPictureId" parameterType="com.jinse.blog.pojo.Picture">
 		update picture
 		<set>
 			url = #{url}
@@ -31,12 +31,8 @@
 		#{buy,jdbcType=VARCHAR},
 		#{url,jdbcType=VARCHAR})
 	</insert>
-
-	<insert id="insertBlog" parameterType="com.jinse.blog.pojo.Blog">
-		<selectKey resultType="java.lang.Integer" order="AFTER"
-			keyProperty="blogId">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
+	<insert id="insertBlog" useGeneratedKeys="true" keyProperty="blogId"
+		parameterType="com.jinse.blog.pojo.Blog">
 		insert into blog (blog_id, title,
 		description,
 		tag, score, like_number,
@@ -55,7 +51,7 @@
 		#{deleted,jdbcType=VARCHAR})
 	</insert>
 
-	<resultMap id="selectBlog" type="com.jinse.blog.pojo.Blog"
+	<resultMap id="BLogWithPicture" type="com.jinse.blog.pojo.Blog"
 		extends="com.jinse.blog.mapper.BlogMapper.BaseResultMap">
 		<association property="picture"
 			resultMap="com.jinse.blog.mapper.PictureMapper.BaseResultMap" />
@@ -63,7 +59,7 @@
 
 	<resultMap type="com.jinse.blog.pojo.User" id="UserWithBlogResult"
 		extends="com.jinse.blog.mapper.UserMapper.BaseResultMap">
-		<collection property="blogList" resultMap="selectBlog" />
+		<collection property="blogList" resultMap="BLogWithPicture" />
 	</resultMap>
 	<select id="findAllPictureByUserId" parameterType="int"
 		resultMap="UserWithBlogResult">
@@ -193,4 +189,17 @@
 		b.create_at desc
 	</select>
 
+
+	<update id="updatePicturePriceById" parameterType="com.jinse.blog.pojo.Picture">
+		update picture set price = #{price}
+		<include refid="updateByPictureId" />
+	</update>
+	
+	
+	<select id="findPictureIfCanBuyByBlogId" resultMap="BLogWithPicture">
+		select b.*,p.*
+		from blog b,picture p
+		where b.blog_id = p.blog_id
+		and b.blog_id  = #{blogId} and p.price > 0 and p.buy = "Y";
+	</select>
 </mapper>

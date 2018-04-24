@@ -35,6 +35,6 @@ public interface BlogService {
 
 	List<User> findArticleListByUserAndTitle(String content);
 
-	List<BlogAndLike> findBuyPhotoListByUserId(Integer userId);
+	List<Blog> findBuyPhotoListByUserId(Integer userId);
 
 }

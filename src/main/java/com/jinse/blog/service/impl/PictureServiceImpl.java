@@ -32,7 +32,7 @@ public class PictureServiceImpl implements PictureService{
 
 	@Override
 	public int updateUrlByPictureId(Picture picture) {
-		return blogPictureMapper.updateByPictureId(picture);
+		return blogPictureMapper.updateUrlByPictureId(picture);
 	}
 	//找到某用户的所有图片
 	@Override
@@ -49,5 +49,14 @@ public class PictureServiceImpl implements PictureService{
 	@Override
 	public List<Blog> findAllLikePictureByUserId(Integer userId) {
 		return blogPictureMapper.findAllLikePictureByUserId(userId);
+	}
+
+	@Override
+	public int updatePicturePriceById(Picture picture) {
+		return blogPictureMapper.updatePicturePriceById(picture);
+	}
+	@Override
+	public Blog findPictureIfCanBuyByBlogId(Integer blogId) {
+		return blogPictureMapper.findPictureIfCanBuyByBlogId(blogId);
 	}
 }
