@@ -56,7 +56,6 @@ public class BlogController {
 	private BlogService blogService;
 	@Autowired
 	private UserService userService;
-
 	@Autowired
 	private ArticleService articleService;
 
@@ -73,40 +72,35 @@ public class BlogController {
 
 		if (selectType != null && !selectType.equals("")) {
 			modelAndView.addObject("selectType", selectType);
-
-			if (selectType.equals("photo")) {
+			switch (selectType) {
+			case "photo":
 				blogList = blogService.findBlogListByTitle(content, "1");
 				modelAndView.setViewName("search/photolist");
-
-			} else if (selectType.equals("painting")) {
+				break;
+			case "painting":
 				blogList = blogService.findBlogListByTitle(content, "2");
 				modelAndView.setViewName("search/photolist");
-			} else if (selectType.equals("video")) {
+				break;
+			case "video":
 				blogList = blogService.findVideoListByTitle(content);
 				modelAndView.setViewName("search/articlelist");
-			}
-
-			else if (selectType.equals("article")) {
+				break;
+			case "article":
 				// blogList = blogService.findArticleListByTitle(content);
-				List<User> userList = blogService.findArticleListByUserAndTitle(content);
-				modelAndView.addObject("userList", userList);
+				List<User> userAndArticleList = blogService.findArticleListByUserAndTitle(content);
+				modelAndView.addObject("userList", userAndArticleList);
 				modelAndView.setViewName("search/articlelist");
 				return modelAndView;
-
-			} else if (selectType.equals("username")) {
+			case "username":
 				List<UserClasses> userList = userService.findUserListByUsername(content);
 				modelAndView.addObject("userList", userList);
 				modelAndView.setViewName("search/userlist");
 				return modelAndView;
-
-			} /*
-				 * else if(selectType.equals("tag")){
-				 * 
-				 * }
-				 */else {
-				modelAndView.setViewName("photo/photoInfor");
+			case "tag":
+				blogList = blogService.findPictureListByTag(content);
+				modelAndView.setViewName("search/photolist");
+				break;
 			}
-
 		}
 		if (blogList != null) {
 			modelAndView.addObject("blogList", blogList);
@@ -115,4 +109,31 @@ public class BlogController {
 		return modelAndView;
 	}
 
+	/*
+	 * if (selectType.equals("photo")) { blogList =
+	 * blogService.findBlogListByTitle(content, "1");
+	 * modelAndView.setViewName("search/photolist");
+	 * 
+	 * } else if (selectType.equals("painting")) { blogList =
+	 * blogService.findBlogListByTitle(content, "2");
+	 * modelAndView.setViewName("search/photolist"); } else if
+	 * (selectType.equals("video")) { blogList =
+	 * blogService.findVideoListByTitle(content);
+	 * modelAndView.setViewName("search/articlelist"); }
+	 * 
+	 * else if (selectType.equals("article")) { // blogList =
+	 * blogService.findArticleListByTitle(content); List<User> userList =
+	 * blogService.findArticleListByUserAndTitle(content);
+	 * modelAndView.addObject("userList", userList);
+	 * modelAndView.setViewName("search/articlelist"); return modelAndView;
+	 * 
+	 * } else if (selectType.equals("username")) { List<UserClasses> userList =
+	 * userService.findUserListByUsername(content);
+	 * modelAndView.addObject("userList", userList);
+	 * modelAndView.setViewName("search/userlist"); return modelAndView;
+	 * 
+	 * } else if(selectType.equals("tag")){
+	 * 
+	 * } else { modelAndView.setViewName("photo/photoInfor"); }
+	 */
 }

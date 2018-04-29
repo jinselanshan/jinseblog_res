@@ -172,8 +172,8 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	@Override
-	public List<Blog> findPhotoListByTitle(String title) {
-		return blogPictureMapper.findPhotoListByTitle(title);
+	public List<Blog> findPictureListByTitle(String title) {
+		return blogPictureMapper.findPictureListByTitle(title);
 	}
 
 	@Override
@@ -204,6 +204,11 @@ public class BlogServiceImpl implements BlogService {
 	@Override
 	public List<User> findArticleListByUserAndTitle(String content) {
 		return articleMapper.findArticleListByUserAndTitle(content);
+	}
+
+	@Override
+	public List<Blog> findPictureListByTag(String content) {
+		return blogPictureMapper.findPictureListByTag(content);
 	}
 
 }

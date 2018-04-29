@@ -19,8 +19,8 @@
 				</div>
 				<ul class="row-content tags-list">
 					<li class="tag-square-base" th:if="${tagType.tagList}" th:each="tag : ${tagType.tagList}">
-					<a href="" title="风光" target="_blank"> 
-						<img class="lazy-load" alt="风光"
+					<a th:href="@{/search(selectType=tag,content=${tag.tagName})}" th:title="${tag.tagName}"> 
+						<img class="lazy-load" th:alt="${tag.tagName}"
 							style="background-color: #999999;" data-lazy-type="image"
 								th:src="${tag.url+'?imageView2/1/w/200/h/200/q/75|imageslim'}" /> 
 						<span class="tag-title" th:text="${tag.tagName}">风光</span>

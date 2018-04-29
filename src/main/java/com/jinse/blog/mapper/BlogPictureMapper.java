@@ -33,7 +33,7 @@ public interface BlogPictureMapper {
 
 	List<Blog> findPhotoListByUserId(Integer userId);
 
-	List<Blog> findPhotoListByTitle(String content);
+	List<Blog> findPictureListByTitle(String content);
 
 	List<Blog> findBlogListByTitle(@Param("title")String title, @Param("type")String type);
 	
@@ -46,6 +46,8 @@ public interface BlogPictureMapper {
 	int updatePicturePriceById(Picture picture);
 
 	Blog findPictureIfCanBuyByBlogId(Integer blogId);
+
+	List<Blog> findPictureListByTag(String content);
 
   
 }
