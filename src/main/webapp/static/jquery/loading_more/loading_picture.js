@@ -71,7 +71,7 @@ $(function(){
 			for(var i=0;i<data.length;i++){
 				var blog = data[i];
 				var likeif ='';
-				if(blog.likeif != null){
+				if(blog.likeif != null && blog.likeif >= 1 ){
 					likeif = '<a width="20" id="likeBtn" align="right" class="img-circle heart heartAnimation"  data-like="like"'+
 						'rel="like" data-blog-id="'+blog.blogId+'"></a>'
 				}
@@ -94,7 +94,7 @@ $(function(){
 				var tag = '';
 				if(blog.tagList!=null &&blog.tagList.length >0){
 					for(var j=0;j<blog.tagList.length;j++){
-						tag = tag + '<a href="#"><span class="label label-default">'+blog.tagList[j].tagName+'</span></a>'
+						tag = tag + '<a href="/jinseblog/search?selectType=tag&content=' + blog.tagList[j].tagName + '"><span class="label label-default">'+blog.tagList[j].tagName+'</span></a>'
 					}
 				}
 				

@@ -45,6 +45,7 @@ import com.jinse.blog.utils.InitBlog;
 import com.jinse.blog.utils.SavePicture;
 import com.jinse.blog.utils.SpringUtil;
 import com.jinse.blog.utils.UserUtil;
+import com.jinse.blog.vos.BlogVO;
 import com.jinse.blog.vos.UserResultVO;
 
 @Controller
@@ -64,7 +65,7 @@ public class BlogController {
 			@RequestParam("content") String content, Model model, HttpServletRequest request) throws Exception {
 		logger.info("进入搜索");
 		ModelAndView modelAndView = new ModelAndView();
-
+		List<BlogAndLike> blogAndLikeList = new ArrayList<>();
 		List<Blog> blogList = new ArrayList<Blog>();
 		if (content != null && content.length() > 0) {
 			content = new String(content.getBytes("iso-8859-1"), "utf-8");
@@ -75,11 +76,15 @@ public class BlogController {
 			modelAndView.addObject("content", content);
 			switch (selectType) {
 			case "photo":
-				blogList = blogService.findBlogListByTitle(content, "1");
+				BlogVO blogVO = BlogUtil.initBlogVO(null, "1",content,null);
+				blogAndLikeList = blogService.findPhotoListByUserIdAndType(blogVO);
+				modelAndView.addObject("searchContent", content);
 				modelAndView.setViewName("search/photolist");
 				break;
 			case "painting":
-				blogList = blogService.findBlogListByTitle(content, "2");
+				blogVO = BlogUtil.initBlogVO(null, "2",content,null);
+				blogAndLikeList = blogService.findPhotoListByUserIdAndType(blogVO);
+				modelAndView.addObject("searchContent", content);
 				modelAndView.setViewName("search/photolist");
 				break;
 			case "video":
@@ -98,15 +103,17 @@ public class BlogController {
 				modelAndView.setViewName("search/userlist");
 				return modelAndView;
 			case "tag":
-				blogList = blogService.findPictureListByTag(content);
+				BlogVO blogVOT = BlogUtil.initBlogVO(null, null,null,content);
+				blogAndLikeList = blogService.findPhotoListByUserIdAndType(blogVOT);
+				modelAndView.addObject("tag", "tag");
 				modelAndView.setViewName("search/photolist");
 				break;
 			}
 		}
 		if (blogList != null) {
-			modelAndView.addObject("blogList", blogList);
+			modelAndView.addObject("blogList", blogAndLikeList);
 		}
-
+		modelAndView.addObject("content", content);
 		return modelAndView;
 	}
 

@@ -154,8 +154,7 @@ public class PictureController {
 		logger.info("关注列表");
 		Integer userId = SpringUtil.getCurrentUser().getUserId();
 		type = type.equals("photo") ? "1" : "2";
-		BlogVO blogVO = BlogUtil.initBlogVO(userId, type);
-		
+		BlogVO blogVO = BlogUtil.initBlogVO(userId, type,"",null);
 		// 发现我关注的摄影blog列表
 		List<BlogAndLike> blogAndLikeList = blogService.findPhotoListByUserIdAndType(blogVO);
 
@@ -169,7 +168,6 @@ public class PictureController {
 	@ResponseBody
 	public List<BlogAndLike> loadingMore(Model model, HttpServletRequest request,BlogVO blogVO) throws Exception {
 		logger.info("find blogAndLikeList");
-
 		List<BlogAndLike> blogAndLikeList = blogService.findPhotoListByUserIdAndType(blogVO);
 	
 		return blogAndLikeList;
@@ -190,15 +188,29 @@ public class PictureController {
 	@RequestMapping(value = "/otherPhotoes/{userId}/{type}")
 	public String otherPhotoes(@PathVariable("userId") Integer userId,@PathVariable("type") String type, Model model, HttpServletRequest request,
 			User user) throws Exception {
-		List<Blog>  blogList = pictureService.findAllPictureByUserIdAndType(userId,type);
+		BlogVO blogVO = BlogUtil.initBlogVO(null, type,"",null);
+		blogVO.setOwnerId(userId);
+		List<BlogAndLike> blogAndLikeList = blogService.findPhotoListByUserIdAndType(blogVO);
 		user = userService.findUserByUserId(userId);
 		if (user == null) {
 			logger.info("用户没有发布任何博客");
 			user = userService.findUserByUserId(userId);
 		}
-		model.addAttribute("blogList", blogList);
+		model.addAttribute("blogList", blogAndLikeList);
 		model.addAttribute("user", user);
+		model.addAttribute("type", type);
 		return "home/userpage";
+	}
+	
+	// 其他人主页
+	@RequestMapping(value = "/otherPhotoes/loadingMore", method = RequestMethod.POST)
+	@ResponseBody
+	public List<BlogAndLike> otherPhotoesLoadingMore(Model model, HttpServletRequest request,BlogVO blogVO) throws Exception {
+		logger.info("find blogAndLikeList");
+		blogVO.setUserId(null);
+		List<BlogAndLike> blogAndLikeList = blogService.findPhotoListByUserIdAndType(blogVO);
+
+		return blogAndLikeList;
 	}
 
 	//

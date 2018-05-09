@@ -26,12 +26,27 @@ public class BlogUtil {
 		blogAndLike.setUserId(blog.getUserId());
 		return blogAndLike;
 	}
-	public static BlogVO initBlogVO(Integer userId , String type){
+
+	public static BlogVO initBlogVO(Integer userId, String type, String title, String tag) {
 		BlogVO blogVO = new BlogVO();
-		blogVO.setType(type);
-		blogVO.setUserId(userId);
+		if (type != null) {
+			blogVO.setType(type);
+		}
+
+		if (userId != null) {
+			blogVO.setUserId(userId);
+		}
+
 		blogVO.setStart(0);
-		blogVO.setLength(10);
+		blogVO.setLength(9);
+		if (title == null) {
+			title = "";
+		}
+		if (tag != null) {
+			blogVO.setTag(tag);
+		}
+		blogVO.setTitle(title);
+		blogVO.setOwnerId(null);
 		return blogVO;
 	}
 

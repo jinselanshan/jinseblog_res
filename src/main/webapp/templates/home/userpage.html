@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-<head th:replace="home/homeHead :: home_header(~{::title},~{})">
+<head th:replace="htmlHead :: common_header(~{::title},~{})">
 <title>主页 - 摄影绘画</title>
 <!--  <link rel="stylesheet" href="css/index.css"> -->
 </head>
+<div>
+	<script type="text/javascript" charset="utf-8" src="/jinseblog/static/jquery/loading_more/loading_gallery.js"></script>
+</div>
 <body style="background-color: #eeeeee;">
 
 	<!-- header -->
@@ -19,8 +22,9 @@
 		<div class="">
 			<input type="hidden" name="userId" id="userId"
 				th:value="${user.userId}">
+			<input type="hidden" id="type" name="type" th:value="${type}"/>
 			<ul id="picul" class="small-block-grid-3 home">
-				<li class="masonry-item grid" th:each="blog : ${blogList}">
+				<li class="masonry-item grid" th:if="${blogList}" th:each="blog : ${blogList}">
 					<figure class="effect-sarah" id="figure_div">
 						<img height="200" width="200"
 							th:src="${blog.picture.url+'?imageView2/1/w/400/h/250/format/jpg/q/90|imageslim'}"
@@ -35,7 +39,7 @@
 							<p>
 								<span th:text="${blog.likeNumber+'喜欢'}"></span>
 							</p>
-							<a th:href="@{'/blog/'+${blog.blogId}}"> </a>
+							<a name="blogId" th:href="@{'/blog/'+${blog.blogId}}"></a>
 						</figcaption>
 					</figure>
 				</li>
@@ -43,6 +47,7 @@
 		</div>
 	</div>
 	</main>
-
+	<p class="ck">加载更多</p>
+	<a href="#0" class="cd-top">Top</a>
 </body>
 </html>

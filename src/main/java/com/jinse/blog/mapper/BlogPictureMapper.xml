@@ -35,7 +35,8 @@
 		parameterType="com.jinse.blog.pojo.Blog">
 		insert into blog (blog_id, title,
 		description,
-		tag, score, like_number,
+		tag, score,
+		like_number,
 		user_id, create_at, comment_number,
 		deleted)
 		values
@@ -125,47 +126,70 @@
 		SELECT
 		b.*,p.url,p.type,u.*
 		from user u,blog b,picture p
-		where
-		b.user_id =
-		u.user_id and p.blog_id = b.blog_id and p.type = #{type}
-		and
-		b.blog_id
-		in
-		(SELECT blog.blog_id
-		from blog
-		where blog.user_id in
-		(SELECT
-		uf.following_id from user_following uf where
-		uf.user_id =
-		#{userId,jdbcType=INTEGER})) order by b.create_at desc limit
-		#{start},#{length}
+		<where>
+		    b.user_id =
+			u.user_id and p.blog_id = b.blog_id
+			<include refid="query_blog_where"></include>
+			order
+			by b.create_at desc limit
+			#{start},#{length}
+		</where>
+
 	</select>
-	
+
+	<sql id="query_blog_where">
+		<if test="title!=null">and b.title like "%"#{title}"%"</if>
+		<if test="type!=null">and p.type = #{type}</if>
+		<if test="tag!=null">and b.tag like "%"#{tag}"%"</if>
+		<if test="ownerId!=null">and b.user_id = #{ownerId}</if>
+		<if test="userId!=null">and b.blog_id
+			in
+			(SELECT
+			blog.blog_id
+			from blog
+			where blog.user_id in
+			(SELECT
+			uf.following_id from
+			user_following uf where
+			uf.user_id =
+			#{userId,jdbcType=INTEGER}))
+		</if>
+	</sql>
+
+
 	<select id="findPhotoListByUserId" resultMap="BlogWithUserWithPictureResult">
 		SELECT
 		b.*,p.url,p.type,u.*
 		from user u,blog b,picture p
 		where
-		b.user_id = u.user_id and p.blog_id = b.blog_id
-		and u.user_id = #{userId,jdbcType=INTEGER}
-	    order by b.create_at desc
+		b.user_id =
+		u.user_id and p.blog_id = b.blog_id
+		and u.user_id =
+		#{userId,jdbcType=INTEGER}
+		order by b.create_at desc
 	</select>
-	
-	
+
+
 	<select id="findBuyPhotoListByUserId" resultMap="BlogWithUserWithPictureResult">
-				SELECT
+		SELECT
 		b.*,p.*,u.*
 		from user u,blog b,picture p
 		where
-		b.user_id = u.user_id and p.blog_id = b.blog_id
-		and u.user_id = #{userId,jdbcType=INTEGER} and p.buy = "Y" and p.price is not null
-	    order by b.create_at desc
+		b.user_id = u.user_id and
+		p.blog_id = b.blog_id
+		and u.user_id = #{userId,jdbcType=INTEGER} and
+		p.buy = "Y" and p.price is not null
+		order by b.create_at desc
 	</select>
 
-	<select id="findAllLikePictureByUserId" parameterType="int" resultMap="BlogWithUserWithPictureResult">
+	<select id="findAllLikePictureByUserId" parameterType="int"
+		resultMap="BlogWithUserWithPictureResult">
 		select b.*,u.*,p.*
-		from blog b,user u,picture p where b.user_id=u.user_id and p.blog_id = b.blog_id and b.blog_id in (select distinct(blog_id) from likeif where
-		user_id = #{userId,jdbcType=INTEGER})
+		from blog b,user u,picture p where
+		b.user_id=u.user_id and p.blog_id = b.blog_id and b.blog_id in (select
+		distinct(blog_id) from likeif where
+		user_id =
+		#{userId,jdbcType=INTEGER})
 	</select>
 
 
@@ -175,17 +199,19 @@
 		from user u,blog b,picture p
 		where
 		b.user_id = u.user_id and p.blog_id = b.blog_id and
-		b.title like "%"#{title}"%"
+		b.title like
+		"%"#{title}"%"
 		order by b.create_at desc
 	</select>
-	
+
 	<select id="findPictureListByTag" parameterType="string"
 		resultMap="BlogWithUserWithPictureResult">
 		SELECT b.*,p.url
 		from blog b,picture p
 		where
-		p.blog_id = b.blog_id and
-		b.tag like "%"#{title}"%"
+		p.blog_id =
+		b.blog_id and
+		b.tag like "%"#{tag}"%"
 		order by b.create_at desc
 	</select>
 
@@ -204,12 +230,14 @@
 		update picture set price = #{price}
 		<include refid="updateByPictureId" />
 	</update>
-	
-	
+
+
 	<select id="findPictureIfCanBuyByBlogId" resultMap="BLogWithPicture">
-		select b.*,p.*
+		select
+		b.*,p.*
 		from blog b,picture p
 		where b.blog_id = p.blog_id
-		and b.blog_id  = #{blogId} and p.price > 0 and p.buy = "Y";
+		and b.blog_id =
+		#{blogId} and p.price > 0 and p.buy = "Y";
 	</select>
 </mapper>

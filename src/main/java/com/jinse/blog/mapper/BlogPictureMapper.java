@@ -47,7 +47,7 @@ public interface BlogPictureMapper {
 
 	Blog findPictureIfCanBuyByBlogId(Integer blogId);
 
-	List<Blog> findPictureListByTag(String content);
+	List<Blog> findPictureListByTag(String tag);
 
   
 }

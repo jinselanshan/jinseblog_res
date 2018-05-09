@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-<head th:include="home/homeHead :: home_header(~{::title},~{::link})">
+<head th:replace="htmlHead :: common_header(~{::title},~{::link})">
 <title>图片搜索结果</title>
 <link rel="stylesheet" type="text/css" th:href="@{/css/article/fancybox.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/article/main.css}" />
 </head>
-
+<div>
+	<script type="text/javascript" charset="utf-8" src="/jinseblog/static/jquery/loading_more/loading_gallery.js"></script>
+</div>
 <body>
 	<header th:replace="nav :: nav"></header>
 	<div class="main-wrapper" id="container"> <!-- image Gallery -->
 	<div class="wrapper">
 		<div class="">
 			<div class="row-title">
-				<h3 class="text-linear" th:text="${content}"></h3>
+				<h3 th:if="${searchContent}" id="searchContent"  class="text-linear" th:text="${content}"></h3>
+				<h3 th:if="${tag}" id="tag"  class="text-linear" th:text="${content}"></h3>
 			</div>
 			<ul id="picul" class="small-block-grid-3 home">
 				<li class="masonry-item grid" th:each="blog : ${blogList}">
@@ -23,6 +26,7 @@
 		</div>
 	</div>
 	</div>
-
+    <p class="ck">加载更多</p>
+	<a href="#0" class="cd-top">Top</a>
 </body>
 </html>
