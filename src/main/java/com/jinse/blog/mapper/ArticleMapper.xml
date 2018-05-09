@@ -250,8 +250,6 @@
 			resultMap="com.jinse.blog.mapper.UserMapper.BaseResultMap" />
 		<association property="article"
 			resultMap="com.jinse.blog.mapper.ArticleMapper.BaseResultMap" />
-		<collection property="tagList"
-			resultMap="com.jinse.blog.mapper.TagMapper.BaseResultMap" />
 	</resultMap>
 
 

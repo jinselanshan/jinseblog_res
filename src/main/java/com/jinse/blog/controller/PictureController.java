@@ -24,13 +24,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.jinse.blog.pojo.Blog;
 import com.jinse.blog.pojo.BlogAndLike;
 import com.jinse.blog.pojo.BlogTag;
-import com.jinse.blog.pojo.Comment;
+import com.jinse.blog.pojo.CommentAndDe;
 import com.jinse.blog.pojo.Likeif;
 import com.jinse.blog.pojo.Picture;
 import com.jinse.blog.pojo.Tag;
 import com.jinse.blog.pojo.User;
-import com.jinse.blog.pojo.UserAndInfor;
-import com.jinse.blog.pojo.UserFollowing;
 import com.jinse.blog.pojo.UsersTag;
 import com.jinse.blog.service.BlogService;
 import com.jinse.blog.service.BlogTagService;
@@ -218,7 +216,7 @@ public class PictureController {
 		int count = likeifService.findLikeifByBlogIdAndUserId(likeif);
 		blogAndLike.setLikeif(count);
 
-		List<Comment> commentList = commentService.findCommentByBlogId(blogId);
+		List<CommentAndDe> commentList = commentService.findCommentByBlogId(blogId);
 		model.addAttribute("commentList", commentList);
 		model.addAttribute("blog", blogAndLike);
 		model.addAttribute("user", blog.getUser());

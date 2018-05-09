@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="upload/uploadHead :: upload_header(~{::title},~{::link})">
 <meta charset="utf-8" />
-<meta th:include="upload/uploadHead :: upload_header(~{::title})" th:remove="tag" />
 <title>上传文章</title>
-<link rel="stylesheet" href="/jinseblog/static/css/editor/style.css" />
 <link rel="stylesheet" href="/jinseblog/static/css/editor/editormd.css" />
-<link rel="shortcut icon"
-	href="https://pandao.github.io/editor.md/favicon.ico"
+<link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico"
 	type="image/x-icon" />
 </head>
 <body>
@@ -27,7 +24,7 @@
 							<td>标题</td>
 						</tr>
 						<tr>
-							<td><input name="title" class="form-control" type="text"></td>
+							<td><input name="title" id="title" class="form-control" type="text"></td>
 						</tr>
 						<tr>
 							<td>正文</td>
@@ -42,12 +39,12 @@
 									<textarea class="editormd-markdown-textarea" rows="12"
 										name="test-editormd-markdown-doc" placeholder="1"></textarea>
 									<!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
-									<textarea class="editormd-html-textarea" rows="12" name="content"></textarea>
+									<textarea class="editormd-html-textarea" rows="12" name="content" id="content"></textarea>
 								</div></td>
 						</tr>
 						<tr>
-							<td><button class="btn" id="submit" contenteditable="true"
-									type="submit">提交</button></td>
+							<td><button class="btn submitArticle"  id="submit" contenteditable="true"
+									type="submit"  onclick="return checkArticle()">提交</button></td>
 						</tr>
 					</table>
 

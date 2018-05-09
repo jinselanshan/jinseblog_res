@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-<head th:replace="upload/uploadHead :: upload_header(~{::title})">
+<head th:replace="upload/uploadHead :: upload_header(~{::title},~{})">
 <title>上传图片</title>
 </head>
 <body>
@@ -18,10 +18,9 @@
 		</div>
 		<div class="col-xs-3 span3  tablecss" id="picture_table">
 			<form>
-			    <input type="hidden" name="picture.type" value="1">
 				<table class="table tablefont" style="table-layout:fixed;">
 					<tr class="">
-					 	<input type="hidden" name="type" id="type" th:value="${type}">
+					 	<input type="hidden" name="type" id="type" th:value="${type}"/>
 						<td>标题</td>
 					</tr>
 					<tr class="">

@@ -31,4 +31,6 @@ public interface CommentMapper {
 	List<Comment> findCommentByBlogId(Integer blogId);
 
 	int insertComment(Comment comment);
+
+	Comment findCommentByCommentId(Integer commentId);
 }

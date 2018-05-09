@@ -26,3 +26,17 @@ function checkVideo() {
 	}
 	return true;
 }
+
+function checkArticle() {
+	var title = $('#title').val();
+	var content = $('#content').val();
+	if (title == "" || title.length == 0) {
+		toastr.warning('请填写文章标题');
+		return false;
+	}
+	if (content == "" || content.length == 0) {
+		toastr.warning('请填写文章内容');
+		return false;
+	}
+	return true;
+}

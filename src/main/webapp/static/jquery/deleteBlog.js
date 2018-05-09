@@ -5,26 +5,30 @@ $(function() {
 
 	isSelf();
 	function isSelf() {
-		if ($('#currentUserId').val() == $('#userId').val()) {
-			$('#deleteBtn').attr("type","button");
-			$('#deleteBtn').show();
+		if ($('#currentUserId').val() != $('#userId').val()) {
+			$('#deleteSpan').hide();
+			$('#downloadSpan').hide();
 		}
 	}
-	
+
 	ifCanBuy();
 	function ifCanBuy() {
+/*		if ($('#currentUserId').val() == $('#userId').val()) {
+			$('#deleteSpan').hide();
+		}*/
 		var blogId = $("#blogId").val();
 		
 		$.ajax({
 			type : "POST",
-			url : projectName + "/picture/ifcanBuy",
-			data : {
+			url : projectName + "/picture/ifCanBuy/" + blogId,
+			/*data : {
 				"blogId" : blogId,
-			},
+			},*/
 			dataType : "JSON",
 			success : function(data) {
-				$('#buyBtn').attr("type","button");
-				$('#buyBtn').show();
+				if(data == 1){
+					$('#buySpan').hide();
+				}
 			},
 			error : function() {
 			}

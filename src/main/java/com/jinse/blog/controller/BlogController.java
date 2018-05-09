@@ -72,6 +72,7 @@ public class BlogController {
 
 		if (selectType != null && !selectType.equals("")) {
 			modelAndView.addObject("selectType", selectType);
+			modelAndView.addObject("content", content);
 			switch (selectType) {
 			case "photo":
 				blogList = blogService.findBlogListByTitle(content, "1");

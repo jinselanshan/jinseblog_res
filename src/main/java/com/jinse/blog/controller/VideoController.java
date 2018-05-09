@@ -1,6 +1,5 @@
 package com.jinse.blog.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,16 +16,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jinse.blog.pojo.Blog;
-import com.jinse.blog.pojo.BlogAndLike;
-import com.jinse.blog.pojo.BlogTag;
-import com.jinse.blog.pojo.Likeif;
-import com.jinse.blog.pojo.Picture;
-import com.jinse.blog.pojo.Tag;
 import com.jinse.blog.pojo.User;
 import com.jinse.blog.pojo.Video;
 import com.jinse.blog.service.BlogService;
+import com.jinse.blog.service.UserService;
 import com.jinse.blog.service.VideoService;
-import com.jinse.blog.utils.BlogUtil;
 import com.jinse.blog.utils.ConstantsUtil;
 import com.jinse.blog.utils.InitBlog;
 import com.jinse.blog.utils.SavePicture;
@@ -41,6 +35,8 @@ public class VideoController {
 	private BlogService blogService;
 	@Autowired
 	private VideoService videoService;
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping(value = "/uploadVideoUrl", method = RequestMethod.POST)
 	@ResponseBody
@@ -95,7 +91,10 @@ public class VideoController {
 	public String myPhotoes(Model model, HttpServletRequest request, User user) throws Exception {
 		Integer userId = SpringUtil.getCurrentUser().getUserId();
 		user = videoService.findAllVideoByUserId(userId);
-
+		if (user == null) {
+			logger.info("用户没有发布任何博客");
+			user = userService.findUserByUserId(userId);
+		}
 		model.addAttribute("user", user);
 		SpringUtil.setSession(ConstantsUtil.STRING_CURRENT_USER, user);
 		return "home/videopage";

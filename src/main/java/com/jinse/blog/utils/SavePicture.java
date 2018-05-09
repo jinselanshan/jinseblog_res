@@ -160,19 +160,20 @@ public class SavePicture {
 	
 	
 	
-	public static String savaPicFromLocal(String filepath) {
+	public static String savaPicFromLocal(Picture picture, String filepath,String userName,String fileName) {
 		if (filepath != null) {
 			try {
 				File file = new File(filepath);
 				InputStream inputStream = new FileInputStream(file);
 				// 上传到七牛后保存的文件名
-				String lastName = filepath.substring(filepath.indexOf("\\"),filepath.lastIndexOf("."));
-				String key = "image/jpg/photo/" + lastName;
+				//String lastName = filepath.substring(filepath.indexOf("\\"),filepath.lastIndexOf("."));
+				String key = "image/jpg/photo/" + userName + "/" + fileName;
 				Response res = uploadManager.put(inputStream, key, getUpToken(), null, null);
 				// 打印返回的信息
 				System.out.println(res.bodyString());
 				DefaultPutRet putRet = new Gson().fromJson(res.bodyString(), DefaultPutRet.class);
 				System.out.println(putRet.key);
+				picture.setUrl("http://p1vkce34m.bkt.clouddn.com/" + putRet.key);
 			} catch (QiniuException e) {
 				Response r = e.response;
 				// 请求失败时打印的异常的信息

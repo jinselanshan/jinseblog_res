@@ -2,6 +2,10 @@ function submitInfor() {
 	var pathName = window.document.location.pathname;
 	var projectName = pathName
 			.substring(0, pathName.substr(1).indexOf('/') + 1);
+	var username = $('#username').val();
+	if(username === null || username === ""){
+		return false;
+	}
 	$.ajax({
 		// 几个参数需要注意一下
 		type : "POST",// 方法类型

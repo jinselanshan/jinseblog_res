@@ -287,4 +287,15 @@
 	</insert>
 
 
+	<select id="findCommentByCommentId" resultMap="CommentWithUserResult"
+		parameterType="java.lang.Integer">
+		SELECT
+		u.user_id,
+		u.username,
+		u.avatar_url,
+		c.*
+		FROM
+		user u,comment c where u.user_id = c.user_id and c.comment_id = #{commentId,jdbcType=INTEGER}
+	</select>
+
 </mapper>

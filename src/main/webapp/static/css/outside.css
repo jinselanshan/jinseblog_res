@@ -1,164 +1,203 @@
 /* CSS Document */
-.navbar-width{
-  padding-left:0px;
-  padding-right:0px;
-  margin-left: -15px;
-  margin-right: -15px;
-  width: 100%  !important;
+.navbar-width {
+	padding-left: 0px;
+	padding-right: 0px;
+	margin-left: -15px;
+	margin-right: -15px;
+	width: 100% !important;
 }
-.tablecen{
-	text-align:center;
+
+.tablecen {
+	text-align: center;
 }
-.inputtext{
+
+.inputtext {
 	width: 250px;
 	background-position: center;
 }
 
-.backimage
-{
-/*     background-image:url('http://p1vkce34m.bkt.clouddn.com/image/jpg/324H.jpg'); */
-    background-color:#eee
-	width:100%;
-	background-size:100%;  
+.backimage {
+	/*     background-image:url('http://p1vkce34m.bkt.clouddn.com/image/jpg/324H.jpg'); */
+	background-color: #eee width:100%;
+	background-size: 100%;
 }
-div.style p a{
+
+div.style p a {
 	color: #000000;
 	text-decoration: none
 }
 
-div.style p a:focus, a:hover{
-	color: #000000 ;
-	text-decoration: underline  !important;
+div.style p a:focus, a:hover {
+	color: #000000;
+	text-decoration: underline !important;
 }
 
-
 a {
-	color: #333   !important;
+	color: #333 !important;
 	text-decoration: none
 }
 
-
-
-.asize{
-	font-size:15px  !important;
-	font-family: "΢���ź�", "����";  
+.asize {
+	font-size: 15px !important;
+	font-family: "΢���ź�", "����";
 }
-.navbar-w{
+
+.navbar-w {
 	margin-left: 30%;
 	margin-right: 30%;
 	font-size: 15px;
 	padding-left: 3%;
-	padding-right:  3%;
+	padding-right: 3%;
 }
 
-
-
-.shadowdiv{
-  box-shadow: -1px -1px 11px 2px rgba(0, 0, 0, 0.1);
+.shadowdiv {
+	box-shadow: -1px -1px 11px 2px rgba(0, 0, 0, 0.1);
 }
-.tablecss{
- background-color:#ffffff
+
+.tablecss {
+	background-color: #ffffff
 }
-.tablefont{
+
+.tablefont {
 	font-size: 14px;
-	color: #343447; 
+	color: #343447;
 }
-.colorsize{
+
+.colorsize {
 	background-color: #f5f7f9;
 }
-.wrapper{
+
+.wrapper {
 	text-align: center;
 }
-.wrapper ul{
+
+.wrapper ul {
 	margin: 0 auto;
-	width:95%;
+	width: 95%;
 	border-collapse: separate;
 	border-spacing: 10px 10px;
 	/*border:1px solid black;
 	list-style-type:none;*/
 }
-.wrapper ul li{
+
+.wrapper ul li {
 	/*display:inline;*/
+	
 }
-.nav-right{
-    padding-right: 25px;
+
+.nav-right {
+	padding-right: 25px;
 }
-#avatarBtn{
-    margin: 0 auto;
+
+#avatarBtn {
+	margin: 0 auto;
 	margin-top: 20px;
 }
 
-#avatarDiv{
-	margin:auto;
+#avatarDiv {
+	margin: auto;
 	padding-left: 10%;
 	margin-top: 9%;
 }
 
-.bodyColor{
-background-color: #ffffff;
+.bodyColor {
+	background-color: #ffffff;
 }
-#pictureUrl{
-	max-width:600px;
+
+#pictureUrl {
+	max-width: 600px;
 }
-#avatarTable{
-	margin:0 auto;
-}
-.inforDiv{
-	max-width:600px;
+
+#avatarTable {
 	margin: 0 auto;
 }
-.marginbox{
-	float:none   !important;
+
+.inforDiv {
+	max-width: 600px;
+	margin: 0 auto;
 }
-.mb-4 .indexImg{
-	max-width:500px;
-	max-height:300px;
+
+.marginbox {
+	float: none !important;
 }
-.mb-4 .imginfor{
-	max-width:600px;
+
+.mb-4 .indexImg {
+	max-width: 500px;
+	max-height: 300px;
 }
-.btn-following{
+
+.mb-4 .imginfor {
+	max-width: 600px;
+}
+
+.btn-following {
 	color: #85888a;
-	padding: 1px 1px  !important;
+	padding: 1px 1px !important;
 }
-.body-color{
+
+.body-color {
 	background-color: #eeeeee;
 }
+
 .panel-body {
-    padding: 5px  !important;
+	padding: 5px !important;
 }
-.ck img
-{
-	text-align:center;
-	width:20px;
-	height:20px;
+
+.ck img {
+	text-align: center;
+	width: 20px;
+	height: 20px;
 }
-.ck
-{
-	text-align:center;
+
+.ck {
+	text-align: center;
 }
-.navbar-table{
-	margin : none  !important;
+
+.navbar-table {
+	margin: none !important;
 }
+
 .box {
-    width:1000px;
-    margin:  0  auto;
+	width: 1000px;
+	margin: 0 auto;
 }
+
 #btn_return_top {
-    width:40px;
-    height: 40px;
-    position:fixed;
-    left:50%;
-    bottom:30px;
-    background:url(/jinseblog/static/img/top.png)  no-repeat  left top ;
-    margin-left: 610px;
+	width: 40px;
+	height: 40px;
+	position: fixed;
+	left: 50%;
+	bottom: 30px;
+	background: url(/jinseblog/static/img/top.png) no-repeat left top;
+	margin-left: 610px;
 }
+
 #btn_return_top:hover {
-    background:url(/jinseblog/static/img/top.png)  no-repeat  left -40px;
+	background: url(/jinseblog/static/img/top.png) no-repeat left -40px;
 }
 
 #imghead {
 	object-fit: cover;
 	width: 100px;
 	height: 100px;
+}
+
+.commentAvatar {
+	width: 50px;
+	height: 50px;
+}
+
+.index_logo {
+	width: 200px;
+	margin: 6px;
+	margin-bottom: 12px;
+}
+
+.index-panel {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+.removeBtn{
+	cursor:pointer
 }

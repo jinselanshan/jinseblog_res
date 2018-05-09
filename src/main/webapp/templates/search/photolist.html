@@ -1,21 +1,20 @@
 <!DOCTYPE html>
-<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head th:include="home/homeHead :: home_header(~{::title},~{::link})">
 <title>图片搜索结果</title>
-<link rel="stylesheet" type="text/css"
-	th:href="@{/css/article/fancybox.css}" />
-<link rel="stylesheet" type="text/css"
-	th:href="@{/css/article/main.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/article/fancybox.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/article/main.css}" />
 </head>
 
 <body>
 	<header th:replace="nav :: nav"></header>
-	<main class="main-wrapper" id="container"> <!-- image Gallery -->
+	<div class="main-wrapper" id="container"> <!-- image Gallery -->
 	<div class="wrapper">
 		<div class="">
-		
+			<div class="row-title">
+				<h3 class="text-linear" th:text="${content}"></h3>
+			</div>
 			<ul id="picul" class="small-block-grid-3 home">
 				<li class="masonry-item grid" th:each="blog : ${blogList}">
 					<div th:replace="home/userpage :: #figure_div" th:remove="tag"></div>
@@ -23,7 +22,7 @@
 			</ul>
 		</div>
 	</div>
-	</main>
+	</div>
 
 </body>
 </html>

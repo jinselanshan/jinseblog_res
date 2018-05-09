@@ -23,6 +23,7 @@ import com.jinse.blog.pojo.Blog;
 import com.jinse.blog.pojo.BlogAndLike;
 import com.jinse.blog.pojo.BlogTag;
 import com.jinse.blog.pojo.Comment;
+import com.jinse.blog.pojo.CommentAndDe;
 import com.jinse.blog.pojo.Likeif;
 import com.jinse.blog.pojo.Picture;
 import com.jinse.blog.pojo.Tag;
@@ -61,6 +62,8 @@ public class ArticleController {
 	private CommentService commentService;
 	@Autowired
 	private ArticleService articleService;
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping(value = "article/blog/{blogId}")
 	public String photoInfor(@PathVariable("blogId") Integer blogId, Model model, HttpServletRequest request, User user)
@@ -69,7 +72,7 @@ public class ArticleController {
 		//find blog and picture
 		Blog blog = blogService.findBlogArticleByBlogId(blogId);
 		
-		List<Comment> commentList = commentService.findCommentByBlogId(blogId);
+		List<CommentAndDe> commentList = commentService.findCommentByBlogId(blogId);
 		model.addAttribute("commentList", commentList);
 		model.addAttribute("blog", blog);
 		model.addAttribute("user", blog.getUser());
@@ -112,7 +115,10 @@ public class ArticleController {
 	public String myPhotoes(Model model, HttpServletRequest request, User user) throws Exception {
 		Integer userId = SpringUtil.getCurrentUser().getUserId();
 		user = articleService.findAllArticleByUserId(userId);
-
+		if (user == null) {
+			logger.info("用户没有发布任何博客");
+			user = userService.findUserByUserId(userId);
+		}
 		model.addAttribute("user", user);
 		SpringUtil.setSession(ConstantsUtil.STRING_CURRENT_USER, user);
 		return "home/articlepage";

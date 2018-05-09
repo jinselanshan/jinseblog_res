@@ -22,14 +22,8 @@ public class OrderInforServiceImpl implements OrderInforService {
 
 	@Override
 	public OrderInfor findOneByOutTradeNo(String out_trade_no) {
-		// TODO Auto-generated method stub
-		OrderInforExample orderInforExample = new OrderInforExample();
-		Criteria criteria = orderInforExample.createCriteria();
-		criteria.andOutTradeNoEqualTo(out_trade_no);
-
-		List<OrderInfor> orderInforList= orderInforMapper.selectByExample(orderInforExample);
-
-		return orderInforList.get(0);
+		OrderInfor orderInfor = orderInforMapper.findOrderByOutTradeNo(out_trade_no);
+		return orderInfor;
 	}
 
 	@Override

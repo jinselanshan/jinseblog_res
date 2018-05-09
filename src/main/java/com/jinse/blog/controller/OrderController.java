@@ -38,49 +38,63 @@ public class OrderController {
 	private PictureService pictureService;
 	@Autowired
 	private OrderInforService orderInforService;
-	
 
-	//找到卖出的order_infor列表
+	// 找到卖出的order_infor列表
 	@RequestMapping(value = "/order/seller/picture")
 	public String sellerIndex(Model model, HttpServletRequest request) throws Exception {
 		logger.info("进入卖出的order_info界面");
-		//order_info 列表，与博客一对一
+		// order_info 列表，与博客一对一
 		Integer userId = SpringUtil.getCurrentUser().getUserId();
 		List<OrderInfor> orderInforList = orderInforService.findSellerOrderListByUserId(userId);
-		model.addAttribute("orderInforList",orderInforList);
-		model.addAttribute("type","seller");
+		model.addAttribute("orderInforList", orderInforList);
+		model.addAttribute("type", "seller");
 		return "buy/sellerIndex";
 	}
-	
-	//找到买到的order_info列表
+
+	// 找到买到的order_info列表
 	@RequestMapping(value = "/order/buyer/picture")
 	public String buyerIndex(Model model, HttpServletRequest request) throws Exception {
 		logger.info("进入买到的order_info界面");
-		//order_info 列表，与博客一对一
+		// order_info 列表，与博客一对一
 		Integer userId = SpringUtil.getCurrentUser().getUserId();
 		List<OrderInfor> orderInforList = orderInforService.findBuyerOrderListByUserId(userId);
-		model.addAttribute("orderInforList",orderInforList);
-		model.addAttribute("type","buyer");
+		model.addAttribute("orderInforList", orderInforList);
+		model.addAttribute("type", "buyer");
 		return "buy/sellerIndex";
 	}
-	
-	//找到回收站Seller order_info列表
+
+	// 找到回收站Seller order_info列表
 	@RequestMapping(value = "/order/recycle/picture/{orderType}")
-	public String recycleSellerIndex(@PathVariable("orderType") String orderType, Model model, HttpServletRequest request) throws Exception {
+	public String recycleSellerIndex(@PathVariable("orderType") String orderType, Model model,
+			HttpServletRequest request) throws Exception {
 		logger.info("进入回收站order_info界面");
-		//order_info 列表，与博客一对一
+		// order_info 列表，与博客一对一
 		Integer userId = SpringUtil.getCurrentUser().getUserId();
-		List<OrderInfor> orderInforList = orderInforService.findDeletedOrderListByUserIdAndType(userId,orderType);
-		model.addAttribute("orderInforList",orderInforList);
+		List<OrderInfor> orderInforList = orderInforService.findDeletedOrderListByUserIdAndType(userId, orderType);
+		model.addAttribute("orderInforList", orderInforList);
 		return "buy/sellerIndex";
 	}
-	
-	//删除order
+
+	// 删除order
 	@RequestMapping(value = "/order/deleteOrderInfor/{orderType}/{orderId}")
 	@ResponseBody
-	public int deleteSellerOrderInfor(@PathVariable("orderId") Integer orderId, @PathVariable("orderType") String orderType, Model model, HttpServletRequest request) {
+	public int deleteSellerOrderInfor(@PathVariable("orderId") Integer orderId,
+			@PathVariable("orderType") String orderType, Model model, HttpServletRequest request) {
 		logger.info("删除order");
-		int count = orderInforService.deleteOrderInforByIdAndType(orderId,orderType);
+		int count = orderInforService.deleteOrderInforByIdAndType(orderId, orderType);
 		return count == 1 ? 1 : 0;
+	}
+
+	// 判断当前图片能否购买
+	@RequestMapping(value = "/picture/ifCanBuy/{blogId}")
+	@ResponseBody
+	public int buySpan(@PathVariable("blogId") Integer blogId, Model model, HttpServletRequest request) {
+		logger.info("删除order");
+		Blog blog = blogService.findBlogByBlogId(blogId);
+		if (blog != null && blog.getPicture() != null && blog.getPicture().getBuy() != null
+				&& !"Y".equals(blog.getPicture().getBuy())) {
+			return 1;
+		}
+		return 0;
 	}
 }

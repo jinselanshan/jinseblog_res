@@ -65,5 +65,5 @@ public class IndexController {
     	logger.info("进入上传视频界面");
         return "alipay/alipayindex";
     }
-
+    
 }

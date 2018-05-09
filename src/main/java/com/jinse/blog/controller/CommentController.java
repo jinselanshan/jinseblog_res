@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jinse.blog.pojo.Comment;
+import com.jinse.blog.pojo.CommentAndDe;
 import com.jinse.blog.service.CommentService;
 import com.jinse.blog.utils.SpringUtil;
 
@@ -37,6 +38,7 @@ public class CommentController {
 		if (count != 1) {
 			return null;
 		}
+		comment =  commentService.findCommentByCommentId(comment.getCommentId());
 		return comment;
 	}
 	@RequestMapping(value = "/deleteComment")
@@ -50,7 +52,7 @@ public class CommentController {
 			return null;
 		}
 		Integer blogId = comment.getBlogId();
-		List<Comment> commentList = commentService.findCommentByBlogId(blogId);
+		List<CommentAndDe> commentList = commentService.findCommentByBlogId(blogId);
 		model.addAttribute("commentList", commentList);
 		return comment;
 	}

@@ -41,4 +41,6 @@ public interface OrderInforMapper {
 	int deleteSellerOrderInforById(Integer orderId);
 
 	int deleteBuyerOrderInforById(Integer orderId);
+
+	OrderInfor findOrderByOutTradeNo(String out_trade_no);
 }
